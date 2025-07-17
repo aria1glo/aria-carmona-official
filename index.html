@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name • Portfolio</title>
+  <title>Aria Carmona • Model Portfolio</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Helvetica Neue', sans-serif; background: #fff; color: #333; line-height: 1.6; }
@@ -11,16 +11,19 @@
 
     nav { background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 10; }
     nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-weight: bold; font-size: 1.5rem; }
+    .logo { font-weight: bold; font-size: 1.5rem; color: #000; }
     .nav-links { display: flex; gap: 1rem; }
-    .nav-links a { font-size: 0.95rem; padding: 0.5rem; }
+    .nav-links a { font-size: 0.95rem; padding: 0.5rem; color: #333; transition: color 0.3s; }
+    .nav-links a:hover { color: #FF5E5B; }
 
-    .hero { background: url('https://via.placeholder.com/1200x600') center/cover no-repeat; color: white; text-align: center; padding: 6rem 2rem; }
+    .hero { background: url('https://via.placeholder.com/1200x600?text=Your+Hero+Image') center/cover no-repeat; color: white; text-align: center; padding: 6rem 2rem; }
     .hero h1 { font-size: 3rem; text-shadow: 0 0 6px rgba(0,0,0,0.5); }
+    .hero p { font-size: 1.2rem; }
 
     .container { max-width: 900px; margin: auto; padding: 2rem; }
 
-    .btn { display: inline-block; padding: 0.7rem 1.2rem; background: black; color: white; border-radius: 4px; margin-top: 1rem; }
+    .btn { display: inline-block; padding: 0.7rem 1.2rem; background: #333; color: white; border-radius: 4px; margin-top: 1rem; }
+    .btn:hover { background: #FF5E5B; }
 
     .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin: 2rem 0; }
     .stats-grid div { background: #f4f4f4; padding: 1rem; border-radius: 5px; text-align: center; }
@@ -38,16 +41,17 @@
     form label { display: block; margin: 1rem 0 0.3rem; }
     form input, form textarea { width: 100%; padding: 0.7rem; border: 1px solid #ccc; border-radius: 4px; }
     form textarea { resize: vertical; min-height: 100px; }
-    form button { margin-top: 1rem; padding: 0.7rem 1.5rem; border: none; background: black; color: white; cursor: pointer; }
+    form button { margin-top: 1rem; padding: 0.7rem 1.5rem; border: none; background: #333; color: white; cursor: pointer; }
     #formMsg { margin-top: 1rem; }
 
     footer { text-align: center; padding: 2rem 1rem; background: #f9f9f9; margin-top: 3rem; font-size: 0.9rem; }
+    footer a { color: #FF5E5B; }
   </style>
 </head>
 <body>
   <nav>
     <div class="container">
-      <div class="logo">YOUR NAME</div>
+      <div class="logo">Aria Carmona</div>
       <div class="nav-links">
         <a href="#home">Home</a>
         <a href="#gallery">Gallery</a>
@@ -58,13 +62,13 @@
   </nav>
 
   <section class="hero" id="home">
-    <h1>Your Name</h1>
-    <p>Model • Creator • Dreamer</p>
+    <h1>Aria Carmona</h1>
+    <p>She’s a star of the future. She’s making waves, and taking the runways by storm.</p>
   </section>
 
   <section class="container">
     <h2>About</h2>
-    <p>This is your short bio. Replace this text with who you are, what you do, and where you’re based. Example: “I’m a 22-year-old Latina model based in NYC, signed with Fusion Agency.”</p>
+    <p>Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.</p>
     <a href="#" class="btn" download>Download Z-Card</a>
   </section>
 
@@ -93,17 +97,12 @@
     </div>
   </section>
 
-  <section class="container news" id="news">
+  <section class="container" id="news">
     <h2>News</h2>
     <article>
-      <h3>Debuted at Miami Swim Week</h3>
-      <p><em>June 2025</em></p>
-      <p>Had the honor of walking in Fusion Swim Week Miami 2025! Thank you to all the designers who believed in me.</p>
-    </article>
-    <article>
-      <h3>Shot with Vogue Digital</h3>
-      <p><em>May 2025</em></p>
-      <p>Excited to share some shots from a recent campaign with Vogue Digital. Stay tuned for publication details.</p>
+      <h3>Aria Carmona Makes a Splash at Miami Swim Week 2025</h3>
+      <p><em>May 31, 2025</em></p>
+      <p>Aria Carmona made her mark at Miami Swim Week 2025, walking for Frisk Me Good’s swimwear collection. The runway show was a major highlight of the event, with Aria delivering a stunning performance alongside other top models in the fashion industry. The spotlight was on Aria as she confidently strutted down the runway, earning admiration from photographers, designers, and guests alike.</p>
     </article>
   </section>
 
@@ -125,7 +124,11 @@
   </section>
 
   <footer>
-    &copy; 2025 Your Name. All Rights Reserved.
+    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
+    <p>Follow me:</p>
+    <a href="https://www.instagram.com/aria.glo" target="_blank">Instagram</a> | 
+    <a href="https://www.tiktok.com/@aria1glow" target="_blank">TikTok</a> | 
+    <a href="https://www.youtube.com/c/AriaCarmonaOfficial" target="_blank">YouTube</a>
   </footer>
 
   <script>
