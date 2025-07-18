@@ -1,19 +1,23 @@
-/* General Styles */
+/* Import Didot Font */
+@import url('https://fonts.googleapis.com/css2?family=Didot&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+body, h1, h2, h3, p, a, li, nav, input, textarea, button {
+  font-family: 'Didot', serif;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
   line-height: 1.6;
   background-color: #f9f9f9;
   color: #333;
 }
 
 h1, h2, h3 {
-  font-family: 'Georgia', serif;
   color: #222;
 }
 
@@ -62,7 +66,6 @@ nav ul li a:hover {
   color: #ff6600;
 }
 
-/* Landing Page */
 #landing {
   display: flex;
   justify-content: space-between;
@@ -108,7 +111,6 @@ nav ul li a:hover {
   margin: 0 auto;
 }
 
-/* Stats Section */
 .stats {
   padding: 40px 0;
   text-align: center;
@@ -121,8 +123,9 @@ nav ul li a:hover {
 
 .stats-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: 20px;
 }
 
 .stat-item {
@@ -134,7 +137,6 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-/* Gallery Section */
 .gallery {
   padding: 40px 0;
   background-color: #fff;
@@ -160,50 +162,6 @@ nav ul li a:hover {
   bottom: 10px;
 }
 
-/* News Section */
-.news-preview {
-  padding: 40px 0;
-  background-color: #f9f9f9;
-}
-
-.news-preview h2 {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.news-preview .article-preview {
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-}
-
-.news-preview .article-preview:hover {
-  background-color: #f0f0f0;
-}
-
-.article-preview h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.article-preview p {
-  font-size: 16px;
-}
-
-.article-preview a {
-  font-size: 16px;
-  color: #ff6600;
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 10px;
-  text-align: center;
-}
-
-/* Instagram Posts */
 .instagram-posts {
   margin-top: 40px;
   text-align: center;
@@ -212,10 +170,11 @@ nav ul li a:hover {
 .instagram-posts iframe {
   width: 100%;
   max-width: 500px;
-  margin: 0 auto;
+  height: 600px;
+  margin: 20px auto;
+  display: block;
 }
 
-/* Footer */
 footer {
   text-align: center;
   padding: 20px;
@@ -223,7 +182,76 @@ footer {
   color: #fff;
 }
 
-/* Media Queries */
+.gallery-list {
+  list-style: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.gallery-list li {
+  margin: 10px 0;
+}
+
+.gallery-list a {
+  color: #ff6600;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 0;
+}
+
+.photo-gallery img {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.contact {
+  padding: 80px 0;
+  background-color: #fff;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact input, .contact textarea {
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.contact button {
+  background-color: #ff6600;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact button:hover {
+  background-color: #e65c00;
+}
+
 @media (max-width: 768px) {
   #landing {
     flex-direction: column;
