@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Aria Carmona</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.cdnfonts.com/css/htf-didot" rel="stylesheet">
 </head>
 <body>
-
   <nav>
     <div class="container">
       <a href="index.html" class="logo">Aria Carmona</a>
@@ -20,14 +20,14 @@
     </div>
   </nav>
 
-  <section class="contact">
-    <div class="container">
-      <h2>Contact Aria</h2>
-      <form action="https://formspree.io/f/mgvzvaqe" method="POST">
+  <section style="margin-top: 5rem">
+    <h2>Contact Aria</h2>
+    <div class="contact-form">
+      <form action="mailto:aria@example.com" method="post" enctype="text/plain">
         <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="_replyto" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
-        <button type="submit">Send</button>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
       </form>
     </div>
   </section>
@@ -35,6 +35,5 @@
   <footer>
     <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
   </footer>
-
 </body>
 </html>
