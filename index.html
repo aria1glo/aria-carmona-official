@@ -1,175 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aria Carmona • Model Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aria Carmona | Portfolio</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Helvetica Neue', sans-serif; background: #fff; color: #333; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
 
-    nav { background: #fff; padding: 1rem 2rem; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 10; }
-    nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-weight: bold; font-size: 1.5rem; color: #000; }
-    .nav-links { display: flex; gap: 1rem; }
-    .nav-links a { font-size: 0.95rem; padding: 0.5rem; color: #333; transition: color 0.3s; }
-    .nav-links a:hover { color: #FF5E5B; }
+    header {
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-    .hero { background: url('https://via.placeholder.com/1200x600?text=Your+Hero+Image') center/cover no-repeat; color: white; text-align: center; padding: 6rem 2rem; }
-    .hero h1 { font-size: 3rem; text-shadow: 0 0 6px rgba(0,0,0,0.5); }
-    .hero p { font-size: 1.2rem; }
+    header h1 {
+      margin: 0;
+    }
 
-    .container { max-width: 900px; margin: auto; padding: 2rem; }
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
 
-    .btn { display: inline-block; padding: 0.7rem 1.2rem; background: #333; color: white; border-radius: 4px; margin-top: 1rem; }
-    .btn:hover { background: #FF5E5B; }
+    nav a {
+      margin: 0 15px;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin: 2rem 0; }
-    .stats-grid div { background: #f4f4f4; padding: 1rem; border-radius: 5px; text-align: center; }
+    nav a:hover {
+      color: #f39c12;
+    }
 
-    .slider-container { position: relative; overflow: hidden; width: 100%; margin: 2rem 0; }
-    .slider { display: flex; transition: transform 0.5s ease; }
-    .slide { min-width: 100%; transition: 0.5s; }
-    .slide img { width: 100%; display: block; border-radius: 6px; }
+    .content {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-    .slider-buttons { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); }
-    .slider-buttons button { background: rgba(0,0,0,0.5); color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; }
+    .stats {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
 
-    .news article { margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+    .stat {
+      margin: 0 30px;
+      text-align: center;
+    }
 
-    form label { display: block; margin: 1rem 0 0.3rem; }
-    form input, form textarea { width: 100%; padding: 0.7rem; border: 1px solid #ccc; border-radius: 4px; }
-    form textarea { resize: vertical; min-height: 100px; }
-    form button { margin-top: 1rem; padding: 0.7rem 1.5rem; border: none; background: #333; color: white; cursor: pointer; }
-    #formMsg { margin-top: 1rem; }
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
 
-    footer { text-align: center; padding: 2rem 1rem; background: #f9f9f9; margin-top: 3rem; font-size: 0.9rem; }
-    footer a { color: #FF5E5B; }
+    /* Contact Form Styles */
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #f39c12;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e67e22;
+    }
+
+    .form-msg {
+      margin-top: 10px;
+    }
+
+    /* Instagram Embed */
+    .instagram-embed {
+      margin-bottom: 20px;
+    }
+
+    /* News Section */
+    .news-section {
+      display: none; /* Hidden by default, will be displayed when News tab is clicked */
+    }
   </style>
 </head>
 <body>
+
+<header>
+  <h1>Aria Carmona</h1>
   <nav>
-    <div class="container">
-      <div class="logo">Aria Carmona</div>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
+    <a href="#home">Home</a>
+    <a href="news.html">News</a>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
   </nav>
+</header>
 
-  <section class="hero" id="home">
-    <h1>Aria Carmona</h1>
-    <p>She’s a star of the future. She’s making waves, and taking the runways by storm.</p>
-  </section>
-
-  <section class="container">
-    <h2>About</h2>
-    <p>Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.</p>
-    <a href="#" class="btn" download>Download Z-Card</a>
-  </section>
-
-  <section class="container stats-grid">
-    <div><strong>Age</strong><br>21</div>
-    <div><strong>Height</strong><br>5′8″</div>
-    <div><strong>Chest</strong><br>34″</div>
-    <div><strong>Waist</strong><br>24″</div>
-    <div><strong>Hips</strong><br>34″</div>
-    <div><strong>Eyes</strong><br>Brown</div>
-    <div><strong>Hair</strong><br>Black</div>
-  </section>
-
-  <section class="container" id="gallery">
-    <h2>Gallery</h2>
-    <div class="slider-container">
-      <div class="slider" id="slider">
-        <div class="slide"><img src="https://via.placeholder.com/800x500?text=Look+1" alt="Look 1"></div>
-        <div class="slide"><img src="https://via.placeholder.com/800x500?text=Look+2" alt="Look 2"></div>
-        <div class="slide"><img src="https://via.placeholder.com/800x500?text=Look+3" alt="Look 3"></div>
+<!-- Content Area -->
+<div class="content">
+  <section class="instagram-embed">
+    <!-- Instagram Embed Code -->
+    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DLlZmXvgnCc/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+      <div style="padding:16px;">
+        <a href="https://www.instagram.com/p/DLlZmXvgnCc/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+          <div style=" display: flex; flex-direction: row; align-items: center;">
+            <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
+            <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
+              <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
+              <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+            </div>
+          </div>
+          <div style="padding: 19% 0;"></div>
+          <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+            <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div>
+            <div style="padding-top: 8px;">
+              <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
+            </div>
+            <div style="padding: 12.5% 0;"></div>
+          </div>
+        </a>
+        <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
+          <a href="https://www.instagram.com/p/DLlZmXvgnCc/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Aria Carmona (@aria.glo)</a>
+        </p>
       </div>
-      <div class="slider-buttons">
-        <button onclick="prevSlide()">←</button>
-        <button onclick="nextSlide()">→</button>
-      </div>
-    </div>
+    </blockquote>
+    <script async src="//www.instagram.com/embed.js"></script>
   </section>
 
-  <section class="container" id="news">
-    <h2>News</h2>
-    <article>
-      <h3>Aria Carmona Makes a Splash at Miami Swim Week 2025</h3>
-      <p><em>May 31, 2025</em></p>
-      <p>Aria Carmona made her mark at Miami Swim Week 2025, walking for Frisk Me Good’s swimwear collection. The runway show was a major highlight of the event, with Aria delivering a stunning performance alongside other top models in the fashion industry. The spotlight was on Aria as she confidently strutted down the runway, earning admiration from photographers, designers, and guests alike.</p>
-    </article>
-  </section>
-
-  <section class="container" id="contact">
+  <!-- Contact Form Section -->
+  <section id="contact">
     <h2>Contact</h2>
-    <form id="contactForm">
-      <label>Name</label>
-      <input type="text" name="name" required>
-      <label>Email</label>
-      <input type="email" name="email" required>
-      <label>Confirm Email</label>
-      <input type="email" name="emailConfirm" required>
-      <label>Message</label>
-      <textarea name="message" required></textarea>
-      <label><input type="checkbox" name="copy"> Send me a copy</label>
-      <button type="submit">Send</button>
-      <div id="formMsg"></div>
+    <form action="https://formspree.io/f/mgvzvaqe" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <div>
+        <label for="copy">
+          <input type="checkbox" id="copy" name="copy"> Send me a copy of this message
+        </label>
+      </div>
+
+      <button type="submit">Submit</button>
+
+      <div class="form-msg"></div>
     </form>
   </section>
+</div>
 
-  <footer>
-    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
-    <p>Follow me:</p>
-    <a href="https://www.instagram.com/aria.glo" target="_blank">Instagram</a> | 
-    <a href="https://www.tiktok.com/@aria1glow" target="_blank">TikTok</a> | 
-    <a href="https://www.youtube.com/c/AriaCarmonaOfficial" target="_blank">YouTube</a>
-  </footer>
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
+</footer>
 
-  <script>
-    // Image Slider
-    let currentIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const total = slides.length;
-
-    function updateSlide() {
-      document.getElementById('slider').style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % total;
-      updateSlide();
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + total) % total;
-      updateSlide();
-    }
-
-    setInterval(nextSlide, 4000); // auto-slide
-
-    // Contact Form
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = form.email.value;
-      const confirm = form.emailConfirm.value;
-      const msgDiv = document.getElementById('formMsg');
-
-      if (email !== confirm) {
-        msgDiv.textContent = "Emails do not match.";
-        msgDiv.style.color = "red";
-      } else {
-        msgDiv.textContent = "Thanks! Your message has been sent.";
-        msgDiv.style.color = "green";
-        form.reset();
-      }
-    });
-  </script>
 </body>
 </html>
