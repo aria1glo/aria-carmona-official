@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,18 +7,19 @@
   <title>Aria Carmona - Model</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.0/swiper-bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Didot&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Navbar -->
   <nav>
     <div class="container">
-      <a href="#" class="logo">Aria Carmona</a>
+      <a href="index.html" class="logo">Aria Carmona</a>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#biography">Biography</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="news.html">News</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -36,34 +38,36 @@
   <!-- Biography Section -->
   <section id="biography" class="biography">
     <h2>Biography</h2>
-    <p>Aria Carmona is a 21-year-old female model with ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering and a licensed NASCAR driver...</p>
+    <p>Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.</p>
   </section>
 
   <!-- Stats Section -->
   <section class="stats">
     <h2>Modeling Stats</h2>
     <div class="stats-container">
-      <div class="stat-item">
-        <p><strong>Age:</strong> 21</p>
+      <div class="stat-item"><p><strong>Age:</strong> 21</p></div>
+      <div class="stat-item"><p><strong>Height:</strong> 5’8”</p></div>
+      <div class="stat-item"><p><strong>Chest:</strong> 34”</p></div>
+      <div class="stat-item"><p><strong>Waist:</strong> 24”</p></div>
+      <div class="stat-item"><p><strong>Hips:</strong> 34”</p></div>
+      <div class="stat-item"><p><strong>Eye Color:</strong> Brown</p></div>
+      <div class="stat-item"><p><strong>Hair Color:</strong> Black</p></div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <h2>Gallery</h2>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/gallery1.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="images/gallery2.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="images/gallery3.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="images/gallery4.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="images/gallery5.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="images/gallery6.jpg" alt=""></div>
       </div>
-      <div class="stat-item">
-        <p><strong>Height:</strong> 5’8”</p>
-      </div>
-      <div class="stat-item">
-        <p><strong>Chest:</strong> 34”</p>
-      </div>
-      <div class="stat-item">
-        <p><strong>Waist:</strong> 24”</p>
-      </div>
-      <div class="stat-item">
-        <p><strong>Hips:</strong> 34”</p>
-      </div>
-      <div class="stat-item">
-        <p><strong>Eye Color:</strong> Brown</p>
-      </div>
-      <div class="stat-item">
-        <p><strong>Hair Color:</strong> Black</p>
-      </div>
+      <div class="swiper-pagination"></div>
     </div>
   </section>
 
@@ -77,6 +81,16 @@
   <footer>
     <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
   </footer>
+
+  <!-- Swiper Script -->
+  <script>
+    const swiper = new Swiper('.swiper-container', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+    });
+  </script>
 
 </body>
 </html>
