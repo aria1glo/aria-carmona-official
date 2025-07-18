@@ -1,0 +1,241 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+h1, h2, h3 {
+  font-family: 'Georgia', serif;
+  color: #222;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+nav .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ff6600;
+}
+
+/* Landing Page */
+#landing {
+  display: flex;
+  justify-content: space-between;
+  padding: 100px 0;
+}
+
+#landing .intro-text {
+  width: 50%;
+}
+
+#landing .intro-text h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+#landing .intro-text p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+#landing .intro-image img {
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.biography {
+  background-color: #f0f0f0;
+  padding: 40px 0;
+}
+
+.biography h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.biography p {
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Stats Section */
+.stats {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.stats h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.stat-item {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Gallery Section */
+.gallery {
+  padding: 40px 0;
+  background-color: #fff;
+}
+
+.gallery h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.swiper-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.swiper-slide img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.swiper-pagination {
+  bottom: 10px;
+}
+
+/* News Section */
+.news-preview {
+  padding: 40px 0;
+  background-color: #f9f9f9;
+}
+
+.news-preview h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.news-preview .article-preview {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.news-preview .article-preview:hover {
+  background-color: #f0f0f0;
+}
+
+.article-preview h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.article-preview p {
+  font-size: 16px;
+}
+
+.article-preview a {
+  font-size: 16px;
+  color: #ff6600;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Instagram Posts */
+.instagram-posts {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.instagram-posts iframe {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  #landing {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #landing .intro-image img {
+    width: 80%;
+    margin-top: 20px;
+  }
+
+  .stats-container {
+    flex-direction: column;
+  }
+}
