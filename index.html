@@ -3,280 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aria Carmona | Portfolio</title>
-
-  <!-- Google Fonts for Vogue/Elle vibes -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      background-color: #111;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-family: 'Playfair Display', serif; /* Elegant font */
-      font-size: 36px;
-    }
-
-    nav {
-      text-align: center;
-      background-color: #111;
-      padding: 15px 0;
-    }
-
-    nav a {
-      margin: 0 15px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 16px;
-    }
-
-    nav a:hover {
-      color: #f39c12;
-    }
-
-    .content {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-    }
-
-    .stat {
-      margin: 0 30px;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #111;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-    }
-
-    /* Contact Form Styles */
-    form {
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-
-    input[type="text"], input[type="email"], textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #f39c12;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #e67e22;
-    }
-
-    .form-msg {
-      margin-top: 10px;
-    }
-
-    /* Instagram Embed */
-    .instagram-embed {
-      margin-bottom: 20px;
-    }
-
-    /* News Section */
-    .news-list {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .news-item {
-      background: #fff;
-      padding: 15px;
-      margin: 10px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 80%;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .news-item:hover {
-      background-color: #f39c12;
-      color: white;
-    }
-
-    .news-item h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    /* Sections */
-    section {
-      margin-bottom: 40px;
-    }
-
-    /* Restore Intro, Bio, and Gallery */
-    #intro, #bio, #gallery {
-      display: block;
-    }
-  </style>
+  <title>Aria Carmona - Model</title>
+  <link rel="stylesheet" href="style.css"> <!-- Assuming external CSS file for styles -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.0.0/swiper-bundle.min.js"></script> <!-- Swiper JS for sliding gallery -->
 </head>
 <body>
 
-<header>
-  <a href="#home" style="color: white; text-decoration: none;"> <h1>Aria Carmona</h1> </a>
-</header>
+  <!-- Navbar -->
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">Aria Carmona</a>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#biography">Biography</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<!-- Navigation Bar -->
-<nav>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#about">About</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<!-- Content Area -->
-<div class="content">
-  
-  <!-- Introduction Section -->
-  <section id="intro">
-    <h2>Welcome to the World of Aria Carmona</h2>
-    <p>Aria Carmona is an influential designer known for her innovative designs that blend modern chic with timeless elegance.</p>
+  <!-- Landing Section -->
+  <section id="landing" class="landing">
+    <div class="intro-text">
+      <h1>Welcome to the world of Aria Carmona</h1>
+      <p>She’s a star of the future. She’s making waves, and taking the runways by storm. This is Aria Carmona.</p>
+    </div>
+    <div class="intro-image">
+      <img src="path_to_image.jpg" alt="Aria Carmona Image"> <!-- Your image here -->
+    </div>
   </section>
-  
+
   <!-- Biography Section -->
-  <section id="bio">
+  <section id="biography" class="biography" style="background-color: #f0f0f0;">
     <h2>Biography</h2>
-    <p>Aria Carmona’s journey into fashion began at a young age, working with top designers and refining her craft. She has since been a key figure in the fashion industry.</p>
+    <p>Aria Carmona is a 21-year-old female model with ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering and a licensed NASCAR driver. Modeling is her primary passion, and expanding her portfolio of experience is her objective for the moment. She has a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. Aria has also walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line and participated in Dallas Fashion Week 2025, taking her career to the next level.</p>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <h2>Modeling Stats</h2>
+    <div class="stats-container">
+      <div class="stat-item">
+        <p><strong>Age:</strong> 21</p>
+      </div>
+      <div class="stat-item">
+        <p><strong>Location:</strong> Manhattan, NY</p>
+      </div>
+      <div class="stat-item">
+        <p><strong>Experience:</strong> Barbizon Modeling Development, Miami Swim Week 2025</p>
+      </div>
+    </div>
   </section>
 
   <!-- Gallery Section -->
-  <section id="gallery">
+  <section id="gallery" class="gallery">
     <h2>Gallery</h2>
-    <div class="gallery-item">
-      <img src="path_to_image.jpg" alt="Design Image" width="100%">
-    </div>
-    <div class="gallery-item">
-      <img src="path_to_image2.jpg" alt="Design Image" width="100%">
-    </div>
-  </section>
-
-  <!-- News Section -->
-  <section id="news">
-    <h2>Latest News</h2>
-    <div class="news-list">
-      <!-- Miami Swim Week Article -->
-      <div class="news-item" onclick="window.location.href='miami-swim-week-2025.html'">
-        <h3>Miami Swim Week 2025</h3>
-        <p>Discover the highlights of Miami Swim Week 2025, including top designers, collections, and more.</p>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="path_to_image1.jpg" alt="Gallery Image 1"></div>
+        <div class="swiper-slide"><img src="path_to_image2.jpg" alt="Gallery Image 2"></div>
+        <div class="swiper-slide"><img src="path_to_image3.jpg" alt="Gallery Image 3"></div>
       </div>
-      <!-- Add more articles here -->
+      <div class="swiper-pagination"></div>
     </div>
   </section>
-  
-  <!-- Instagram Embed Section -->
-  <section class="instagram-embed">
-    <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DLlZmXvgnCc/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-      <div style="padding:16px;">
-        <a href="https://www.instagram.com/p/DLlZmXvgnCc/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-          <div style=" display: flex; flex-direction: row; align-items: center;">
-            <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
-            <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
-              <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
-              <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
-            </div>
-          </div>
-          <div style="padding: 19% 0;"></div>
-          <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
-            <svg width="50px" height="50px" viewBox="0 0 60 60" style="background-color: transparent; width: 100%; height: 100%; border-radius: 50%; padding: 0px;">
-              <g fill="none">
-                <g transform="matrix(1, 0, 0, 1, 0, 0)">
-                  <g transform="matrix(1, 0, 0, 1, 0, 0)">
-                    <path d="M565.378,37.631 C565.522,34.438 565.244,33.391 564.346,32.338"></path>
-                  </g>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <div style=" padding-top: 8px;">
-            <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
-          </div>
-        </a>
-        <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-          <a href="https://www.instagram.com/p/DLlZmXvgnCc/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Aria Carmona (@aria.glo)</a>
-        </p>
-      </div>
-    </blockquote>
-    <script async src="//www.instagram.com/embed.js"></script>
-  </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <form action="https://formspree.io/f/mgvzvaqe" method="POST">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
+  </footer>
 
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="message">Your Message</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-
-      <div>
-        <label for="copy">
-          <input type="checkbox" id="copy" name="copy"> Send me a copy of this message
-        </label>
-      </div>
-
-      <button type="submit">Submit</button>
-      <div class="form-msg"></div>
-    </form>
-  </section>
-</div>
-
-<!-- Footer -->
-<footer>
-  <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
-</footer>
-
+  <script>
+    // Initialize Swiper for the gallery
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    });
+  </script>
 </body>
 </html>
