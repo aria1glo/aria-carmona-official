@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>News – Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News - Aria Carmona</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin />
 </head>
 <body>
+  <div id="preloader"></div>
 
-  <section class="news-feature">
-    <a href="#article">
-      <img src="images/miami1.jpg" alt="Aria Miami" style="width: 100%; max-height: 400px; object-fit: cover;" />
-      <h2 class="news-title">Aria Carmona Makes a Splash at Miami Swim Week 2025</h2>
-    </a>
-  </section>
+  <nav>
+    <div class="container">
+      <a href="index.html"><img src="images/AC-Name3.png" class="logo-img" /></a>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="news.html">NEWS</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <section id="article" class="news-article">
-    <h2>Aria Carmona Makes a Splash at Miami Swim Week 2025</h2>
-    <p><strong>Miami, FL — May 31, 2025</strong> — Rising model Aria Carmona made waves at FUSION Swim Week Miami 2025, debuting in her first major runway show during Miami Swim Week...</p>
-    <p>The 21-year old walked for emerging label Frisk Me Good, known for its innovative approach to swimwear and statement pieces...</p>
-    <p>FUSION Swim Week continues to champion diverse talent...</p>
-
-    <div class="video">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/BrsO1IfZ0k8" frameborder="0" allowfullscreen></iframe>
+  <section class="tile-section">
+    <div class="tile">
+      <img src="images/miami1.jpg" alt="Miami Swim Week 2025"/>
+      <div class="tile-content">
+        <h3>Miami Swim Week 2025</h3>
+        <p>Aria Carmona lit up the Miami Swim Week runway in 2025. Click to read more about her feature and see the show highlights.</p>
+        <a href="miami-swim-week-2025.html" class="tile-button">Read Full Article</a>
+      </div>
     </div>
   </section>
 
+  <footer>
+    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
