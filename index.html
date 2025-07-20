@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aria Carmona - Model Portfolio</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <title>Aria Carmona | Model Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin />
 </head>
 <body>
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Navbar -->
   <nav>
     <div class="container">
-      <a href="index.html" class="logo">ARIA CARMONA</a>
+      <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" /></a>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="news.html">NEWS</a></li>
@@ -20,20 +24,30 @@
     </div>
   </nav>
 
-  <header class="landing-header">
-    <img src="images/miami1.jpg" alt="Aria Carmona" class="landing-image"/>
-    <div class="landing-text">
-      <p>She's a star of the future. She's making waves, and taking runways by storm. This is <em>Aria Carmona</em>.</p>
+  <!-- Hero Text -->
+  <header class="hero">
+    <div class="hero-text fade-in">
+      <h1>She's a star of the future.<br/>She's making waves, and taking runways by storm.<br/><em>Aria Carmona</em></h1>
     </div>
+    <img src="images/miami1.jpg" alt="Intro Image" class="hero-img"/>
   </header>
 
-  <section class="bio-section">
-    <h2>About Aria</h2>
-    <p>Aria Carmona is a Miami-based model taking the fashion world by storm. With a signature walk, timeless beauty, and an unstoppable work ethic, she represents the future of fashion and glamour.</p>
+  <!-- Bio -->
+  <section class="bio">
+    <p>
+      Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. 
+      The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, 
+      since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. 
+      Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. 
+      She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. 
+      She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. 
+      She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.
+    </p>
   </section>
 
-  <section class="stats-section">
-    <div class="stats-tabs">
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stats-grid">
       <div><strong>Age</strong><br/>21</div>
       <div><strong>Height</strong><br/>5’8”</div>
       <div><strong>Chest</strong><br/>34”</div>
@@ -44,15 +58,28 @@
     </div>
   </section>
 
-  <section class="gallery-preview">
-    <h2>Featured Gallery</h2>
+  <!-- Sliding Gallery -->
+  <section class="slider-section">
+    <h2>Featured Shoots</h2>
     <div class="slider">
-      <img src="images/miami2.jpg" alt="Gallery Preview"/>
+      <img src="images/P1620521.jpg" alt="Slide 1" />
+      <img src="images/P1620532.jpg" alt="Slide 2" />
+      <img src="images/P1620456.jpg" alt="Slide 3" />
+      <img src="images/P1620414.jpg" alt="Slide 4" />
+      <img src="images/IMG_2249.jpg" alt="Slide 5" />
+      <img src="images/P1620478.jpg" alt="Slide 6" />
     </div>
   </section>
 
   <footer>
     <p>&copy; 2025 Aria Carmona. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
