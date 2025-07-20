@@ -2,74 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aria Carmona - Model Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 </head>
 <body>
-  <!-- Preloader -->
-  <div id="preloader"></div>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="container">
-      <a href="index.html">
-        <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" />
-      </a>
-      <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="news.html">NEWS</a></li>
-        <li><a href="gallery.html">GALLERY</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div class="preloader" id="preloader">
+    <div class="loader-text">ARIA CARMONA</div>
+  </div>
 
-  <!-- Intro Text -->
-  <section class="intro">
-    <h1 class="fade-in-text">She’s a star of the future.<br>She’s making waves and taking runways by storm.<br><em>Aria Carmona</em></h1>
-  </section>
+  <main>
+    <section class="landing" style="background-image: url('images/miami1.jpg');">
+      <div class="landing-text">
+        <h1>This is <em>Aria Carmona</em></h1>
+      </div>
+    </section>
 
-  <!-- About / Bio -->
-  <section class="about">
-    <p>
-      Aria Carmona is a rising model known for her captivating presence, timeless elegance, and bold runway walk. Based in the U.S., she is rapidly becoming a recognized face in fashion circuits across the country.
-    </p>
-  </section>
+    <section class="bio">
+      <h2>About Aria</h2>
+      <p>
+        Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.
+      </p>
+    </section>
 
-  <!-- Model Stats -->
-  <section class="stats">
-    <div class="stat-grid">
-      <div><strong>Age</strong><br>21</div>
-      <div><strong>Height</strong><br>5’8”</div>
-      <div><strong>Chest</strong><br>34”</div>
-      <div><strong>Waist</strong><br>24”</div>
-      <div><strong>Hips</strong><br>34”</div>
-      <div><strong>Eye Color</strong><br>Brown</div>
-      <div><strong>Hair Color</strong><br>Black</div>
-    </div>
-  </section>
+    <section class="slideshow">
+      <div class="slider">
+        <img src="images/P1620521.jpg" alt="Slide 1" />
+        <img src="images/P1620532.jpg" alt="Slide 2" />
+        <img src="images/P1620456.jpg" alt="Slide 3" />
+        <img src="images/P1620414.jpg" alt="Slide 4" />
+      </div>
+    </section>
 
-  <!-- Sliding Image Gallery -->
-  <section class="gallery-slider">
-    <div class="slider">
-      <img src="images/P1620521.jpg" alt="Gallery 1" />
-      <img src="images/P1620532.jpg" alt="Gallery 2" />
-      <img src="images/P1620456.jpg" alt="Gallery 3" />
-      <img src="images/P1620414.jpg" alt="Gallery 4" />
-    </div>
-  </section>
+    <section class="instagram">
+      <h2>Instagram</h2>
+      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DLlZmXvgnCc/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+      <script async src="//www.instagram.com/embed.js"></script>
+    </section>
+  </main>
 
-  <footer>
-    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
-  </footer>
-
-  <!-- Preloader Script -->
-  <script>
-    window.addEventListener('load', () => {
-      document.getElementById('preloader').style.display = 'none';
-    });
-  </script>
 </body>
 </html>
