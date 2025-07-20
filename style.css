@@ -6,61 +6,40 @@
 body {
   margin: 0;
   font-family: 'Vogue', serif;
-  background-color: #fff;
   color: #222;
 }
 
-.preloader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  font-family: 'Vogue', serif;
-}
-
-.loader-text {
-  font-size: 2rem;
-  animation: fadeIn 2s ease-in-out infinite alternate;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0.3; }
-  100% { opacity: 1; }
-}
-
 .landing {
+  width: 100vw;
   height: 100vh;
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
 }
 
 .landing-text h1 {
   color: white;
   font-size: 3rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 1rem;
-  border-radius: 8px;
+  background: rgba(0,0,0,0.5);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .bio {
-  padding: 2rem;
   max-width: 900px;
-  margin: auto;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  font-size: 1.1rem;
   text-align: center;
+  line-height: 1.6;
 }
 
 .slideshow {
   overflow: hidden;
-  width: 100%;
-  padding: 2rem 0;
+  margin: 2rem 0;
 }
 
 .slider {
@@ -75,14 +54,14 @@ body {
 }
 
 @keyframes slide {
-  0%, 20% { transform: translateX(0); }
-  25%, 45% { transform: translateX(-100%); }
-  50%, 70% { transform: translateX(-200%); }
-  75%, 95% { transform: translateX(-300%); }
+  0%,20% { transform: translateX(0); }
+  25%,45% { transform: translateX(-100%); }
+  50%,70% { transform: translateX(-200%); }
+  75%,95% { transform: translateX(-300%); }
   100% { transform: translateX(0); }
 }
 
 .instagram {
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 0;
 }
