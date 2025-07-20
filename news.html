@@ -2,51 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>News - Aria Carmona</title>
+  <title>News – Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin />
 </head>
 <body>
-  <!-- Preloader -->
-  <div id="preloader"></div>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="container">
-      <a href="index.html">
-        <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" />
-      </a>
-      <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="news.html">NEWS</a></li>
-        <li><a href="gallery.html">GALLERY</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-      </ul>
-    </div>
-  </nav>
+  <section class="news-feature">
+    <a href="#article">
+      <img src="images/miami1.jpg" alt="Aria Miami" style="width: 100%; max-height: 400px; object-fit: cover;" />
+      <h2 class="news-title">Aria Carmona Makes a Splash at Miami Swim Week 2025</h2>
+    </a>
+  </section>
 
-  <section style="margin-top: 8rem; padding: 2rem; text-align: center;">
-    <h2>Latest Appearances</h2>
+  <section id="article" class="news-article">
+    <h2>Aria Carmona Makes a Splash at Miami Swim Week 2025</h2>
+    <p><strong>Miami, FL — May 31, 2025</strong> — Rising model Aria Carmona made waves at FUSION Swim Week Miami 2025, debuting in her first major runway show during Miami Swim Week...</p>
+    <p>The 21-year old walked for emerging label Frisk Me Good, known for its innovative approach to swimwear and statement pieces...</p>
+    <p>FUSION Swim Week continues to champion diverse talent...</p>
 
-    <!-- Event Card -->
-    <div class="event-card">
-      <a href="miami-swim-2025-gallery.html">
-        <img src="images/placeholder.jpg" alt="Miami Swim Week 2025" />
-        <h3>Miami Swim Week 2025</h3>
-        <p>Aria lit up the runway in this standout event of the year.</p>
-      </a>
+    <div class="video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/BrsO1IfZ0k8" frameborder="0" allowfullscreen></iframe>
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
-  </footer>
-
-  <script>
-    window.addEventListener('load', () => {
-      document.getElementById('preloader').style.display = 'none';
-    });
-  </script>
 </body>
 </html>
