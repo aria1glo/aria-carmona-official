@@ -4,12 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery - Aria Carmona</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin />
 </head>
 <body>
+  <div id="preloader"></div>
+
   <nav>
     <div class="container">
-      <a href="index.html" class="logo">ARIA CARMONA</a>
+      <a href="index.html"><img src="images/AC-Name3.png" class="logo-img" alt="Aria Carmona Logo"/></a>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="news.html">NEWS</a></li>
@@ -19,17 +22,27 @@
     </div>
   </nav>
 
-  <section class="gallery">
-    <div class="card">
-      <img src="images/miami1.jpg" alt="Miami Swim Thumbnail">
-      <h3>Miami Swim Week 2025</h3>
-      <p>A sizzling runway experience in the heart of Miami Beach.</p>
-      <a href="miami-swim-2025-gallery.html">View Gallery</a>
+  <main class="gallery-wrapper">
+    <h2>Photoshoots</h2>
+
+    <div class="gallery-tab">
+      <img src="images/miami1.jpg" class="thumbnail" alt="Miami Swim Week 2025" />
+      <div>
+        <h3>Miami Swim Week 2025</h3>
+        <p>Runway & Photoshoot with Krissy King</p>
+        <a href="miami-swim-2025-gallery.html" class="read-more-btn">View Gallery</a>
+      </div>
     </div>
-  </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
