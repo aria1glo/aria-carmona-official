@@ -3,13 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miami Swim Week 2025 Gallery</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Miami Swim 2025 Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin />
+  <style>
+    .gallery-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 2rem;
+      background: #f6f6f6;
+    }
+
+    .gallery-slider img {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      scroll-snap-align: center;
+      flex: 0 0 auto;
+    }
+  </style>
 </head>
 <body>
+  <div id="preloader"></div>
+
   <nav>
     <div class="container">
-      <a href="index.html" class="logo">ARIA CARMONA</a>
+      <a href="index.html"><img src="images/AC-Name3.png" class="logo-img" alt="Aria Carmona Logo"/></a>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="news.html">NEWS</a></li>
@@ -19,17 +40,26 @@
     </div>
   </nav>
 
-  <section class="photo-gallery">
-    <h2>Miami Swim Week 2025</h2>
-    <div class="gallery-container">
-      <img src="images/miami1.jpg" alt="Miami Shoot 1"/>
-      <img src="images/miami2.jpg" alt="Miami Shoot 2"/>
-      <!-- Add more as needed -->
+  <section style="margin-top: 8rem; text-align: center;">
+    <h2>Miami Swim Week 2025 - Gallery</h2>
+    <div class="gallery-slider">
+      <img src="images/miami1.jpg" alt="Aria Swim 1">
+      <img src="images/miami2.jpg" alt="Aria Swim 2">
+      <img src="images/miami3.jpg" alt="Aria Swim 3">
+      <img src="images/miami4.jpg" alt="Aria Swim 4">
+      <img src="images/miami5.jpg" alt="Aria Swim 5">
+      <img src="images/miami6.jpg" alt="Aria Swim 6">
     </div>
   </section>
 
   <footer>
     <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
