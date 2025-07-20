@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin />
 </head>
 <body>
   <!-- Preloader -->
@@ -14,7 +14,7 @@
   <!-- Navbar -->
   <nav>
     <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" /></a>
+      <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" style="margin-left: 10px;" /></a>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="news.html">NEWS</a></li>
@@ -24,25 +24,22 @@
     </div>
   </nav>
 
-  <!-- Contact Section -->
   <section style="margin-top: 8rem; text-align: center;">
-    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Contact Aria</h2>
-    <div class="contact-form" style="max-width: 500px; margin: 0 auto;">
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required style="width: 100%; margin-bottom: 1rem; padding: 0.75rem;">
-        <input type="email" name="email" placeholder="Your Email" required style="width: 100%; margin-bottom: 1rem; padding: 0.75rem;">
-        <textarea name="message" placeholder="Message" rows="6" required style="width: 100%; margin-bottom: 1rem; padding: 0.75rem;"></textarea>
-        <button type="submit" style="padding: 0.75rem 2rem; background-color: #ffc0cb; border: none; color: black; font-weight: bold;">Send Message</button>
+    <h2>Contact Aria</h2>
+    <div class="contact-form">
+      <form action="mailto:aria@example.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer style="text-align: center; margin-top: 3rem;">
+  <footer>
     <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
   </footer>
 
-  <!-- Preloader Script -->
   <script>
     window.addEventListener('load', () => {
       document.getElementById('preloader').style.display = 'none';
