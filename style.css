@@ -1,3 +1,4 @@
+/* Font */
 @font-face {
   font-family: 'Vogue';
   src: url('fonts/Vogue.ttf') format('truetype');
@@ -9,47 +10,102 @@ body {
   color: #222;
 }
 
+.no-js .hero-text {
+  opacity: 1 !important;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+nav .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.logo-img {
+  height: 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #222;
+  text-transform: uppercase;
+  transition: color 0.3s, background 0.3s;
+  padding: 0.25rem 0.5rem;
+}
+
+nav ul li a:hover {
+  color: #ffc0cb;
+  background: #fff;
+  border-radius: 4px;
+}
+
+/* Hero */
 .landing {
-  width: 100vw;
   height: 100vh;
   background-size: cover;
   background-position: center;
+  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin-top: 80px;
 }
 
-.landing-text h1 {
-  color: white;
-  font-size: 3rem;
-  background: rgba(0,0,0,0.5);
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  text-align: center;
+.hero-text {
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
 }
 
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Bio */
 .bio {
-  max-width: 900px;
+  max-width: 800px;
   margin: 3rem auto;
   padding: 0 1rem;
-  font-size: 1.1rem;
   text-align: center;
   line-height: 1.6;
 }
 
+/* Slideshow */
 .slideshow {
   overflow: hidden;
-  margin: 2rem 0;
+  max-width: 100%;
 }
 
 .slider {
   display: flex;
-  animation: slide 16s infinite;
+  animation: slide 20s infinite;
 }
 
 .slider img {
   width: 100%;
-  flex: 1 0 100%;
+  flex: 0 0 100%;
   object-fit: cover;
 }
 
@@ -61,7 +117,16 @@ body {
   100% { transform: translateX(0); }
 }
 
+/* Instagram */
 .instagram {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+/* Footer */
+footer {
   text-align: center;
   padding: 2rem 0;
+  background: #f9f9f9;
 }
