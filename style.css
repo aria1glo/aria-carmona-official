@@ -1,35 +1,30 @@
-/* Global Styles */
+@font-face {
+  font-family: 'Vogue';
+  src: url('fonts/vogue.ttf') format('truetype');
+}
+
 body {
   margin: 0;
-  font-family: 'Playfair Display', serif;
-  text-transform: uppercase;
-  background-color: #fff;
-  color: #333;
+  font-family: 'Vogue', serif;
+  background: #fff;
+  color: #111;
   overflow-x: hidden;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Navbar */
 nav {
-  background-color: black;
-  color: white;
-  padding: 1rem;
-}
-
-nav .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-nav .logo {
-  font-weight: bold;
-  font-size: 1.5rem;
+nav .logo-img {
+  height: 40px;
 }
 
 nav ul {
@@ -39,124 +34,96 @@ nav ul {
 }
 
 nav ul li a {
-  color: white;
   text-decoration: none;
-  transition: 0.3s;
+  color: black;
+  font-weight: bold;
+  transition: 0.3s ease;
 }
 
 nav ul li a:hover {
-  background: white;
-  color: pink;
-  padding: 4px 10px;
+  background: #fff;
+  color: #ffc0cb;
+  padding: 0.3rem 0.5rem;
   border-radius: 5px;
 }
 
-/* Landing Header */
-.landing-header {
-  position: relative;
+.hero {
+  margin-top: 80px;
   text-align: center;
-  overflow: hidden;
+  position: relative;
 }
 
-.landing-image {
+.hero-text {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  color: #111;
+  font-size: 1.5rem;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-img {
   width: 100%;
   height: auto;
-  max-height: 80vh;
+  max-height: 90vh;
   object-fit: cover;
 }
 
-.landing-text {
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  color: white;
-  font-size: 1.4rem;
-  text-align: left;
-}
-
-/* Bio Section */
-.bio-section {
+.bio {
   padding: 2rem;
-  text-align: center;
-  text-transform: none;
+  font-size: 1.2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-/* Stats Section */
-.stats-section {
-  background-color: #f0f0f0;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+.stats {
+  background: #eee;
+  padding: 2rem 1rem;
 }
 
-.stats-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
   text-align: center;
 }
 
-/* Gallery Preview */
-.gallery-preview {
+.slider-section {
   padding: 2rem;
   text-align: center;
 }
 
 .slider img {
-  max-width: 80%;
-  border-radius: 8px;
+  max-height: 400px;
+  width: auto;
+  margin: 10px;
 }
 
-/* News and Gallery Cards */
-.card {
-  width: 300px;
-  margin: 2rem auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.card img {
-  width: 100%;
-}
-
-.card h3, .card p {
-  margin: 1rem;
-}
-
-/* Contact Form */
-.contact-form form {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  margin: 4rem auto;
-  gap: 1rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  font-family: 'Playfair Display', serif;
-  text-transform: none;
-}
-
-button {
-  background-color: #ffc0cb;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Footer */
 footer {
-  background: black;
-  color: white;
   text-align: center;
   padding: 1rem;
+  background: #fff;
+  border-top: 1px solid #ccc;
+}
+
+#preloader {
+  background: white url('images/AC-Name3.png') no-repeat center center;
+  background-size: 100px;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 2000;
 }
