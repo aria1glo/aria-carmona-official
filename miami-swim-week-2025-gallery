@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Miami Swim Week 2025 Gallery</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">ARIA CARMONA</a>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="news.html">NEWS</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="photo-gallery">
+    <h2>Miami Swim Week 2025</h2>
+    <div class="gallery-container">
+      <img src="images/miami1.jpg" alt="Miami Shoot 1"/>
+      <img src="images/miami2.jpg" alt="Miami Shoot 2"/>
+      <!-- Add more as needed -->
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
