@@ -1,11 +1,20 @@
+/* Global Styles */
 body {
   margin: 0;
   font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
   background-color: #fff;
   color: #333;
-  text-transform: uppercase;
+  overflow-x: hidden;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Navbar */
 nav {
   background-color: black;
   color: white;
@@ -24,56 +33,56 @@ nav .logo {
 }
 
 nav ul {
-  display: flex;
   list-style: none;
+  display: flex;
   gap: 2rem;
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 nav ul li a:hover {
-  background-color: white;
+  background: white;
   color: pink;
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
+/* Landing Header */
 .landing-header {
   position: relative;
   text-align: center;
+  overflow: hidden;
 }
 
 .landing-image {
   width: 100%;
   height: auto;
+  max-height: 80vh;
+  object-fit: cover;
 }
 
 .landing-text {
   position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-size: 1.5rem;
+  top: 10%;
+  left: 10%;
   width: 80%;
-  animation: fadeIn 4s ease forwards;
+  color: white;
+  font-size: 1.4rem;
+  text-align: left;
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(20px);}
-  100% { opacity: 1; transform: translateY(0);}
-}
-
+/* Bio Section */
 .bio-section {
   padding: 2rem;
   text-align: center;
   text-transform: none;
 }
 
+/* Stats Section */
 .stats-section {
   background-color: #f0f0f0;
   padding: 2rem;
@@ -89,13 +98,64 @@ nav ul li a:hover {
   text-align: center;
 }
 
+/* Gallery Preview */
 .gallery-preview {
   padding: 2rem;
   text-align: center;
 }
 
+.slider img {
+  max-width: 80%;
+  border-radius: 8px;
+}
+
+/* News and Gallery Cards */
+.card {
+  width: 300px;
+  margin: 2rem auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card h3, .card p {
+  margin: 1rem;
+}
+
+/* Contact Form */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 4rem auto;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  font-family: 'Playfair Display', serif;
+  text-transform: none;
+}
+
+button {
+  background-color: #ffc0cb;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Footer */
 footer {
-  background-color: black;
+  background: black;
   color: white;
   text-align: center;
   padding: 1rem;
