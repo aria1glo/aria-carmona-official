@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin />
 </head>
-<body class="no-js">
+<body>
+  <div id="preloader"></div>
 
-  <!-- Navbar -->
   <nav>
     <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img"></a>
+      <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" /></a>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="news.html">NEWS</a></li>
@@ -22,41 +22,45 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="landing" style="background-image: url('images/miami1.jpg');">
-    <div class="hero-text">
-      <h1>This is <em>Aria Carmona</em></h1>
+  <header class="landing-header" style="background-image: url('images/miami1.jpg');">
+    <div class="intro-text">
+      <p class="fade-in">She’s a star of the future. She’s making waves, and taking the runways by storm. <em>This is Aria Carmona.</em></p>
     </div>
-  </section>
+  </header>
 
-  <!-- About Section -->
   <section class="bio">
-    <h2>About Aria</h2>
-    <p>Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.</p>
+    <p>Aria Carmona is an emerging fashion model making her mark with stunning runway presence, striking features, and unstoppable energy. Follow her journey as she graces shows, shoots editorials, and sets trends.</p>
   </section>
 
-  <!-- Slideshow -->
-  <section class="slideshow">
-    <div class="slider">
-      <img src="images/P1620521.jpg" alt="Slide 1">
-      <img src="images/P1620532.jpg" alt="Slide 2">
-      <img src="images/P1620456.jpg" alt="Slide 3">
-      <img src="images/P1620414.jpg" alt="Slide 4">
-    </div>
+  <section class="model-stats">
+    <div class="stats-tab">Age<br><span>21</span></div>
+    <div class="stats-tab">Height<br><span>5’8”</span></div>
+    <div class="stats-tab">Chest<br><span>34”</span></div>
+    <div class="stats-tab">Waist<br><span>24”</span></div>
+    <div class="stats-tab">Hips<br><span>34”</span></div>
+    <div class="stats-tab">Eye Color<br><span>Brown</span></div>
+    <div class="stats-tab">Hair Color<br><span>Black</span></div>
   </section>
 
-  <!-- Instagram Embed -->
-  <section class="instagram">
-    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DLlZmXvgnCc/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
-    <script async src="//www.instagram.com/embed.js"></script>
+  <section class="gallery-slider">
+    <img src="images/P1620521.jpg" />
+    <img src="images/P1620532.jpg" />
+    <img src="images/P1620456.jpg" />
+    <img src="images/P1620414.jpg" />
+  </section>
+
+  <section class="instagram-embed">
+    <iframe src="https://www.instagram.com/aria.glo/embed" width="100%" height="600" frameborder="0"></iframe>
   </section>
 
   <footer>
-    <p>&copy; 2025 Aria Carmona</p>
+    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
   </footer>
 
   <script>
-    document.body.classList.remove('no-js');
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').style.display = 'none';
+    });
   </script>
 </body>
 </html>
