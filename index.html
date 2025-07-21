@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aria Carmona - Official Portfolio</title>
+  <title>Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin />
 </head>
@@ -14,7 +14,9 @@
   <!-- Navbar -->
   <nav>
     <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" /></a>
+      <a href="index.html" class="logo-link">
+        <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" />
+      </a>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="news.html">NEWS</a></li>
@@ -24,64 +26,45 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="hero-text">
-      <p class="fade-in-text" style="margin-top: -40px;">
-        She’s a star of the future. She’s making waves, and taking the runways by storm.
-        <em>This is Aria Carmona.</em>
-      </p>
+  <!-- Landing -->
+  <section class="landing">
+    <div class="landing-text fade-in">
+      <h1><em>She’s a star of the future. She’s making waves, and taking the runways by storm. <strong><em>This is Aria Carmona.</em></strong></em></h1>
     </div>
-  </header>
+  </section>
 
-  <!-- About Section -->
+  <!-- Gallery Slider -->
+  <section class="carousel">
+    <div class="slider">
+      <img src="images/P1620521.jpg" alt="">
+      <img src="images/P1620532.jpg" alt="">
+      <img src="images/P1620456.jpg" alt="">
+      <img src="images/P1620414.jpg" alt="">
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stat-card">Age<br><strong>21</strong></div>
+    <div class="stat-card">Height<br><strong>5’8”</strong></div>
+    <div class="stat-card">Chest<br><strong>34”</strong></div>
+    <div class="stat-card">Waist<br><strong>24”</strong></div>
+    <div class="stat-card">Hips<br><strong>34”</strong></div>
+    <div class="stat-card">Eye Color<br><strong>Brown</strong></div>
+    <div class="stat-card">Hair Color<br><strong>Black</strong></div>
+  </section>
+
+  <!-- About Aria -->
   <section class="about">
     <h2>About Aria</h2>
     <p>
-      Aria Carmona is a 21 year old emerging fashion model making her mark with stunning runway presence, striking features, and unstoppable energy.
-      The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024.
-      Her line of experience includes a multitude of photoshoots, and runway experience in Miami Swim Week 2025.
-      Follow her journey as she graces shows, shoots editorials, and sets trends.
+      Aria Carmona is a 21 year old emerging fashion model making her mark with stunning runway presence, striking features, and unstoppable energy. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. Her line of experience includes a multitude of photoshoots, and runway experience in Miami Swim Week 2025. Follow her journey as she graces shows, shoots editorials, and sets trends.
     </p>
   </section>
 
-  <!-- Gallery Section -->
-  <section class="featured-gallery">
-    <h2>Featured Photos</h2>
-    <div class="slider">
-      <div class="slides">
-        <img src="images/P1620521.jpg" alt="Slide 1" />
-        <img src="images/P1620532.jpg" alt="Slide 2" />
-        <img src="images/P1620456.jpg" alt="Slide 3" />
-        <img src="images/P1620414.jpg" alt="Slide 4" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section class="stats">
-    <div class="stats-grid">
-      <div class="stat-tab"><strong>Age</strong><br>21</div>
-      <div class="stat-tab"><strong>Height</strong><br>5’8”</div>
-      <div class="stat-tab"><strong>Chest</strong><br>34”</div>
-      <div class="stat-tab"><strong>Waist</strong><br>24”</div>
-      <div class="stat-tab"><strong>Hips</strong><br>34”</div>
-      <div class="stat-tab"><strong>Eye Color</strong><br>Brown</div>
-      <div class="stat-tab"><strong>Hair Color</strong><br>Black</div>
-    </div>
-  </section>
-
   <!-- Instagram Embed -->
-  <section class="instagram-embed">
-    <h2>Follow @aria.glo</h2>
-    <iframe
-      src="https://www.instagram.com/aria.glo/embed"
-      width="100%"
-      height="500"
-      frameborder="0"
-      scrolling="no"
-      allowtransparency="true"
-    ></iframe>
+  <section class="instagram">
+    <iframe src="https://www.instagram.com/aria.glo/embed" width="100%" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
   </section>
 
   <footer>
@@ -89,20 +72,8 @@
   </footer>
 
   <script>
-    // Preloader
     window.addEventListener("load", () => {
       document.getElementById("preloader").style.display = "none";
-    });
-
-    // Scroll animation
-    const fadeInText = document.querySelector(".fade-in-text");
-    fadeInText.style.opacity = 0;
-    window.addEventListener("scroll", () => {
-      let y = window.scrollY;
-      if (y > 100) {
-        fadeInText.style.transition = "opacity 1.2s ease-in-out";
-        fadeInText.style.opacity = 1;
-      }
     });
   </script>
 </body>
