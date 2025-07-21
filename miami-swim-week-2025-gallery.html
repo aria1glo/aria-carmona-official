@@ -1,18 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miami Swim Week 2025 Gallery - Aria Carmona</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Miami Swim 2025 Gallery - Aria Carmona</title>
+  <link rel="stylesheet" href="style.css" />
   <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin />
+  <style>
+    .gallery-container {
+      margin: 4rem auto;
+      width: 90%;
+      max-width: 800px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .slider img {
+      width: 100%;
+      object-fit: cover;
+      max-height: 500px;
+      border-radius: 10px;
+    }
+
+    .gallery-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .gallery-buttons button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: black;
+      color: pink;
+      cursor: pointer;
+      font-family: 'Vogue', serif;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+
+    .gallery-buttons button:hover {
+      background-color: pink;
+      color: black;
+    }
+  </style>
 </head>
 <body>
+  <!-- Preloader -->
   <div id="preloader"></div>
 
+  <!-- Navbar -->
   <nav>
     <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" class="logo-img" /></a>
+      <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" /></a>
       <ul>
         <li><a href="index.html">HOME</a></li>
         <li><a href="news.html">NEWS</a></li>
@@ -22,13 +68,22 @@
     </div>
   </nav>
 
-  <section class="gallery-slider">
-    <img src="images/P1620521.jpg" />
-    <img src="images/P1620532.jpg" />
-    <img src="images/P1620456.jpg" />
-    <img src="images/P1620414.jpg" />
-    <img src="images/IMG_2249.jpg" />
-    <img src="images/P1620478.jpg" />
+  <section class="gallery-section">
+    <h2 style="text-align:center; margin-top: 4rem;">Miami Swim 2025 Gallery</h2>
+    <div class="gallery-container">
+      <div class="slider" id="slider">
+        <img src="images/miami1.jpg" alt="Miami 1" />
+        <img src="images/miami2.jpg" alt="Miami 2" />
+        <img src="images/P1620414.jpg" alt="Miami 3" />
+        <img src="images/P1620456.jpg" alt="Miami 4" />
+        <img src="images/P1620478.jpg" alt="Miami 5" />
+      </div>
+    </div>
+
+    <div class="gallery-buttons">
+      <button onclick="prevSlide()">Previous</button>
+      <button onclick="nextSlide()">Next</button>
+    </div>
   </section>
 
   <footer>
@@ -36,8 +91,37 @@
   </footer>
 
   <script>
+    const slider = document.getElementById('slider');
+    let slideIndex = 0;
+
+    function nextSlide() {
+      if (slideIndex < slider.children.length - 1) {
+        slideIndex++;
+      } else {
+        slideIndex = 0;
+      }
+      updateSlide();
+    }
+
+    function prevSlide() {
+      if (slideIndex > 0) {
+        slideIndex--;
+      } else {
+        slideIndex = slider.children.length - 1;
+      }
+      updateSlide();
+    }
+
+    function updateSlide() {
+      const width = slider.children[0].clientWidth;
+      slider.style.transform = `translateX(-${slideIndex * width}px)`;
+    }
+
+    window.addEventListener('resize', updateSlide);
+
     window.addEventListener('load', () => {
       document.getElementById('preloader').style.display = 'none';
+      updateSlide();
     });
   </script>
 </body>
