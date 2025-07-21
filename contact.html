@@ -15,7 +15,7 @@
   <nav>
     <div class="container">
       <a href="index.html">
-        <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img hover-lightpink" style="margin-left: 10px;" />
+        <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" />
       </a>
       <ul>
         <li><a href="index.html">HOME</a></li>
@@ -26,29 +26,19 @@
     </div>
   </nav>
 
-  <section style="margin-top: 8rem; text-align: center;">
+  <!-- Contact Section -->
+  <section class="contact-section">
     <h2>Contact Aria</h2>
 
-    <!-- Social Icons -->
-    <div class="social-icons" style="margin: 1rem auto; display: flex; justify-content: center; gap: 1.5rem;">
-      <a href="https://instagram.com/aria.glo" target="_blank">
-        <img src="images/instagram.png" alt="Instagram" class="icon hover-bg" />
-      </a>
-      <a href="https://snapchat.com/add/aria.glow" target="_blank">
-        <img src="images/snapchat.png" alt="Snapchat" class="icon hover-bg" />
-      </a>
-      <a href="https://tiktok.com/@aria1glo" target="_blank">
-        <img src="images/tiktok.png" alt="TikTok" class="icon hover-bg" />
-      </a>
-      <a href="https://youtube.com/@ariacarmonaofficial" target="_blank">
-        <img src="images/youtube.png" alt="YouTube" class="icon hover-bg" />
-      </a>
+    <div class="social-icons">
+      <a href="https://instagram.com/aria.glo" target="_blank"><img src="images/instagram.png" alt="Instagram" /></a>
+      <a href="https://snapchat.com/add/aria.glow" target="_blank"><img src="images/snapchat.png" alt="Snapchat" /></a>
+      <a href="https://tiktok.com/@aria1glo" target="_blank"><img src="images/tiktok.png" alt="TikTok" /></a>
+      <a href="https://youtube.com/@ariacarmonaofficial" target="_blank"><img src="images/youtube.png" alt="YouTube" /></a>
     </div>
 
-    <!-- Contact Form -->
     <div class="contact-form">
       <form action="https://formspree.io/f/mgvzvaqe" method="POST">
-        <input type="hidden" name="_redirect" value="thankyou.html" />
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" placeholder="Message" rows="5" required></textarea>
@@ -62,8 +52,8 @@
   </footer>
 
   <script>
-    window.addEventListener('load', () => {
-      document.getElementById('preloader').style.display = 'none';
+    window.addEventListener("load", () => {
+      document.getElementById("preloader").style.display = "none";
     });
   </script>
 </body>
