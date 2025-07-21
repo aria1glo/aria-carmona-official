@@ -15,7 +15,7 @@
   <nav>
     <div class="container">
       <a href="index.html">
-        <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" style="margin-left: 10px;" />
+        <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img hover-lightpink" style="margin-left: 10px;" />
       </a>
       <ul>
         <li><a href="index.html">HOME</a></li>
@@ -26,29 +26,29 @@
     </div>
   </nav>
 
-  <!-- Contact Section -->
   <section style="margin-top: 8rem; text-align: center;">
     <h2>Contact Aria</h2>
 
-    <!-- Social Media Icons -->
-    <div class="social-icons">
+    <!-- Social Icons -->
+    <div class="social-icons" style="margin: 1rem auto; display: flex; justify-content: center; gap: 1.5rem;">
       <a href="https://instagram.com/aria.glo" target="_blank">
-        <img src="images/instagram.png" alt="Instagram" />
+        <img src="images/instagram.png" alt="Instagram" class="icon hover-bg" />
       </a>
       <a href="https://snapchat.com/add/aria.glow" target="_blank">
-        <img src="images/snapchat.png" alt="Snapchat" />
+        <img src="images/snapchat.png" alt="Snapchat" class="icon hover-bg" />
       </a>
       <a href="https://tiktok.com/@aria1glo" target="_blank">
-        <img src="images/tiktok.png" alt="TikTok" />
+        <img src="images/tiktok.png" alt="TikTok" class="icon hover-bg" />
       </a>
       <a href="https://youtube.com/@ariacarmonaofficial" target="_blank">
-        <img src="images/youtube.png" alt="YouTube" />
+        <img src="images/youtube.png" alt="YouTube" class="icon hover-bg" />
       </a>
     </div>
 
     <!-- Contact Form -->
     <div class="contact-form">
-      <form action="https://formspree.io/f/mgvzvaqe" method="POST" onsubmit="handleSubmit(event)">
+      <form action="https://formspree.io/f/mgvzvaqe" method="POST">
+        <input type="hidden" name="_redirect" value="thankyou.html" />
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" placeholder="Message" rows="5" required></textarea>
@@ -61,46 +61,10 @@
     <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
   </footer>
 
-  <!-- Preloader JS -->
   <script>
     window.addEventListener('load', () => {
       document.getElementById('preloader').style.display = 'none';
     });
-  </script>
-
-  <!-- Formspree Redirect Script + ✨ Confetti -->
-  <script>
-    function handleSubmit(event) {
-      event.preventDefault();
-      const form = event.target;
-
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(() => {
-        // Optional: Add confetti pizzazz
-        launchConfetti();
-        setTimeout(() => {
-          window.location.href = 'thankyou.html';
-        }, 1500);
-      }).catch(error => {
-        alert("Oops! Something went wrong. Please try again.");
-      });
-    }
-
-    function launchConfetti() {
-      const colors = ['#ff69b4', '#ffd1dc', '#fff', '#ff85a2'];
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 5000);
-      }
-    }
   </script>
 </body>
 </html>
