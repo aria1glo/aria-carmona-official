@@ -5,12 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Miami Swim 2025 Gallery - Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .slider {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .slider img {
+      height: 500px;
+      scroll-snap-align: center;
+      border-radius: 10px;
+    }
+
+    .slider::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .slider::-webkit-scrollbar-thumb {
+      background-color: #f5a6c2;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
   <nav>
     <div class="container">
-      <a href="index.html" class="logo-link">
+      <a href="index.html">
         <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" />
       </a>
       <ul>
@@ -22,18 +45,15 @@
     </div>
   </nav>
 
-  <main class="carousel">
+  <section style="margin-top: 8rem; text-align: center;">
+    <h2>Miami Swim Week 2025 Gallery</h2>
     <div class="slider">
-      <img src="images/miami1.jpg" alt="Miami">
-      <img src="images/miami2.jpg" alt="Miami">
-      <img src="images/P1620521.jpg" alt="Runway">
-      <img src="images/P1620532.jpg" alt="Runway">
-      <img src="images/P1620456.jpg" alt="Runway">
-      <img src="images/P1620414.jpg" alt="Runway">
-      <img src="images/IMG_2249.jpg" alt="Shoot">
-      <img src="images/P1620478.jpg" alt="Shoot">
+      <img src="images/miami1.jpg" alt="Aria 1" />
+      <img src="images/miami2.jpg" alt="Aria 2" />
+      <img src="images/miami3.jpg" alt="Aria 3" />
+      <img src="images/miami4.jpg" alt="Aria 4" />
     </div>
-  </main>
+  </section>
 
   <footer>
     <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
