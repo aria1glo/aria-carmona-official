@@ -4,76 +4,182 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aria Carmona</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous"/>
+  <style>
+    @font-face {
+      font-family: 'Vogue';
+      src: url('fonts/Vogue.ttf') format('truetype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Vogue', serif;
+    }
+
+    .landing {
+      position: relative;
+      height: 100vh;
+      background: url('images/miami1.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: center;
+      padding-top: 100px;
+      color: white;
+    }
+
+    .landing-text {
+      max-width: 800px;
+      font-size: 1.6rem;
+      line-height: 1.6;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .landing-text em {
+      font-style: italic;
+    }
+
+    .about-section {
+      padding: 60px 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .about-section p {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .stats {
+      background: #e0e0e0;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto 60px auto;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .stat-tab {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .gallery-preview {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 40px 20px;
+      background: #fff0f5;
+    }
+
+    .gallery-preview img {
+      max-width: 200px;
+      border: 3px solid lightpink;
+      border-radius: 10px;
+    }
+
+    .instagram-embed {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .navbar {
+      background: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid hotpink;
+    }
+
+    .navbar img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-family: 'Vogue', serif;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      text-transform: uppercase;
+    }
+
+  </style>
 </head>
 <body>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+  <header class="navbar">
+    <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona logo"></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="container">
-      <a href="index.html">
-        <img src="images/AC-Name3.png" alt="Aria Carmona" class="logo-img"/>
-      </a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Landing -->
   <section class="landing">
-    <h1>She’s a star of the future. She’s making waves, and taking the runways by storm. This is <em>Aria Carmona</em>.</h1>
+    <div class="landing-text">
+      SHE’S A STAR OF THE FUTURE. SHE’S MAKING WAVES, AND TAKING THE RUNWAYS BY STORM.<br>
+      THIS IS <em>ARIA CARMONA</em>
+    </div>
   </section>
 
-  <!-- About -->
-  <section class="about">
+  <section class="about-section">
     <h2>About Aria</h2>
     <p>
-      Aria Carmona is a 21 year old emerging fashion model making her mark with stunning runway presence, striking features, and unstoppable energy. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. Her line of experience includes a multitude of photoshoots, and runway experience in Miami Swim Week 2025. Follow her journey as she graces shows, shoots editorials, and sets trends.
-      <br><br>
-      Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.
+      Aria Carmona is a Manhattan-based model with runway and photoshoot experience including Miami Swim Week 2025 and collaborations with photographers like Alex Dani and Karla Delorve. She is focused on expanding her portfolio and continuing to rise in the fashion world.
     </p>
 
-    <!-- Stats -->
     <div class="stats">
-      <h2>Stats</h2>
-      <ul>
-        <li>Height: 5’9”</li>
-        <li>Hair: Brown</li>
-        <li>Eyes: Brown</li>
-        <li>Dress: 2</li>
-        <li>Shoe: 8.5 US</li>
-      </ul>
+      <div class="stat-tab"><strong>Age</strong><br>21</div>
+      <div class="stat-tab"><strong>Height</strong><br>5’8”</div>
+      <div class="stat-tab"><strong>Chest</strong><br>34”</div>
+      <div class="stat-tab"><strong>Waist</strong><br>24”</div>
+      <div class="stat-tab"><strong>Hips</strong><br>34”</div>
+      <div class="stat-tab"><strong>Eye Color</strong><br>Brown</div>
+      <div class="stat-tab"><strong>Hair Color</strong><br>Black</div>
     </div>
   </section>
 
-  <!-- Sliding Gallery -->
-  <div class="gallery-slider">
-    <img src="images/P1620521.jpg" alt="Aria 1">
-    <img src="images/P1620532.jpg" alt="Aria 2">
-    <img src="images/P1620456.jpg" alt="Aria 3">
-    <img src="images/P1620414.jpg" alt="Aria 4">
-  </div>
-
-  <!-- Instagram Embed -->
-  <section class="about">
-    <h2>Instagram</h2>
-    <iframe src="https://www.instagram.com/p/C8E6vLROiTx/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+  <section class="gallery-preview">
+    <img src="images/P1620414.jpg" alt="Preview 1" />
+    <img src="images/P1620456.jpg" alt="Preview 2" />
+    <img src="images/P1620521.jpg" alt="Preview 3" />
+    <img src="images/P1620532.jpg" alt="Preview 4" />
   </section>
 
-  <footer>© 2025 Aria Carmona. All rights reserved.</footer>
+  <section class="instagram-embed">
+    <iframe
+      src="https://www.instagram.com/aria.glo/embed"
+      width="400"
+      height="480"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true">
+    </iframe>
+  </section>
 
-  <script>
-    // Preloader
-    window.addEventListener('load', () => {
-      document.getElementById('preloader').style.display = 'none';
-    });
-  </script>
 </body>
 </html>
