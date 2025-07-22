@@ -1,98 +1,259 @@
-/* ========== IMPORTS ========== */
+/* General Reset & Font */
 @font-face {
   font-family: 'Vogue';
   src: url('fonts/Vogue.ttf') format('truetype');
 }
-body {
-  font-family: 'Vogue', serif;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Vogue', serif;
   background-color: #fff;
-  color: #000;
-  scroll-behavior: smooth;
+  color: #222;
+  line-height: 1.6;
 }
 
-/* ========== NAVIGATION ========== */
-nav {
-  background-color: white;
-  color: black;
-  padding: 1rem 2rem;
+/* Preloader */
+#preloader {
+  background: #fff url('images/preloader.gif') no-repeat center center;
+  background-size: 100px;
   position: fixed;
-  top: 0;
   width: 100%;
-  z-index: 999;
+  height: 100vh;
+  z-index: 9999;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+}
+nav .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  border-bottom: 1px solid #ddd;
+  padding: 1rem 2rem;
 }
-nav img {
-  height: 40px;
+nav .logo-img {
+  height: 50px;
+  transition: background 0.3s ease;
+}
+nav .logo-img:hover {
+  background-color: #f9d3dd;
+  border-radius: 5px;
 }
 nav ul {
   list-style: none;
   display: flex;
   gap: 1.5rem;
 }
-nav ul li {
-  display: inline;
-}
-nav a {
+nav ul li a {
   text-decoration: none;
-  color: black;
-  transition: color 0.3s ease;
+  color: #000;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  padding: 0.5rem;
+  text-transform: uppercase;
 }
-nav a:hover {
-  color: #888;
+nav ul li a:hover {
+  background-color: #f9d3dd;
+  border-radius: 5px;
 }
 
-/* ========== LANDING PAGE ========== */
-#landing {
-  background: url('images/miami1.jpg') center/cover no-repeat;
+/* Landing */
+.landing {
   height: 100vh;
+  background: url('images/miami1.jpg') no-repeat center center/cover;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 160px;
+  text-align: center;
+  color: #fff;
+}
+.landing h1 {
+  font-size: 2.2rem;
+  max-width: 800px;
+  padding: 0 1rem;
+  animation: fadeIn 2s ease-in-out;
+}
+.landing em {
+  font-style: italic;
+}
+
+/* About / Stats */
+.about {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 2rem;
   text-align: center;
 }
-#landing h1 {
-  font-size: 3rem;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  animation: fadeIn 3s ease forwards;
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.about p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.stats {
+  margin-top: 3rem;
+}
+.stats h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+.stats ul {
+  list-style: none;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-/* ========== GALLERY ========== */
-.gallery-container {
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Sliding Gallery */
+.gallery-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 2rem;
+  scroll-behavior: smooth;
 }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+.gallery-slider img {
+  height: 300px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
 }
-.gallery-grid img {
+.gallery-slider img:hover {
+  transform: scale(1.05);
+}
+
+/* News Page */
+.news-preview {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+.news-preview img {
   width: 100%;
+  max-width: 600px;
   height: auto;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 8px;
 }
-.gallery-grid img:hover {
-  transform
+.news-preview h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.news-preview p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.news-preview iframe {
+  display: block;
+  margin: 2rem auto;
+  max-width: 100%;
+  height: 315px;
+}
+
+/* Miami Gallery */
+.image-gallery {
+  max-width: 1000px;
+  margin: 3rem auto;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0 2rem;
+}
+.image-gallery img {
+  height: 300px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Contact Page */
+.contact-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.contact-form button {
+  background: #f9d3dd;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+.contact-form button:hover {
+  background: #f5b9c7;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.social-icons img {
+  width: 40px;
+  height: 40px;
+  transition: background 0.3s;
+  border-radius: 8px;
+  padding: 5px;
+}
+.social-icons img:hover {
+  background-color: #f9d3dd;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.8rem;
+  color: #777;
+  border-top: 1px solid #eee;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .landing h1 {
+    font-size: 1.5rem;
+  }
+  .gallery-slider img,
+  .image-gallery img {
+    height: 200px;
+  }
+}
