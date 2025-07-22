@@ -17,6 +17,33 @@
       font-family: 'Vogue', serif;
     }
 
+    .navbar {
+      background: white;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid hotpink;
+    }
+
+    .navbar img {
+      height: 28px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-family: 'Vogue', serif;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      text-transform: uppercase;
+    }
+
     .landing {
       position: relative;
       height: 100vh;
@@ -25,7 +52,7 @@
       align-items: flex-start;
       justify-content: center;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 80px; /* raised slightly from 100px to move text up */
       color: white;
     }
 
@@ -95,34 +122,12 @@
 
     .instagram-embed {
       text-align: center;
-      margin: 40px 0;
+      margin: 60px auto;
     }
 
-    .navbar {
-      background: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 3px solid hotpink;
-    }
-
-    .navbar img {
-      height: 40px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      font-family: 'Vogue', serif;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: black;
-      text-transform: uppercase;
+    .instagram-embed iframe {
+      border: none;
+      max-width: 100%;
     }
 
   </style>
@@ -175,9 +180,9 @@
       src="https://www.instagram.com/aria.glo/embed"
       width="400"
       height="480"
-      frameborder="0"
+      allowtransparency="true"
       scrolling="no"
-      allowtransparency="true">
+      frameborder="0">
     </iframe>
   </section>
 
