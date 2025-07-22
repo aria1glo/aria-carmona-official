@@ -4,188 +4,129 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <style>
     @font-face {
       font-family: 'Vogue';
       src: url('fonts/Vogue.ttf') format('truetype');
     }
-
-    body {
+    body, html {
       margin: 0;
+      padding: 0;
       font-family: 'Vogue', serif;
     }
 
-    header.navbar {
-      background: white;
+    nav {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 25px;
-      border-bottom: 2px solid hotpink;
+      z-index: 10;
     }
 
-    header.navbar img {
-      height: 26px;
+    nav img {
+      height: 40px;
     }
 
-    .nav-links {
+    nav ul {
+      list-style: none;
       display: flex;
-      gap: 20px;
-      font-size: 0.75rem;
-      font-family: 'Vogue', serif;
-      font-weight: bold;
+      gap: 25px;
+      margin: 0;
     }
 
-    .nav-links a {
+    nav ul li a {
       text-decoration: none;
       color: black;
+      font-weight: bold;
       text-transform: uppercase;
+      font-size: 14px;
     }
 
-    .landing {
+    .hero {
       position: relative;
       height: 100vh;
-      background: url('images/miami1.jpg') no-repeat center center/cover;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 90px; /* slightly raised from 100px */
-      color: white;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 20%;
+      width: 100%;
       text-align: center;
-    }
-
-    .landing-text {
-      font-size: 1.6rem;
+      color: white;
+      font-size: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
       line-height: 1.6;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      max-width: 800px;
     }
 
-    .landing-text em {
+    .hero-text em {
       font-style: italic;
     }
 
-    .about-section {
-      padding: 60px 20px;
-      background: #f9f9f9;
+    .instagram {
       text-align: center;
+      margin: 40px auto;
     }
 
-    .about-section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .about-section p {
-      max-width: 800px;
-      margin: 0 auto 40px auto;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .stats {
-      background: #e0e0e0;
-      padding: 40px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 20px;
-      max-width: 800px;
-      margin: 0 auto 60px auto;
-      text-align: center;
-      font-size: 1.1rem;
-    }
-
-    .stat-tab {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .gallery-preview {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 40px 20px;
-      background: #fff0f5;
-    }
-
-    .gallery-preview img {
-      max-width: 200px;
-      border: 3px solid lightpink;
-      border-radius: 10px;
-    }
-
-    .instagram-embed {
-      text-align: center;
-      margin: 60px auto;
-    }
-
-    .instagram-embed iframe {
-      border: none;
+    iframe {
       max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .hero-text {
+        font-size: 16px;
+        padding: 0 10px;
+      }
+
+      nav ul {
+        gap: 15px;
+      }
+
+      nav {
+        padding: 15px 20px;
+      }
+
+      nav ul li a {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 <body>
-
-  <header class="navbar">
+  <nav>
     <a href="index.html">
       <img src="images/AC-Name3.png" alt="Aria Carmona logo">
     </a>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="news.html">News</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-  <section class="landing">
-    <div class="landing-text">
-      SHE’S A STAR OF THE FUTURE. SHE’S MAKING WAVES, AND TAKING THE RUNWAYS BY STORM.<br>
-      THIS IS <em>ARIA CARMONA</em>
+  <section class="hero">
+    <img src="images/miami1.jpg" alt="Aria Carmona">
+    <div class="hero-text">
+      <p>SHE’S A STAR OF THE FUTURE. SHE’S MAKING WAVES, AND TAKING THE RUNWAYS BY STORM.</p>
+      <p>THIS IS <em>ARIA CARMONA</em></p>
     </div>
   </section>
 
-  <section class="about-section">
-    <h2>About Aria</h2>
-    <p>
-      Aria Carmona is a Manhattan-based model with runway and photoshoot experience including Miami Swim Week 2025 and collaborations with photographers like Alex Dani and Karla Delorve. She is focused on expanding her portfolio and continuing to rise in the fashion world.
-    </p>
-
-    <div class="stats">
-      <div class="stat-tab"><strong>Age</strong><br>21</div>
-      <div class="stat-tab"><strong>Height</strong><br>5’8”</div>
-      <div class="stat-tab"><strong>Chest</strong><br>34”</div>
-      <div class="stat-tab"><strong>Waist</strong><br>24”</div>
-      <div class="stat-tab"><strong>Hips</strong><br>34”</div>
-      <div class="stat-tab"><strong>Eye Color</strong><br>Brown</div>
-      <div class="stat-tab"><strong>Hair Color</strong><br>Black</div>
-    </div>
+  <section class="instagram">
+    <iframe src="https://www.instagram.com/p/CvEAwxYrFVr/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
   </section>
-
-  <section class="gallery-preview">
-    <img src="images/P1620414.jpg" alt="Preview 1" />
-    <img src="images/P1620456.jpg" alt="Preview 2" />
-    <img src="images/P1620521.jpg" alt="Preview 3" />
-    <img src="images/P1620532.jpg" alt="Preview 4" />
-  </section>
-
-  <section class="instagram-embed">
-    <iframe
-      src="https://www.instagram.com/aria.glo/embed"
-      width="400"
-      height="480"
-      allowtransparency="true"
-      scrolling="no"
-      frameborder="0">
-    </iframe>
-  </section>
-
 </body>
 </html>
