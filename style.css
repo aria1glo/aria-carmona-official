@@ -15,7 +15,7 @@ nav {
   position: absolute;
   top: 0;
   width: 100%;
-  padding: 15px 40px;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,7 +31,7 @@ nav img {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 22px;
   margin: 0;
   padding: 0;
 }
@@ -67,9 +67,9 @@ nav ul li a:hover {
 
 .hero-text {
   position: absolute;
-  top: 20%;
-  right: 2%;
-  width: 40%;
+  top: 22%;
+  right: 3%;
+  width: 35%;
   color: white;
   font-size: 20px;
   text-align: right;
