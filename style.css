@@ -16,7 +16,7 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 15px 30px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,8 +32,8 @@ nav img {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 18px;
-  margin: 0;
+  gap: 16px;
+  margin-right: 20px;
   padding: 0;
 }
 
