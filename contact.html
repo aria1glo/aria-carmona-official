@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Contact - Aria Carmona</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Aria Carmona</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 </head>
 <body>
-
+  <!-- Navbar -->
   <nav>
-    <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" class="logo-img" alt="Logo"></a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+    <a href="index.html">
+      <img src="images/AC-Name3.png" alt="Aria Carmona logo">
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </nav>
 
-  <section class="contact-form">
+  <!-- Contact Section -->
+  <section class="contact-section">
     <h2>Contact Aria</h2>
-    <form action="https://formspree.io/f/mgvzvaqe" method="POST">
-      <label for="name">Your Name</label>
-      <input type="text" name="name" id="name" required>
-
-      <label for="email">Your Email</label>
-      <input type="email" name="email" id="email" required>
-
-      <label for="message">Your Message</label>
-      <textarea name="message" id="message" rows="6" required></textarea>
-
-      <button type="submit">Send Message</button>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
     </form>
-
-    <div class="social-icons">
-      <a href="https://www.instagram.com/aria.glo" target="_blank">
-        <img src="images/instagram-icon.png" alt="Instagram">
-      </a>
-      <a href="#">
-        <img src="images/twitter-icon.png" alt="Twitter">
-      </a>
-      <a href="#">
-        <img src="images/tiktok-icon.png" alt="TikTok">
-      </a>
-      <a href="#">
-        <img src="images/email-icon.png" alt="Email">
-      </a>
-    </div>
   </section>
 
-  <footer>© 2025 Aria Carmona. All rights reserved.</footer>
+  <!-- Social Media Icons -->
+  <section class="social-links">
+    <a href="https://instagram.com/aria.glo" target="_blank">
+      <img src="images/instagram.png" alt="Instagram">
+    </a>
+    <a href="https://snapchat.com/add/aria.glo" target="_blank">
+      <img src="images/snapchat.png" alt="Snapchat">
+    </a>
+    <a href="https://tiktok.com/@aria.glo" target="_blank">
+      <img src="images/tiktok.png" alt="TikTok">
+    </a>
+    <a href="https://youtube.com/@aria.glo" target="_blank">
+      <img src="images/youtube.png" alt="YouTube">
+    </a>
+  </section>
+
+  <footer>
+    <p>© 2025 Aria Carmona, All Rights Reserved</p>
+  </footer>
 </body>
 </html>
