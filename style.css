@@ -33,7 +33,7 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
-  margin-right: 40px;
+  margin-right: 55px; /* moved 15px left */
   padding: 0;
 }
 
@@ -68,7 +68,7 @@ nav ul li a:hover {
 
 .hero-text {
   position: absolute;
-  top: 45%;
+  top: calc(45% + 25px); /* moved 25px down */
   right: 5%;
   width: 35%;
   color: white;
@@ -170,8 +170,11 @@ nav ul li a:hover {
 
 .instagram-feed iframe {
   width: 100%;
-  height: 600px;
+  max-width: 1200px;
+  height: 528px;
   border: none;
+  margin: 0 auto;
+  display: block;
 }
 
 footer {
