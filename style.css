@@ -15,12 +15,12 @@ nav {
   position: absolute;
   top: 0;
   width: 100%;
-  padding: 15px 30px;
+  padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-  background: transparent;
+  background-color: white;
 }
 
 nav img {
@@ -31,7 +31,7 @@ nav img {
 nav ul {
   list-style: none;
   display: flex;
-  gap: 22px;
+  gap: 18px;
   margin: 0;
   padding: 0;
 }
