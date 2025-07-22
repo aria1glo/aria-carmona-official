@@ -1,185 +1,169 @@
-/* Global styles */
-body {
-  margin: 0;
-  font-family: 'Vogue', sans-serif;
-  background-color: white;
-  overflow-x: hidden;
-}
-
 @font-face {
   font-family: 'Vogue';
   src: url('fonts/Vogue.ttf') format('truetype');
 }
 
-/* Navbar */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Vogue', serif;
+  background-color: white;
+  overflow-x: hidden;
+}
+
 nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
-  background-color: white;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
+  z-index: 10;
+  background: transparent;
 }
 
 nav img {
-  height: 60px;
+  height: 30px;
+  width: auto;
 }
 
 nav ul {
   list-style: none;
   display: flex;
+  gap: 25px;
   margin: 0;
   padding: 0;
-}
-
-nav ul li {
-  margin-left: 30px;
 }
 
 nav ul li a {
   text-decoration: none;
   color: black;
   font-weight: bold;
-  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 13px;
+  transition: 0.3s ease;
 }
 
 nav ul li a:hover {
-  color: #ffb6c1;
   background-color: black;
+  color: lightpink;
   padding: 5px 10px;
   border-radius: 5px;
 }
 
-/* Hero Section */
 .hero {
   position: relative;
   height: 100vh;
-  background: url('images/miami1.jpg') no-repeat center center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  text-align: right;
-  padding-right: 40px;
-  color: white;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero-text {
-  font-size: 32px;
-  max-width: 600px;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 20px;
+  position: absolute;
+  top: 20%;
+  right: 2%;
+  width: 40%;
+  color: white;
+  font-size: 20px;
+  text-align: right;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  animation: fadeIn 2s ease-in-out;
 }
 
-/* Fade-in Animation */
-.fade-in {
-  opacity: 0;
-  animation: fadeInText 2.5s ease-out forwards;
+.hero-text em {
+  font-style: italic;
 }
 
-@keyframes fadeInText {
-  from { opacity: 0; transform: translateY(20px); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* About Section */
 .about {
-  padding: 60px 20px 40px;
+  padding: 40px 60px;
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .about h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: 28px;
+  margin-bottom: 15px;
 }
 
 .about p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* Stats Section */
-.stats {
-  background-color: #f0f0f0;
-  padding: 40px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
   max-width: 800px;
   margin: 0 auto;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.stats {
+  background-color: #f0f0f0;
+  padding: 40px 60px;
   text-align: center;
 }
 
-.stat-item {
-  border: 2px solid #ffb6c1;
-  padding: 10px;
-  border-radius: 8px;
-  background-color: white;
+.stats h2 {
+  font-size: 26px;
+  margin-bottom: 30px;
 }
 
-/* Recent Photos */
-.recent-photos {
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.stats-grid div {
+  border: 2px solid lightpink;
+  padding: 20px;
+  min-width: 120px;
+  font-size: 14px;
+  background: white;
+}
+
+.gallery {
+  padding: 40px 60px;
   text-align: center;
-  padding: 60px 20px;
 }
 
-.recent-photos h2 {
+.gallery h2 {
+  font-size: 26px;
   margin-bottom: 20px;
 }
 
-.photo-slider {
+.slider {
   display: flex;
-  gap: 10px;
   overflow-x: auto;
-  padding: 10px;
-  justify-content: center;
+  gap: 20px;
+  padding-bottom: 10px;
 }
 
-.photo-slider img {
-  height: 200px;
-  border: 4px solid #ffb6c1;
-  border-radius: 8px;
+.slider img {
+  height: 300px;
+  border: 3px solid lightpink;
 }
 
-/* Instagram Embed */
-.instagram-embed {
-  padding: 40px 20px;
-  display: flex;
-  justify-content: center;
+.instagram {
+  text-align: center;
+  margin: 60px auto;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero {
-    justify-content: center;
-    text-align: center;
-    padding-left: 0;
-    padding-right: 0;
-  }
+.instagram h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
 
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
-  .hero-text {
-    font-size: 24px;
-  }
-
-  .photo-slider img {
-    height: 150px;
-  }
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #888;
 }
