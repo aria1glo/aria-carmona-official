@@ -1,12 +1,67 @@
-/* Hero text fix */
-.hero-text {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 2rem;
-  font-size: 1.5rem;
+/* Global Styles */
+body {
+  margin: 0;
   font-family: 'Vogue', serif;
+  background-color: white;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Vogue', serif;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-text {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
   max-width: 800px;
-  margin-top: -160px; /* Moved up more to clear body */
   color: white;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 /* About Section */
