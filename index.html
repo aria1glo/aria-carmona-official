@@ -4,46 +4,76 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Navbar -->
   <nav>
     <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo-img" /></a>
+      <a href="index.html">
+        <img src="images/AC-Name3.png" alt="Aria Carmona" class="logo-img"/>
+      </a>
       <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="news.html">NEWS</a></li>
-        <li><a href="gallery.html">GALLERY</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <section id="landing">
-    <h1>She’s a star of the future. She’s making waves, and taking the runways by storm. <em>This is Aria Carmona.</em></h1>
+  <!-- Landing -->
+  <section class="landing">
+    <h1>She’s a star of the future. She’s making waves, and taking the runways by storm. This is <em>Aria Carmona</em>.</h1>
   </section>
 
-  <section class="about-section">
+  <!-- About -->
+  <section class="about">
     <h2>About Aria</h2>
-    <p>Aria Carmona is a 21 year old emerging fashion model making her mark with stunning runway presence, striking features, and unstoppable energy. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. Her line of experience includes a multitude of photoshoots, and runway experience in Miami Swim Week 2025. Follow her journey as she graces shows, shoots editorials, and sets trends.</p>
+    <p>
+      Aria Carmona is a 21 year old emerging fashion model making her mark with stunning runway presence, striking features, and unstoppable energy. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. Her line of experience includes a multitude of photoshoots, and runway experience in Miami Swim Week 2025. Follow her journey as she graces shows, shoots editorials, and sets trends.
+      <br><br>
+      Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.
+    </p>
+
+    <!-- Stats -->
+    <div class="stats">
+      <h2>Stats</h2>
+      <ul>
+        <li>Height: 5’9”</li>
+        <li>Hair: Brown</li>
+        <li>Eyes: Brown</li>
+        <li>Dress: 2</li>
+        <li>Shoe: 8.5 US</li>
+      </ul>
+    </div>
   </section>
 
-  <section class="stats-section">
-    <h2>Stats</h2>
-    <ul>
-      <li>Age: 21</li>
-      <li>Height: 5’8”</li>
-      <li>Chest: 34”</li>
-      <li>Waist: 24”</li>
-      <li>Hips: 34”</li>
-      <li>Eye Color: Brown</li>
-      <li>Hair Color: Black</li>
-    </ul>
+  <!-- Sliding Gallery -->
+  <div class="gallery-slider">
+    <img src="images/P1620521.jpg" alt="Aria 1">
+    <img src="images/P1620532.jpg" alt="Aria 2">
+    <img src="images/P1620456.jpg" alt="Aria 3">
+    <img src="images/P1620414.jpg" alt="Aria 4">
+  </div>
+
+  <!-- Instagram Embed -->
+  <section class="about">
+    <h2>Instagram</h2>
+    <iframe src="https://www.instagram.com/p/C8E6vLROiTx/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
   </section>
 
-  <footer>
-    <p>&copy; 2025 Aria Carmona. All Rights Reserved.</p>
-  </footer>
+  <footer>© 2025 Aria Carmona. All rights reserved.</footer>
+
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      document.getElementById('preloader').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
