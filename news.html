@@ -5,131 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>News | Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <style>
-    /* Local styling for news.html only */
-    body {
-      font-family: 'Vogue', serif;
-      padding-top: 80px;
-    }
-
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 60px 10px 60px; /* moved nav links inward */
+      padding: 10px 40px;
       background-color: white;
       position: fixed;
-      width: 100%;
+      width: calc(100% - 80px);
       top: 0;
+      left: 0;
       z-index: 999;
+      box-sizing: border-box;
     }
 
-    .nav-links {
+    .navbar ul {
       list-style: none;
       display: flex;
       gap: 30px;
-      margin: 0;
-      padding: 0;
+      margin-right: 200px;
     }
 
-    .nav-links li a {
+    .navbar ul li a {
       text-decoration: none;
       color: black;
       font-weight: bold;
     }
 
-    .logo {
-      height: 50px;
+    .navbar ul li a:hover {
+      background-color: black;
+      color: lightpink;
+      padding: 4px 8px;
+      border-radius: 5px;
     }
 
-    .news-container {
-      max-width: 1000px;
-      margin: 0 auto;
+    .news-tile {
+      background-color: lightpink;
       padding: 30px;
-      text-align: center;
-    }
-
-    .news-tab {
-      background-color: #ffc0cb; /* light pink */
-      border: 2px solid lightpink;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 20px 0;
-      text-align: left;
-      transition: transform 0.3s ease;
-    }
-
-    .news-tab:hover {
-      transform: scale(1.02);
-      background-color: #ffe4ec;
-    }
-
-    .news-tab a {
-      text-decoration: none;
-      color: black;
+      border-radius: 15px;
+      margin: 120px auto 60px auto;
+      max-width: 1100px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
     }
 
-    .news-tab img {
+    .news-tile img {
       width: 200px;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
-    .news-tab-content {
-      flex: 1;
-    }
-
-    .news-tab h3 {
+    .news-tile h2 {
       margin: 0;
-      font-size: 1.5rem;
+    }
+
+    .news-tile a {
       color: black;
+      font-weight: bold;
+      text-decoration: none;
     }
 
-    .news-tab p {
-      margin: 10px 0;
-      color: #444;
+    .news-tile a:hover {
+      text-decoration: underline;
     }
 
-    footer {
+    .footer {
       text-align: center;
-      margin-top: 50px;
-      font-size: 0.9rem;
+      margin-top: 100px;
+      padding-bottom: 40px;
+      font-size: 14px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-top: 100px;
+      font-size: 28px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a href="index.html"><img src="images/AC-Name3.png" class="logo" alt="Aria Carmona Logo" /></a>
-    <ul class="nav-links">
+
+  <div class="navbar">
+    <a href="index.html">
+      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" style="height: 50px;">
+    </a>
+    <ul>
       <li><a href="index.html">HOME</a></li>
       <li><a href="news.html">NEWS</a></li>
       <li><a href="gallery.html">GALLERY</a></li>
       <li><a href="contact.html">CONTACT</a></li>
     </ul>
-  </nav>
+  </div>
 
-  <main class="news-container">
-    <h2>Latest News</h2>
+  <h1 class="page-title">Latest News</h1>
 
-    <!-- News Tab -->
-    <div class="news-tab">
-      <a href="miami-swim-week-2025.html">
-        <img src="images/miami1.jpg" alt="Miami Swim Week" />
-        <div class="news-tab-content">
-          <h3>Aria Carmona Walks Miami Swim Week 2025</h3>
-          <p>Model Aria Carmona made waves at Miami Swim Week, walking for Frisk Me Good’s bold swimwear collection.</p>
-          <p><strong>Click to read more →</strong></p>
-        </div>
-      </a>
+  <a href="miami-swim-week-2025.html" style="text-decoration: none;">
+    <div class="news-tile">
+      <img src="images/IMG_2153.jpg" alt="Miami Swim Week Preview" />
+      <div>
+        <h2>Aria Carmona Walks Miami Swim Week 2025</h2>
+        <p>Model Aria Carmona made waves at Miami Swim Week, walking for Frisk Me Good’s bold swimwear collection.</p>
+        <p>Click to read more →</p>
+      </div>
     </div>
-  </main>
+  </a>
 
-  <footer>
-    <p>© 2025 Aria Carmona, All Rights Reserved</p>
-  </footer>
+  <div class="footer">
+    © 2025 Aria Carmona, All Rights Reserved
+  </div>
+
 </body>
 </html>
