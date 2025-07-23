@@ -7,10 +7,40 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <style>
-    /* Local styling only for news.html */
+    /* Local styling for news.html only */
     body {
       font-family: 'Vogue', serif;
       padding-top: 80px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 100px 10px 20px; /* shift nav tabs left */
+      background-color: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding-left: 100px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .logo {
+      height: 50px;
     }
 
     .news-container {
@@ -21,7 +51,7 @@
     }
 
     .news-tab {
-      background-color: #f5f5f5;
+      background-color: #ffc0cb; /* light pink */
       border: 2px solid lightpink;
       border-radius: 10px;
       padding: 20px;
@@ -32,7 +62,7 @@
 
     .news-tab:hover {
       transform: scale(1.02);
-      background-color: #fff0f5;
+      background-color: #ffe4ec;
     }
 
     .news-tab a {
@@ -87,7 +117,7 @@
 
     <!-- News Tab -->
     <div class="news-tab">
-      <a href="#miami-article">
+      <a href="miami-swim-week-2025.html">
         <img src="images/miami1.jpg" alt="Miami Swim Week" />
         <div class="news-tab-content">
           <h3>Aria Carmona Walks Miami Swim Week 2025</h3>
@@ -96,24 +126,6 @@
         </div>
       </a>
     </div>
-
-    <!-- Full Article Section -->
-    <section id="miami-article">
-      <h2>Miami Swim Week 2025</h2>
-      <p>Aria Carmona walked in the iconic Miami Swim Week for Frisk Me Good’s new line. This event marked another major milestone in her rising modeling career...</p>
-
-      <!-- Embed YouTube Video -->
-      <div style="text-align:center; margin: 30px 0;">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/BrsO1IfZ0k8" 
-        title="Miami Swim Week Show" frameborder="0" allowfullscreen></iframe>
-      </div>
-
-      <!-- Sliding Gallery Placeholder -->
-      <div class="miami-gallery">
-        <!-- If you want, I can add a working sliding gallery here next -->
-        <p style="text-align:center;">Gallery coming soon: Behind-the-scenes & runway shots from Miami Swim Week 2025!</p>
-      </div>
-    </section>
   </main>
 
   <footer>
