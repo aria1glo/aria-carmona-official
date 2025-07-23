@@ -3,30 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Miami Swim Week 2025 - Aria Carmona</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Gallery | Aria Carmona</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <style>
+    body {
+      font-family: 'Vogue', serif;
+      padding-top: 80px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 60px 10px 60px;
+      background-color: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .gallery-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .gallery-tab {
+      background-color: #ffc0cb;
+      border: 2px solid lightpink;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-tab:hover {
+      transform: scale(1.02);
+      background-color: #ffe4ec;
+    }
+
+    .gallery-tab a {
+      text-decoration: none;
+      color: black;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .gallery-tab img {
+      width: 200px;
+      border-radius: 8px;
+    }
+
+    .gallery-tab-content {
+      flex: 1;
+    }
+
+    .gallery-tab h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: black;
+    }
+
+    .gallery-tab p {
+      margin: 10px 0;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-
-  <nav>
-    <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" class="logo-img" alt="Logo"></a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html"><img src="images/AC-Name3.png" class="logo" alt="Aria Carmona Logo" /></a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
   </nav>
 
-  <section class="news-preview">
-    <h2>Miami Swim Week 2025</h2>
-    <img src="images/miami1.jpg" alt="Aria Miami Show" style="max-width: 100%; height: auto;">
-    <p>Aria Carmona hit the runway at Miami Swim Week 2025 with bold confidence and radiant energy. Walking for Frisk Me Good's swimwear collection, Aria turned heads with a fierce presence and striking elegance...</p>
-    <iframe src="https://www.youtube.com/embed/BrsO1IfZ0k8" frameborder="0" allowfullscreen></iframe>
-  </section>
+  <main class="gallery-container">
+    <h2>Latest Events</h2>
 
-  <footer>© 2025 Aria Carmona. All rights reserved.</footer>
+    <!-- Gallery Tab -->
+    <div class="gallery-tab">
+      <a href="miami-swim-week-2025-gallery.html">
+        <img src="images/miami1.jpg" alt="Krissy King Swim Gallery" />
+        <div class="gallery-tab-content">
+          <h3>Miami Swim Week 2025 | Krissy King</h3>
+          <p>Aria Carmona took to northern Miami the day following her debut Miami performance at Fusion Swim Week 2025, modeling for the renowned and iconic designer Krissy King.</p>
+          <p><strong>Click to view gallery →</strong></p>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Aria Carmona, All Rights Reserved</p>
+  </footer>
 </body>
 </html>
