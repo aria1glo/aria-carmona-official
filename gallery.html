@@ -5,130 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery | Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
   <style>
-    body {
-      font-family: 'Vogue', serif;
-      padding-top: 80px;
-    }
-
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 100px 10px 60px; /* Adjusted spacing */
+      padding: 10px 40px;
       background-color: white;
       position: fixed;
-      width: 100%;
+      width: calc(100% - 80px);
       top: 0;
+      left: 0;
       z-index: 999;
+      box-sizing: border-box;
     }
 
-    .nav-links {
+    .navbar ul {
       list-style: none;
       display: flex;
       gap: 30px;
-      margin: 0;
-      padding: 0;
+      margin-right: 40px;
     }
 
-    .nav-links li a {
+    .navbar ul li a {
       text-decoration: none;
       color: black;
       font-weight: bold;
     }
 
-    .logo {
-      height: 50px;
+    .navbar ul li a:hover {
+      background-color: black;
+      color: lightpink;
+      padding: 4px 8px;
+      border-radius: 5px;
     }
 
-    .gallery-container {
-      max-width: 1000px;
-      margin: 0 auto;
+    .gallery-preview {
+      background-color: lightpink;
       padding: 30px;
-      text-align: center;
-    }
-
-    .gallery-tab {
-      background-color: #ffc0cb;
-      border: 2px solid lightpink;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 20px 0;
-      text-align: left;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-tab:hover {
-      transform: scale(1.02);
-      background-color: #ffe4ec;
-    }
-
-    .gallery-tab a {
-      text-decoration: none;
-      color: black;
+      border-radius: 15px;
+      margin: 120px auto 60px auto;
+      max-width: 1100px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
     }
 
-    .gallery-tab img {
+    .gallery-preview img {
       width: 200px;
-      border-radius: 8px;
+      border-radius: 10px;
     }
 
-    .gallery-tab-content {
-      flex: 1;
-    }
-
-    .gallery-tab h3 {
+    .gallery-preview h2 {
       margin: 0;
-      font-size: 1.5rem;
+    }
+
+    .gallery-preview a {
       color: black;
+      font-weight: bold;
+      text-decoration: none;
     }
 
-    .gallery-tab p {
-      margin: 10px 0;
-      color: #444;
+    .gallery-preview a:hover {
+      text-decoration: underline;
     }
 
-    footer {
+    .footer {
       text-align: center;
-      margin-top: 50px;
-      font-size: 0.9rem;
+      margin-top: 100px;
+      padding-bottom: 40px;
+      font-size: 14px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-top: 100px;
+      font-size: 28px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a href="index.html"><img src="images/AC-Name3.png" class="logo" alt="Aria Carmona Logo" /></a>
-    <ul class="nav-links">
+
+  <div class="navbar">
+    <a href="index.html">
+      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" style="height: 50px;">
+    </a>
+    <ul>
       <li><a href="index.html">HOME</a></li>
       <li><a href="news.html">NEWS</a></li>
       <li><a href="gallery.html">GALLERY</a></li>
       <li><a href="contact.html">CONTACT</a></li>
     </ul>
-  </nav>
+  </div>
 
-  <main class="gallery-container">
-    <h2>Latest Events</h2>
+  <h1 class="page-title">Latest Events</h1>
 
-    <!-- Gallery Tab -->
-    <div class="gallery-tab">
-      <a href="miami-swim-week-2025-gallery.html">
-        <img src="images/miami1.jpg" alt="Krissy King Swim Gallery" />
-        <div class="gallery-tab-content">
-          <h3>Miami Swim Week 2025 | Krissy King</h3>
-          <p>Aria Carmona took to northern Miami the day following her debut Miami performance at Fusion Swim Week 2025, modeling for the renowned and iconic designer Krissy King.</p>
-          <p><strong>Click to view gallery →</strong></p>
-        </div>
-      </a>
+  <a href="miami-swim-week-2025-gallery.html" style="text-decoration: none;">
+    <div class="gallery-preview">
+      <img src="images/IMG_2153.jpg" alt="Miami Swim Week Gallery Cover" />
+      <div>
+        <h2>Miami Swim Week 2025 | Krissy King</h2>
+        <p>Aria Carmona took to northern Miami the day following her debut Miami performance at Fusion Swim Week 2025, modeling for the renowned and iconic designer Krissy King.</p>
+        <p>Click to view gallery →</p>
+      </div>
     </div>
-  </main>
+  </a>
 
-  <footer>
-    <p>© 2025 Aria Carmona, All Rights Reserved</p>
-  </footer>
+  <div class="footer">
+    © 2025 Aria Carmona, All Rights Reserved
+  </div>
+
 </body>
 </html>
