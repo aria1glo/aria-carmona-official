@@ -3,34 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>News - Aria Carmona</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>News | Aria Carmona</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <style>
+    /* Local styling only for news.html */
+    body {
+      font-family: 'Vogue', serif;
+      padding-top: 80px;
+    }
+
+    .news-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .news-tab {
+      background-color: #f5f5f5;
+      border: 2px solid lightpink;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+
+    .news-tab:hover {
+      transform: scale(1.02);
+      background-color: #fff0f5;
+    }
+
+    .news-tab a {
+      text-decoration: none;
+      color: black;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .news-tab img {
+      width: 200px;
+      border-radius: 8px;
+    }
+
+    .news-tab-content {
+      flex: 1;
+    }
+
+    .news-tab h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: black;
+    }
+
+    .news-tab p {
+      margin: 10px 0;
+      color: #444;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-
-  <nav>
-    <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" class="logo-img" alt="Logo"></a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html"><img src="images/AC-Name3.png" class="logo" alt="Aria Carmona Logo" /></a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
   </nav>
 
-  <section class="news-preview">
+  <main class="news-container">
     <h2>Latest News</h2>
-    <div class="news-card">
-      <img src="images/miami1.jpg" alt="Miami Swim Week">
-      <div class="news-text">
-        <h3><a href="miami-swim-week-2025.html">Miami Swim Week 2025</a></h3>
-        <p>Aria Carmona walks for Frisk Me Good in Miami Swim Week 2025. A powerful debut full of bold fashion, stunning poses, and runway fire.</p>
-      </div>
-    </div>
-  </section>
 
-  <footer>© 2025 Aria Carmona. All rights reserved.</footer>
+    <!-- News Tab -->
+    <div class="news-tab">
+      <a href="#miami-article">
+        <img src="images/miami1.jpg" alt="Miami Swim Week" />
+        <div class="news-tab-content">
+          <h3>Aria Carmona Walks Miami Swim Week 2025</h3>
+          <p>Model Aria Carmona made waves at Miami Swim Week, walking for Frisk Me Good’s bold swimwear collection.</p>
+          <p><strong>Click to read more →</strong></p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Full Article Section -->
+    <section id="miami-article">
+      <h2>Miami Swim Week 2025</h2>
+      <p>Aria Carmona walked in the iconic Miami Swim Week for Frisk Me Good’s new line. This event marked another major milestone in her rising modeling career...</p>
+
+      <!-- Embed YouTube Video -->
+      <div style="text-align:center; margin: 30px 0;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/BrsO1IfZ0k8" 
+        title="Miami Swim Week Show" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <!-- Sliding Gallery Placeholder -->
+      <div class="miami-gallery">
+        <!-- If you want, I can add a working sliding gallery here next -->
+        <p style="text-align:center;">Gallery coming soon: Behind-the-scenes & runway shots from Miami Swim Week 2025!</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Aria Carmona, All Rights Reserved</p>
+  </footer>
 </body>
 </html>
