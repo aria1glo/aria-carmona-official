@@ -3,50 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Aria Carmona</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="preload" href="fonts/Vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <title>Contact Aria</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <style>
+    /* Fix only for contact page without affecting style.css */
+    body {
+      padding-top: 80px;
+      text-align: center;
+      font-family: 'Vogue', serif;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 30px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      background-color: black;
+      color: lightpink;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Vogue', serif;
+    }
+
+    .contact-form button:hover {
+      background-color: lightpink;
+      color: black;
+    }
+
+    .social-icons {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .social-icons img {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    .social-icons a {
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav>
-    <a href="index.html">
-      <img src="images/AC-Name3.png" alt="Aria Carmona logo">
-    </a>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
+  <nav class="navbar">
+    <a href="index.html"><img src="images/AC-Name3.png" class="logo" alt="Aria Carmona Logo" /></a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
     </ul>
   </nav>
 
-  <!-- Contact Section -->
-  <section class="contact-section">
+  <main>
     <h2>Contact Aria</h2>
     <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
       <textarea rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send</button>
     </form>
-  </section>
 
-  <!-- Social Media Icons -->
-  <section class="social-links">
-    <a href="https://instagram.com/aria.glo" target="_blank">
-      <img src="images/instagram.png" alt="Instagram">
-    </a>
-    <a href="https://snapchat.com/add/aria.glo" target="_blank">
-      <img src="images/snapchat.png" alt="Snapchat">
-    </a>
-    <a href="https://tiktok.com/@aria.glo" target="_blank">
-      <img src="images/tiktok.png" alt="TikTok">
-    </a>
-    <a href="https://youtube.com/@aria.glo" target="_blank">
-      <img src="images/youtube.png" alt="YouTube">
-    </a>
-  </section>
+    <div class="social-icons">
+      <a href="https://instagram.com/aria.glo" target="_blank">
+        <img src="images/instagram.png" alt="Instagram" />
+      </a>
+      <a href="https://snapchat.com/add/your_snap" target="_blank">
+        <img src="images/snapchat.png" alt="Snapchat" />
+      </a>
+      <a href="https://tiktok.com/@your_tiktok" target="_blank">
+        <img src="images/tiktok.png" alt="TikTok" />
+      </a>
+      <a href="https://youtube.com/@your_youtube" target="_blank">
+        <img src="images/youtube.png" alt="YouTube" />
+      </a>
+    </div>
+  </main>
 
   <footer>
     <p>© 2025 Aria Carmona, All Rights Reserved</p>
