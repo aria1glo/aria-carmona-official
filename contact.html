@@ -6,169 +6,180 @@
   <title>Contact Aria</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: 'vogue', serif;
-      margin: 0;
-      padding: 0;
-      background-color: white;
-    }
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: white;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 40px 12px 40px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .navbar a img {
-      height: 38px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      margin-right: 200px; /* Ensures full visibility of tabs */
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 15px;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .nav-links a:hover {
-      color: #ffb6c1;
-      background-color: black;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    .contact-container {
-      padding: 160px 40px 60px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 30px;
-    }
-
     form {
+      max-width: 90%;
+      margin: 40px auto 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
     input, textarea {
-      padding: 12px;
-      font-size: 1em;
+      padding: 15px;
+      font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 6px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     button {
-      padding: 12px;
-      font-size: 1em;
-      background-color: black;
+      background-color: #ff69b4;
       color: white;
+      font-size: 18px;
+      padding: 15px;
       border: none;
       cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #333;
+      background-color: #ffb6c1;
     }
 
     .social-icons {
-      margin-top: 40px;
       text-align: center;
+      margin-top: 40px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 12px;
     }
 
     .social-icons img {
-      width: 36px;
-      height: 36px;
-      margin: 0 12px;
-      cursor: pointer;
-      transition: transform 0.2s ease-in-out;
+      width: 40px;
+      height: 40px;
     }
 
-    .social-icons img:hover {
-      transform: scale(1.1);
+    .contact-title {
+      text-align: center;
+      font-family: "Vogue", sans-serif;
+      font-size: 36px;
+      margin-top: 100px;
     }
 
     @media (max-width: 768px) {
+      form {
+        max-width: 95%;
+      }
+
+      .social-icons img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background-color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar img {
+      height: 50px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      background-color: black;
+      color: pink;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    @media screen and (max-width: 1000px) {
       .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 12px 20px;
-      }
-
-      .nav-links {
-        margin-right: 0;
-        margin-top: 10px;
-        flex-wrap: wrap;
-        gap: 16px;
-      }
-
-      .contact-container {
-        padding: 140px 20px 60px;
+        padding-right: 200px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
+  <!-- Navbar -->
+  <nav class="navbar">
     <a href="index.html">
       <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
     </a>
-    <div class="nav-links">
-      <a href="index.html">HOME</a>
-      <a href="news.html">NEWS</a>
-      <a href="gallery.html">GALLERY</a>
-      <a href="contact.html">CONTACT</a>
-    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contact Form -->
+  <h2 class="contact-title">CONTACT ARIA</h2>
+  <form action="https://formspree.io/f/mgvzvaqe" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <!-- Social Icons -->
+  <div class="social-icons">
+    <a href="https://www.instagram.com/aria.glo" target="_blank">
+      <img src="images/instagram.png" alt="Instagram" />
+    </a>
+    <a href="#" target="_blank">
+      <img src="images/snapchat.png" alt="Snapchat" />
+    </a>
+    <a href="#" target="_blank">
+      <img src="images/tiktok.png" alt="TikTok" />
+    </a>
+    <a href="#" target="_blank">
+      <img src="images/youtube.png" alt="YouTube" />
+    </a>
   </div>
 
-  <!-- CONTACT FORM -->
-  <div class="contact-container">
-    <h1>Contact Aria</h1>
-    <form>
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+  <script>
+    // Redirect after successful submission
+    window.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            window.location.href = "thankyou.html";
+          } else {
+            alert("There was an error. Please try again.");
+          }
+        }).catch(error => {
+          alert("There was an error. Please try again.");
+        });
+      });
+    });
+  </script>
 
-    <!-- SOCIAL ICONS -->
-    <div class="social-icons">
-      <a href="https://www.instagram.com/aria.glo" target="_blank">
-        <img src="images/instagram.png" alt="Instagram" />
-      </a>
-      <a href="https://www.snapchat.com/add/your-snap" target="_blank">
-        <img src="images/snapchat.png" alt="Snapchat" />
-      </a>
-      <a href="https://www.tiktok.com/@your-tiktok" target="_blank">
-        <img src="images/tiktok.png" alt="TikTok" />
-      </a>
-      <a href="https://www.youtube.com/@your-channel" target="_blank">
-        <img src="images/youtube.png" alt="YouTube" />
-      </a>
-    </div>
-  </div>
 </body>
 </html>
