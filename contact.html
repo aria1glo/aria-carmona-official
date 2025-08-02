@@ -10,14 +10,22 @@
       font-family: 'vogue', serif;
       margin: 0;
       padding: 0;
+      padding-top: 100px; /* pushes content down to avoid navbar clipping */
     }
 
     .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 40px;
       flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .navbar img {
@@ -157,7 +165,7 @@
   </div>
 
   <footer>
-    © 2025 Aria Carmona, All Rights Reserved
+    © 2025 ARIA CARMONA, ALL RIGHTS RESERVED
   </footer>
 </body>
 </html>
