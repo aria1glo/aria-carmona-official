@@ -3,30 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thank You | Aria Carmona</title>
+  <title>Thank You - Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
     body {
-      margin: 0;
-      font-family: "Vogue", sans-serif;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 100px 20px;
       background-color: #fff;
-      overflow-x: hidden;
+      color: #333;
+    }
+
+    .thankyou-message {
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 40px;
+      font-family: "Vogue", sans-serif;
     }
 
     .navbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 60px;
+      padding: 20px 20px 20px 60px; /* left padding same as before, right reduced */
       background-color: white;
       position: sticky;
       top: 0;
       z-index: 1000;
+      max-width: calc(100% - 200px); /* reserve 200px margin on right */
+      margin-right: 200px; /* ensure margin */
+      box-sizing: border-box;
+      gap: 40px;
     }
 
     .navbar img {
       height: 50px;
+      flex-shrink: 0;
     }
 
     .navbar ul {
@@ -35,6 +47,8 @@
       gap: 40px;
       margin: 0;
       padding: 0;
+      flex-wrap: wrap;
+      flex-shrink: 0;
     }
 
     .navbar ul li a {
@@ -52,56 +66,36 @@
       border-radius: 4px;
     }
 
-    .thankyou-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 90vh;
-      text-align: center;
-      padding: 0 20px;
-      animation: fadeIn 2s ease-in-out forwards;
-      opacity: 0;
-    }
-
-    .thankyou-container h1 {
-      font-size: 2.8em;
-      color: #ff69b4;
-      margin-bottom: 20px;
-    }
-
-    .thankyou-container p {
-      font-size: 1.2em;
-      color: #333;
-      max-width: 700px;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 768px) {
+    @media screen and (max-width: 1000px) {
       .navbar {
-        padding: 15px 20px;
+        padding-left: 20px;
+        max-width: calc(100% - 100px);
+        margin-right: 100px;
+        gap: 30px;
       }
 
       .navbar ul {
-        gap: 20px;
+        gap: 25px;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .navbar {
+        flex-wrap: wrap;
+        padding-left: 20px;
+        margin-right: 20px;
+        max-width: 100%;
+        gap: 15px;
       }
 
-      .thankyou-container h1 {
-        font-size: 2em;
+      .navbar ul {
+        flex-basis: 100%;
+        justify-content: center;
+        gap: 15px;
       }
 
-      .thankyou-container p {
-        font-size: 1em;
+      .navbar img {
+        margin-bottom: 10px;
       }
     }
   </style>
@@ -121,17 +115,10 @@
     </ul>
   </nav>
 
-  <!-- Thank You Message -->
-  <div class="thankyou-container" id="thankyou-message">
-    <h1>Thank You!</h1>
-    <p>Your message has been sent successfully. Aria or a member of her team will reach back to you shortly.</p>
+  <div class="thankyou-message">
+    Thank you for reaching out!<br />
+    Aria or her team will get back to you shortly.
   </div>
 
-  <!-- Auto-scroll and animation -->
-  <script>
-    window.addEventListener("load", function () {
-      document.getElementById("thankyou-message").scrollIntoView({ behavior: "smooth" });
-    });
-  </script>
 </body>
 </html>
