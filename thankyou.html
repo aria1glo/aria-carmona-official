@@ -1,32 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Thank You</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You | Aria Carmona</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Vogue", sans-serif;
+      background-color: #fff;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background-color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar img {
+      height: 50px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      background-color: black;
+      color: pink;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .thankyou-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      text-align: center;
+      padding: 0 20px;
+      animation: fadeIn 2s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    .thankyou-container h1 {
+      font-size: 2.8em;
+      color: #ff69b4;
+      margin-bottom: 20px;
+    }
+
+    .thankyou-container p {
+      font-size: 1.2em;
+      color: #333;
+      max-width: 700px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px;
+      }
+
+      .navbar ul {
+        gap: 20px;
+      }
+
+      .thankyou-container h1 {
+        font-size: 2em;
+      }
+
+      .thankyou-container p {
+        font-size: 1em;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <nav>
-    <div class="container">
-      <a href="index.html"><img src="images/AC-Name3.png" class="logo-img" alt="Logo"></a>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html">
+      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </nav>
 
-  <section>
-    <h2>Thank You!</h2>
-    <p style="text-align: center; font-size: 1.2rem;">Your message has been sent to Aria. She’ll be in touch soon 💌</p>
-    <div style="text-align: center; margin-top: 2rem;">
-      <a href="index.html" style="text-decoration: underline;">Back to Homepage</a>
-    </div>
-  </section>
+  <!-- Thank You Message -->
+  <div class="thankyou-container" id="thankyou-message">
+    <h1>Thank You!</h1>
+    <p>Your message has been sent successfully. Aria or a member of her team will reach back to you shortly.</p>
+  </div>
 
-  <footer>© 2025 Aria Carmona. All rights reserved.</footer>
+  <!-- Auto-scroll and animation -->
+  <script>
+    window.addEventListener("load", function () {
+      document.getElementById("thankyou-message").scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
 </body>
 </html>
