@@ -73,17 +73,21 @@
 
     .navbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 60px;
+      padding: 20px 20px 20px 60px; /* left padding same as before, right reduced */
       background-color: white;
       position: sticky;
       top: 0;
       z-index: 1000;
+      max-width: calc(100% - 200px); /* reserve 200px margin on right */
+      margin-right: 200px; /* ensure margin */
+      box-sizing: border-box;
+      gap: 40px;
     }
 
     .navbar img {
       height: 50px;
+      flex-shrink: 0;
     }
 
     .navbar ul {
@@ -92,6 +96,8 @@
       gap: 40px;
       margin: 0;
       padding: 0;
+      flex-wrap: wrap;
+      flex-shrink: 0;
     }
 
     .navbar ul li a {
@@ -111,7 +117,34 @@
 
     @media screen and (max-width: 1000px) {
       .navbar {
-        padding-right: 200px;
+        padding-left: 20px;
+        max-width: calc(100% - 100px);
+        margin-right: 100px;
+        gap: 30px;
+      }
+
+      .navbar ul {
+        gap: 25px;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .navbar {
+        flex-wrap: wrap;
+        padding-left: 20px;
+        margin-right: 20px;
+        max-width: 100%;
+        gap: 15px;
+      }
+
+      .navbar ul {
+        flex-basis: 100%;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .navbar img {
+        margin-bottom: 10px;
       }
     }
   </style>
