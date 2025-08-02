@@ -13,6 +13,7 @@
       background-color: #fff;
     }
 
+    /* NAVBAR FROM news.html / gallery.html */
     .navbar {
       position: fixed;
       top: 0;
@@ -23,24 +24,25 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 40px;
+      padding: 12px 40px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .navbar a img {
-      height: 40px;
+      height: 38px;
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 28px;
+      align-items: center;
     }
 
     .nav-links a {
       text-decoration: none;
       color: black;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 15px;
       transition: all 0.2s ease-in-out;
     }
 
@@ -48,17 +50,17 @@
       color: #ffb6c1;
       background-color: black;
       padding: 2px 6px;
-      border-radius: 5px;
+      border-radius: 4px;
     }
 
     h2 {
       text-align: center;
-      margin-top: 150px; /* more space below fixed navbar */
+      margin-top: 160px; /* pushes form down below navbar */
     }
 
     .contact-form {
       max-width: 600px;
-      margin: 50px auto 30px;
+      margin: 40px auto;
       padding: 0 20px;
     }
 
@@ -126,7 +128,7 @@
 </head>
 
 <body>
-  <!-- Navbar -->
+  <!-- NAVBAR (copied from news.html) -->
   <div class="navbar">
     <a href="index.html">
       <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
