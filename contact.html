@@ -10,7 +10,8 @@
       font-family: 'vogue', serif;
       margin: 0;
       padding: 0;
-      padding-top: 100px; /* pushes content down to avoid navbar clipping */
+      padding-top: 120px; /* makes space for navbar */
+      background-color: #fff;
     }
 
     .navbar {
@@ -23,25 +24,27 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 40px;
-      flex-wrap: wrap;
+      padding: 20px 40px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
     }
 
-    .navbar img {
+    .navbar a img {
       height: 40px;
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
       flex-wrap: wrap;
+      gap: 30px;
     }
 
     .nav-links a {
       text-decoration: none;
       color: black;
       font-weight: bold;
+      font-size: 16px;
+      transition: all 0.2s ease-in-out;
     }
 
     .nav-links a:hover {
@@ -53,12 +56,12 @@
 
     h2 {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 0;
     }
 
     .contact-form {
       max-width: 600px;
-      margin: 20px auto;
+      margin: 30px auto;
       padding: 0 20px;
     }
 
@@ -109,21 +112,18 @@
       .navbar {
         flex-direction: column;
         align-items: flex-start;
-        padding: 15px 20px;
+        padding: 20px;
       }
 
       .nav-links {
-        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
         gap: 20px;
+        margin-top: 10px;
       }
 
       .contact-form {
         width: 90%;
-        padding: 0 10px;
-      }
-
-      .social-icons a img {
-        margin: 10px;
       }
     }
   </style>
