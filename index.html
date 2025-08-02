@@ -69,9 +69,6 @@
     .hero-text {
       color: white;
       font-size: 2em;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 10px;
       max-width: 600px;
       animation: fadeIn 3s ease forwards;
     }
@@ -98,12 +95,17 @@
       line-height: 1.6;
     }
 
+    .stats-section {
+      background-color: #f2f2f2;
+      padding: 80px 20px;
+    }
+
     .stats {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
     }
 
@@ -111,9 +113,10 @@
       border: 2px solid #ffb6c1;
       padding: 20px 25px;
       width: 180px;
-      background-color: #f8f8f8;
+      background-color: white;
       font-size: 1em;
       border-radius: 8px;
+      font-weight: bold;
     }
 
     .extra-showcase {
@@ -149,8 +152,9 @@
     }
 
     .instagram-embed {
-      max-width: 100%;
+      width: 100%;
       height: 700px;
+      border: none;
     }
 
     footer {
@@ -220,16 +224,16 @@
   </div>
 
   <!-- STATS -->
-  <div class="section" id="stats">
+  <div class="stats-section" id="stats">
     <h2 class="section-title">Stats</h2>
     <div class="stats">
-      <div class="stat-card">Age<br><strong>21</strong></div>
-      <div class="stat-card">Height<br><strong>5’8”</strong></div>
-      <div class="stat-card">Chest<br><strong>34”</strong></div>
-      <div class="stat-card">Waist<br><strong>24”</strong></div>
-      <div class="stat-card">Hips<br><strong>34”</strong></div>
-      <div class="stat-card">Eye Color<br><strong>Brown</strong></div>
-      <div class="stat-card">Hair Color<br><strong>Black</strong></div>
+      <div class="stat-card">Age<br>21</div>
+      <div class="stat-card">Height<br>5’8”</div>
+      <div class="stat-card">Chest<br>34”</div>
+      <div class="stat-card">Waist<br>24”</div>
+      <div class="stat-card">Hips<br>34”</div>
+      <div class="stat-card">Eye Color<br>Brown</div>
+      <div class="stat-card">Hair Color<br>Black</div>
     </div>
   </div>
 
@@ -255,7 +259,6 @@
     <h2 class="section-title">Follow me on Instagram!</h2>
     <iframe class="instagram-embed"
       src="https://www.instagram.com/aria.glo/embed"
-      frameborder="0"
       allowfullscreen
     ></iframe>
   </div>
