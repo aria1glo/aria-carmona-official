@@ -4,67 +4,232 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preload" href="fonts/vogue.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      font-family: 'vogue', serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a img {
+      height: 38px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 15px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .nav-links a:hover {
+      color: #ffb6c1;
+      background-color: black;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .hero {
+      position: relative;
+      background: url('images/miami1.jpg') center center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10%;
+      text-align: right;
+    }
+
+    .hero h1 {
+      font-size: 3.5em;
+      color: white;
+      animation: fadeInType 3s steps(30, end);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+    }
+
+    @keyframes fadeInType {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    section {
+      padding: 80px 40px 40px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.4em;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8em;
+      font-size: 1.1em;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background-color: #eee;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid lightpink;
+      width: 200px;
+    }
+
+    .stat-card h3 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .digitals-gallery {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 0 20px;
+    }
+
+    .digitals-gallery img {
+      height: 320px;
+      border: 2px solid lightpink;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .digitals-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .stat-bar {
+      margin-top: 20px;
+      font-size: 1em;
+      color: #333;
+    }
+
+    iframe.instagram-media {
+      max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2em;
+        padding-right: 0;
+      }
+
+      .digitals-gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .digitals-gallery img {
+        width: 80%;
+        height: auto;
+      }
+
+      .stats {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <nav class="navbar">
-    <a href="index.html"><img src="images/AC-Name3.png" class="logo" alt="Aria Carmona Logo" /></a>
-    <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="news.html">NEWS</a></li>
-      <li><a href="gallery.html">GALLERY</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-    </ul>
-  </nav>
-
-  <header class="hero">
-    <div class="hero-text">
-      <p>
-        SHE’S A STAR OF THE FUTURE. SHE’S MAKING WAVES, AND TAKING THE RUNWAYS BY STORM.<br><br>
-        <em>THIS IS<br>ARIA CARMONA.</em>
-      </p>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <a href="index.html">
+      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="news.html">NEWS</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="contact.html">CONTACT</a>
     </div>
-  </header>
+  </div>
 
+  <!-- HERO -->
+  <div class="hero">
+    <h1>This is <em>Aria Carmona</em></h1>
+  </div>
+
+  <!-- ABOUT ARIA -->
   <section class="about">
-    <h2>About Aria</h2>
+    <h2 class="section-title">About Aria</h2>
     <p>
-      Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model comes with experience as a Barbizon Modeling Development prospect, since November 2024. She is also a college student studying engineering, and a licensed NASCAR driver. Modeling is her primary passion and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with the likes of Alex Dani and Karla Delorve. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line. She was also present in Dallas Fashion Week in March 2025, as she looks to enhance her modeling career and take it to the next level.
+      Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model is a Barbizon Modeling Development prospect, an engineering student, & a licensed NASCAR driver. Modeling is her primary passion & expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with brands such as Krissy King, Fifth & Fierce, and Financial Freedom Apparel. She also comes with runway experience, having walked in Miami Swim Week 2025 for Frisk Me Good’s Swimwear Line & in New York Swim Week 2025 for MLC Swimwear. She now looks to enhance her modeling career and take it to the next level.
     </p>
   </section>
 
-  <section class="stats">
-    <h2>Stats</h2>
-    <div class="stats-grid">
-      <div class="stat">Age<br><span>21</span></div>
-      <div class="stat">Height<br><span>5’8”</span></div>
-      <div class="stat">Chest<br><span>34”</span></div>
-      <div class="stat">Waist<br><span>24”</span></div>
-      <div class="stat">Hips<br><span>34”</span></div>
-      <div class="stat">Eye Color<br><span>Brown</span></div>
-      <div class="stat">Hair Color<br><span>Black</span></div>
+  <!-- STATS -->
+  <section class="stats-section">
+    <h2 class="section-title">Stats</h2>
+    <div class="stats">
+      <div class="stat-card"><h3>5'6"</h3></div>
+      <div class="stat-card"><h3>34" 24" 34"</h3></div>
+      <div class="stat-card"><h3>Shoe: 8.5</h3></div>
+    </div>
+    <div class="stat-bar">
+      Debut Show: 2025 Miami Swim Week | Frisk Me Good<br />
+      Most Recent Show: 2025 New York Swim Week | MLC Swimwear
     </div>
   </section>
 
-  <section class="gallery">
-    <h2>Recent Photos</h2>
-    <div class="slider">
-      <img src="images/P1620532.jpg" alt="Photo 1" />
-      <img src="images/P1620521.jpg" alt="Photo 2" />
-      <img src="images/P1620478.jpg" alt="Photo 3" />
-      <img src="images/P1620414.jpg" alt="Photo 4" />
+  <!-- RECENT DIGITALS -->
+  <section>
+    <h2 class="section-title">Recent Digitals</h2>
+    <div class="digitals-gallery">
+      <img src="images/A_Carmona_Web-1.jpg" alt="Digital 1" />
+      <img src="images/A_Carmona_Web-2.jpg" alt="Digital 2" />
+      <img src="images/A_Carmona_Web-4.jpg" alt="Digital 4" />
+      <img src="images/A_Carmona_Web-9.jpg" alt="Digital 9" />
     </div>
   </section>
 
-  <section class="instagram">
-    <h2>Follow Aria on Instagram!</h2>
-    <!-- SnapWidget Embed -->
-    <iframe src="https://snapwidget.com/embed/1103442" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; height:628px" title="Posts from Instagram"></iframe>
+  <!-- INSTAGRAM EMBED -->
+  <section>
+    <h2 class="section-title">Follow Me</h2>
+    <iframe
+      src="https://www.instagram.com/aria.glo/embed"
+      width="100%"
+      height="600"
+      frameborder="0"
+      scrolling="no"
+      allowtransparency="true"
+    ></iframe>
   </section>
-
-  <footer>
-    <p>© 2025 Aria Carmona, All Rights Reserved</p>
-  </footer>
 </body>
 </html>
