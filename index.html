@@ -5,100 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aria Carmona - Official</title>
   <style>
-    @font-face {
-      font-family: 'Vogue';
-      src: url('fonts/Vogue.ttf') format('truetype');
-      font-display: swap;
+    @font-face { font-family: 'Vogue'; src: url('fonts/Vogue.ttf') format('truetype'); font-display: swap; }
+    body { margin: 0; font-family: 'Vogue', sans-serif; background: #fff; color: #000; }
+    img { max-width: 100%; height: auto; display: block; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; flex-wrap: wrap; background: #fff; }
+    nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+    nav ul li a { text-decoration: none; color: black; font-size: 1rem; }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger div { width: 25px; height: 3px; background: black; margin: 4px 0; }
+    .logo { max-height: 50px; width: auto; }
+    h1, h2, h3, p { word-wrap: break-word; margin: 20px; text-align:center; }
+    .section { padding: 40px 20px; text-align: center; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin: 20px; }
+    .stat { border: 2px solid pink; padding: 15px; background: #f0f0f0; border-radius: 10px; }
+    /* Slider */
+    .slider { position: relative; overflow: hidden; max-width: 100%; margin: 40px auto; }
+    .slides { display: flex; transition: transform 0.5s ease-in-out; }
+    .slides img { min-width: 100%; border: 5px solid pink; border-radius: 10px; }
+    .prev, .next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      padding: 10px; cursor: pointer; border-radius: 50%;
     }
-    body {
-      margin: 0;
-      font-family: 'Vogue', sans-serif;
-      background: #fff;
-      color: #000;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      flex-wrap: wrap;
-      position: relative;
-      background: #fff;
-    }
-    nav ul {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: black;
-      font-size: 1rem;
-    }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background: black;
-      margin: 4px 0;
-      transition: 0.4s;
-    }
-    .logo {
-      max-height: 50px;
-      width: auto;
-    }
-    h1, h2, h3, p {
-      word-wrap: break-word;
-      margin: 20px;
-    }
-    .section {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
-      margin: 20px;
-    }
-    .stat {
-      border: 2px solid pink;
-      padding: 15px;
-      background: #f0f0f0;
-      border-radius: 10px;
-    }
+    .prev { left: 10px; } .next { right: 10px; }
     @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: white;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        padding: 20px 0;
-        text-align: center;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
-      }
-      h1 { font-size: 1.8rem; }
-      h2 { font-size: 1.4rem; }
-      p  { font-size: 1rem; }
+      nav ul { display: none; flex-direction: column; width: 100%; background: white; position: absolute; top: 60px; left: 0; padding: 20px 0; text-align: center; }
+      nav ul.active { display: flex; }
+      .hamburger { display: flex; }
+      h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; } p { font-size: 1rem; }
     }
   </style>
 </head>
@@ -135,5 +69,30 @@
       <div class="stat">Most Recent Show<br>2025 NYFW Prelude: Move The Crowd | Barron Wise</div>
     </div>
   </section>
+
+  <section class="section">
+    <h2>Recent Photos</h2>
+    <div class="slider">
+      <div class="slides">
+        <img src="images/IMG_2249.jpg" alt="Gallery Image 1">
+        <img src="images/P1620478.jpg" alt="Gallery Image 2">
+        <img src="images/miami1.jpg" alt="Gallery Image 3">
+        <img src="images/AC-Name3.png" alt="Gallery Image 4">
+      </div>
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+  </section>
+
+  <script>
+    let index = 0;
+    function moveSlide(step) {
+      const slides = document.querySelector('.slides');
+      const total = slides.children.length;
+      index = (index + step + total) % total;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+    }
+    setInterval(()=>moveSlide(1), 5000);
+  </script>
 </body>
 </html>
