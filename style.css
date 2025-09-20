@@ -1,26 +1,71 @@
 @font-face {
-  font-family: 'Vogue';
-  src: url('fonts/vogue.ttf') format('truetype');
-}
+    font-family: 'Vogue';
+    src: url('fonts/Vogue.ttf') format('truetype');
+    font-display: swap;
 
 body {
   margin: 0;
-  font-family: 'Vogue', serif;
+  font-family: 'Vogue', sans-serif;
   background: #fff;
   color: #000;
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-  background-color: #fff;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  height: 70px;
+  /* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    flex-wrap: wrap;
+}
+
+/* Navbar Links */
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* Hamburger for mobile */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background: black;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 20px 0;
+        text-align: center;
+    }
+    nav ul.active {
+        display: flex;
+    }
+    .hamburger {
+        display: flex;
+    }
 }
 
 .logo {
@@ -144,4 +189,24 @@ footer {
   padding: 20px;
   background-color: white;
   font-size: 0.9rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.logo {
+    max-height: 50px;
+    width: auto;
+}
+
+
+h1, h2, h3, p {
+    word-wrap: break-word;
+}
+@media (max-width: 768px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; }
+    p  { font-size: 1rem; }
 }
