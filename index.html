@@ -1,98 +1,288 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aria Carmona - Official</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aria Carmona</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+
+  <!-- Open Graph (Discord, Facebook, etc.) -->
+<meta property="og:title" content="Aria Carmona - Official Site" />
+<meta property="og:description" content="Welcome to the official website of model Aria Carmona — photos, updates, and more." />
+<meta property="og:image" content="https://ariacarmona.com/images/miami1.jpg" />
+<meta property="og:url" content="https://ariacarmona.com" />
+<meta property="og:type" content="website" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Aria Carmona - Official Site" />
+<meta name="twitter:description" content="Welcome to the official website of model Aria Carmona — photos, updates, and more." />
+<meta name="twitter:image" content="https://ariacarmona.com/images/miami1.jpg" />
+
   <style>
-    @font-face { font-family: 'Vogue'; src: url('fonts/Vogue.ttf') format('truetype'); font-display: swap; }
-    body { margin: 0; font-family: 'Vogue', sans-serif; background: #fff; color: #000; }
-    img { max-width: 100%; height: auto; display: block; }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; flex-wrap: wrap; background: #fff; }
-    nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
-    nav ul li a { text-decoration: none; color: black; font-size: 1rem; }
-    .hamburger { display: none; flex-direction: column; cursor: pointer; }
-    .hamburger div { width: 25px; height: 3px; background: black; margin: 4px 0; }
-    .logo { max-height: 50px; width: auto; }
-    h1, h2, h3, p { word-wrap: break-word; margin: 20px; text-align:center; }
-    .section { padding: 40px 20px; text-align: center; }
-    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin: 20px; }
-    .stat { border: 2px solid pink; padding: 15px; background: #f0f0f0; border-radius: 10px; }
-    /* Slider */
-    .slider { position: relative; overflow: hidden; max-width: 100%; margin: 40px auto; }
-    .slides { display: flex; transition: transform 0.5s ease-in-out; }
-    .slides img { min-width: 100%; border: 5px solid pink; border-radius: 10px; }
-    .prev, .next {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0,0,0,0.5); color: white; border: none;
-      padding: 10px; cursor: pointer; border-radius: 50%;
+    body {
+      font-family: 'vogue', serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
     }
-    .prev { left: 10px; } .next { right: 10px; }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .navbar a img {
+      height: 38px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      margin-right: 200px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 15px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .nav-links a:hover {
+      color: #ffb6c1;
+      background-color: black;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .hero {
+      background-image: url("images/miami1.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      text-align: right;
+      padding-right: 10%;
+      padding-left: 10%;
+    }
+
+    .hero-text {
+      color: white;
+      font-size: 2em;
+      max-width: 600px;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .section {
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+
+    .bio-text {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .stats-section {
+      background-color: #f2f2f2;
+      padding: 80px 20px;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .stat-card {
+      border: 2px solid #ffb6c1;
+      padding: 20px 25px;
+      width: 180px;
+      background-color: white;
+      font-size: 1em;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .extra-showcase {
+      background-color: #ffebf0;
+      padding: 30px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .extra-show {
+      border: 2px solid #ffb6c1;
+      padding: 16px 24px;
+      background: white;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .recent-photos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding-top: 20px;
+    }
+
+    .recent-photos img {
+      width: 240px;
+      height: auto;
+      border: 2px solid #ffb6c1;
+      border-radius: 8px;
+    }
+
+    .instagram-embed {
+      width: 100%;
+      height: 700px;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 0.9em;
+      background-color: #f2f2f2;
+      margin-top: 80px;
+    }
+
     @media (max-width: 768px) {
-      nav ul { display: none; flex-direction: column; width: 100%; background: white; position: absolute; top: 60px; left: 0; padding: 20px 0; text-align: center; }
-      nav ul.active { display: flex; }
-      .hamburger { display: flex; }
-      h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; } p { font-size: 1rem; }
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        margin-right: 0;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero-text {
+        font-size: 1.3em;
+      }
+
+      .recent-photos img {
+        width: 90%;
+      }
+
+      .stat-card {
+        width: 45%;
+      }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo"></a>
-    <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('active')">
-      <div></div><div></div><div></div>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <a href="index.html">
+      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="news.html">NEWS</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="contact.html">CONTACT</a>
     </div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  </div>
 
-  <section class="section">
-    <h1>This is <i>Aria Carmona</i></h1>
-    <p>Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model is a Barbizon Modeling Development prospect, an engineering student, and licensed NASCAR driver. Modeling is her primary passion, and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with brands such as Krissy King, Fifth & Fierce, and Financial Freedom Apparel. She also comes with runway experience, having walked in shows during Miami Swim Week and in New York Swim Week this year. She now looks to enhance her modeling career and take it to the next level.</p>
-  </section>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      She’s a star of the future. She’s making waves, and taking the runways by storm. This is Aria Carmona.
+    </div>
+  </div>
 
-  <section class="section">
-    <h2>Stats</h2>
+  <!-- ABOUT -->
+  <div class="section" id="about">
+    <h2 class="section-title">About Aria</h2>
+    <p class="bio-text">
+      Aria Carmona is a 21 year old female model with the ambitions of making waves in the industry. The Manhattan-based model is a Barbizon Modeling Development prospect, an engineering student, and licensed NASCAR driver. Modeling is her primary passion, and expanding her portfolio of experience is her objective for the moment. She comes with a multitude of photoshoot experience with brands such as Krissy King, Fifth & Fierce, and Financial Freedom Apparel. She also comes with runway experience, having walked in shows during Miami Swim Week and in New York Swim Week this year. She now looks to enhance her modeling career and take it to the next level.
+    </p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-section" id="stats">
+    <h2 class="section-title" style="text-align: center;">Stats</h2>
     <div class="stats">
-      <div class="stat">Age<br>21</div>
-      <div class="stat">Height<br>5’8”</div>
-      <div class="stat">Chest<br>34”</div>
-      <div class="stat">Waist<br>24”</div>
-      <div class="stat">Hips<br>34”</div>
-      <div class="stat">Eye Color<br>Brown</div>
-      <div class="stat">Hair Color<br>Black</div>
-      <div class="stat">Debut Show<br>2025 Miami Swim Week | Frisk Me Good</div>
-      <div class="stat">Most Recent Show<br>2025 NYFW Prelude: Move The Crowd | Barron Wise</div>
+      <div class="stat-card">Age<br>21</div>
+      <div class="stat-card">Height<br>5’8”</div>
+      <div class="stat-card">Chest<br>34”</div>
+      <div class="stat-card">Waist<br>24”</div>
+      <div class="stat-card">Hips<br>34”</div>
+      <div class="stat-card">Eye Color<br>Brown</div>
+      <div class="stat-card">Hair Color<br>Black</div>
     </div>
-  </section>
+  </div>
 
-  <section class="section">
-    <h2>Recent Photos</h2>
-    <div class="slider">
-      <div class="slides">
-        <img src="images/IMG_2249.jpg" alt="Gallery Image 1">
-        <img src="images/P1620478.jpg" alt="Gallery Image 2">
-        <img src="images/miami1.jpg" alt="Gallery Image 3">
-        <img src="images/AC-Name3.png" alt="Gallery Image 4">
-      </div>
-      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  <!-- DEBUT / RECENT SHOWS -->
+  <div class="extra-showcase">
+    <div class="extra-show">Debut Show: 2025 Miami Swim Week | Frisk Me Good</div>
+    <div class="extra-show">Most Recent Show: 2025 NYFW Prelude: Move The Crowd | Barron Wise </div>
+  </div>
+
+  <!-- RECENT DIGITALS -->
+  <div class="section" id="recent">
+    <h2 class="section-title">Recent Digitals</h2>
+    <div class="recent-photos">
+      <img src="images/A_Carmona_Web-1.jpg" alt="Digital 1" />
+      <img src="images/A_Carmona_Web-2.jpg" alt="Digital 2" />
+      <img src="images/A_Carmona_Web-4.jpg" alt="Digital 3" />
+      <img src="images/A_Carmona_Web-9.jpg" alt="Digital 4" />
     </div>
-  </section>
+  </div>
 
-  <script>
-    let index = 0;
-    function moveSlide(step) {
-      const slides = document.querySelector('.slides');
-      const total = slides.children.length;
-      index = (index + step + total) % total;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-    }
-    setInterval(()=>moveSlide(1), 5000);
-  </script>
+  <!-- INSTAGRAM -->
+  <div class="section" id="instagram">
+    <h2 class="section-title">Follow me on Instagram!</h2>
+    <iframe class="instagram-embed"
+      src="https://www.instagram.com/aria.glo/embed"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Aria Carmona, All Rights Reserved
+  </footer>
+
 </body>
 </html>
