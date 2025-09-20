@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New York Swim Week 2025 Gallery | Aria Carmona</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #fff;
+      color: #000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin-right: 200px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 32px;
+    }
+
+    .gallery-wrapper {
+      position: relative;
+      padding: 0 60px;
+    }
+
+    .slider-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 30px 0;
+      scroll-behavior: smooth;
+    }
+
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      width: 300px;
+      height: 420px;
+      scroll-snap-align: start;
+      position: relative;
+      cursor: pointer;
+      border: 4px solid lightpink;
+      border-radius: 10px;
+      transition: transform 0.3s;
+      background-color: white;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 85%;
+      object-fit: cover;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .caption {
+      text-align: center;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    .slide:hover {
+      transform: scale(1.03);
+    }
+
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: black;
+      background-color: rgba(255, 192, 203, 0.7);
+      border-radius: 50%;
+      padding: 5px 15px;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+
+    /* Fullscreen overlay */
+    .fullscreen-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .fullscreen-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+
+    .fullscreen-overlay.active {
+      display: flex;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html">
+      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" style="height: 55px;">
+    </a>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <h1>New York Swim Week 2025 – Gallery</h1>
+
+  <div class="gallery-wrapper">
+    <div class="arrow arrow-left" onclick="scrollSlider(-1)">&#10094;</div>
+    <div class="slider-container" id="slider">
+      <div class="slide">
+        <img src="images/miami1.jpg" alt="Sitting Pretty" />
+      </div>
+      <div class="slide">
+        <img src="images/P1620414.jpg" alt="Peaceful Moment" />
+      </div>
+      <div class="slide">
+        <img src="images/P1620478.jpg" alt="Poised and Confident" />
+      </div>
+      <div class="slide">
+        <img src="images/miami2.jpg" alt="Poolside Glow" />
+      </div>
+      <div class="slide">
+        <img src="images/P1620456.jpg" alt="Final Look" />
+      </div>
+    </div>
+    <div class="arrow arrow-right" onclick="scrollSlider(1)">&#10095;</div>
+  </div>
+
+  <!-- Fullscreen Overlay -->
+  <div class="fullscreen-overlay" id="fullscreenOverlay">
+    <img id="fullscreenImg" src="" alt="Fullscreen Image" />
+  </div>
+
+  <footer>
+    &copy; 2025 Aria Carmona, All Rights Reserved
+  </footer>
+
+  <script>
+    const slider = document.getElementById("slider");
+    const slides = document.querySelectorAll('.slide img');
+    const overlay = document.getElementById('fullscreenOverlay');
+    const overlayImg = document.getElementById('fullscreenImg');
+
+    function scrollSlider(direction) {
+      const scrollAmount = 320;
+      slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    }
+
+    // Fullscreen
+    slides.forEach(slide => {
+      slide.addEventListener('click', () => {
+        overlayImg.src = slide.src;
+        overlay.classList.add('active');
+      });
+    });
+
+    overlay.addEventListener('click', () => {
+      overlay.classList.remove('active');
+    });
+
+    // Auto-slide every 5s
+    setInterval(() => {
+      scrollSlider(1);
+    }, 5000);
+  </script>
+</body>
+</html>
