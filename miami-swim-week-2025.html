@@ -73,17 +73,19 @@
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <a href="index.html">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" style="height: 55px;">
-    </a>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="news.html">NEWS</a></li>
-      <li><a href="gallery.html">GALLERY</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-    </ul>
-  </nav>
+<nav>
+  <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo"></a>
+  <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('active')">
+    <div></div><div></div><div></div>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="news.html">News</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
 
   <div class="content">
     <h1>Miami Swim Week 2025</h1>
