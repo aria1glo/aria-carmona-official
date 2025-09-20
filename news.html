@@ -1,124 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>News | Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png" type="image/png" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aria Carmona - News</title>
   <style>
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 40px;
-      background-color: white;
-      position: fixed;
-      width: calc(100% - 80px);
-      top: 0;
-      left: 0;
-      z-index: 999;
-      box-sizing: border-box;
+    @font-face {
+      font-family: 'Vogue';
+      src: url('fonts/Vogue.ttf') format('truetype');
+      font-display: swap;
     }
-
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      margin-right: 200px;
-    }
-
-    .navbar ul li a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-    }
-
-    .navbar ul li a:hover {
-      background-color: black;
-      color: lightpink;
-      padding: 4px 8px;
-      border-radius: 5px;
-    }
-
-    .news-tile {
-      background-color: lightpink;
-      padding: 30px;
-      border-radius: 15px;
-      margin: 120px auto 60px auto;
-      max-width: 1100px;
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .news-tile img {
-      width: 200px;
-      border-radius: 10px;
-    }
-
-    .news-tile h2 {
-      margin: 0;
-    }
-
-    .news-tile a {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .news-tile a:hover {
-      text-decoration: underline;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 100px;
-      padding-bottom: 40px;
-      font-size: 14px;
-    }
-
-    .page-title {
-      text-align: center;
-      margin-top: 100px;
-      font-size: 28px;
-      font-weight: bold;
+    body { margin: 0; font-family: 'Vogue', sans-serif; }
+    img { max-width: 100%; height: auto; display: block; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; flex-wrap: wrap; background: #fff; }
+    nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+    nav ul li a { text-decoration: none; color: black; font-size: 1rem; }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger div { width: 25px; height: 3px; background: black; margin: 4px 0; }
+    .logo { max-height: 50px; width: auto; }
+    h1, h2, p { margin: 20px; }
+    @media (max-width: 768px) {
+      nav ul { display: none; flex-direction: column; width: 100%; background: white; position: absolute; top: 60px; left: 0; padding: 20px 0; text-align: center; }
+      nav ul.active { display: flex; }
+      .hamburger { display: flex; }
     }
   </style>
 </head>
 <body>
-
-<nav>
-  <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo"></a>
-  <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('active')">
-    <div></div><div></div><div></div>
-  </div>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-
-  <h1 class="page-title">Latest News</h1>
-
-  <a href="miami-swim-week-2025.html" style="text-decoration: none;">
-    <div class="news-tile">
-      <img src="images/miami1.jpg" alt="Miami Swim Week Preview" />
-      <div>
-        <h2>Aria Carmona Walks Miami Swim Week 2025</h2>
-        <p>Model Aria Carmona made waves at Miami Swim Week, walking for Frisk Me Good’s bold swimwear collection.</p>
-        <p>Click to read more →</p>
-      </div>
+  <nav>
+    <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo"></a>
+    <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('active')">
+      <div></div><div></div><div></div>
     </div>
-  </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-  <div class="footer">
-    © 2025 Aria Carmona, All Rights Reserved
-  </div>
-
+  <h1>Miami Swim Week 2025</h1>
+  <img src="images/miami1.jpg" alt="Miami Swim Week">
+  <p>Full article content about Miami Swim Week 2025...</p>
+  <iframe width="100%" height="315" src="https://www.youtube.com/embed/BrsO1IfZ0k8" frameborder="0" allowfullscreen></iframe>
 </body>
 </html>
