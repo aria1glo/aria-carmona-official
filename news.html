@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aria Carmona - News</title>
   <style>
-    @font-face {
-      font-family: 'Vogue';
-      src: url('fonts/Vogue.ttf') format('truetype');
-      font-display: swap;
-    }
+    @font-face { font-family: 'Vogue'; src: url('fonts/Vogue.ttf') format('truetype'); font-display: swap; }
     body { margin: 0; font-family: 'Vogue', sans-serif; }
     img { max-width: 100%; height: auto; display: block; }
     nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; flex-wrap: wrap; background: #fff; }
@@ -18,7 +14,16 @@
     .hamburger { display: none; flex-direction: column; cursor: pointer; }
     .hamburger div { width: 25px; height: 3px; background: black; margin: 4px 0; }
     .logo { max-height: 50px; width: auto; }
-    h1, h2, p { margin: 20px; }
+    h1, h2, p { margin: 20px; text-align:center; }
+    .slider { position: relative; overflow: hidden; max-width: 100%; margin: 40px auto; }
+    .slides { display: flex; transition: transform 0.5s ease-in-out; }
+    .slides img { min-width: 100%; border: 5px solid pink; border-radius: 10px; }
+    .prev, .next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      padding: 10px; cursor: pointer; border-radius: 50%;
+    }
+    .prev { left: 10px; } .next { right: 10px; }
     @media (max-width: 768px) {
       nav ul { display: none; flex-direction: column; width: 100%; background: white; position: absolute; top: 60px; left: 0; padding: 20px 0; text-align: center; }
       nav ul.active { display: flex; }
@@ -44,5 +49,27 @@
   <img src="images/miami1.jpg" alt="Miami Swim Week">
   <p>Full article content about Miami Swim Week 2025...</p>
   <iframe width="100%" height="315" src="https://www.youtube.com/embed/BrsO1IfZ0k8" frameborder="0" allowfullscreen></iframe>
+
+  <h2>Miami Swim Week 2025 Gallery</h2>
+  <div class="slider">
+    <div class="slides">
+      <img src="images/IMG_2249.jpg" alt="MSW Image 1">
+      <img src="images/P1620478.jpg" alt="MSW Image 2">
+      <img src="images/miami1.jpg" alt="MSW Image 3">
+    </div>
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+
+  <script>
+    let idx = 0;
+    function moveSlide(step) {
+      const slides = document.querySelector('.slides');
+      const total = slides.children.length;
+      idx = (idx + step + total) % total;
+      slides.style.transform = `translateX(-${idx * 100}%)`;
+    }
+    setInterval(()=>moveSlide(1), 5000);
+  </script>
 </body>
 </html>
