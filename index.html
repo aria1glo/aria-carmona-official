@@ -35,7 +35,7 @@
     z-index: 2000;
     overflow: hidden;
   ">
-    <video autoplay muted playsinline onended="hidePreloader()" style="
+    <video autoplay muted playsinline style="
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -46,26 +46,40 @@
     ">
       <source src="videos/intro.mp4" type="video/mp4" />
     </video>
-    <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="preloader-logo" style="
+    <img src="images/AC-Name3.png" alt="Aria Carmona Logo" id="preloader-logo" style="
       z-index: 2;
       max-width: 50%;
       max-height: 50%;
       object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     ">
   </div>
 
   <script>
     document.body.classList.add("loading");
 
-    function hidePreloader() {
-      const preloader = document.getElementById("preloader");
-      preloader.style.transition = "opacity 0.8s ease";
-      preloader.style.opacity = "0";
+    // Fade in logo after 0.5s
+    window.addEventListener('DOMContentLoaded', () => {
+      const logo = document.getElementById('preloader-logo');
       setTimeout(() => {
-        preloader.style.display = "none";
+        logo.style.opacity = '1';
+      }, 500);
+    });
+
+    // Hide preloader and fade out logo
+    const video = document.querySelector('#preloader video');
+    video.addEventListener('ended', () => {
+      const preloader = document.getElementById('preloader');
+      const logo = document.getElementById('preloader-logo');
+      logo.style.opacity = '0';
+      preloader.style.transition = 'opacity 0.8s ease';
+      preloader.style.opacity = '0';
+      setTimeout(() => {
+        preloader.style.display = 'none';
         document.body.classList.remove("loading");
       }, 800);
-    }
+    });
   </script>
 
   <style>
@@ -85,7 +99,7 @@
       background-color: white;
       z-index: 1000;
       display: flex;
-      flex-direction: column; /* stack logo above links */
+      flex-direction: column; 
       align-items: center;
       padding: 12px 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
