@@ -7,121 +7,197 @@
   <title>NYFW Prelude 2025 Gallery | Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
-    <style>
+  <style>
     body {
       margin: 0;
-      font-family: 'vogue', serif;
-      background-color: white;
+      font-family: 'Georgia', serif;
+      background-color: #fff;
+      color: #000;
     }
 
-    /* NAVBAR */
+    /* Navbar (fixed version) */
     .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 20px 20px 20px 60px;
       background-color: white;
+      position: sticky;
+      top: 0;
       z-index: 1000;
-      display: flex;
-      flex-direction: column; /* stack logo above links */
-      align-items: center;
-      padding: 12px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      max-width: calc(100% - 200px);
+      margin-right: 200px;
+      box-sizing: border-box;
+      gap: 40px;
     }
 
-    .navbar .logo img {
-      height: 38px;
-      display: block;
-      margin: 0 auto;
+    .navbar img {
+      height: 55px;
+      flex-shrink: 0;
     }
 
-    .nav-links {
+    .navbar ul {
+      list-style: none;
       display: flex;
-      gap: 28px;
-      align-items: center;
-      margin-top: 10px;
+      gap: 40px;
+      margin: 0;
+      padding: 0;
       flex-wrap: wrap;
-      justify-content: center;
+      flex-shrink: 0;
     }
 
-    .nav-links a {
+    .navbar ul li a {
       text-decoration: none;
       color: black;
       font-weight: bold;
-      font-size: 15px;
-      transition: all 0.2s ease-in-out;
+      font-size: 18px;
+      transition: 0.3s;
     }
 
-    .nav-links a:hover {
-      color: #ffb6c1;
+    .navbar ul li a:hover {
       background-color: black;
-      padding: 2px 6px;
+      color: pink;
+      padding: 4px 8px;
       border-radius: 4px;
     }
 
-    /* PAGE CONTENT */
-    .page-title {
-      text-align: center;
-      margin-top: 140px;
-      font-size: 28px;
-      font-weight: bold;
+    @media screen and (max-width: 1000px) {
+      .navbar {
+        padding-left: 20px;
+        max-width: calc(100% - 100px);
+        margin-right: 100px;
+        gap: 30px;
+      }
+      .navbar ul {
+        gap: 25px;
+      }
     }
 
-    .gallery-preview {
-      background-color: lightpink;
-      padding: 30px;
-      border-radius: 15px;
-      margin: 40px auto 60px auto;
-      max-width: 1100px;
+    @media screen and (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        margin-right: 0;
+        max-width: 100%;
+        gap: 10px;
+      }
+      .navbar img {
+        margin-bottom: 10px;
+      }
+      .navbar ul {
+        flex-basis: 100%;
+        justify-content: center;
+        gap: 15px;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 32px;
+    }
+
+    .gallery-wrapper {
+      position: relative;
+      padding: 0 60px;
+    }
+
+    .slider-container {
       display: flex;
-      align-items: center;
-      gap: 30px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 30px 0;
+      scroll-behavior: smooth;
     }
 
-    .gallery-preview img {
-      width: 200px;
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      width: 300px;
+      height: 420px;
+      scroll-snap-align: start;
+      position: relative;
+      cursor: pointer;
+      border: 4px solid lightpink;
       border-radius: 10px;
+      transition: transform 0.3s;
+      background-color: white;
     }
 
-    .gallery-preview h2 {
-      margin: 0;
+    .slide img {
+      width: 100%;
+      height: 85%;
+      object-fit: cover;
+      border-radius: 6px 6px 0 0;
     }
 
-    .gallery-preview a {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .gallery-preview a:hover {
-      text-decoration: underline;
-    }
-
-    .footer {
+    .caption {
       text-align: center;
-      margin-top: 100px;
-      padding-bottom: 40px;
+      padding: 5px;
       font-size: 14px;
     }
 
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .navbar .logo img {
-        height: 32px;
-      }
+    .slide:hover {
+      transform: scale(1.03);
+    }
 
-      .nav-links {
-        gap: 16px;
-      }
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: black;
+      background-color: rgba(255, 192, 203, 0.7);
+      border-radius: 50%;
+      padding: 5px 15px;
+      cursor: pointer;
+      z-index: 10;
+      user-select: none;
+    }
 
-      .gallery-preview {
-        flex-direction: column;
-        text-align: center;
-      }
+    .arrow-left {
+      left: 10px;
+    }
 
-      .gallery-preview img {
-        width: 80%;
-      }
+    .arrow-right {
+      right: 10px;
+    }
+
+    /* Fullscreen overlay */
+    .fullscreen-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .fullscreen-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+
+    .fullscreen-overlay.active {
+      display: flex;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      font-size: 14px;
+      color: #444;
     }
   </style>
 </head>
@@ -139,42 +215,26 @@
     </ul>
   </nav>
 
-  <h1>MNYFW Prelude 2025: Move The Crowd – Gallery</h1>
+  <h1>NYFW Prelude 2025: Move The Crowd – Gallery</h1>
 
   <div class="gallery-wrapper">
     <div class="arrow arrow-left" onclick="scrollSlider(-1)">&#10094;</div>
     <div class="slider-container" id="slider">
       <div class="slide">
-        <img src="images/_R7A7516.jpg" alt="Sitting Pretty" />
+        <img src="images/_R7A7541" alt="Sitting Pretty" />
       </div>
       <div class="slide">
-        <img src="images/_R7A7527.jpg" alt="Peaceful Moment" />
+        <img src="images/P1620414.jpg" alt="Peaceful Moment" />
       </div>
       <div class="slide">
-        <img src="images/_R7A7534.jpg" alt="Poised and Confident" />
+        <img src="images/P1620478.jpg" alt="Poised and Confident" />
       </div>
       <div class="slide">
-        <img src="images/_R7A7541.jpg" alt="Poolside Glow" />
+        <img src="images/miami2.jpg" alt="Poolside Glow" />
       </div>
       <div class="slide">
-        <img src="images/_R7A7527.jpg" alt="Final Look" />
+        <img src="images/P1620456.jpg" alt="Final Look" />
       </div>
-      <div class="slide">
-        <img src="images/_R7A7916.jpg" alt="Final Look" />
-      </div>
-            <div class="slide">
-        <img src="images/_R7A7919.jpg" alt="Final Look" />
-      </div>
-            <div class="slide">
-        <img src="images/_R7A7945.jpg" alt="Final Look" />
-      </div>
-            <div class="slide">
-        <img src="images/_R7A7977.jpg" alt="Final Look" />
-      </div>
-            <div class="slide">
-        <img src="images/_R7A8007.jpg" alt="Final Look" />
-      </div>
-      
     </div>
     <div class="arrow arrow-right" onclick="scrollSlider(1)">&#10095;</div>
   </div>
