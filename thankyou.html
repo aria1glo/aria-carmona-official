@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,16 +22,17 @@
       font-family: "Vogue", sans-serif;
     }
 
+    /* Navbar styling (matches index/gallery/contact) */
     .navbar {
       display: flex;
       align-items: center;
-      padding: 20px 20px 20px 60px; /* left padding same as before, right reduced */
+      padding: 20px 20px 20px 60px;
       background-color: white;
       position: sticky;
       top: 0;
       z-index: 1000;
-      max-width: calc(100% - 200px); /* reserve 200px margin on right */
-      margin-right: 200px; /* ensure margin */
+      max-width: calc(100% - 200px);
+      margin-right: 200px;
       box-sizing: border-box;
       gap: 40px;
     }
@@ -67,6 +67,7 @@
       border-radius: 4px;
     }
 
+    /* Tablet */
     @media screen and (max-width: 1000px) {
       .navbar {
         padding-left: 20px;
@@ -74,29 +75,29 @@
         margin-right: 100px;
         gap: 30px;
       }
-
       .navbar ul {
         gap: 25px;
       }
     }
 
+    /* Mobile */
     @media screen and (max-width: 600px) {
       .navbar {
-        flex-wrap: wrap;
-        padding-left: 20px;
-        margin-right: 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        margin-right: 0;
         max-width: 100%;
-        gap: 15px;
+        gap: 10px;
       }
-
+      .navbar img {
+        margin-bottom: 10px;
+      }
       .navbar ul {
         flex-basis: 100%;
         justify-content: center;
         gap: 15px;
-      }
-
-      .navbar img {
-        margin-bottom: 10px;
       }
     }
   </style>
@@ -118,7 +119,7 @@
 
   <div class="thankyou-message">
     Thank you for reaching out!<br />
-    Aria or her team will get back to you shortly.
+    We will get back to you as soon as possible. 
   </div>
 
 </body>
