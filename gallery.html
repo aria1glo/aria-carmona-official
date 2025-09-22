@@ -6,46 +6,72 @@
   <title>Gallery | Aria Carmona</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
+
   <style>
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 40px;
+    body {
+      margin: 0;
+      font-family: 'vogue', serif;
       background-color: white;
+    }
+
+    /* NAVBAR */
+    .navbar {
       position: fixed;
-      width: calc(100% - 80px);
       top: 0;
       left: 0;
-      z-index: 999;
-      box-sizing: border-box;
-    }
-
-    .navbar ul {
-      list-style: none;
+      width: 100%;
+      background-color: white;
+      z-index: 1000;
       display: flex;
-      gap: 30px;
-      margin-right: 40px;
+      flex-direction: column; /* stack logo above links */
+      align-items: center;
+      padding: 12px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .navbar ul li a {
+    .navbar .logo img {
+      height: 38px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
       text-decoration: none;
       color: black;
       font-weight: bold;
+      font-size: 15px;
+      transition: all 0.2s ease-in-out;
     }
 
-    .navbar ul li a:hover {
+    .nav-links a:hover {
+      color: #ffb6c1;
       background-color: black;
-      color: lightpink;
-      padding: 4px 8px;
-      border-radius: 5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* PAGE CONTENT */
+    .page-title {
+      text-align: center;
+      margin-top: 140px;
+      font-size: 28px;
+      font-weight: bold;
     }
 
     .gallery-preview {
       background-color: lightpink;
       padding: 30px;
       border-radius: 15px;
-      margin: 120px auto 60px auto;
+      margin: 40px auto 60px auto;
       max-width: 1100px;
       display: flex;
       align-items: center;
@@ -78,30 +104,46 @@
       font-size: 14px;
     }
 
-    .page-title {
-      text-align: center;
-      margin-top: 100px;
-      font-size: 28px;
-      font-weight: bold;
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .navbar .logo img {
+        height: 32px;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .gallery-preview {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .gallery-preview img {
+        width: 80%;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <div class="navbar">
-    <a href="index.html">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" style="height: 50px;">
+    <a href="index.html" class="logo">
+      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
     </a>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="news.html">NEWS</a></li>
-      <li><a href="gallery.html">GALLERY</a></li>
-      <li><a href="contact.html">CONTACT</a></li>
-    </ul>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="news.html">NEWS</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="contact.html">CONTACT</a>
+    </div>
   </div>
 
+  <!-- PAGE TITLE -->
   <h1 class="page-title">Latest Events</h1>
 
+  <!-- GALLERY PREVIEW -->
   <a href="miami-swim-week-2025-gallery.html" style="text-decoration: none;">
     <div class="gallery-preview">
       <img src="images/miami1.jpg" alt="Miami Swim Week Gallery Cover" />
@@ -113,6 +155,7 @@
     </div>
   </a>
 
+  <!-- FOOTER -->
   <div class="footer">
     © 2025 Aria Carmona, All Rights Reserved
   </div>
