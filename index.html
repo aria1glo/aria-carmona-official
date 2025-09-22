@@ -8,17 +8,17 @@
   <link rel="icon" href="favicon.png" type="image/png" />
 
   <!-- Open Graph (Discord, Facebook, etc.) -->
-<meta property="og:title" content="Aria Carmona - Official Site" />
-<meta property="og:description" content="Welcome to the official website of model Aria Carmona — photos, updates, and more." />
-<meta property="og:image" content="https://ariacarmona.com/images/miami1.jpg" />
-<meta property="og:url" content="https://ariacarmona.com" />
-<meta property="og:type" content="website" />
+  <meta property="og:title" content="Aria Carmona - Official Site" />
+  <meta property="og:description" content="Welcome to the official website of model Aria Carmona — photos, updates, and more." />
+  <meta property="og:image" content="https://ariacarmona.com/images/miami1.jpg" />
+  <meta property="og:url" content="https://ariacarmona.com" />
+  <meta property="og:type" content="website" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Aria Carmona - Official Site" />
-<meta name="twitter:description" content="Welcome to the official website of model Aria Carmona — photos, updates, and more." />
-<meta name="twitter:image" content="https://ariacarmona.com/images/miami1.jpg" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aria Carmona - Official Site" />
+  <meta name="twitter:description" content="Welcome to the official website of model Aria Carmona — photos, updates, and more." />
+  <meta name="twitter:image" content="https://ariacarmona.com/images/miami1.jpg" />
 
   <style>
     body {
@@ -28,7 +28,7 @@
       background-color: white;
     }
 
-    /* ✅ NAVBAR */
+    /* NAVBAR */
     .navbar {
       position: fixed;
       top: 0;
@@ -43,17 +43,22 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .navbar a img {
-      max-height: 42px; /* desktop default */
-      height: auto;
+    .navbar .logo img {
+      height: 38px;
+      transition: height 0.2s ease-in-out;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 28px;
       align-items: center;
       margin-right: 200px;
-      transition: max-height 0.3s ease-in-out;
     }
 
     .nav-links a {
@@ -71,65 +76,17 @@
       border-radius: 4px;
     }
 
-    /* Hamburger button */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 26px;
-    }
-
-    /* ✅ Mobile */
-    @media (max-width: 768px) {
-      .navbar a img {
-        max-height: 32px; /* smaller logo */
-      }
-
-      .nav-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        left: 0;
-        background: white;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        max-height: 0;
-        overflow: hidden;
-        padding: 0 20px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-        margin-right: 0;
-      }
-
-      .nav-links.open {
-        max-height: 300px;
-        padding: 10px 20px;
-      }
-
-      .nav-links a {
-        padding: 10px 0;
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    /* rest of your styles unchanged… */
+    /* HERO */
     .hero {
       background-image: url("images/miami1.jpg");
       background-size: cover;
       background-position: center;
       height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start; /* push text higher */
       justify-content: flex-end;
       text-align: right;
-      padding-right: 10%;
-      padding-left: 10%;
+      padding: 180px 10% 0 10%; /* top padding moves text above face */
     }
 
     .hero-text {
@@ -231,7 +188,38 @@
       margin-top: 80px;
     }
 
+    /* MOBILE */
     @media (max-width: 768px) {
+      .navbar .logo img {
+        height: 32px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: white;
+        width: 200px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        z-index: 2000;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 10px;
+        text-align: left;
+      }
+
       .hero-text {
         font-size: 1.3em;
       }
@@ -248,13 +236,13 @@
 </head>
 <body>
 
-  <!-- ✅ NAVBAR -->
+  <!-- NAVBAR -->
   <div class="navbar">
-    <a href="index.html">
+    <a href="index.html" class="logo">
       <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
     </a>
-    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
-    <div class="nav-links">
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <div class="nav-links" id="nav-links">
       <a href="index.html">HOME</a>
       <a href="news.html">NEWS</a>
       <a href="gallery.html">GALLERY</a>
@@ -323,16 +311,10 @@
   </footer>
 
   <script>
-    // ✅ mobile nav toggle
-    document.addEventListener('DOMContentLoaded', function () {
-      const toggle = document.querySelector('.nav-toggle');
-      const links = document.querySelector('.nav-links');
-      toggle.addEventListener('click', () => {
-        links.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', links.classList.contains('open'));
-      });
-    });
+    // Toggle mobile nav
+    document.getElementById('menu-toggle').onclick = function () {
+      document.getElementById('nav-links').classList.toggle('active');
+    };
   </script>
-
 </body>
 </html>
