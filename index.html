@@ -20,6 +20,28 @@
   <meta name="twitter:description" content="Welcome to the official website of model Aria Carmona — photos, updates, and more." />
   <meta name="twitter:image" content="https://ariacarmona.com/images/IK9A9943.jpg" />
 
+  <!-- Preloader -->
+<div id="preloader">
+  <video autoplay muted playsinline onended="hidePreloader()">
+    <source src="videos/intro.mp4" type="video/mp4" />
+  </video>
+  <img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="preloader-logo">
+</div>
+
+<script>
+  document.body.classList.add("loading");
+
+  function hidePreloader() {
+    const preloader = document.getElementById("preloader");
+    preloader.style.opacity = "0";
+    setTimeout(() => {
+      preloader.style.display = "none";
+      document.body.classList.remove("loading");
+    }, 800); // matches fade duration
+  }
+</script>
+
+
   <style>
     body {
       font-family: 'vogue', serif;
