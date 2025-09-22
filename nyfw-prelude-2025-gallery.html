@@ -1,175 +1,220 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NYFW Prelude 2025 | Aria Carmona</title>
-  <style>
-    @font-face {
-      font-family: 'Vogue';
-      src: url('fonts/Vogue.ttf') format('truetype');
-      font-display: swap;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NYFW Prelude 2025 Gallery | Aria Carmona</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+    <style>
     body {
       margin: 0;
-      font-family: 'Vogue', sans-serif;
-      background: #fff;
-      color: #000;
+      font-family: 'vogue', serif;
+      background-color: white;
     }
-    /* Navbar */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      flex-wrap: wrap;
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-      position: sticky;
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
       top: 0;
-      z-index: 999;
-    }
-    nav ul {
+      left: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 1000;
       display: flex;
-      gap: 20px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
+      flex-direction: column; /* stack logo above links */
+      align-items: center;
+      padding: 12px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    nav ul li a {
+
+    .navbar .logo img {
+      height: 38px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
       text-decoration: none;
-      font-size: 1rem;
-      color: #000;
-      transition: 0.3s;
+      color: black;
+      font-weight: bold;
+      font-size: 15px;
+      transition: all 0.2s ease-in-out;
     }
-    nav ul li a:hover {
-      color: lightpink;
-      background: black;
-      padding: 5px 10px;
-      border-radius: 5px;
+
+    .nav-links a:hover {
+      color: #ffb6c1;
+      background-color: black;
+      padding: 2px 6px;
+      border-radius: 4px;
     }
-    .logo {
-      max-height: 50px;
-      width: auto;
+
+    /* PAGE CONTENT */
+    .page-title {
+      text-align: center;
+      margin-top: 140px;
+      font-size: 28px;
+      font-weight: bold;
     }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
+
+    .gallery-preview {
+      background-color: lightpink;
+      padding: 30px;
+      border-radius: 15px;
+      margin: 40px auto 60px auto;
+      max-width: 1100px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
     }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background: black;
-      margin: 4px 0;
-      transition: 0.4s;
+
+    .gallery-preview img {
+      width: 200px;
+      border-radius: 10px;
     }
+
+    .gallery-preview h2 {
+      margin: 0;
+    }
+
+    .gallery-preview a {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .gallery-preview a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 100px;
+      padding-bottom: 40px;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
     @media (max-width: 768px) {
-      nav ul {
-        display: none;
+      .navbar .logo img {
+        height: 32px;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .gallery-preview {
         flex-direction: column;
-        width: 100%;
-        background: white;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        padding: 20px 0;
         text-align: center;
       }
-      nav ul.active {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
+
+      .gallery-preview img {
+        width: 80%;
       }
     }
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-    h1, h2 {
-      text-align: center;
-      margin: 20px 0;
-    }
-    p {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 15px;
-      font-size: 1.1rem;
-    }
-    /* Slider */
-    .slider {
-      position: relative;
-      max-width: 90%;
-      margin: 40px auto;
-      overflow: hidden;
-    }
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .slides img {
-      border: 5px solid lightpink;
-      border-radius: 10px;
-      min-width: 100%;
-    }
-    .prev, .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      padding: 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 50%;
-    }
-    .prev { left: 10px; }
-    .next { right: 10px; }
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav>
-    <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo" class="logo"></a>
-    <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('active')">
-      <div></div><div></div><div></div>
-    </div>
+  <nav class="navbar">
+    <a href="index.html">
+      <img src="images/AC-Name3.png" alt="Aria Carmona Logo">
+    </a>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="contact.html">CONTACT</a></li>
     </ul>
   </nav>
 
-  <h1>NYFW Prelude 2025</h1>
-  <img src="images/nyfw1.jpg" alt="NYFW Prelude 2025">
-  <p>
-    Aria Carmona walked in the NYFW Prelude 2025 "Move The Crowd" showcase by Barron Wise. 
-    The show highlighted Aria’s confidence and versatility, marking another key milestone in her runway career.
-  </p>
+  <h1>MNYFW Prelude 2025: Move The Crowd – Gallery</h1>
 
-  <h2>Gallery</h2>
-  <div class="slider">
-    <div class="slides">
-      <img src="images/nyfw1.jpg" alt="">
-      <img src="images/nyfw2.jpg" alt="">
-      <img src="images/nyfw3.jpg" alt="">
+  <div class="gallery-wrapper">
+    <div class="arrow arrow-left" onclick="scrollSlider(-1)">&#10094;</div>
+    <div class="slider-container" id="slider">
+      <div class="slide">
+        <img src="images/_R7A7516.jpg" alt="Sitting Pretty" />
+      </div>
+      <div class="slide">
+        <img src="images/_R7A7527.jpg" alt="Peaceful Moment" />
+      </div>
+      <div class="slide">
+        <img src="images/_R7A7534.jpg" alt="Poised and Confident" />
+      </div>
+      <div class="slide">
+        <img src="images/_R7A7541.jpg" alt="Poolside Glow" />
+      </div>
+      <div class="slide">
+        <img src="images/_R7A7527.jpg" alt="Final Look" />
+      </div>
+      <div class="slide">
+        <img src="images/_R7A7916.jpg" alt="Final Look" />
+      </div>
+            <div class="slide">
+        <img src="images/_R7A7919.jpg" alt="Final Look" />
+      </div>
+            <div class="slide">
+        <img src="images/_R7A7945.jpg" alt="Final Look" />
+      </div>
+            <div class="slide">
+        <img src="images/_R7A7977.jpg" alt="Final Look" />
+      </div>
+            <div class="slide">
+        <img src="images/_R7A8007.jpg" alt="Final Look" />
+      </div>
+      
     </div>
-    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    <div class="arrow arrow-right" onclick="scrollSlider(1)">&#10095;</div>
   </div>
 
+  <!-- Fullscreen Overlay -->
+  <div class="fullscreen-overlay" id="fullscreenOverlay">
+    <img id="fullscreenImg" src="" alt="Fullscreen Image" />
+  </div>
+
+  <footer>
+    &copy; 2025 Aria Carmona, All Rights Reserved
+  </footer>
+
   <script>
-    let index = 0;
-    function moveSlide(step) {
-      const slides = document.querySelector('.slides');
-      const total = document.querySelectorAll('.slides img').length;
-      index = (index + step + total) % total;
-      slides.style.transform = `translateX(${-index * 100}%)`;
+    const slider = document.getElementById("slider");
+    const slides = document.querySelectorAll('.slide img');
+    const overlay = document.getElementById('fullscreenOverlay');
+    const overlayImg = document.getElementById('fullscreenImg');
+
+    function scrollSlider(direction) {
+      const scrollAmount = 320;
+      slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
     }
+
+    // Fullscreen
+    slides.forEach(slide => {
+      slide.addEventListener('click', () => {
+        overlayImg.src = slide.src;
+        overlay.classList.add('active');
+      });
+    });
+
+    overlay.addEventListener('click', () => {
+      overlay.classList.remove('active');
+    });
+
+    // Auto-slide every 5s
+    setInterval(() => {
+      scrollSlider(1);
+    }, 5000);
   </script>
 </body>
 </html>
