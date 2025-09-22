@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,44 +60,29 @@
       margin-top: 100px;
     }
 
-    @media (max-width: 768px) {
-      form {
-        max-width: 95%;
-      }
-
-      .social-icons img {
-        width: 32px;
-        height: 32px;
-      }
-    }
-
+    /* ===== NAVBAR STYLES ===== */
     .navbar {
       display: flex;
       align-items: center;
-      padding: 20px 20px 20px 60px; /* left padding same as before, right reduced */
+      justify-content: space-between;
+      padding: 15px 30px;
       background-color: white;
       position: sticky;
       top: 0;
       z-index: 1000;
-      max-width: calc(100% - 200px); /* reserve 200px margin on right */
-      margin-right: 200px; /* ensure margin */
-      box-sizing: border-box;
-      gap: 40px;
     }
 
     .navbar img {
-      height: 50px;
+      height: 55px;
       flex-shrink: 0;
     }
 
     .navbar ul {
       list-style: none;
       display: flex;
-      gap: 40px;
+      gap: 35px;
       margin: 0;
       padding: 0;
-      flex-wrap: wrap;
-      flex-shrink: 0;
     }
 
     .navbar ul li a {
@@ -116,36 +100,46 @@
       border-radius: 4px;
     }
 
-    @media screen and (max-width: 1000px) {
-      .navbar {
-        padding-left: 20px;
-        max-width: calc(100% - 100px);
-        margin-right: 100px;
-        gap: 30px;
-      }
-
-      .navbar ul {
-        gap: 25px;
-      }
-    }
-
-    @media screen and (max-width: 600px) {
+    /* Tablet */
+    @media screen and (max-width: 900px) {
       .navbar {
         flex-wrap: wrap;
-        padding-left: 20px;
-        margin-right: 20px;
-        max-width: 100%;
-        gap: 15px;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .navbar img {
+        height: 45px;
       }
 
       .navbar ul {
         flex-basis: 100%;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
+      }
+    }
+
+    /* Mobile */
+    @media screen and (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
       }
 
       .navbar img {
-        margin-bottom: 10px;
+        height: 40px;
+        margin-bottom: 8px;
+      }
+
+      .navbar ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .navbar ul li a {
+        font-size: 16px;
       }
     }
   </style>
