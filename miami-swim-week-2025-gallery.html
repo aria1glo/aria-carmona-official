@@ -119,6 +119,12 @@
       cursor: pointer;
       z-index: 10;
       user-select: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .gallery-wrapper:hover .arrow {
+      opacity: 1;
     }
 
     .arrow-left {
@@ -202,10 +208,16 @@
   <div class="gallery-wrapper">
     <div class="arrow arrow-left" onclick="scrollSlider(-1)">&#10094;</div>
     <div class="slider-container" id="slider">
-      <div class="slide"><img src="images/IMG_2249.jpg" alt="Slide 1" /></div>
-      <div class="slide"><img src="images/P1620478.jpg" alt="Slide 2" /></div>
-      <div class="slide"><img src="images/miami1.jpg" alt="Slide 3" /></div>
-      <div class="slide"><img src="images/miami2.jpg" alt="Slide 4" /></div>
+      <div class="slide"><img src="images/IMG_2261.jpg" alt="IMG_2261" /></div>
+      <div class="slide"><img src="images/IMG_2272.jpg" alt="IMG_2272" /></div>
+      <div class="slide"><img src="images/IMG_4258-Edit.jpg" alt="IMG_4258-Edit" /></div>
+      <div class="slide"><img src="images/IMG_4301.jpg" alt="IMG_4301" /></div>
+      <div class="slide"><img src="images/P1620465-Edit.jpg" alt="P1620465-Edit" /></div>
+      <div class="slide"><img src="images/P1620518.jpg" alt="P1620518" /></div>
+      <div class="slide"><img src="images/IMG_2250-Edit.jpg" alt="IMG_2250-Edit" /></div>
+      <div class="slide"><img src="images/IMG_2306.jpg" alt="IMG_2306" /></div>
+      <div class="slide"><img src="images/IMG_4282.jpg" alt="IMG_4282" /></div>
+      <div class="slide"><img src="images/P1620522.jpg" alt="P1620522" /></div>
     </div>
     <div class="arrow arrow-right" onclick="scrollSlider(1)">&#10095;</div>
   </div>
