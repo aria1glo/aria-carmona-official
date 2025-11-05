@@ -14,11 +14,12 @@
     html, body {
       margin: 0;
       padding: 0;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
       font-family: 'Vogue', serif;
       scroll-behavior: smooth;
-      background-color: #fff;
-      color: #000;
-      overflow-x: hidden;
+      background: #000;
     }
 
     /* Navbar */
@@ -27,231 +28,182 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(255,255,255,0.85);
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 12px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      padding: 15px;
+      background: rgba(255,255,255,0.4);
       backdrop-filter: blur(10px);
-      transition: background 0.5s ease;
+      text-align: center;
+      z-index: 100;
     }
 
-    .navbar .logo img {
-      height: 42px;
+    .navbar img {
+      height: 40px;
     }
 
-    .nav-links {
+    /* Horizontal scroll container */
+    .scroll-container {
       display: flex;
-      gap: 28px;
+      height: 100vh;
+      width: 500vw; /* 5 panels total */
+      overflow-x: scroll;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .panel {
+      scroll-snap-align: start;
+      position: relative;
+      flex: 0 0 100vw;
+      height: 100vh;
+      display: flex;
       align-items: center;
-      margin-top: 10px;
-      flex-wrap: wrap;
       justify-content: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 15px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .nav-links a:hover {
-      color: #ffb6c1;
-      background-color: black;
-      padding: 3px 8px;
-      border-radius: 4px;
+      color: white;
+      transition: transform 1s ease, filter 1s ease;
     }
 
     /* Hero Section */
     .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
       background-color: black;
     }
 
     .hero video {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(55%) blur(2px);
       z-index: 0;
+      transition: transform 1s ease, filter 1s ease;
+      filter: brightness(60%);
     }
 
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       text-align: center;
-      animation: fadeIn 2.5s ease forwards;
+      max-width: 80%;
       backdrop-filter: blur(2px);
+      animation: fadeIn 2s ease forwards;
     }
 
     .hero-content h1 {
       font-size: 3.5rem;
       font-style: italic;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .hero-content p {
-      font-size: 1.2rem;
-      letter-spacing: 2px;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
     }
 
-    /* Parallax Sections */
-    section {
-      min-height: 100vh;
-      padding: 100px 10%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 1.2s ease, transform 1.2s ease, filter 1.2s ease;
+    /* Parallax background style */
+    .panel:not(.hero) {
       background-attachment: fixed;
       background-position: center;
       background-size: cover;
-      position: relative;
-      z-index: 1;
+      backdrop-filter: blur(10px);
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
     }
 
-    section::before {
+    /* Backgrounds */
+    .about { background-image: url('images/R7A0272.jpg'); }
+    .stats { background-image: url('images/R7A0249.jpg'); }
+    .gallery { background-image: url('images/R7A0257.jpg'); }
+    .contact { background-image: url('images/R7A0283.jpg'); }
+
+    /* Fade overlay for depth */
+    .panel::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(255,255,255,0.4);
-      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.3);
       z-index: 0;
-      opacity: 0;
-      transition: opacity 1.2s ease;
     }
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
+    /* Section Content */
+    .inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      background-color: rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      padding: 40px;
     }
 
-    section.visible::before {
-      opacity: 1;
-    }
-
-    section h2 {
+    .inner h2 {
       font-size: 2.5rem;
       margin-bottom: 20px;
-      position: relative;
-      z-index: 2;
+      color: #fff;
     }
 
-    section p, section div {
-      position: relative;
-      z-index: 2;
+    .inner p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #f5f5f5;
     }
 
-    /* Section Backgrounds */
-    #about { background-image: url('images/R7A0272.jpg'); }
-    #stats { background-image: url('images/R7A0249.jpg'); }
-    #gallery { background-image: url('images/R7A0257.jpg'); }
-    #news { background-image: url('images/R7A0261.jpg'); }
-    #calendar { background-image: url('images/R7A0248.jpg'); }
-    #contact { background-image: url('images/R7A0283.jpg'); }
-
-    /* Stats */
-    .stats {
+    /* Stats grid */
+    .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      width: 100%;
-      max-width: 800px;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
-    .stat-card {
+    .stats-grid div {
+      background-color: rgba(255,255,255,0.1);
       border: 2px solid lightpink;
       padding: 20px;
-      border-radius: 15px;
-      background-color: rgba(255,255,255,0.8);
-      backdrop-filter: blur(6px);
-      transition: transform 0.3s ease;
+      border-radius: 10px;
+      transition: transform 0.3s;
     }
 
-    .stat-card:hover {
+    .stats-grid div:hover {
       transform: translateY(-5px);
     }
 
-    /* Gallery Preview */
+    /* Gallery preview */
+    .gallery-preview {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
     .gallery-preview img {
-      width: 200px;
-      height: 300px;
+      width: 180px;
+      height: 260px;
       object-fit: cover;
-      border: 3px solid lightpink;
       border-radius: 10px;
-      margin: 10px;
+      border: 2px solid lightpink;
       transition: transform 0.3s;
-      z-index: 2;
     }
 
     .gallery-preview img:hover {
       transform: scale(1.05);
     }
 
-    /* Calendar */
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-      max-width: 900px;
-      width: 100%;
+    /* Hero shrink effect */
+    .scroll-container:has(.hero:in-view) .hero video {
+      transform: scale(1);
     }
 
-    .event-card {
-      background-color: rgba(255,255,255,0.85);
-      border: 2px solid #ffb6c1;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: left;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-      backdrop-filter: blur(5px);
-    }
-
-    .event-card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Contact */
-    .contact-icons img {
-      width: 40px;
-      margin: 10px;
-      transition: transform 0.3s;
-    }
-
-    .contact-icons img:hover {
-      transform: scale(1.1);
+    .scroll-container:not(:has(.hero:in-view)) .hero video {
+      transform: scale(0.9);
+      filter: brightness(50%);
     }
 
     footer {
       text-align: center;
       padding: 30px 0;
-      font-size: 14px;
-      color: #444;
-      background: #fff;
-      z-index: 3;
-      position: relative;
+      color: #bbb;
+      font-size: 0.9rem;
+      background: #000;
+      width: 100%;
     }
 
     @keyframes fadeIn {
@@ -261,122 +213,90 @@
   </style>
 </head>
 <body>
-
   <!-- Navbar -->
   <div class="navbar">
-    <a href="#hero" class="logo"><img src="images/AC-Name3.png" alt="Aria Carmona Logo"></a>
-    <div class="nav-links">
-      <a href="#about">ABOUT</a>
-      <a href="#stats">STATS</a>
-      <a href="#gallery">GALLERY</a>
-      <a href="#news">NEWS</a>
-      <a href="#calendar">CALENDAR</a>
-      <a href="#contact">CONTACT</a>
-    </div>
+    <a href="#hero"><img src="images/AC-Name3.png" alt="Aria Carmona Logo"></a>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <video autoplay muted loop playsinline>
-      <source src="videos/intro.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-content">
-      <h1>Fierce. The DNA of <em>Aria Carmona.</em></h1>
-      <p>Runway • Commercial • Editorial</p>
-    </div>
-  </section>
+  <!-- Scroll Container -->
+  <div class="scroll-container">
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Aria</h2>
-    <p>Aria Carmona is a 21 year old female making waves in the modeling industry. The Manhattan-based talent is currently supported by TDTD Models, an engineering student, and a licensed NASCAR driver. She brings experience, most notably walking Miami Swim Week & NYFW S/S26 this year. She intends to enhance her modeling career and take it to the next level.</p>
-  </section>
-
-  <!-- Stats -->
-  <section id="stats">
-    <h2>Stats</h2>
-    <div class="stats">
-      <div class="stat-card"><h3>Height</h3><p>5'8"</p></div>
-      <div class="stat-card"><h3>Bust</h3><p>34"</p></div>
-      <div class="stat-card"><h3>Waist</h3><p>24"</p></div>
-      <div class="stat-card"><h3>Hips</h3><p>34"</p></div>
-      <div class="stat-card"><h3>Shoe Size</h3><p>11</p></div>
-      <div class="stat-card"><h3>Hair Color</h3><p>BLACK</p></div>
-      <div class="stat-card"><h3>Eye Color</h3><p>BROWN</p></div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery">
-    <h2>Aria's Digitals</h2>
-    <div class="gallery-preview">
-      <img src="images/A_Carmona_Web-1.jpg">
-      <img src="images/A_Carmona_Web-2.jpg">
-      <img src="images/A_Carmona_Web-4.jpg">
-      <img src="images/A_Carmona_Web-9.jpg">
-    </div>
-    <p><a href="gallery.html">View Full Gallery →</a></p>
-  </section>
-
-  <!-- News -->
-  <section id="news">
-    <h2>Latest Highlights</h2>
-    <p>Read about Aria’s latest appearances, features, and projects including Miami Swim Week 2025 and more.</p>
-    <p><a href="news.html">Explore News →</a></p>
-  </section>
-
-  <!-- Calendar -->
-  <section id="calendar">
-    <h2>Calendar</h2>
-    <div class="calendar-grid">
-      <div class="event-card">
-        <h3>Miami Swim Week 2025</h3>
-        <p>May 27–31, 2025</p>
-        <p>Runway event and press appearances.</p>
+    <!-- Section 1: Hero -->
+    <section class="panel hero" id="hero">
+      <video autoplay muted loop playsinline>
+        <source src="videos/intro.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-content">
+        <h1>Fierce. The DNA of <em>Aria Carmona</em></h1>
+        <p>Runway • Commercial • Editorial</p>
       </div>
-      <div class="event-card">
-        <h3>Editorial: Elysium Shadowfall</h3>
-        <p>October 25th, 2025</p>
-        <p>Fashion editorial release in North Riverdale, NY.</p>
-      </div>
-      <div class="event-card">
-        <h3>Montclair Fashion Show 2025</h3>
-        <p>October 31st, 2025</p>
-        <p>Queened Fashion House's Spooky Met Gala.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact Aria</h2>
-    <p>For bookings, collaborations, or media inquiries:</p>
-    <p><a href="contact.html">Go to Contact Form →</a></p>
-    <div class="contact-icons">
-      <a href="https://instagram.com/aria.glo"><img src="images/instagram.png"></a>
-      <a href="#"><img src="images/tiktok.png"></a>
-      <a href="#"><img src="images/youtube.png"></a>
-    </div>
-  </section>
+    <!-- Section 2: About -->
+    <section class="panel about" id="about">
+      <div class="inner">
+        <h2>About Aria</h2>
+        <p>Aria Carmona is a 21 year old female making waves in the modeling industry. The Manhattan-based talent is currently supported by TDTD Models, an engineering student, and a licensed NASCAR driver. She brings experience, most notably walking Miami Swim Week & NYFW S/S26 this year. She intends to enhance her modeling career and take it to the next level.</p>
+      </div>
+    </section>
+
+    <!-- Section 3: Stats -->
+    <section class="panel stats" id="stats">
+      <div class="inner">
+        <h2>Stats</h2>
+        <div class="stats-grid">
+          <div><strong>Height</strong><br>5'8"</div>
+          <div><strong>Bust</strong><br>34"</div>
+          <div><strong>Waist</strong><br>24"</div>
+          <div><strong>Hips</strong><br>34"</div>
+          <div><strong>Shoe Size</strong><br>11</div>
+          <div><strong>Hair Color</strong><br>BLACK</div>
+          <div><strong>Eye Color</strong><br>BROWN</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Gallery -->
+    <section class="panel gallery" id="gallery">
+      <div class="inner">
+        <h2>Gallery</h2>
+        <div class="gallery-preview">
+          <img src="images/A_Carmona_Web-1.jpg" alt="">
+          <img src="images/A_Carmona_Web-2.jpg" alt="">
+          <img src="images/A_Carmona_Web-4.jpg" alt="">
+          <img src="images/A_Carmona_Web-9.jpg" alt="">
+        </div>
+        <p><a href="gallery.html" style="color:lightpink;">View Full Gallery →</a></p>
+      </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section class="panel contact" id="contact">
+      <div class="inner">
+        <h2>Contact Aria</h2>
+        <h3>For bookings, collaborations, or media inquiries:</h3>
+        <p><a href="contact.html" style="color:lightpink;">Go to Contact Form →</a></p>
+      </div>
+    </section>
+  </div>
 
   <footer>
-    &copy; 2025 Aria Carmona, All Rights Reserved
+    &copy; 2025 Aria Carmona. All Rights Reserved.
   </footer>
 
   <script>
-    // Fade + Parallax reveal on scroll
-    const sections = document.querySelectorAll("section");
-    const options = { threshold: 0.2 };
-
-    const observer = new IntersectionObserver(function(entries) {
+    // Intersection observer for hero shrink trigger
+    const hero = document.querySelector(".hero");
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
+          hero.classList.add("in-view");
+        } else {
+          hero.classList.remove("in-view");
         }
       });
-    }, options);
-
-    sections.forEach(section => observer.observe(section));
+    }, { threshold: 0.6 });
+    observer.observe(hero);
   </script>
 </body>
 </html>
