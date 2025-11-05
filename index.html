@@ -21,16 +21,16 @@
     }
 
     .sections-wrapper {
-      display: flex;
-      flex-wrap: nowrap;
-      width: 600vw;
+      width: 100vw;
       height: 100vh;
-      transition: transform 1.2s ease-in-out;
+      transition: transform 1.5s cubic-bezier(0.75, 0, 0.25, 1);
+      position: relative;
     }
 
     section {
-      position: relative;
-      flex: 0 0 100vw;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw;
       height: 100vh;
       overflow: hidden;
       display: flex;
@@ -38,7 +38,6 @@
       align-items: center;
       text-align: center;
       color: white;
-      transition: background 0.8s ease, filter 0.8s ease;
     }
 
     section video, section img.bg {
@@ -47,7 +46,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(60%) blur(1.2px);
+      filter: brightness(60%) blur(1.5px);
       z-index: 0;
     }
 
@@ -55,13 +54,20 @@
       position: relative;
       z-index: 2;
       max-width: 700px;
-      backdrop-filter: blur(3px);
+      backdrop-filter: blur(4px);
       padding: 20px;
       animation: fadeIn 1.5s ease forwards;
     }
 
-    section h2 { font-size: 2.5rem; margin-bottom: 10px; }
-    section p { font-size: 1.1rem; line-height: 1.6; }
+    section h2 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
 
     /* Navbar */
     .navbar {
@@ -121,31 +127,43 @@
     #news img.bg { filter: brightness(50%) blur(2px); }
     #calendar img.bg { filter: brightness(50%) blur(1.5px); }
 
-    /* horizontal stats styling */
-    .stats {
-      display: flex;
+    /* stat cards grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, auto);
       gap: 20px;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      width: 90%;
-      padding: 20px;
+      margin-top: 20px;
     }
 
     .stat-card {
-      min-width: 150px;
       border: 2px solid lightpink;
       background-color: rgba(255,255,255,0.1);
       border-radius: 15px;
       padding: 20px;
-      flex-shrink: 0;
       transition: transform 0.3s ease;
     }
 
     .stat-card:hover {
       transform: translateY(-5px);
+    }
+
+    /* fade overlay effect */
+    .fade-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 999;
+    }
+
+    .fade-overlay.active {
+      opacity: 1;
     }
   </style>
 </head>
@@ -164,21 +182,21 @@
     </div>
   </div>
 
+  <div class="fade-overlay" id="fadeOverlay"></div>
+
   <!-- Wrapper -->
   <div class="sections-wrapper" id="sectionsWrapper">
-    <!-- Hero -->
     <section id="hero">
       <video autoplay muted loop playsinline>
         <source src="videos/intro.mp4" type="video/mp4"/>
       </video>
       <div class="content">
-        <h2>Fierce. The DNA of <em>Aria Carmona</em></h2>
+        <h2>Fierce. Bold. Iconic. This is the DNA of <em>Aria Carmona.</em></h2>
         <p>Runway • Commercial • Editorial</p>
       </div>
       <footer>© 2025 Aria Carmona</footer>
     </section>
 
-    <!-- About -->
     <section id="about">
       <img src="images/R7A0272.jpg" class="bg" alt="">
       <div class="content">
@@ -187,12 +205,11 @@
       </div>
     </section>
 
-    <!-- Stats -->
     <section id="stats">
       <img src="images/R7A0249.jpg" class="bg" alt="">
       <div class="content">
         <h2>Stats</h2>
-        <div class="stats">
+        <div class="stats-grid">
           <div class="stat-card"><h3>Height</h3><p>5'8"</p></div>
           <div class="stat-card"><h3>Bust</h3><p>34"</p></div>
           <div class="stat-card"><h3>Waist</h3><p>24"</p></div>
@@ -200,11 +217,11 @@
           <div class="stat-card"><h3>Shoe</h3><p>11</p></div>
           <div class="stat-card"><h3>Hair</h3><p>Black</p></div>
           <div class="stat-card"><h3>Eyes</h3><p>Brown</p></div>
+          <div class="stat-card"><h3>Location</h3><p>New York, NY</p></div>
         </div>
       </div>
     </section>
 
-    <!-- Gallery -->
     <section id="gallery">
       <img src="images/R7A0257.jpg" class="bg" alt="">
       <div class="content">
@@ -214,7 +231,6 @@
       </div>
     </section>
 
-    <!-- News -->
     <section id="news">
       <img src="images/R7A0261.jpg" class="bg" alt="">
       <div class="content">
@@ -224,12 +240,11 @@
       </div>
     </section>
 
-    <!-- Calendar -->
     <section id="calendar">
       <img src="images/R7A0248.jpg" class="bg" alt="">
       <div class="content">
         <h2>Calendar</h2>
-        <div class="stats">
+        <div class="stats-grid">
           <div class="stat-card">
             <h3>Miami Swim Week 2025</h3>
             <p>May 27–31, 2025</p>
@@ -245,16 +260,20 @@
             <p>Oct 31, 2025</p>
             <p>Queened Fashion House</p>
           </div>
+          <div class="stat-card">
+            <h3>NYFW S/S26</h3>
+            <p>Feb 2026</p>
+            <p>Official Runway</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
       <img src="images/R7A0283.jpg" class="bg" alt="">
       <div class="content">
         <h2>Contact</h2>
-        <p>For bookings and media inquiries:</p>
+        <p>For bookings, collaborations, and media inquiries:</p>
         <p><a href="contact.html" style="color:lightpink;">Go to Contact Form →</a></p>
       </div>
     </section>
@@ -262,39 +281,46 @@
 
   <script>
     const wrapper = document.getElementById("sectionsWrapper");
+    const overlay = document.getElementById("fadeOverlay");
     const sections = document.querySelectorAll("section");
     let current = 0;
     let isScrolling = false;
 
-    // alternating direction pattern
-    const directions = ["right", "up", "right", "down", "right", "up"];
+    // fully dramatic direction pattern
+    const directions = ["right", "up", "left", "down", "right", "up"];
 
     function moveTo(index) {
       if (index < 0 || index >= sections.length || isScrolling) return;
       isScrolling = true;
 
-      const direction = directions[index % directions.length];
-      let transform = "";
+      overlay.classList.add("active");
 
-      switch (direction) {
-        case "right":
-          transform = `translateX(-${index * 100}vw) translateY(0)`; break;
-        case "up":
-          transform = `translateX(-${index * 100}vw) translateY(-10vh)`; break;
-        case "down":
-          transform = `translateX(-${index * 100}vw) translateY(10vh)`; break;
-      }
+      setTimeout(() => {
+        const direction = directions[index % directions.length];
+        let transform = "";
 
-      wrapper.style.transform = transform;
-      current = index;
-      setTimeout(() => { isScrolling = false; }, 1200);
+        switch (direction) {
+          case "right": transform = `translateX(-${index * 100}vw)`; break;
+          case "left": transform = `translateX(-${index * 100}vw)`; break;
+          case "up": transform = `translateY(-${index * 100}vh)`; break;
+          case "down": transform = `translateY(${index * 100}vh)`; break;
+        }
+
+        wrapper.style.transform = transform;
+        current = index;
+
+        setTimeout(() => {
+          overlay.classList.remove("active");
+          isScrolling = false;
+        }, 1000);
+      }, 300);
     }
 
     // Mouse wheel / trackpad scroll
     window.addEventListener("wheel", e => {
       if (isScrolling) return;
-      if (e.deltaY > 40) moveTo(current + 1);
-      else if (e.deltaY < -40) moveTo(current - 1);
+      if (e.deltaY > 50) moveTo(current + 1);
+      else if (e.deltaY < -50) moveTo(current - 1);
     });
 
     // Arrow keys
