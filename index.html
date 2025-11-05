@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aria Carmona | Official Site</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
     @font-face {
@@ -28,14 +27,15 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(255,255,255,0.95);
+      background-color: rgba(255,255,255,0.85);
       z-index: 1000;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 12px 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(10px);
+      transition: background 0.5s ease;
     }
 
     .navbar .logo img {
@@ -76,6 +76,7 @@
       justify-content: center;
       align-items: center;
       color: white;
+      background-color: black;
     }
 
     .hero video {
@@ -85,15 +86,16 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      filter: brightness(55%) blur(2px);
       z-index: 0;
-      filter: brightness(60%);
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       text-align: center;
-      animation: fadeIn 2s ease forwards;
+      animation: fadeIn 2.5s ease forwards;
+      backdrop-filter: blur(2px);
     }
 
     .hero-content h1 {
@@ -107,7 +109,7 @@
       letter-spacing: 2px;
     }
 
-    /* Section Styling */
+    /* Parallax Sections */
     section {
       min-height: 100vh;
       padding: 100px 10%;
@@ -118,24 +120,54 @@
       text-align: center;
       opacity: 0;
       transform: translateY(50px);
-      transition: all 1s ease;
+      transition: opacity 1.2s ease, transform 1.2s ease, filter 1.2s ease;
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      z-index: 1;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(10px);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
     }
 
     section.visible {
       opacity: 1;
       transform: translateY(0);
+      filter: blur(0);
+    }
+
+    section.visible::before {
+      opacity: 1;
     }
 
     section h2 {
       font-size: 2.5rem;
       margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
     }
 
-    section p {
-      max-width: 700px;
-      line-height: 1.6;
-      font-size: 1.1rem;
+    section p, section div {
+      position: relative;
+      z-index: 2;
     }
+
+    /* Section Backgrounds */
+    #about { background-image: url('images/R7A0272.jpg'); }
+    #stats { background-image: url('images/R7A0249.jpg'); }
+    #gallery { background-image: url('images/R7A0257.jpg'); }
+    #news { background-image: url('images/R7A0261.jpg'); }
+    #calendar { background-image: url('images/R7A0248.jpg'); }
+    #contact { background-image: url('images/R7A0283.jpg'); }
 
     /* Stats */
     .stats {
@@ -151,7 +183,13 @@
       border: 2px solid lightpink;
       padding: 20px;
       border-radius: 15px;
-      background-color: #f9f9f9;
+      background-color: rgba(255,255,255,0.8);
+      backdrop-filter: blur(6px);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
     }
 
     /* Gallery Preview */
@@ -163,6 +201,7 @@
       border-radius: 10px;
       margin: 10px;
       transition: transform 0.3s;
+      z-index: 2;
     }
 
     .gallery-preview img:hover {
@@ -180,13 +219,14 @@
     }
 
     .event-card {
-      background-color: #fff;
+      background-color: rgba(255,255,255,0.85);
       border: 2px solid #ffb6c1;
       padding: 20px;
       border-radius: 10px;
       text-align: left;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
       transition: transform 0.3s;
+      backdrop-filter: blur(5px);
     }
 
     .event-card:hover {
@@ -209,6 +249,9 @@
       padding: 30px 0;
       font-size: 14px;
       color: #444;
+      background: #fff;
+      z-index: 3;
+      position: relative;
     }
 
     @keyframes fadeIn {
@@ -238,21 +281,18 @@
       <source src="videos/intro.mp4" type="video/mp4" />
     </video>
     <div class="hero-content">
-      <h1>She's a star of the future. This is <em>Aria Carmona</em></h1>
-      <p>Fashion Model • Forever Forward • Vision in Motion</p>
+      <h1>She's making waves, she's a star of the future. This is <em>Aria Carmona</em></h1>
+      <p>Runway • Commercial • Editorial</p>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section id="about">
     <h2>About Aria</h2>
-    <p>
-    Aria Carmona is a 21 year old female model with ambitions of making waves in the industry. The Manhattan-based model is currently supported by TDTD Models, an engineering student, and a licensed NASCAR driver. She brings experience, most notably walking Miami Swim Week & NYFW S/S26 this year. She intends to enhance her modeling career and take it to the next level.
-   
-    </p>
+    <p>Aria Carmona is a 21 year old female making waves in the modeling industry. The Manhattan-based talent is currently supported by TDTD Models, an engineering student, and a licensed NASCAR driver. She brings experience, most notably walking Miami Swim Week & NYFW S/S26 this year. She intends to enhance her modeling career and take it to the next level.</p>
   </section>
 
-  <!-- Stats Section -->
+  <!-- Stats -->
   <section id="stats">
     <h2>Stats</h2>
     <div class="stats">
@@ -266,56 +306,56 @@
     </div>
   </section>
 
-  <!-- Gallery Section -->
+  <!-- Gallery -->
   <section id="gallery">
     <h2>Aria's Digitals</h2>
     <div class="gallery-preview">
-      <img src="images/A_Carmona_Web-1.jpg" alt="Gallery 1">
-      <img src="images/A_Carmona_Web-2.jpg" alt="Gallery 2">
-      <img src="images/A_Carmona_Web-4.jpg" alt="Gallery 3">
-      <img src="images/A_Carmona_Web-9.jpg" alt="Gallery 4">
+      <img src="images/A_Carmona_Web-1.jpg">
+      <img src="images/A_Carmona_Web-2.jpg">
+      <img src="images/A_Carmona_Web-4.jpg">
+      <img src="images/A_Carmona_Web-9.jpg">
     </div>
     <p><a href="gallery.html">View Full Gallery →</a></p>
   </section>
 
-  <!-- News Section -->
+  <!-- News -->
   <section id="news">
     <h2>Latest Highlights</h2>
     <p>Read about Aria’s latest appearances, features, and projects including Miami Swim Week 2025 and more.</p>
     <p><a href="news.html">Explore News →</a></p>
   </section>
 
-  <!-- Calendar Section -->
+  <!-- Calendar -->
   <section id="calendar">
     <h2>Calendar</h2>
     <div class="calendar-grid">
       <div class="event-card">
         <h3>Miami Swim Week 2025</h3>
-        <p>May 27-31, 2025</p>
-        <p>Runway event and press appearance</p>
+        <p>May 27–31, 2025</p>
+        <p>Runway event and press appearances.</p>
       </div>
       <div class="event-card">
         <h3>Editorial: Elysium Shadowfall</h3>
         <p>October 25th, 2025</p>
-        <p>Fashion editorial release</p>
+        <p>Fashion editorial release in North Riverdale, NY.</p>
       </div>
       <div class="event-card">
-        <h3>Portfolio Showcase</h3>
-        <p>October 2025</p>
-        <p>New collection preview</p>
+        <h3>Montclair Fashion Show 2025</h3>
+        <p>October 31st, 2025</p>
+        <p>Queened Fashion House's Spooky Met Gala.</p>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact">
     <h2>Contact Aria</h2>
     <p>For bookings, collaborations, or media inquiries:</p>
     <p><a href="contact.html">Go to Contact Form →</a></p>
     <div class="contact-icons">
-      <a href="https://instagram.com/aria.glo"><img src="images/instagram.png" alt="Instagram"></a>
-      <a href="#"><img src="images/tiktok.png" alt="TikTok"></a>
-      <a href="#"><img src="images/youtube.png" alt="YouTube"></a>
+      <a href="https://instagram.com/aria.glo"><img src="images/instagram.png"></a>
+      <a href="#"><img src="images/tiktok.png"></a>
+      <a href="#"><img src="images/youtube.png"></a>
     </div>
   </section>
 
@@ -324,11 +364,11 @@
   </footer>
 
   <script>
-    // Fade-in on scroll
+    // Fade + Parallax reveal on scroll
     const sections = document.querySelectorAll("section");
     const options = { threshold: 0.2 };
 
-    const observer = new IntersectionObserver(function(entries, observer) {
+    const observer = new IntersectionObserver(function(entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
@@ -336,9 +376,7 @@
       });
     }, options);
 
-    sections.forEach(section => {
-      observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
   </script>
 </body>
 </html>
