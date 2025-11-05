@@ -3,112 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aria Carmona | Official Website</title>
+  <title>Aria Carmona | Official Site</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
-
-  <!-- Open Graph (Discord, Facebook, etc.) -->
-  <meta property="og:title" content="TDTD Model Aria Carmona | Official Website" />
-  <meta property="og:description" content="From hallways to runways, with the dream of becoming one of America's leading models. This is the official website of Aria Carmona." />
-  <meta property="og:image" content="https://ariacarmona.com/images/IK9A9943.jpg" />
-  <meta property="og:url" content="https://ariacarmona.com" />
-  <meta property="og:type" content="website" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TDTD Model Aria Carmona | Official Website" />
-  <meta name="twitter:description" content="From hallways to runways, with the dream of becoming one of America's leading models. This is the official website of Aria Carmona." />
-  <meta name="twitter:image" content="https://ariacarmona.com/images/IK9A9943.jpg" />
-
-  <!-- Preloader -->
-  <div id="preloader" style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 2000;
-    overflow: hidden;
-  ">
-    <video autoplay muted playsinline style="
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    ">
-      <source src="videos/intro.mp4" type="video/mp4" />
-    </video>
-    <img src="images/AC-Name3.png" alt="Aria Carmona Logo" id="preloader-logo" style="
-      z-index: 2;
-      max-width: 50%;
-      max-height: 50%;
-      object-fit: contain;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    ">
-  </div>
-
-  <script>
-    document.body.classList.add("loading");
-
-    // Fade in logo after 0.5s
-    window.addEventListener('DOMContentLoaded', () => {
-      const logo = document.getElementById('preloader-logo');
-      setTimeout(() => {
-        logo.style.opacity = '1';
-      }, 500);
-    });
-
-    // Hide preloader and fade out logo
-    const video = document.querySelector('#preloader video');
-    video.addEventListener('ended', () => {
-      const preloader = document.getElementById('preloader');
-      const logo = document.getElementById('preloader-logo');
-      logo.style.opacity = '0';
-      preloader.style.transition = 'opacity 0.8s ease';
-      preloader.style.opacity = '0';
-      setTimeout(() => {
-        preloader.style.display = 'none';
-        document.body.classList.remove("loading");
-      }, 800);
-    });
-  </script>
-
   <style>
-    body {
-      font-family: 'vogue', serif;
-      margin: 0;
-      padding: 0;
-      background-color: white;
+    @font-face {
+      font-family: 'Vogue';
+      src: url('fonts/Vogue.ttf') format('truetype');
     }
 
-    /* NAVBAR */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Vogue', serif;
+      scroll-behavior: smooth;
+      background-color: #fff;
+      color: #000;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: white;
+      background-color: rgba(255,255,255,0.95);
       z-index: 1000;
       display: flex;
-      flex-direction: column; 
+      flex-direction: column;
       align-items: center;
       padding: 12px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      backdrop-filter: blur(5px);
     }
 
     .navbar .logo img {
-      height: 38px;
-      display: block;
-      margin: 0 auto;
+      height: 42px;
     }
 
     .nav-links {
@@ -125,226 +56,289 @@
       color: black;
       font-weight: bold;
       font-size: 15px;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
 
     .nav-links a:hover {
       color: #ffb6c1;
       background-color: black;
-      padding: 2px 6px;
+      padding: 3px 8px;
       border-radius: 4px;
     }
 
-    /* HERO */
+    /* Hero Section */
     .hero {
-      background-image: url("images/IK9A9943.jpg");
-      background-size: cover;
-      background-position: center;
+      position: relative;
+      width: 100%;
       height: 100vh;
+      overflow: hidden;
       display: flex;
-      align-items: flex-start; 
-      justify-content: flex-end;
-      text-align: right;
-      padding: 180px 10% 0 10%;
-    }
-
-    .hero-text {
-      color: white;
-      font-size: 2em;
-      max-width: 600px;
-      animation: fadeIn 3s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .section {
-      padding: 80px 40px;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 2.5em;
-      margin-bottom: 40px;
-    }
-
-    .bio-text {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-
-    .stats-section {
-      background-color: #f2f2f2;
-      padding: 80px 20px;
-    }
-
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    /* Section Styling */
+    section {
+      min-height: 100vh;
+      padding: 100px 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 700px;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
-      max-width: 1000px;
-      margin: auto;
+      width: 100%;
+      max-width: 800px;
+      margin-top: 40px;
     }
 
     .stat-card {
-      border: 2px solid #ffb6c1;
-      padding: 20px 25px;
-      width: 180px;
-      background-color: white;
-      font-size: 1em;
-      border-radius: 8px;
-      font-weight: bold;
+      border: 2px solid lightpink;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: #f9f9f9;
     }
 
-    .extra-showcase {
-      background-color: #ffebf0;
-      padding: 30px 0;
-      display: flex;
-      justify-content: center;
+    /* Gallery Preview */
+    .gallery-preview img {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      border: 3px solid lightpink;
+      border-radius: 10px;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+
+    .gallery-preview img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Calendar */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .extra-show {
-      border: 2px solid #ffb6c1;
-      padding: 16px 24px;
-      background: white;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-
-    .recent-photos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding-top: 20px;
-    }
-
-    .recent-photos img {
-      width: 240px;
-      height: auto;
-      border: 2px solid #ffb6c1;
-      border-radius: 8px;
-    }
-
-    .instagram-embed {
+      margin-top: 30px;
+      max-width: 900px;
       width: 100%;
-      height: 700px;
-      border: none;
+    }
+
+    .event-card {
+      background-color: #fff;
+      border: 2px solid #ffb6c1;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Contact */
+    .contact-icons img {
+      width: 40px;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+
+    .contact-icons img:hover {
+      transform: scale(1.1);
     }
 
     footer {
       text-align: center;
       padding: 30px 0;
-      font-size: 0.9em;
-      background-color: #f2f2f2;
-      margin-top: 80px;
+      font-size: 14px;
+      color: #444;
     }
 
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .navbar .logo img {
-        height: 32px;
-      }
-
-      .nav-links {
-        gap: 16px;
-      }
-
-      .hero-text {
-        font-size: 1.3em;
-      }
-
-      .recent-photos img {
-        width: 90%;
-      }
-
-      .stat-card {
-        width: 45%;
-      }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- Navbar -->
   <div class="navbar">
-    <a href="index.html" class="logo">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
-    </a>
+    <a href="#hero" class="logo"><img src="images/AC-Name3.png" alt="Aria Carmona Logo"></a>
     <div class="nav-links">
-      <a href="index.html">HOME</a>
-      <a href="news.html">NEWS</a>
-      <a href="gallery.html">GALLERY</a>
-      <a href="contact.html">CONTACT</a>
+      <a href="#about">ABOUT</a>
+      <a href="#stats">STATS</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#news">NEWS</a>
+      <a href="#calendar">CALENDAR</a>
+      <a href="#contact">CONTACT</a>
     </div>
   </div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-text">
-      She’s a star of the future. She’s making waves, and taking the runways by storm. This is Aria Carmona.
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <video autoplay muted loop playsinline>
+      <source src="videos/intro.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-content">
+      <h1>She's a star of the future. This is <em>Aria Carmona</em></h1>
+      <p>Fashion Model • Forever Forward • Vision in Motion</p>
     </div>
-  </div>
+  </section>
 
-  <!-- ABOUT -->
-  <div class="section" id="about">
-    <h2 class="section-title">ABOUT ARIA</h2>
-    <p class="bio-text">
-      Aria Carmona is a 21 year old female model with ambitions of making waves in the industry. The Manhattan-based model is currently supported by TDTD Models, an engineering student, and a licensed NASCAR driver. She brings experience, most notably walking Miami Swim Week & NYFW S/S26 this year. She intends to enhance her modeling career and take it to the next level.
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Aria</h2>
+    <p>
+    Aria Carmona is a 21 year old female model with ambitions of making waves in the industry. The Manhattan-based model is currently supported by TDTD Models, an engineering student, and a licensed NASCAR driver. She brings experience, most notably walking Miami Swim Week & NYFW S/S26 this year. She intends to enhance her modeling career and take it to the next level.
+   
     </p>
-  </div>
+  </section>
 
-  <!-- STATS -->
-  <div class="stats-section" id="stats">
-    <h2 class="section-title" style="text-align: center;">STATS</h2>
+  <!-- Stats Section -->
+  <section id="stats">
+    <h2>Stats</h2>
     <div class="stats">
-      <div class="stat-card">Age<br>21</div>
-      <div class="stat-card">Height<br>5’8”</div>
-      <div class="stat-card">Chest<br>34”</div>
-      <div class="stat-card">Waist<br>24”</div>
-      <div class="stat-card">Hips<br>34”</div>
-      <div class="stat-card">Eye Color<br>Brown</div>
-      <div class="stat-card">Hair Color<br>Black</div>
+      <div class="stat-card"><h3>Height</h3><p>5'8"</p></div>
+      <div class="stat-card"><h3>Bust</h3><p>34"</p></div>
+      <div class="stat-card"><h3>Waist</h3><p>24"</p></div>
+      <div class="stat-card"><h3>Hips</h3><p>34"</p></div>
+      <div class="stat-card"><h3>Shoe Size</h3><p>11</p></div>
+      <div class="stat-card"><h3>Hair Color</h3><p>BLACK</p></div>
+      <div class="stat-card"><h3>Eye Color</h3><p>BROWN</p></div>
     </div>
-  </div>
+  </section>
 
-  <!-- DEBUT / RECENT SHOWS -->
-  <div class="extra-showcase">
-    <div class="extra-show">Debut Show: 2025 Miami Swim Week | FRISK ME GOOD </div>
-    <div class="extra-show">Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER </div>
-  </div>
-
-  <!-- RECENT DIGITALS -->
-  <div class="section" id="recent">
-    <h2 class="section-title">DIGITALS</h2>
-    <div class="recent-photos">
-      <img src="images/A_Carmona_Web-1.jpg" alt="Digital 1" />
-      <img src="images/A_Carmona_Web-2.jpg" alt="Digital 2" />
-      <img src="images/A_Carmona_Web-4.jpg" alt="Digital 3" />
-      <img src="images/A_Carmona_Web-9.jpg" alt="Digital 4" />
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2>Aria's Digitals</h2>
+    <div class="gallery-preview">
+      <img src="images/A_Carmona_Web-1.jpg" alt="Gallery 1">
+      <img src="images/A_Carmona_Web-2.jpg" alt="Gallery 2">
+      <img src="images/A_Carmona_Web-4.jpg" alt="Gallery 3">
+      <img src="images/A_Carmona_Web-9.jpg" alt="Gallery 4">
     </div>
-  </div>
+    <p><a href="gallery.html">View Full Gallery →</a></p>
+  </section>
 
-  <!-- INSTAGRAM -->
-  <div class="section" id="instagram">
-    <h2 class="section-title">SOCIAL MEDIA</h2>
-    <iframe class="instagram-embed"
-      src="https://www.instagram.com/aria.glo/embed"
-      allowfullscreen
-    ></iframe>
-  </div>
+  <!-- News Section -->
+  <section id="news">
+    <h2>Latest Highlights</h2>
+    <p>Read about Aria’s latest appearances, features, and projects including Miami Swim Week 2025 and more.</p>
+    <p><a href="news.html">Explore News →</a></p>
+  </section>
 
-  <!-- FOOTER -->
+  <!-- Calendar Section -->
+  <section id="calendar">
+    <h2>Calendar</h2>
+    <div class="calendar-grid">
+      <div class="event-card">
+        <h3>Miami Swim Week 2025</h3>
+        <p>May 27-31, 2025</p>
+        <p>Runway event and press appearance</p>
+      </div>
+      <div class="event-card">
+        <h3>Editorial: Elysium Shadowfall</h3>
+        <p>October 25th, 2025</p>
+        <p>Fashion editorial release</p>
+      </div>
+      <div class="event-card">
+        <h3>Portfolio Showcase</h3>
+        <p>October 2025</p>
+        <p>New collection preview</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Aria</h2>
+    <p>For bookings, collaborations, or media inquiries:</p>
+    <p><a href="contact.html">Go to Contact Form →</a></p>
+    <div class="contact-icons">
+      <a href="https://instagram.com/aria.glo"><img src="images/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="images/tiktok.png" alt="TikTok"></a>
+      <a href="#"><img src="images/youtube.png" alt="YouTube"></a>
+    </div>
+  </section>
+
   <footer>
-    © 2025 Aria Carmona, All Rights Reserved
+    &copy; 2025 Aria Carmona, All Rights Reserved
   </footer>
 
+  <script>
+    // Fade-in on scroll
+    const sections = document.querySelectorAll("section");
+    const options = { threshold: 0.2 };
+
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, options);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
