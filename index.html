@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aria Carmona | Official Site</title>
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
@@ -12,247 +12,285 @@
     }
 
     html, body {
-      height: 100%;
-      width: 100%;
       margin: 0;
       padding: 0;
       font-family: 'Vogue', serif;
+      overflow: hidden;
       background: #000;
       color: #fff;
-      overflow: hidden;
     }
 
-    a { color: inherit; text-decoration:none; }
+    /* Page wrapper to hold all sections side-by-side */
+    .sections-wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 600vw; /* 6 sections */
+      height: 100vh;
+      transition: transform 1.2s ease-in-out;
+    }
+
+    section {
+      position: relative;
+      flex: 0 0 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      transition: background 0.8s ease, filter 0.8s ease;
+    }
+
+    section video, section img.bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(60%) blur(1px);
+      z-index: 0;
+    }
+
+    section .content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      backdrop-filter: blur(3px);
+      padding: 20px;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    section h2 { font-size: 2.5rem; margin-bottom: 10px; }
+    section p { font-size: 1.1rem; line-height: 1.6; }
 
     /* Navbar */
     .navbar {
       position: fixed;
-      left: 0;
       top: 0;
       width: 100%;
-      z-index: 1200;
+      background-color: rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
       display: flex;
-      justify-content: center;
-      padding: 14px 20px;
-      background: rgba(255,255,255,0.35);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-    }
-    .navbar-inner {
-      width: min(1200px, 96%);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 20px;
-    }
-    .logo img { height:42px; display:block; }
-    .nav-links { display:flex; gap:22px; align-items:center; }
-    .nav-links a {
-      color:#000;
-      font-weight:bold;
-      font-size:15px;
-      padding:6px 8px;
-      border-radius:6px;
-      transition: all .22s ease;
-    }
-    .nav-links a:hover { color:#ffb6c1; background:#000; }
-
-    /* Scroll Container */
-    .scroll-container {
-      display: flex;
-      flex-wrap: nowrap;
-      width: 100%;
-      height: 100vh;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-    }
-    .scroll-container::-webkit-scrollbar { display:none; }
-
-    /* Panels */
-    .panel {
-      flex: 0 0 100%;
-      height: 100vh;
-      scroll-snap-align: start;
-      position: relative;
-      display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      padding: 10px 0;
     }
 
-    .panel::before {
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to bottom,rgba(0,0,0,0.3),rgba(0,0,0,0.55));
-      z-index:0;
+    .navbar img {
+      height: 40px;
     }
 
-    /* Hero */
-    .hero {
-      background:#000;
-      color:#fff;
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      margin-top: 8px;
     }
-    .hero video {
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      z-index:0;
-      filter:brightness(60%) blur(1.5px);
-      transition:transform 0.7s ease, filter 0.7s ease;
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
     }
-    .hero .hero-content {
-      position:relative;
-      z-index:10;
-      text-align:center;
-      padding:20px;
+
+    .nav-links a:hover {
+      color: #ffb6c1;
     }
-    .hero h1 { font-size:3.3rem; font-style:italic; margin-bottom:10px; }
-    .hero p { font-size:1.1rem; }
 
-    /* Section backgrounds */
-    .about { background:url('images/R7A0272.jpg') center/cover no-repeat; }
-    .stats { background:url('images/R7A0249.jpg') center/cover no-repeat; }
-    .gallery { background:url('images/R7A0257.jpg') center/cover no-repeat; }
-    .news { background:url('images/R7A0261.jpg') center/cover no-repeat; }
-    .calendar { background:url('images/R7A0248.jpg') center/cover no-repeat; }
-    .contact { background:url('images/R7A0283.jpg') center/cover no-repeat; }
-
-    /* Card style */
-    .card {
-      position:relative;
-      z-index:10;
-      background:rgba(255,255,255,0.08);
-      padding:36px;
-      border-radius:12px;
-      backdrop-filter:blur(8px);
-      max-width:900px;
-      color:#fff;
-      text-align:left;
-      box-shadow:0 8px 24px rgba(0,0,0,0.45);
+    footer {
+      text-align: center;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      color: #ccc;
+      font-size: 14px;
+      z-index: 2;
     }
-    .card h2 { margin-top:0; font-size:2.4rem; }
-    .card p { font-size:1.05rem; line-height:1.6; }
 
-    .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:16px; }
-    .stat-box { background:rgba(255,255,255,0.06); border:2px solid rgba(255,182,193,0.18); padding:16px; border-radius:10px; text-align:center; }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
 
-    .gallery-preview { display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; justify-content:center; }
-    .gallery-preview img { width:170px; height:250px; object-fit:cover; border-radius:10px; border:2px solid rgba(255,182,193,0.28); }
+    /* specific backgrounds */
+    #hero { background: black; }
+    #about img.bg { filter: brightness(50%) blur(2px); }
+    #stats img.bg { filter: brightness(55%) blur(1.5px); }
+    #gallery img.bg { filter: brightness(45%) blur(1px); }
+    #news img.bg { filter: brightness(50%) blur(2px); }
+    #calendar img.bg { filter: brightness(50%) blur(1.5px); }
 
-    .calendar-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:18px; }
-    .event-card { background:rgba(255,255,255,0.07); padding:16px; border-radius:10px; border:2px solid rgba(255,182,193,0.18); }
-
-    footer { text-align:center; color:#ccc; padding:16px 0; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      width: 80%;
+      margin: 0 auto;
+    }
+    .stat-card {
+      border: 2px solid lightpink;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+    }
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="navbar-inner">
-      <div class="logo"><a href="#hero"><img src="images/AC-Name3.png" alt="logo"></a></div>
-      <nav class="nav-links">
-        <a href="#about">ABOUT</a>
-        <a href="#stats">STATS</a>
-        <a href="#gallery">GALLERY</a>
-        <a href="#news">NEWS</a>
-        <a href="#calendar">CALENDAR</a>
-        <a href="#contact">CONTACT</a>
-      </nav>
-    </div>
-  </header>
 
-  <main class="scroll-container" id="scrollContainer">
-    <section class="panel hero" id="hero">
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="#hero"><img src="images/AC-Name3.png" alt="Aria Carmona Logo"></a>
+    <div class="nav-links">
+      <a href="#about">ABOUT</a>
+      <a href="#stats">STATS</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#news">NEWS</a>
+      <a href="#calendar">CALENDAR</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </div>
+
+  <!-- Wrapper -->
+  <div class="sections-wrapper" id="sectionsWrapper">
+    <!-- Hero -->
+    <section id="hero">
       <video autoplay muted loop playsinline>
-        <source src="videos/intro.mp4" type="video/mp4">
+        <source src="videos/intro.mp4" type="video/mp4"/>
       </video>
-      <div class="hero-content">
-        <h1>This is <em>Aria Carmona</em></h1>
+      <div class="content">
+        <h2>This is <em>Aria Carmona</em></h2>
         <p>Runway • Commercial • Editorial</p>
       </div>
+      <footer>© 2025 Aria Carmona</footer>
     </section>
 
-    <section class="panel about" id="about">
-      <div class="card">
+    <!-- About -->
+    <section id="about">
+      <img src="images/R7A0272.jpg" class="bg" alt="">
+      <div class="content">
         <h2>About Aria</h2>
-        <p>Aria Carmona is a 21 year old female making waves in the modeling industry...</p>
+        <p>Aria Carmona is a 21-year-old model based in Manhattan. Currently represented by TDTD Models, she’s also an engineering student and a licensed NASCAR driver. Her résumé includes Miami Swim Week & NYFW S/S26, and she’s ready to elevate her modeling journey further.</p>
       </div>
     </section>
 
-    <section class="panel stats" id="stats">
-      <div class="card">
+    <!-- Stats -->
+    <section id="stats">
+      <img src="images/R7A0249.jpg" class="bg" alt="">
+      <div class="content">
         <h2>Stats</h2>
-        <div class="stats-grid">
-          <div class="stat-box"><strong>Height</strong><div>5'8"</div></div>
-          <div class="stat-box"><strong>Bust</strong><div>34"</div></div>
-          <div class="stat-box"><strong>Waist</strong><div>24"</div></div>
-          <div class="stat-box"><strong>Hips</strong><div>34"</div></div>
-          <div class="stat-box"><strong>Shoe</strong><div>11</div></div>
-          <div class="stat-box"><strong>Hair</strong><div>BLACK</div></div>
-          <div class="stat-box"><strong>Eyes</strong><div>BROWN</div></div>
+        <div class="stats">
+          <div class="stat-card"><h3>Height</h3><p>5'8"</p></div>
+          <div class="stat-card"><h3>Bust</h3><p>34"</p></div>
+          <div class="stat-card"><h3>Waist</h3><p>24"</p></div>
+          <div class="stat-card"><h3>Hips</h3><p>34"</p></div>
+          <div class="stat-card"><h3>Shoe Size</h3><p>11</p></div>
+          <div class="stat-card"><h3>Hair</h3><p>Black</p></div>
+          <div class="stat-card"><h3>Eyes</h3><p>Brown</p></div>
         </div>
       </div>
     </section>
 
-    <section class="panel gallery" id="gallery">
-      <div class="card">
-        <h2>Gallery</h2>
-        <div class="gallery-preview">
-          <img src="images/A_Carmona_Web-1.jpg" alt="1">
-          <img src="images/A_Carmona_Web-2.jpg" alt="2">
-          <img src="images/A_Carmona_Web-4.jpg" alt="3">
-          <img src="images/A_Carmona_Web-9.jpg" alt="4">
-        </div>
+    <!-- Gallery -->
+    <section id="gallery">
+      <img src="images/R7A0257.jpg" class="bg" alt="">
+      <div class="content">
+        <h2>Digitals</h2>
+        <p>View Aria’s most recent digitals and portfolio images below.</p>
         <p><a href="gallery.html" style="color:lightpink;">View Full Gallery →</a></p>
       </div>
     </section>
 
-    <section class="panel news" id="news">
-      <div class="card">
-        <h2>News</h2>
-        <p>Read about Aria’s latest appearances, features, and projects including Miami Swim Week 2025 and more.</p>
+    <!-- News -->
+    <section id="news">
+      <img src="images/R7A0261.jpg" class="bg" alt="">
+      <div class="content">
+        <h2>Latest Highlights</h2>
+        <p>Read about Aria’s appearances and features, including Miami Swim Week 2025.</p>
+        <p><a href="news.html" style="color:lightpink;">Explore News →</a></p>
       </div>
     </section>
 
-    <section class="panel calendar" id="calendar">
-      <div class="card">
+    <!-- Calendar -->
+    <section id="calendar">
+      <img src="images/R7A0248.jpg" class="bg" alt="">
+      <div class="content">
         <h2>Calendar</h2>
-        <div class="calendar-grid">
-          <div class="event-card"><h3>Miami Swim Week</h3><p>May 27–31, 2025</p></div>
-          <div class="event-card"><h3>Elysium Shadowfall</h3><p>Oct 25, 2025</p></div>
-          <div class="event-card"><h3>Montclair Fashion Show</h3><p>Oct 31, 2025</p></div>
+        <div class="stats">
+          <div class="stat-card">
+            <h3>Miami Swim Week 2025</h3>
+            <p>May 27–31, 2025</p>
+            <p>Runway + Press Appearances</p>
+          </div>
+          <div class="stat-card">
+            <h3>Elysium Shadowfall Editorial</h3>
+            <p>Oct 25, 2025</p>
+            <p>Fashion Editorial, NY</p>
+          </div>
+          <div class="stat-card">
+            <h3>Montclair Fashion Show</h3>
+            <p>Oct 31, 2025</p>
+            <p>Queened Fashion House’s Gala</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="panel contact" id="contact">
-      <div class="card">
-        <h2>Contact Aria</h2>
+    <!-- Contact -->
+    <section id="contact">
+      <img src="images/R7A0283.jpg" class="bg" alt="">
+      <div class="content">
+        <h2>Contact</h2>
+        <p>For bookings and media inquiries:</p>
         <p><a href="contact.html" style="color:lightpink;">Go to Contact Form →</a></p>
       </div>
     </section>
-  </main>
-
-  <footer>© 2025 Aria Carmona. All Rights Reserved.</footer>
+  </div>
 
   <script>
-    const scrollContainer = document.getElementById('scrollContainer');
+    const wrapper = document.getElementById("sectionsWrapper");
+    const sections = document.querySelectorAll("section");
+    let current = 0;
+    let isScrolling = false;
 
-    // Enable mouse wheel to scroll horizontally
-    scrollContainer.addEventListener('wheel', (evt) => {
-      evt.preventDefault();
-      scrollContainer.scrollLeft += evt.deltaY;
-    }, { passive: false });
+    function moveTo(index, direction="right") {
+      if (index < 0 || index >= sections.length || isScrolling) return;
+      isScrolling = true;
 
-    // Enable arrow keys
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') scrollContainer.scrollLeft += window.innerWidth;
-      if (e.key === 'ArrowLeft') scrollContainer.scrollLeft -= window.innerWidth;
+      if (direction === "right") {
+        wrapper.style.transform = `translateX(-${index * 100}vw)`;
+      } else if (direction === "up") {
+        wrapper.style.transform = `translateY(-${index * 100}vh)`;
+      } else if (direction === "down") {
+        wrapper.style.transform = `translateY(${index * 100}vh)`;
+      } else {
+        wrapper.style.transform = `translateX(-${index * 100}vw)`;
+      }
+
+      setTimeout(() => { isScrolling = false; }, 1200);
+      current = index;
+    }
+
+    // Mouse wheel / trackpad scroll
+    window.addEventListener("wheel", e => {
+      if (isScrolling) return;
+      if (e.deltaY > 40) moveTo(current + 1);
+      else if (e.deltaY < -40) moveTo(current - 1);
+    });
+
+    // Arrow key navigation
+    window.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") moveTo(current + 1);
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") moveTo(current - 1);
+    });
+
+    // Navbar clicks scroll
+    document.querySelectorAll(".nav-links a").forEach((link, i) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        moveTo(i + 1); // +1 to skip hero
+      });
     });
   </script>
 </body>
