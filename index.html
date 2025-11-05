@@ -20,11 +20,10 @@
       color: #fff;
     }
 
-    /* Page wrapper to hold all sections side-by-side */
     .sections-wrapper {
       display: flex;
       flex-wrap: nowrap;
-      width: 600vw; /* 6 sections */
+      width: 600vw;
       height: 100vh;
       transition: transform 1.2s ease-in-out;
     }
@@ -48,7 +47,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(60%) blur(1px);
+      filter: brightness(60%) blur(1.2px);
       z-index: 0;
     }
 
@@ -122,18 +121,31 @@
     #news img.bg { filter: brightness(50%) blur(2px); }
     #calendar img.bg { filter: brightness(50%) blur(1.5px); }
 
+    /* horizontal stats styling */
     .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      display: flex;
       gap: 20px;
-      width: 80%;
-      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      width: 90%;
+      padding: 20px;
     }
+
     .stat-card {
+      min-width: 150px;
       border: 2px solid lightpink;
       background-color: rgba(255,255,255,0.1);
       border-radius: 15px;
       padding: 20px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
     }
   </style>
 </head>
@@ -160,7 +172,7 @@
         <source src="videos/intro.mp4" type="video/mp4"/>
       </video>
       <div class="content">
-        <h2>This is <em>Aria Carmona</em></h2>
+        <h2>Fierce. The DNA of <em>Aria Carmona</em></h2>
         <p>Runway • Commercial • Editorial</p>
       </div>
       <footer>© 2025 Aria Carmona</footer>
@@ -171,7 +183,7 @@
       <img src="images/R7A0272.jpg" class="bg" alt="">
       <div class="content">
         <h2>About Aria</h2>
-        <p>Aria Carmona is a 21-year-old model based in Manhattan. Currently represented by TDTD Models, she’s also an engineering student and a licensed NASCAR driver. Her résumé includes Miami Swim Week & NYFW S/S26, and she’s ready to elevate her modeling journey further.</p>
+        <p>Aria Carmona is a 21-year-old model based in Manhattan. Represented by TDTD Models, she’s also an engineering student and a licensed NASCAR driver. She’s graced Miami Swim Week & NYFW S/S26 and continues to elevate her modeling journey.</p>
       </div>
     </section>
 
@@ -185,7 +197,7 @@
           <div class="stat-card"><h3>Bust</h3><p>34"</p></div>
           <div class="stat-card"><h3>Waist</h3><p>24"</p></div>
           <div class="stat-card"><h3>Hips</h3><p>34"</p></div>
-          <div class="stat-card"><h3>Shoe Size</h3><p>11</p></div>
+          <div class="stat-card"><h3>Shoe</h3><p>11</p></div>
           <div class="stat-card"><h3>Hair</h3><p>Black</p></div>
           <div class="stat-card"><h3>Eyes</h3><p>Brown</p></div>
         </div>
@@ -197,7 +209,7 @@
       <img src="images/R7A0257.jpg" class="bg" alt="">
       <div class="content">
         <h2>Digitals</h2>
-        <p>View Aria’s most recent digitals and portfolio images below.</p>
+        <p>Explore Aria’s most recent digitals and portfolio work.</p>
         <p><a href="gallery.html" style="color:lightpink;">View Full Gallery →</a></p>
       </div>
     </section>
@@ -207,7 +219,7 @@
       <img src="images/R7A0261.jpg" class="bg" alt="">
       <div class="content">
         <h2>Latest Highlights</h2>
-        <p>Read about Aria’s appearances and features, including Miami Swim Week 2025.</p>
+        <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
         <p><a href="news.html" style="color:lightpink;">Explore News →</a></p>
       </div>
     </section>
@@ -221,17 +233,17 @@
           <div class="stat-card">
             <h3>Miami Swim Week 2025</h3>
             <p>May 27–31, 2025</p>
-            <p>Runway + Press Appearances</p>
+            <p>Runway + Press</p>
           </div>
           <div class="stat-card">
-            <h3>Elysium Shadowfall Editorial</h3>
+            <h3>Elysium Shadowfall</h3>
             <p>Oct 25, 2025</p>
-            <p>Fashion Editorial, NY</p>
+            <p>Editorial — NY</p>
           </div>
           <div class="stat-card">
             <h3>Montclair Fashion Show</h3>
             <p>Oct 31, 2025</p>
-            <p>Queened Fashion House’s Gala</p>
+            <p>Queened Fashion House</p>
           </div>
         </div>
       </div>
@@ -254,22 +266,28 @@
     let current = 0;
     let isScrolling = false;
 
-    function moveTo(index, direction="right") {
+    // alternating direction pattern
+    const directions = ["right", "up", "right", "down", "right", "up"];
+
+    function moveTo(index) {
       if (index < 0 || index >= sections.length || isScrolling) return;
       isScrolling = true;
 
-      if (direction === "right") {
-        wrapper.style.transform = `translateX(-${index * 100}vw)`;
-      } else if (direction === "up") {
-        wrapper.style.transform = `translateY(-${index * 100}vh)`;
-      } else if (direction === "down") {
-        wrapper.style.transform = `translateY(${index * 100}vh)`;
-      } else {
-        wrapper.style.transform = `translateX(-${index * 100}vw)`;
+      const direction = directions[index % directions.length];
+      let transform = "";
+
+      switch (direction) {
+        case "right":
+          transform = `translateX(-${index * 100}vw) translateY(0)`; break;
+        case "up":
+          transform = `translateX(-${index * 100}vw) translateY(-10vh)`; break;
+        case "down":
+          transform = `translateX(-${index * 100}vw) translateY(10vh)`; break;
       }
 
-      setTimeout(() => { isScrolling = false; }, 1200);
+      wrapper.style.transform = transform;
       current = index;
+      setTimeout(() => { isScrolling = false; }, 1200);
     }
 
     // Mouse wheel / trackpad scroll
@@ -279,17 +297,17 @@
       else if (e.deltaY < -40) moveTo(current - 1);
     });
 
-    // Arrow key navigation
+    // Arrow keys
     window.addEventListener("keydown", e => {
       if (e.key === "ArrowRight" || e.key === "ArrowDown") moveTo(current + 1);
       if (e.key === "ArrowLeft" || e.key === "ArrowUp") moveTo(current - 1);
     });
 
-    // Navbar clicks scroll
+    // Navbar links
     document.querySelectorAll(".nav-links a").forEach((link, i) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
-        moveTo(i + 1); // +1 to skip hero
+        moveTo(i + 1);
       });
     });
   </script>
