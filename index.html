@@ -1,222 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aria Carmona</title>
-<style>
-@font-face {
-    font-family: 'Vogue';
-    src: url('fonts/vogue.ttf') format('truetype');
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    overflow: hidden;
-    font-family: 'Vogue', serif;
-    color: white;
-    background-color: black;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aria Carmona | Official Site</title>
+  <link rel="icon" type="image/jpeg" href="images/AC_Name3.jpg" />
 
-/* Navigation */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 15px 0;
-    z-index: 1000;
-}
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 14px;
-    transition: 0.3s;
-}
-nav a:hover {
-    color: pink;
-}
+  <style>
+    @font-face {
+      font-family: 'Vogue';
+      src: url('fonts/vogue.ttf') format('truetype');
+    }
 
-/* Section layout */
-.section {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-.section img, .section video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(60%);
-    z-index: 1;
-}
-.section-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    backdrop-filter: blur(6px);
-    padding: 20px;
-    border-radius: 10px;
-}
-h1, h2 {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Transitions */
-.transition {
-    transition: transform 1s ease, opacity 1s ease;
-}
-.active {
-    opacity: 1;
-    transform: translateX(0) translateY(0);
-}
-.hidden {
-    opacity: 0;
-}
+    body {
+      overflow: hidden;
+      font-family: 'Vogue', serif;
+      background: black;
+      color: white;
+    }
 
-/* Directional transitions */
-.slide-right { transform: translateX(100vw); }
-.slide-left { transform: translateX(-100vw); }
-.slide-up { transform: translateY(-100vh); }
-.slide-down { transform: translateY(100vh); }
+    nav {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 14px;
+      font-weight: bold;
+    }
 
-/* Stats layout */
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-}
-.stat {
-    background: rgba(255, 192, 203, 0.15);
-    border: 1px solid pink;
-    border-radius: 12px;
-    padding: 20px;
-}
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
 
-/* Fade overlay */
-.overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-}
-</style>
+    nav a:hover {
+      color: #ff66cc;
+    }
+
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      z-index: 1001;
+      width: 150px;
+    }
+
+    .section {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      transition: all 1s ease-in-out;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .section.active {
+      opacity: 1;
+      pointer-events: all;
+      z-index: 5;
+    }
+
+    .section video,
+    .section img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 2;
+      backdrop-filter: blur(4px);
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+      padding: 40px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .section-content h1,
+    .section-content h2 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .section-content p {
+      font-size: 1em;
+      line-height: 1.6em;
+      color: #ddd;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.9em;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #aaa;
+      font-size: 12px;
+      z-index: 1000;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Transition directions */
+    .slide-up { transform: translateY(100%); }
+    .slide-down { transform: translateY(-100%); }
+    .slide-left { transform: translateX(100%); }
+    .slide-right { transform: translateX(-100%); }
+
+    .active.slide-up,
+    .active.slide-down,
+    .active.slide-left,
+    .active.slide-right {
+      transform: translate(0, 0);
+    }
+  </style>
 </head>
 
 <body>
-<nav>
-    <a href="#hero">About</a>
-    <a href="#stats">Stats</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#news">News</a>
-    <a href="#calendar">Calendar</a>
-    <a href="#contact">Contact</a>
-</nav>
+  <img src="images/AC_Name3.jpg" alt="Aria Carmona Logo" class="logo" />
 
-<!-- Sections -->
-<div class="section transition active" id="hero">
+  <nav>
+    <a href="#about">ABOUT</a>
+    <a href="#stats">STATS</a>
+    <a href="#gallery">GALLERY</a>
+    <a href="#news">NEWS</a>
+    <a href="#calendar">CALENDAR</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="section active slide-right" id="hero">
     <video autoplay muted loop>
-        <source src="videos/aria-hero.mp4" type="video/mp4">
+      <source src="videos/aria-hero.mp4" type="video/mp4">
     </video>
     <div class="overlay"></div>
     <div class="section-content">
-        <h1>Fierce. Bold. Confident. This is the DNA of <i>Aria Carmona.</i></h1>
+      <h1>Fierce. Bold. Confident. This is the DNA of <i>Aria Carmona.</i></h1>
     </div>
-</div>
+  </div>
 
-<div class="section transition slide-right" id="about">
+  <!-- ABOUT -->
+  <div class="section slide-up" id="about">
     <img src="images/miami1.jpg" alt="Aria">
     <div class="overlay"></div>
     <div class="section-content">
-        <h2>About Aria</h2>
-        <p>Aria Carmona is a 21 year old female talent making waves in the fashion industry. The Manhattan-based model looks to elevate her career and take it to the next level.</p>
+      <h2>About Aria</h2>
+      <p>Aria Carmona is a 21 year old female talent making waves in the fashion industry. The Manhattan-based model looks to elevate her career and take it to the next level.</p>
     </div>
-</div>
+  </div>
 
-<div class="section transition slide-up" id="stats">
+  <!-- STATS -->
+  <div class="section slide-left" id="stats">
     <img src="images/R7A0272.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
-        <h2>Stats</h2>
-        <div class="stats-container">
-            <div class="stat">Height: 5'8"</div>
-            <div class="stat">Bust: 34"</div>
-            <div class="stat">Waist: 24"</div>
-            <div class="stat">Hips: 34"</div>
-            <div class="stat">Shoe: 11</div>
-            <div class="stat">Eyes: Brown</div>
-            <div class="stat">Hair: Black</div>
-            
-        </div>
+      <h2>Stats</h2>
+      <div class="stats-container">
+        <div class="stat">Height: 5'8"</div>
+        <div class="stat">Bust: 34"</div>
+        <div class="stat">Waist: 24"</div>
+        <div class="stat">Hips: 34"</div>
+        <div class="stat">Shoe: 11</div>
+        <div class="stat">Eyes: Brown</div>
+        <div class="stat">Hair: Black</div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="section transition slide-left" id="gallery">
+  <!-- GALLERY -->
+  <div class="section slide-down" id="gallery">
     <img src="images/R7A0273.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
-        <h2>Gallery</h2>
-        <p>Explore the latest editorials and campaigns featuring Aria.</p>
+      <h2>Gallery</h2>
+      <p>Explore the latest editorials and campaigns featuring Aria.</p>
     </div>
-</div>
+  </div>
 
-<div class="section transition slide-down" id="news">
+  <!-- NEWS -->
+  <div class="section slide-right" id="news">
     <img src="images/R7A7977.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
-        <h2>Latest Highlights</h2>
-        <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
-        <a href="news.html" style="color:pink;">Explore News →</a>
+      <h2>Latest Highlights</h2>
+      <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
+      <a href="news.html" style="color:pink;">Explore News →</a>
     </div>
-</div>
+  </div>
 
-<div class="section transition slide-right" id="calendar">
+  <!-- CALENDAR -->
+  <div class="section slide-up" id="calendar">
     <img src="images/R7A7534.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
-        <h2>Calendar</h2>
-        <p>Upcoming shows and events will be listed here soon.</p>
+      <h2>Calendar</h2>
+      <p>Upcoming shows and events will be listed here soon.</p>
     </div>
-</div>
+  </div>
 
-<div class="section transition slide-left" id="contact">
+  <!-- CONTACT -->
+  <div class="section slide-left" id="contact">
     <img src="images/ffa01.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
-        <h2>Contact</h2>
-        <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
+      <h2>Contact</h2>
+      <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
     </div>
-</div>
+  </div>
 
-<script>
-const sections = document.querySelectorAll('.section');
-let current = 0;
+  <footer>© 2025 ARIA CARMONA</footer>
 
-function showSection(index) {
-    sections.forEach((sec, i) => {
-        sec.classList.remove('active');
-        sec.style.zIndex = i === index ? 5 : 1;
+  <script>
+    const sections = document.querySelectorAll('.section');
+    let current = 0;
+    let isAnimating = false;
+
+    function showSection(index) {
+      if (isAnimating || index === current || index < 0 || index >= sections.length) return;
+      isAnimating = true;
+
+      const currentSection = sections[current];
+      const nextSection = sections[index];
+
+      currentSection.classList.remove('active');
+      nextSection.classList.add('active');
+
+      setTimeout(() => {
+        isAnimating = false;
+        current = index;
+      }, 1200);
+    }
+
+    window.addEventListener('wheel', (e) => {
+      if (isAnimating) return;
+      if (e.deltaY > 0) showSection(current + 1);
+      else showSection(current - 1);
     });
-    sections[index].classList.add('active');
-}
 
-window.addEventListener('wheel', (e) => {
-    if (e.deltaY > 0 && current < sections.length - 1) current++;
-    else if (e.deltaY < 0 && current > 0) current--;
-    showSection(current);
-});
-</script>
+    window.addEventListener('keydown', (e) => {
+      if (isAnimating) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSection(current + 1);
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1);
+    });
+  </script>
 </body>
 </html>
