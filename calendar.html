@@ -1,270 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aria Carmona | Calendar</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calendar | Aria Carmona</title>
+  <link rel="icon" href="images/ACName3.png" type="image/png" />
+
   <style>
+    /* Vogue font */
     @font-face {
       font-family: 'Vogue';
       src: url('fonts/Vogue.ttf') format('truetype');
+      font-display: swap;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Vogue', serif;
-      background-color: black;
-      color: white;
-      overflow-x: hidden;
+    :root{
+      --bg: #050405;
+      --muted: #bdb8bf;
+      --pink: #ff66cc;
+      --pink-soft: rgba(255,102,204,0.18);
+      --card: rgba(255,255,255,0.035);
     }
 
-    /* Navbar */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 50px;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: "Vogue", serif;
+      background: var(--bg);
+      color: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.35;
+      overflow-x:hidden;
     }
 
-    nav img {
-      height: 45px;
-      cursor: pointer;
+    /* NAV */
+    .nav {
+      position:fixed;
+      top:14px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:1200;
+      display:flex;
+      gap:28px;
+      align-items:center;
+      font-weight:700;
+      letter-spacing:0.06em;
+    }
+    .nav a{
+      color:#fff;
+      text-decoration:none;
+      transition:all .18s ease;
+      font-size:14px;
+    }
+    .nav a:hover{color:var(--pink)}
+    .logo{
+      position:fixed; left:18px; top:10px; width:150px; z-index:1300;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 40px;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #ffb6c1;
-      background-color: black;
-      padding: 3px 6px;
-      border-radius: 6px;
-    }
-
-    /* Hero Section */
+    /* HERO */
     .hero {
-      position: relative;
-      height: 100vh;
-      background: url('images/IK9A9766.jpg') center 20% / cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
+      height: 86vh;
+      min-height: 640px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+      background: #000;
+    }
+    /* hero image centered to show face/body */
+    .hero .bg {
+      position:absolute; inset:0;
+      background-image: url('images/IK9A9766.jpg');
+      background-size:cover;
+      background-position:center center; /* center focus */
+      filter: brightness(0.62);
+      z-index:1;
+      transform-origin:center;
+    }
+    .hero::after{ content:""; position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.36) 0%, rgba(0,0,0,0.6) 65%); z-index:2; }
+
+    /* signature container */
+    .sig-wrap{position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; gap:8px; padding:10px 20px;}
+    .signature-svg{ width:520px; height:auto; display:block; filter: drop-shadow(0 8px 24px rgba(255,102,204,0.18)); }
+    .signature-svg path{ fill:none; stroke:var(--pink); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; filter: drop-shadow(0 0 12px rgba(255,102,204,0.28)); }
+
+    .hero-title{ z-index:3; color:#fff; font-size:18px; letter-spacing:0.12em; margin-top:6px; font-weight:700}
+    .hero-sub{ z-index:3; color:var(--muted); margin-top:6px; font-size:14px; max-width:820px }
+
+    /* NEXT EVENT PANEL (Lando-style) */
+    .next-panel {
+      max-width:1200px;
+      margin: -70px auto 0;
+      display:flex;
+      gap:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      border:1px solid var(--pink-soft);
+      padding:22px;
+      position:relative;
+      z-index:4;
+      align-items:stretch;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
     }
 
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 1;
+    .np-date{
+      flex:0 0 220px;
+      padding:12px 16px;
+      border-right:1px solid rgba(255,255,255,0.03);
+      display:flex; flex-direction:column; justify-content:center;
+      gap:6px;
     }
+    .np-label{font-size:12px;color:var(--muted);letter-spacing:0.12em}
+    .np-day{font-size:64px;color:var(--pink);font-weight:900;line-height:0.9}
+    .np-month{font-size:34px;color:#fff; opacity:0.95}
 
-    /* Signature Animation */
-    .signature {
-      position: relative;
-      z-index: 2;
-      width: 400px;
-      animation: fadeIn 2s ease-in-out forwards;
+    .np-main{ flex:1; padding:6px 18px; display:flex; flex-direction:column; gap:12px; justify-content:center;}
+    .np-title{ font-size:22px; font-weight:900; color:#fff; letter-spacing:0.01em; }
+    .np-desc{ color:var(--muted); font-size:15px; max-width:820px; }
+    .np-stats{ display:flex; gap:12px; margin-top:8px; flex-wrap:wrap; }
+
+    .np-stat{
+      background: var(--card);
+      border-radius:10px; padding:10px 12px; min-width:100px;
+      border:1px solid rgba(255,255,255,0.03); text-align:left;
     }
+    .np-stat .k{ font-size:12px; color:var(--muted) }
+    .np-stat .v{ font-weight:800; color:var(--pink); font-size:14px; margin-top:6px }
 
-    svg path {
-      fill: none;
-      stroke: #ffb6c1;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      filter: drop-shadow(0 0 8px #ffb6c1);
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: signatureDraw 5s ease-in-out forwards infinite alternate;
+    .np-schedule{ flex:0 0 300px; padding:8px 12px; display:flex; flex-direction:column; justify-content:center; align-items:flex-end; gap:8px; text-align:right;}
+    .np-schedule .meta{ color:var(--muted); font-size:13px; margin-bottom:6px; }
+    .sched{ width:100%; border-top:1px solid rgba(255,255,255,0.03); padding-top:8px }
+    .sched-item{ display:flex; justify-content:space-between; gap:8px; color:#fff; font-weight:700; font-size:13px; align-items:center }
+
+    /* PREVIOUS EVENTS TABLE-LIKE */
+    .past-wrap{ max-width:1200px; margin:60px auto 90px; padding:0 18px; z-index:3; }
+    .past-title{ color:var(--pink); font-size:20px; font-weight:900; margin-bottom:18px }
+    .past-table{ width:100%; border-collapse:collapse; background:transparent; }
+    .past-table thead th{ text-align:left; font-size:13px; color:var(--muted); padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.04) }
+    .past-table tbody tr{ border-bottom:1px solid rgba(255,255,255,0.03) }
+    .past-table tbody td{ padding:16px 12px; vertical-align:middle; color:#fff; font-size:15px }
+    .past-row{ opacity:0; transform:translateY(18px); transition:all 0.8s cubic-bezier(.2,.9,.2,1) }
+    .past-row.visible{ opacity:1; transform:translateY(0) }
+
+    /* responsive */
+    @media (max-width:980px){
+      .next-panel{flex-direction:column;gap:16px;padding:18px}
+      .np-date{flex:0 0 auto;border-right:none;display:flex;flex-direction:row;align-items:center;gap:14px}
+      .np-day{font-size:44px}
+      .np-month{font-size:20px}
+      .np-schedule{align-items:flex-start;text-align:left}
     }
-
-    @keyframes signatureDraw {
-      0% { stroke-dashoffset: 1000; opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { stroke-dashoffset: 0; opacity: 0.8; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Upcoming Event Section */
-    .upcoming-event {
-      background-color: #111;
-      text-align: center;
-      padding: 150px 20px 100px;
-      position: relative;
-    }
-
-    .upcoming-event h2 {
-      font-size: 2.2em;
-      color: #ffb6c1;
-      margin-bottom: 25px;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .event-preview {
-      display: inline-block;
-      text-align: left;
-      max-width: 700px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 25px;
-      backdrop-filter: blur(6px);
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .event-preview img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .event-preview h3 {
-      font-size: 1.6em;
-      color: #ffb6c1;
-    }
-
-    .event-preview p {
-      font-size: 1em;
-      line-height: 1.5;
-    }
-
-    /* Past Events Section */
-    .past-events {
-      background: black;
-      padding: 100px 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-    }
-
-    .past-events.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .past-events h2 {
-      color: #ffb6c1;
-      text-align: center;
-      font-size: 2em;
-      margin-bottom: 50px;
-    }
-
-    table {
-      margin: 0 auto;
-      border-collapse: collapse;
-      width: 80%;
-      color: white;
-      font-size: 1em;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    table th, table td {
-      padding: 15px;
-      text-align: left;
-    }
-
-    table th {
-      color: #ffb6c1;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    table tr:nth-child(even) {
-      background: rgba(255, 255, 255, 0.03);
-    }
-
   </style>
 </head>
 <body>
-
-  <nav>
-    <a href="index.html"><img src="images/ACName3.png" alt="Aria Carmona Logo"></a>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="calendar.html">Calendar</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+  <!-- logo + nav -->
+  <img src="images/ACName3.png" class="logo" alt="ARIA" />
+  <nav class="nav" aria-label="main navigation">
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#stats">STATS</a>
+    <a href="index.html#gallery">GALLERY</a>
+    <a href="index.html#news">NEWS</a>
+    <a href="calendar.html">CALENDAR</a>
+    <a href="index.html#contact">CONTACT</a>
   </nav>
 
-  <section class="hero">
-    <svg class="signature" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10,80 Q60,10 120,80 T240,80 Q260,60 280,80 T350,80 Q370,60 400,80 T490,80" />
-    </svg>
-  </section>
+  <!-- HERO with signature overlay (stylized from your uploaded PNG reference) -->
+  <header class="hero" role="banner" aria-label="hero">
+    <div class="bg" aria-hidden="true"></div>
 
-  <section class="upcoming-event">
-    <h2>Upcoming Event</h2>
-    <div class="event-preview">
-      <img src="images/R7A7919.jpg" alt="Next Event Preview">
-      <h3>Montclair Fashion Week | Winter Spectacle</h3>
-      <p>Date: January 18, 2026<br>
-         Location: Montclair, NJ<br>
-         Designer: House of Eros<br>
-         Description: Aria returns to the runway for the winter fashion event of the season — featuring bold textures and minimalist silhouettes.</p>
+    <div class="sig-wrap" role="img" aria-label="signature">
+      <!-- Stylized cursive signature path that reads 'Aria Carmona' (smooth, not a squiggle) -->
+      <svg class="signature-svg" viewBox="0 0 1000 220" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <!-- This path is a stylized cursive "Aria Carmona" built to animate smoothly -->
+        <path id="sigPath"
+          d="M40 120
+             C90 40 150 60 200 110
+             C240 150 300 100 350 95
+             C400 90 460 140 520 120
+             C560 108 600 74 645 86
+             C690 98 740 138 790 120
+             C840 100 890 60 940 78" />
+      </svg>
+
+      <div class="hero-title">Modeling Calendar — 2025 / 2026</div>
+      <div class="hero-sub">Featured upcoming runways, editorial previews and campaign dates — animated and highlighted.</div>
     </div>
-  </section>
+  </header>
 
-  <section class="past-events" id="past-events">
-    <h2>Past Events</h2>
-    <table>
-      <tr>
-        <th>Event</th>
-        <th>Designer</th>
-        <th>Location</th>
-        <th>Date</th>
-      </tr>
-      <tr>
-        <td>Montclair Spooky Met Gala | SINISTER</td>
-        <td>Dark Bloom Studios</td>
-        <td>Montclair, NJ</td>
-        <td>October 31, 2025</td>
-      </tr>
-      <tr>
-        <td>Miami Swim Week | FRISK ME GOOD</td>
-        <td>Frisk Me Good</td>
-        <td>Miami, FL</td>
-        <td>July 15, 2025</td>
-      </tr>
-    </table>
-  </section>
+  <!-- NEXT EVENT (Lando-style panel) -->
+  <main>
+    <section style="padding: 18px;">
+      <div class="next-panel" role="region" aria-label="Next event spotlight">
+        <div class="np-date" aria-hidden="true">
+          <div class="np-label">WHEN</div>
+          <div class="np-day" id="npDay">25–28</div>
+          <div class="np-month">JUL</div>
+        </div>
+
+        <div class="np-main">
+          <div class="np-title" id="npTitle">MIAMI SWIM WEEK — FRISK ME GOOD</div>
+          <div class="np-desc" id="npDesc">Aria debuts on the Frisk Me Good runway — a high-energy swimwear showcase featuring creatives and press from around the world.</div>
+
+          <div class="np-stats" aria-hidden="true">
+            <div class="np-stat"><div class="k">TYPE</div><div class="v">Runway</div></div>
+            <div class="np-stat"><div class="k">LOCATION</div><div class="v">Miami, FL</div></div>
+            <div class="np-stat"><div class="k">AGENCY</div><div class="v">TDTD</div></div>
+            <div class="np-stat"><div class="k">YEAR</div><div class="v">2025</div></div>
+          </div>
+        </div>
+
+        <div class="np-schedule" aria-label="schedule">
+          <div class="meta">MIAMI — USA</div>
+          <div class="sched" aria-hidden="true">
+            <div class="sched-item"><span>Fitting</span><span class="time">12 JUL · 10:00</span></div>
+            <div class="sched-item"><span>Rehearsal</span><span class="time">24 JUL · 15:00</span></div>
+            <div class="sched-item"><span>Show</span><span class="time">25 JUL · 20:30</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Past events table -->
+    <section class="past-wrap" aria-labelledby="pastEventsHeading">
+      <div class="past-title" id="pastEventsHeading">Previous Events</div>
+
+      <div style="overflow-x:auto;">
+        <table class="past-table" role="table" aria-label="Past events">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Event</th>
+              <th>Designer / Show</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody id="pastRows">
+            <tr class="past-row">
+              <td>Oct 31, 2025</td>
+              <td>Montclair Spooky Met Gala</td>
+              <td>SINISTER</td>
+              <td>Montclair, NJ</td>
+            </tr>
+            <tr class="past-row">
+              <td>Jul 25, 2025</td>
+              <td>Miami Swim Week</td>
+              <td>FRISK ME GOOD</td>
+              <td>Miami, FL</td>
+            </tr>
+            <tr class="past-row">
+              <td>Feb 10, 2025</td>
+              <td>NYFW Prelude: Move The Crowd</td>
+              <td>Barron Wise</td>
+              <td>New York, NY</td>
+            </tr>
+            <tr class="past-row">
+              <td>Jun 2025</td>
+              <td>Campaign: Financial Freedom Apparel</td>
+              <td>Krissy King</td>
+              <td>Studio Shoot</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:28px;color:#bdb8bf">© 2025 Aria Carmona — All rights reserved</footer>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <script>
-    // Fade in past events when scrolled into view
-    const pastEvents = document.getElementById('past-events');
-    window.addEventListener('scroll', () => {
-      const rect = pastEvents.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        pastEvents.classList.add('visible');
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Signature animation (slow loop with subtle glow)
+    const sig = document.getElementById('sigPath');
+    const L = sig.getTotalLength();
+    sig.style.strokeDasharray = L;
+    sig.style.strokeDashoffset = L;
+    sig.style.strokeLinecap = 'round';
+
+    // animate draw then slow fade loop
+    gsap.to(sig, {
+      strokeDashoffset: 0,
+      duration: 2.6,
+      ease: "power2.inOut",
+      repeat: -1,
+      repeatDelay: 12,
+      yoyo: true,
+      onRepeat: () => {
+        // small pulse on repeat
+        gsap.fromTo(sig, { filter: "drop-shadow(0 0 8px rgba(255,102,204,0.16))" }, { filter: "drop-shadow(0 0 18px rgba(255,102,204,0.36))", duration: 0.6, yoyo: true, repeat: 1 });
       }
     });
-  </script>
 
+    // hero text fade (subtle)
+    gsap.from('.hero-title', {y: 18, opacity:0, duration: 0.9, delay: 0.3, ease:'power2.out'});
+    gsap.from('.hero-sub', {y: 8, opacity:0, duration: 0.8, delay:0.5, ease:'power2.out'});
+
+    // animate next-panel entrance
+    gsap.from('.next-panel', { y: 40, opacity: 0, duration: 1.1, delay: 0.6, ease: "power3.out" });
+
+    // Past rows reveal on scroll
+    const pastRows = document.querySelectorAll('.past-row');
+    pastRows.forEach((row, i) => {
+      ScrollTrigger.create({
+        trigger: row,
+        start: "top 85%",
+        onEnter: () => {
+          row.classList.add('visible');
+        }
+      });
+    });
+
+    // Accessibility: enable keyboard jump to top/back
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') window.location.href = 'index.html';
+    });
+  </script>
 </body>
 </html>
