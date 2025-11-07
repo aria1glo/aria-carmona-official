@@ -124,24 +124,28 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin-top: 20px;
+      margin-bottom: 40px; /* added spacing before show boxes */
     }
 
     .stat {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15); /* increased opacity */
       padding: 10px;
       border: 1px solid #ff66cc;
       border-radius: 10px;
       font-size: 0.9em;
+      color: #fff;
+      backdrop-filter: blur(2px);
     }
 
     .show-box {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.12); /* slightly brighter */
       border: 1px solid #ff66cc;
       border-radius: 10px;
-      margin-top: 10px;
-      padding: 10px 15px;
+      margin-top: 15px;
+      padding: 12px 18px;
       font-size: 0.95em;
       color: #fff;
+      backdrop-filter: blur(3px);
     }
 
     footer {
