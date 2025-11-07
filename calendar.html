@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calendar | Aria Carmona</title>
   <link rel="icon" type="image/png" href="images/ACName3.png" />
-
-  <!-- Vogue Font -->
   <style>
     @font-face {
       font-family: 'Vogue';
@@ -20,19 +18,10 @@
     }
 
     body {
-      background: black;
-      color: white;
+      background-color: #000;
+      color: #fff;
       font-family: 'Vogue', serif;
       overflow-x: hidden;
-    }
-
-    /* Navbar */
-    .logo {
-      position: fixed;
-      top: 10px;
-      left: 20px;
-      z-index: 1001;
-      width: 150px;
     }
 
     nav {
@@ -40,11 +29,12 @@
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 1000;
       display: flex;
+      align-items: center;
       gap: 25px;
       font-size: 14px;
       font-weight: bold;
-      z-index: 1000;
     }
 
     nav a {
@@ -57,227 +47,211 @@
       color: #ff66cc;
     }
 
-    /* Hero Section */
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      z-index: 1001;
+      width: 150px;
+    }
+
+    /* HERO */
     .hero {
       position: relative;
-      height: 100vh;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+      height: 100vh;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .hero img {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 50%;
+      left: 50%;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center;
+      transform: translate(-50%, -50%);
+      filter: brightness(65%);
       z-index: 1;
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      top: 0;
-      left: 0;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
       z-index: 2;
-      backdrop-filter: blur(4px);
     }
 
     .signature {
       position: relative;
-      width: 450px;
-      height: auto;
       z-index: 3;
-      filter: drop-shadow(0 0 15px rgba(255, 102, 204, 0.5));
-    }
-
-    svg {
-      width: 100%;
+      width: 500px;
       height: auto;
-    }
-
-    path {
-      stroke: #ff66cc;
+      stroke: #ff99cc;
       stroke-width: 2;
       fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      filter: drop-shadow(0 0 8px #ff66cc);
+      filter: drop-shadow(0 0 10px rgba(255, 102, 204, 0.7));
+      animation: drawSignature 6s ease-in-out infinite alternate;
     }
 
-    .event-info {
-      position: absolute;
-      bottom: 10%;
+    @keyframes drawSignature {
+      0% {
+        stroke-dasharray: 0 100%;
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        stroke-dasharray: 100% 0;
+        opacity: 0.7;
+      }
+    }
+
+    /* CONTENT SECTIONS */
+    section {
+      padding: 100px 10%;
       text-align: center;
-      z-index: 4;
-      color: white;
-      opacity: 0;
+      position: relative;
     }
 
-    .event-info h2 {
-      font-size: 2em;
-      margin-bottom: 10px;
-      color: #ffb6e9;
+    h2 {
+      font-size: 2.5em;
+      color: #fff;
+      margin-bottom: 20px;
     }
 
-    .event-info p {
-      font-size: 1.1em;
+    p {
       color: #ddd;
-    }
-
-    /* Previous Events */
-    .previous-events {
-      background: black;
-      padding: 100px 0;
-      text-align: center;
-    }
-
-    .previous-events h2 {
-      font-size: 2em;
-      color: #ff66cc;
-      margin-bottom: 40px;
+      font-size: 1.1em;
+      line-height: 1.6em;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .event-card {
-      margin: 20px auto;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #ff66cc;
-      border-radius: 12px;
-      max-width: 700px;
-      padding: 30px;
-      text-align: left;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeUp 2s ease-in-out;
     }
 
-    .event-card.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .event-card img {
+      width: 80%;
+      max-width: 700px;
+      border-radius: 20px;
+      border: 1px solid #ff66cc;
+      box-shadow: 0 0 30px rgba(255, 102, 204, 0.3);
     }
 
     .event-card h3 {
-      color: #ffb6e9;
-      font-size: 1.3em;
-      margin-bottom: 10px;
+      color: #ff66cc;
+      font-size: 1.6em;
+      margin-top: 25px;
     }
 
     .event-card p {
-      color: #ccc;
+      margin-top: 10px;
       font-size: 1em;
-      line-height: 1.5em;
+      color: #ccc;
+    }
+
+    .previous-events {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .previous-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 102, 204, 0.3);
+      padding: 25px;
+      border-radius: 15px;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .previous-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      color: #999;
+      padding: 30px 0;
+      color: #aaa;
       font-size: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
-
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
-  <!-- Navbar -->
   <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" />
   <nav>
     <a href="index.html#about">ABOUT</a>
     <a href="index.html#stats">STATS</a>
-    <a href="gallery.html">GALLERY</a>
-    <a href="news.html">NEWS</a>
+    <a href="index.html#gallery">GALLERY</a>
+    <a href="index.html#news">NEWS</a>
     <a href="calendar.html">CALENDAR</a>
-    <a href="contact.html">CONTACT</a>
+    <a href="index.html#contact">CONTACT</a>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <img src="images/IK9A9766.jpg" alt="Aria Carmona Calendar Hero">
-    
-    <!-- Signature SVG -->
-    <div class="signature">
-      <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-        <path id="signature-path" d="M50 120 C120 80, 180 160, 250 100 S400 70, 470 130 560 110, 580 150" />
-      </svg>
-    </div>
+  <!-- HERO -->
+  <div class="hero">
+    <img src="images/IK9A9766.jpg" alt="Aria Carmona">
+    <svg class="signature" viewBox="0 0 800 200">
+      <path d="M50 120 Q120 30, 200 110 T360 100 Q400 130, 460 90 T600 110 Q640 130, 700 70" />
+    </svg>
+  </div>
 
-    <!-- Event Info -->
-    <div class="event-info">
-      <h2>Next Event: Paris Fashion Week 2026</h2>
-      <p>March 2, 2026 — Featuring Maison Sauvage | Grand Palais Éphémère</p>
+  <!-- NEXT EVENT -->
+  <section>
+    <h2>Next Event</h2>
+    <div class="event-card">
+      <img src="images/R7A7919.jpg" alt="Next Show">
+      <h3>2025 Paris Couture Week | The Bloom Collection</h3>
+      <p>Aria Carmona is set to appear at Paris Couture Week for "The Bloom Collection" — an avant-garde showcase celebrating natural elegance and rebirth in design. Featuring exclusive runway pieces from top emerging designers.</p>
     </div>
   </section>
 
-  <!-- Previous Events -->
-  <section class="previous-events">
+  <!-- PREVIOUS EVENTS -->
+  <section>
     <h2>Previous Events</h2>
-
-    <div class="event-card">
-      <h3>2025 Montclair Spooky Met Gala | SINISTER</h3>
-      <p>October 31, 2025 — A chillingly elegant night featuring gothic couture and Aria’s standout presence in the finale look.</p>
-    </div>
-
-    <div class="event-card">
-      <h3>2025 Miami Swim Week | FRISK ME GOOD</h3>
-      <p>July 15, 2025 — Aria walked the runway for FRISK ME GOOD in a vibrant and daring collection that turned heads all week long.</p>
-    </div>
-
-    <div class="event-card">
-      <h3>2025 New York Fashion Week | NEON NOIR</h3>
-      <p>February 10, 2025 — Bold silhouettes and electrifying energy marked Aria’s first NYFW appearance.</p>
+    <div class="previous-events">
+      <div class="previous-card">
+        <h3>2025 Miami Swim Week | FRISK ME GOOD</h3>
+        <p>A bold debut showcasing vibrant designs that define confidence and attitude on the runway.</p>
+      </div>
+      <div class="previous-card">
+        <h3>2025 Montclair Spooky Met Gala | SINISTER</h3>
+        <p>An edgy high-fashion presentation blending avant-garde silhouettes with haunting aesthetics.</p>
+      </div>
+      <div class="previous-card">
+        <h3>2024 New York Fashion Week | REVERIE</h3>
+        <p>Graceful elegance meets modern minimalism in this ethereal NYFW debut appearance.</p>
+      </div>
     </div>
   </section>
 
   <footer>© 2025 ARIA CARMONA</footer>
-
-  <!-- GSAP Animation -->
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Signature draw animation
-    const signaturePath = document.querySelector("#signature-path");
-    const pathLength = signaturePath.getTotalLength();
-    signaturePath.style.strokeDasharray = pathLength;
-    signaturePath.style.strokeDashoffset = pathLength;
-
-    gsap.to(signaturePath, {
-      strokeDashoffset: 0,
-      duration: 3,
-      ease: "power2.inOut",
-      repeat: -1,
-      yoyo: true
-    });
-
-    // Fade in event info
-    gsap.to(".event-info", {
-      opacity: 1,
-      y: -10,
-      duration: 1.5,
-      delay: 1.2,
-      ease: "power2.out"
-    });
-
-    // Scroll-triggered event cards
-    const cards = document.querySelectorAll('.event-card');
-    cards.forEach((card) => {
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top 80%",
-        onEnter: () => card.classList.add('visible')
-      });
-    });
-  </script>
 </body>
 </html>
