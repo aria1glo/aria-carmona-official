@@ -1,212 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Calendar | Aria Carmona</title>
-  <link rel="icon" type="image/png" href="images/ACName3.png" />
+  <link rel="icon" href="images/ACName3.png" type="image/png" />
+
   <style>
+    /* Vogue font */
     @font-face {
       font-family: 'Vogue';
       src: url('fonts/Vogue.ttf') format('truetype');
+      font-display: swap;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg: #050405;
+      --muted: #bdb8bf;
+      --pink: #ff66cc;
+      --pink-soft: rgba(255,102,204,0.18);
+      --card: rgba(255,255,255,0.035);
     }
 
-    body {
-      background-color: #000;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: "Vogue", serif;
+      background: var(--bg);
       color: #fff;
-      font-family: 'Vogue', serif;
-      overflow-x: hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.35;
+      overflow-x:hidden;
     }
 
-    nav {
-      position: fixed;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      font-size: 14px;
-      font-weight: bold;
+    /* NAV */
+    .nav {
+      position:fixed;
+      top:14px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:1200;
+      display:flex;
+      gap:28px;
+      align-items:center;
+      font-weight:700;
+      letter-spacing:0.06em;
     }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
+    .nav a{
+      color:#fff;
+      text-decoration:none;
+      transition:all .18s ease;
+      font-size:14px;
     }
-
-    nav a:hover {
-      color: #ff66cc;
-    }
-
-    .logo {
-      position: fixed;
-      top: 10px;
-      left: 20px;
-      z-index: 1001;
-      width: 150px;
+    .nav a:hover{color:var(--pink)}
+    .logo{
+      position:fixed; left:18px; top:10px; width:150px; z-index:1300;
     }
 
     /* HERO */
     .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      height: 86vh;
+      min-height: 640px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+      background: #000;
+    }
+    /* hero image centered to show face/body */
+    .hero .bg {
+      position:absolute; inset:0;
+      background-image: url('images/IK9A9766.jpg');
+      background-size:cover;
+      background-position:center center; /* center focus */
+      filter: brightness(0.62);
+      z-index:1;
+      transform-origin:center;
+    }
+    .hero::after{ content:""; position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.36) 0%, rgba(0,0,0,0.6) 65%); z-index:2; }
+
+    /* signature container */
+    .sig-wrap{position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; gap:8px; padding:10px 20px;}
+    .signature-svg{ width:520px; height:auto; display:block; filter: drop-shadow(0 8px 24px rgba(255,102,204,0.18)); }
+    .signature-svg path{ fill:none; stroke:var(--pink); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; filter: drop-shadow(0 0 12px rgba(255,102,204,0.28)); }
+
+    .hero-title{ z-index:3; color:#fff; font-size:18px; letter-spacing:0.12em; margin-top:6px; font-weight:700}
+    .hero-sub{ z-index:3; color:var(--muted); margin-top:6px; font-size:14px; max-width:820px }
+
+    /* NEXT EVENT PANEL (Lando-style) */
+    .next-panel {
+      max-width:1200px;
+      margin: -70px auto 0;
+      display:flex;
+      gap:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      border:1px solid var(--pink-soft);
+      padding:22px;
+      position:relative;
+      z-index:4;
+      align-items:stretch;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
     }
 
-    .hero img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transform: translate(-50%, -50%);
-      filter: brightness(65%);
-      z-index: 1;
+    .np-date{
+      flex:0 0 220px;
+      padding:12px 16px;
+      border-right:1px solid rgba(255,255,255,0.03);
+      display:flex; flex-direction:column; justify-content:center;
+      gap:6px;
     }
+    .np-label{font-size:12px;color:var(--muted);letter-spacing:0.12em}
+    .np-day{font-size:64px;color:var(--pink);font-weight:900;line-height:0.9}
+    .np-month{font-size:34px;color:#fff; opacity:0.95}
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 2;
+    .np-main{ flex:1; padding:6px 18px; display:flex; flex-direction:column; gap:12px; justify-content:center;}
+    .np-title{ font-size:22px; font-weight:900; color:#fff; letter-spacing:0.01em; }
+    .np-desc{ color:var(--muted); font-size:15px; max-width:820px; }
+    .np-stats{ display:flex; gap:12px; margin-top:8px; flex-wrap:wrap; }
+
+    .np-stat{
+      background: var(--card);
+      border-radius:10px; padding:10px 12px; min-width:100px;
+      border:1px solid rgba(255,255,255,0.03); text-align:left;
     }
+    .np-stat .k{ font-size:12px; color:var(--muted) }
+    .np-stat .v{ font-weight:800; color:var(--pink); font-size:14px; margin-top:6px }
 
-    .signature {
-      position: relative;
-      z-index: 3;
-      width: 500px;
-      height: auto;
-      stroke: #ff99cc;
-      stroke-width: 2;
-      fill: none;
-      filter: drop-shadow(0 0 10px rgba(255, 102, 204, 0.7));
-      animation: drawSignature 6s ease-in-out infinite alternate;
-    }
+    .np-schedule{ flex:0 0 300px; padding:8px 12px; display:flex; flex-direction:column; justify-content:center; align-items:flex-end; gap:8px; text-align:right;}
+    .np-schedule .meta{ color:var(--muted); font-size:13px; margin-bottom:6px; }
+    .sched{ width:100%; border-top:1px solid rgba(255,255,255,0.03); padding-top:8px }
+    .sched-item{ display:flex; justify-content:space-between; gap:8px; color:#fff; font-weight:700; font-size:13px; align-items:center }
 
-    @keyframes drawSignature {
-      0% {
-        stroke-dasharray: 0 100%;
-        opacity: 0.5;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        stroke-dasharray: 100% 0;
-        opacity: 0.7;
-      }
-    }
+    /* PREVIOUS EVENTS TABLE-LIKE */
+    .past-wrap{ max-width:1200px; margin:60px auto 90px; padding:0 18px; z-index:3; }
+    .past-title{ color:var(--pink); font-size:20px; font-weight:900; margin-bottom:18px }
+    .past-table{ width:100%; border-collapse:collapse; background:transparent; }
+    .past-table thead th{ text-align:left; font-size:13px; color:var(--muted); padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.04) }
+    .past-table tbody tr{ border-bottom:1px solid rgba(255,255,255,0.03) }
+    .past-table tbody td{ padding:16px 12px; vertical-align:middle; color:#fff; font-size:15px }
+    .past-row{ opacity:0; transform:translateY(18px); transition:all 0.8s cubic-bezier(.2,.9,.2,1) }
+    .past-row.visible{ opacity:1; transform:translateY(0) }
 
-    /* CONTENT SECTIONS */
-    section {
-      padding: 100px 10%;
-      text-align: center;
-      position: relative;
-    }
-
-    h2 {
-      font-size: 2.5em;
-      color: #fff;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: #ddd;
-      font-size: 1.1em;
-      line-height: 1.6em;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .event-card {
-      margin-top: 50px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: fadeUp 2s ease-in-out;
-    }
-
-    .event-card img {
-      width: 80%;
-      max-width: 700px;
-      border-radius: 20px;
-      border: 1px solid #ff66cc;
-      box-shadow: 0 0 30px rgba(255, 102, 204, 0.3);
-    }
-
-    .event-card h3 {
-      color: #ff66cc;
-      font-size: 1.6em;
-      margin-top: 25px;
-    }
-
-    .event-card p {
-      margin-top: 10px;
-      font-size: 1em;
-      color: #ccc;
-    }
-
-    .previous-events {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
-    }
-
-    .previous-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 102, 204, 0.3);
-      padding: 25px;
-      border-radius: 15px;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .previous-card:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 0;
-      color: #aaa;
-      font-size: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* responsive */
+    @media (max-width:980px){
+      .next-panel{flex-direction:column;gap:16px;padding:18px}
+      .np-date{flex:0 0 auto;border-right:none;display:flex;flex-direction:row;align-items:center;gap:14px}
+      .np-day{font-size:44px}
+      .np-month{font-size:20px}
+      .np-schedule{align-items:flex-start;text-align:left}
     }
   </style>
 </head>
-
 <body>
-  <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" />
-  <nav>
+  <!-- logo + nav -->
+  <img src="images/ACName3.png" class="logo" alt="ARIA" />
+  <nav class="nav" aria-label="main navigation">
     <a href="index.html#about">ABOUT</a>
     <a href="index.html#stats">STATS</a>
     <a href="index.html#gallery">GALLERY</a>
@@ -215,43 +167,160 @@
     <a href="index.html#contact">CONTACT</a>
   </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <img src="images/IK9A9766.jpg" alt="Aria Carmona">
-    <svg class="signature" viewBox="0 0 800 200">
-      <path d="M50 120 Q120 30, 200 110 T360 100 Q400 130, 460 90 T600 110 Q640 130, 700 70" />
-    </svg>
-  </div>
+  <!-- HERO with signature overlay (stylized from your uploaded PNG reference) -->
+  <header class="hero" role="banner" aria-label="hero">
+    <div class="bg" aria-hidden="true"></div>
 
-  <!-- NEXT EVENT -->
-  <section>
-    <h2>Next Event</h2>
-    <div class="event-card">
-      <img src="images/R7A7919.jpg" alt="Next Show">
-      <h3>2025 Paris Couture Week | The Bloom Collection</h3>
-      <p>Aria Carmona is set to appear at Paris Couture Week for "The Bloom Collection" — an avant-garde showcase celebrating natural elegance and rebirth in design. Featuring exclusive runway pieces from top emerging designers.</p>
+    <div class="sig-wrap" role="img" aria-label="signature">
+      <!-- Stylized cursive signature path that reads 'Aria Carmona' (smooth, not a squiggle) -->
+      <svg class="signature-svg" viewBox="0 0 1000 220" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <!-- This path is a stylized cursive "Aria Carmona" built to animate smoothly -->
+        <path id="sigPath"
+          d="M40 120
+             C90 40 150 60 200 110
+             C240 150 300 100 350 95
+             C400 90 460 140 520 120
+             C560 108 600 74 645 86
+             C690 98 740 138 790 120
+             C840 100 890 60 940 78" />
+      </svg>
+
+      <div class="hero-title">Modeling Calendar — 2025 / 2026</div>
+      <div class="hero-sub">Featured upcoming runways, editorial previews and campaign dates — animated and highlighted.</div>
     </div>
-  </section>
+  </header>
 
-  <!-- PREVIOUS EVENTS -->
-  <section>
-    <h2>Previous Events</h2>
-    <div class="previous-events">
-      <div class="previous-card">
-        <h3>2025 Miami Swim Week | FRISK ME GOOD</h3>
-        <p>A bold debut showcasing vibrant designs that define confidence and attitude on the runway.</p>
-      </div>
-      <div class="previous-card">
-        <h3>2025 Montclair Spooky Met Gala | SINISTER</h3>
-        <p>An edgy high-fashion presentation blending avant-garde silhouettes with haunting aesthetics.</p>
-      </div>
-      <div class="previous-card">
-        <h3>2024 New York Fashion Week | REVERIE</h3>
-        <p>Graceful elegance meets modern minimalism in this ethereal NYFW debut appearance.</p>
-      </div>
-    </div>
-  </section>
+  <!-- NEXT EVENT (Lando-style panel) -->
+  <main>
+    <section style="padding: 18px;">
+      <div class="next-panel" role="region" aria-label="Next event spotlight">
+        <div class="np-date" aria-hidden="true">
+          <div class="np-label">WHEN</div>
+          <div class="np-day" id="npDay">25–28</div>
+          <div class="np-month">JUL</div>
+        </div>
 
-  <footer>© 2025 ARIA CARMONA</footer>
+        <div class="np-main">
+          <div class="np-title" id="npTitle">MIAMI SWIM WEEK — FRISK ME GOOD</div>
+          <div class="np-desc" id="npDesc">Aria debuts on the Frisk Me Good runway — a high-energy swimwear showcase featuring creatives and press from around the world.</div>
+
+          <div class="np-stats" aria-hidden="true">
+            <div class="np-stat"><div class="k">TYPE</div><div class="v">Runway</div></div>
+            <div class="np-stat"><div class="k">LOCATION</div><div class="v">Miami, FL</div></div>
+            <div class="np-stat"><div class="k">AGENCY</div><div class="v">TDTD</div></div>
+            <div class="np-stat"><div class="k">YEAR</div><div class="v">2025</div></div>
+          </div>
+        </div>
+
+        <div class="np-schedule" aria-label="schedule">
+          <div class="meta">MIAMI — USA</div>
+          <div class="sched" aria-hidden="true">
+            <div class="sched-item"><span>Fitting</span><span class="time">12 JUL · 10:00</span></div>
+            <div class="sched-item"><span>Rehearsal</span><span class="time">24 JUL · 15:00</span></div>
+            <div class="sched-item"><span>Show</span><span class="time">25 JUL · 20:30</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Past events table -->
+    <section class="past-wrap" aria-labelledby="pastEventsHeading">
+      <div class="past-title" id="pastEventsHeading">Previous Events</div>
+
+      <div style="overflow-x:auto;">
+        <table class="past-table" role="table" aria-label="Past events">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Event</th>
+              <th>Designer / Show</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody id="pastRows">
+            <tr class="past-row">
+              <td>Oct 31, 2025</td>
+              <td>Montclair Spooky Met Gala</td>
+              <td>SINISTER</td>
+              <td>Montclair, NJ</td>
+            </tr>
+            <tr class="past-row">
+              <td>Jul 25, 2025</td>
+              <td>Miami Swim Week</td>
+              <td>FRISK ME GOOD</td>
+              <td>Miami, FL</td>
+            </tr>
+            <tr class="past-row">
+              <td>Feb 10, 2025</td>
+              <td>NYFW Prelude: Move The Crowd</td>
+              <td>Barron Wise</td>
+              <td>New York, NY</td>
+            </tr>
+            <tr class="past-row">
+              <td>Jun 2025</td>
+              <td>Campaign: Financial Freedom Apparel</td>
+              <td>Krissy King</td>
+              <td>Studio Shoot</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:28px;color:#bdb8bf">© 2025 Aria Carmona — All rights reserved</footer>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Signature animation (slow loop with subtle glow)
+    const sig = document.getElementById('sigPath');
+    const L = sig.getTotalLength();
+    sig.style.strokeDasharray = L;
+    sig.style.strokeDashoffset = L;
+    sig.style.strokeLinecap = 'round';
+
+    // animate draw then slow fade loop
+    gsap.to(sig, {
+      strokeDashoffset: 0,
+      duration: 2.6,
+      ease: "power2.inOut",
+      repeat: -1,
+      repeatDelay: 12,
+      yoyo: true,
+      onRepeat: () => {
+        // small pulse on repeat
+        gsap.fromTo(sig, { filter: "drop-shadow(0 0 8px rgba(255,102,204,0.16))" }, { filter: "drop-shadow(0 0 18px rgba(255,102,204,0.36))", duration: 0.6, yoyo: true, repeat: 1 });
+      }
+    });
+
+    // hero text fade (subtle)
+    gsap.from('.hero-title', {y: 18, opacity:0, duration: 0.9, delay: 0.3, ease:'power2.out'});
+    gsap.from('.hero-sub', {y: 8, opacity:0, duration: 0.8, delay:0.5, ease:'power2.out'});
+
+    // animate next-panel entrance
+    gsap.from('.next-panel', { y: 40, opacity: 0, duration: 1.1, delay: 0.6, ease: "power3.out" });
+
+    // Past rows reveal on scroll
+    const pastRows = document.querySelectorAll('.past-row');
+    pastRows.forEach((row, i) => {
+      ScrollTrigger.create({
+        trigger: row,
+        start: "top 85%",
+        onEnter: () => {
+          row.classList.add('visible');
+        }
+      });
+    });
+
+    // Accessibility: enable keyboard jump to top/back
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') window.location.href = 'index.html';
+    });
+  </script>
 </body>
 </html>
