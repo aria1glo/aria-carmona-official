@@ -3,255 +3,232 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aria Carmona | Calendar</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="images/AC-Name3.png" />
-  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <title>Calendar | Aria Carmona</title>
+  <link rel="icon" type="image/png" href="images/ACName3.png" />
 
   <style>
-    body {
-      background-color: #0a0a0a;
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
+    @font-face {
+      font-family: 'Vogue';
+      src: url('fonts/Vogue.ttf') format('truetype');
+    }
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: black;
+      font-family: 'Vogue', serif;
+      color: white;
       overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
     }
 
     nav {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 50px;
-      background: rgba(0,0,0,0.8);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      gap: 25px;
+      font-size: 14px;
+      font-weight: bold;
     }
 
-    nav img {
-      height: 45px;
-    }
-
-    .nav-links a {
+    nav a {
       color: white;
-      margin: 0 15px;
       text-decoration: none;
-      font-size: 1.1em;
       transition: 0.3s;
     }
 
-    .nav-links a:hover {
-      color: #ff9fdc;
-      background-color: #000;
-      padding: 5px 10px;
-      border-radius: 5px;
+    nav a:hover {
+      color: #ff66cc;
     }
 
-    .event-hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      z-index: 1001;
+      width: 150px;
+    }
+
+    .calendar-hero {
       position: relative;
+      height: 100vh;
+      width: 100%;
+      background: url('images/IK9A9766.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
       overflow: hidden;
     }
 
-    .event-info {
-      text-align: center;
+    .calendar-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
       z-index: 2;
     }
 
-    .event-title {
-      font-family: 'Vogue', serif;
-      font-size: 3rem;
-      color: #ff9fdc;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .signature-line {
+      stroke: #ff66cc;
+      stroke-width: 3;
+      fill: none;
+      width: 400px;
+      height: 100px;
+      margin: 0 auto 20px;
     }
 
-    .event-date {
-      font-size: 2rem;
-      color: #fff;
-      margin-top: 10px;
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
     }
 
-    .event-stats {
-      margin-top: 1rem;
+    .events {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 0 20px;
       display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      font-size: 1.1rem;
+      flex-direction: column;
+      gap: 60px;
     }
 
-    .runway {
-      position: absolute;
-      bottom: 8%;
-      width: 60%;
-      opacity: 0.8;
-      filter: drop-shadow(0 0 15px #ff9fdc);
+    .event {
+      position: relative;
+      padding: 30px;
+      border: 1px solid #ff66cc;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 15px rgba(255,102,204,0.1);
+      opacity: 0;
+      transform: translateY(50px);
     }
 
-    .schedule {
-      background: #111;
-      padding: 4rem 2rem;
+    .event h2 {
+      color: #ff66cc;
+      margin-bottom: 10px;
+    }
+
+    .event p {
+      font-size: 1em;
+      color: #ddd;
+    }
+
+    footer {
       text-align: center;
-    }
-
-    .schedule h3 {
-      font-family: 'Vogue', serif;
-      color: #ff9fdc;
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .schedule ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      max-width: 400px;
-      text-align: left;
-    }
-
-    .schedule li {
-      margin: 12px 0;
-      padding: 10px;
-      border-left: 3px solid #ff9fdc;
-      font-size: 1.1rem;
-    }
-
-    .past-events {
-      background-color: #0f0f0f;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    .past-events h3 {
-      font-family: 'Vogue', serif;
-      color: #ff9fdc;
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-    }
-
-    table {
-      width: 80%;
-      margin: 0 auto;
-      border-collapse: collapse;
-      font-size: 1rem;
-    }
-
-    th, td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #333;
-    }
-
-    th {
-      color: #ff9fdc;
-      text-transform: uppercase;
-    }
-
-    tr:hover {
-      background-color: #1a1a1a;
+      padding: 40px 0;
+      font-size: 12px;
+      color: #aaa;
     }
   </style>
 </head>
-<body>
 
-  <!-- Navbar -->
+<body>
+  <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" />
+
   <nav>
-    <a href="index.html"><img src="images/AC-Name3.png" alt="Aria Carmona Logo"></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="news.html">News</a>
-      <a href="calendar.html">Calendar</a>
-      <a href="contact.html">Contact</a>
-    </div>
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#stats">STATS</a>
+    <a href="index.html#gallery">GALLERY</a>
+    <a href="index.html#news">NEWS</a>
+    <a href="index.html#calendar">CALENDAR</a>
+    <a href="index.html#contact">CONTACT</a>
   </nav>
 
-  <!-- Next Event -->
-  <section class="event-hero">
-    <div class="event-info">
-      <h2 class="event-title">Next Event: Miami Swim Week</h2>
-      <p class="event-date">July 10–14, 2025</p>
-      <div class="event-stats">
-        <span><strong>Location:</strong> Miami, FL</span>
-        <span><strong>Brand:</strong> OceanVibe</span>
-        <span><strong>Type:</strong> Runway</span>
-      </div>
+  <section class="calendar-hero">
+    <div class="hero-content">
+      <svg class="signature-line" viewBox="0 0 600 150">
+        <path id="signature" d="M20,80 Q150,10 300,80 T580,80" />
+      </svg>
+      <h1>Upcoming Events</h1>
+      <p>Follow Aria’s 2025–2026 schedule of shows, shoots, and appearances.</p>
+    </div>
+  </section>
+
+  <section class="events">
+    <div class="event">
+      <h2>2025 MIAMI SWIM WEEK</h2>
+      <p>Aria walks for “FRISK ME GOOD” — debut runway performance marking a defining moment in her modeling career.</p>
+      <p><strong>Date:</strong> July 2025 | <strong>Location:</strong> Miami, FL</p>
     </div>
 
-    <!-- Runway SVG -->
-    <svg class="runway" viewBox="0 0 800 400">
-      <path d="M100,200 C150,100 400,50 600,200 C750,300 500,350 200,250 Z"
-            stroke="#ff9fdc" stroke-width="4" fill="none" />
-    </svg>
+    <div class="event">
+      <h2>2025 NEW YORK FASHION WEEK</h2>
+      <p>Runway show appearances at the city’s most iconic venues, featuring top emerging designers and global press coverage.</p>
+      <p><strong>Date:</strong> September 2025 | <strong>Location:</strong> Manhattan, NY</p>
+    </div>
+
+    <div class="event">
+      <h2>2025 MONTCLAIR SPOOKY MET GALA</h2>
+      <p>A Halloween-inspired couture showcase — Aria walks in “SINISTER,” a dark avant-garde collection.</p>
+      <p><strong>Date:</strong> October 2025 | <strong>Location:</strong> Montclair, NJ</p>
+    </div>
+
+    <div class="event">
+      <h2>2026 SPRING FASHION WEEK</h2>
+      <p>New season launches, global campaigns, and a refreshed aesthetic direction in Aria’s growing portfolio.</p>
+      <p><strong>Date:</strong> March 2026 | <strong>Location:</strong> New York, NY</p>
+    </div>
   </section>
 
-  <!-- Schedule -->
-  <section class="schedule">
-    <h3>Event Schedule</h3>
-    <ul>
-      <li><b>Fitting:</b> July 10 @ 10:00 AM</li>
-      <li><b>Rehearsal:</b> July 11 @ 2:00 PM</li>
-      <li><b>Main Runway Show:</b> July 12 @ 6:00 PM</li>
-      <li><b>Photoshoot:</b> July 13 @ 11:00 AM</li>
-      <li><b>After Party:</b> July 13 @ 9:00 PM</li>
-    </ul>
-  </section>
+  <footer>© 2025 ARIA CARMONA</footer>
 
-  <!-- Past Events -->
-  <section class="past-events">
-    <h3>Past Events</h3>
-    <table>
-      <tr><th>Event</th><th>Date</th><th>Location</th><th>Role</th></tr>
-      <tr><td>NY Fashion Week</td><td>Feb 2025</td><td>New York, NY</td><td>Runway</td></tr>
-      <tr><td>Venice Photoshoot</td><td>Nov 2024</td><td>Venice, IT</td><td>Editorial</td></tr>
-      <tr><td>Paris Couture</td><td>Sep 2024</td><td>Paris, FR</td><td>Runway</td></tr>
-      <tr><td>LA Beach Campaign</td><td>Jun 2024</td><td>Los Angeles, CA</td><td>Commercial</td></tr>
-    </table>
-  </section>
-
-  <!-- GSAP Animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
-    gsap.registerPlugin(ScrollTrigger);
+    // Animate signature path
+    const signaturePath = document.querySelector("#signature");
+    const pathLength = signaturePath.getTotalLength();
+    signaturePath.style.strokeDasharray = pathLength;
+    signaturePath.style.strokeDashoffset = pathLength;
 
-    // Hero section fade-ins
-    gsap.from(".event-title", {opacity: 0, y: 40, duration: 1, ease: "power3.out"});
-    gsap.from(".event-date", {opacity: 0, y: 30, duration: 1, delay: 0.4});
-    gsap.from(".event-stats span", {opacity: 0, stagger: 0.2, delay: 0.8});
-
-    // Runway glow animation
-    const runwayPath = document.querySelector(".runway path");
-    const length = runwayPath.getTotalLength();
-    runwayPath.style.strokeDasharray = length;
-    runwayPath.style.strokeDashoffset = length;
-
-    gsap.to(runwayPath, {
+    gsap.to(signaturePath, {
       strokeDashoffset: 0,
-      duration: 4,
-      ease: "power1.inOut",
-      repeat: -1,
-      yoyo: true
+      duration: 3,
+      ease: "power2.inOut",
+      delay: 0.5
     });
 
-    // Schedule scroll animation
-    gsap.from(".schedule li", {
-      scrollTrigger: ".schedule",
-      opacity: 0,
-      x: -50,
-      stagger: 0.2,
-      duration: 0.8
-    });
+    // Hero fade-in text
+    gsap.from(".hero-content h1", { y: 40, opacity: 0, duration: 1, delay: 1 });
+    gsap.from(".hero-content p", { y: 30, opacity: 0, duration: 1, delay: 1.4 });
 
-    // Table animation
-    gsap.from(".past-events table tr", {
-      scrollTrigger: ".past-events",
-      opacity: 0,
-      y: 30,
-      stagger: 0.15,
-      duration: 0.6
+    // Event reveal animation on scroll
+    const events = document.querySelectorAll(".event");
+    const revealEvent = (event, delay) => {
+      gsap.to(event, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power2.out",
+        delay: delay
+      });
+    };
+
+    let revealed = new Set();
+
+    window.addEventListener("scroll", () => {
+      events.forEach((event, i) => {
+        const rect = event.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100 && !revealed.has(i)) {
+          revealEvent(event, i * 0.2);
+          revealed.add(i);
+        }
+      });
     });
   </script>
 </body>
