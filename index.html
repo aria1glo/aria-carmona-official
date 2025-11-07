@@ -9,7 +9,7 @@
   <style>
     @font-face {
       font-family: 'Vogue';
-      src: url('fonts/vogue.ttf') format('truetype');
+      src: url('fonts/Vogue.ttf') format('truetype');
     }
 
     * {
@@ -44,6 +44,7 @@
       color: white;
       text-decoration: none;
       transition: 0.3s;
+      cursor: pointer;
     }
 
     nav a:hover {
@@ -56,6 +57,7 @@
       left: 20px;
       z-index: 1001;
       width: 150px;
+      cursor: pointer;
     }
 
     /* SECTION BASE */
@@ -73,8 +75,8 @@
       opacity: 0;
       transform: scale(1.05);
       transition:
-        opacity 1s ease-in-out,
-        transform 1.3s cubic-bezier(0.77, 0, 0.175, 1);
+        opacity 1.5s ease-in-out,
+        transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
       z-index: 0;
     }
 
@@ -94,7 +96,7 @@
       top: 0;
       left: 0;
       z-index: 1;
-      transition: opacity 1.3s ease-in-out, transform 1.5s ease;
+      transition: opacity 1.5s ease-in-out, transform 1.5s ease;
     }
 
     .overlay {
@@ -138,6 +140,13 @@
       padding: 10px;
       border-radius: 10px;
       font-size: 0.9em;
+      border: 1px solid #ffb6c1;
+    }
+
+    .extra-info {
+      margin-top: 25px;
+      font-size: 1em;
+      color: #ffb6c1;
     }
 
     footer {
@@ -168,34 +177,47 @@
       transform: translate(0, 0);
     }
 
-    /* HERO FIX: visible from start */
+    /* HERO FIX */
     #hero {
       opacity: 1;
       transform: translate(0, 0);
       z-index: 5;
     }
 
-    /* Transition Fade Enhancer */
     .fade-out {
       opacity: 0;
       transform: scale(1.03);
       transition:
-        opacity 1s ease-in-out,
-        transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+        opacity 1.5s ease-in-out,
+        transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    a.subpage-link {
+      color: #ffb6c1;
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+
+    a.subpage-link:hover {
+      color: white;
+      text-decoration: underline;
     }
   </style>
 </head>
 
 <body>
-  <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" />
+  <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" onclick="goHome()" />
 
   <nav>
-    <a href="#about">ABOUT</a>
-    <a href="#stats">STATS</a>
-    <a href="#gallery">GALLERY</a>
-    <a href="#news">NEWS</a>
-    <a href="#calendar">CALENDAR</a>
-    <a href="#contact">CONTACT</a>
+    <a data-target="about">ABOUT</a>
+    <a data-target="stats">STATS</a>
+    <a data-target="gallery">GALLERY</a>
+    <a data-target="news">NEWS</a>
+    <a data-target="calendar">CALENDAR</a>
+    <a data-target="contact">CONTACT</a>
   </nav>
 
   <!-- HERO -->
@@ -234,6 +256,10 @@
         <div class="stat">Eyes: Brown</div>
         <div class="stat">Hair: Black</div>
       </div>
+      <div class="extra-info">
+        Debut Show: 2025 Miami Swim Week | FRISK ME GOOD<br>
+        Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER
+      </div>
     </div>
   </div>
 
@@ -244,6 +270,7 @@
     <div class="section-content">
       <h2>Gallery</h2>
       <p>Explore the latest editorials and campaigns featuring Aria.</p>
+      <a href="gallery.html" class="subpage-link">View Full Gallery →</a>
     </div>
   </div>
 
@@ -254,7 +281,7 @@
     <div class="section-content">
       <h2>Latest Highlights</h2>
       <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
-      <a href="news.html" style="color:pink;">Explore News →</a>
+      <a href="news.html" class="subpage-link">Explore News →</a>
     </div>
   </div>
 
@@ -275,6 +302,7 @@
     <div class="section-content">
       <h2>Contact</h2>
       <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
+      <a href="contact.html" class="subpage-link">Go to Contact Page →</a>
     </div>
   </div>
 
@@ -282,6 +310,7 @@
 
   <script>
     const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('nav a');
     let current = 0;
     let isAnimating = false;
 
@@ -299,24 +328,36 @@
         currentSection.classList.remove('active', 'fade-out');
         current = index;
         isAnimating = false;
-      }, 1100);
+      }, 1500);
     }
 
-    // Scroll wheel navigation
+    // Scroll wheel
     window.addEventListener('wheel', (e) => {
       if (isAnimating) return;
       if (e.deltaY > 0) showSection(current + 1);
       else showSection(current - 1);
     });
 
-    // Arrow key navigation
+    // Arrow keys
     window.addEventListener('keydown', (e) => {
       if (isAnimating) return;
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSection(current + 1);
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1);
     });
 
-    // Ensure hero shows on load
+    // Navbar navigation
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const targetId = link.getAttribute('data-target');
+        const targetIndex = Array.from(sections).findIndex(s => s.id === targetId);
+        showSection(targetIndex);
+      });
+    });
+
+    function goHome() {
+      showSection(0);
+    }
+
     window.addEventListener('load', () => {
       sections[0].classList.add('active');
       current = 0;
