@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aria Carmona | Official Site</title>
-  <link rel="icon" type="image/jpeg" href="images/ACName3.png" />
+  <link rel="icon" type="image/png" href="images/ACName3.png" />
 
   <style>
     @font-face {
@@ -67,16 +67,15 @@
       align-items: center;
       text-align: center;
       overflow: hidden;
-      transition: opacity 1.2s ease, transform 1.2s ease;
       opacity: 0;
       pointer-events: none;
+      transition: opacity 1s ease, transform 1.2s ease;
     }
 
     .section.active {
       opacity: 1;
       pointer-events: all;
       z-index: 5;
-      transform: translate(0, 0);
     }
 
     .section video,
@@ -104,7 +103,7 @@
       z-index: 3;
       max-width: 700px;
       padding: 40px;
-      animation: fadeIn 1.2s ease-in-out;
+      animation: fadeIn 1s ease-in-out;
     }
 
     .section-content h1,
@@ -129,19 +128,19 @@
 
     .stat {
       background: rgba(255, 255, 255, 0.1);
-      border: 1px solid #ffb6c1;
       padding: 10px;
+      border: 1px solid #ff66cc;
       border-radius: 10px;
       font-size: 0.9em;
     }
 
-    .show-info {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 10px 20px;
-      margin-top: 25px;
-      border-radius: 12px;
-      display: inline-block;
-      font-size: 0.9em;
+    .show-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #ff66cc;
+      border-radius: 10px;
+      margin-top: 10px;
+      padding: 10px 15px;
+      font-size: 0.95em;
       color: #fff;
     }
 
@@ -165,6 +164,13 @@
     .slide-down { transform: translateY(-100%); }
     .slide-left { transform: translateX(100%); }
     .slide-right { transform: translateX(-100%); }
+
+    .active.slide-up,
+    .active.slide-down,
+    .active.slide-left,
+    .active.slide-right {
+      transform: translate(0, 0);
+    }
   </style>
 </head>
 
@@ -172,7 +178,6 @@
   <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" />
 
   <nav>
-    <a href="#hero">HOME</a>
     <a href="#about">ABOUT</a>
     <a href="#stats">STATS</a>
     <a href="#gallery">GALLERY</a>
@@ -184,7 +189,7 @@
   <!-- HERO -->
   <div class="section active slide-right" id="hero">
     <video autoplay muted loop>
-      <source src="videos/intro.mp4" type="video/mp4">
+      <source src="videos/aria-hero.mp4" type="video/mp4">
     </video>
     <div class="overlay"></div>
     <div class="section-content">
@@ -217,9 +222,12 @@
         <div class="stat">Eyes: Brown</div>
         <div class="stat">Hair: Black</div>
       </div>
-      <div class="show-info">
-        <p>Debut Show: 2025 Miami Swim Week | FRISK ME GOOD</p>
-        <p>Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER</p>
+
+      <div class="show-box">
+        Debut Show: 2025 Miami Swim Week | FRISK ME GOOD
+      </div>
+      <div class="show-box">
+        Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER
       </div>
     </div>
   </div>
@@ -231,7 +239,7 @@
     <div class="section-content">
       <h2>Gallery</h2>
       <p>Explore the latest editorials and campaigns featuring Aria.</p>
-      <a href="gallery.html" style="color:pink;">View Full Gallery →</a>
+      <a href="gallery.html" style="color:#ff66cc;">View Full Gallery →</a>
     </div>
   </div>
 
@@ -242,13 +250,13 @@
     <div class="section-content">
       <h2>Latest Highlights</h2>
       <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
-      <a href="news.html" style="color:pink;">Explore News →</a>
+      <a href="news.html" style="color:#ff66cc;">Explore News →</a>
     </div>
   </div>
 
   <!-- CALENDAR -->
   <div class="section slide-up" id="calendar">
-    <img src="images/IK9A766.jpg" alt="">
+    <img src="images/IK9A9766.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Calendar</h2>
@@ -263,7 +271,7 @@
     <div class="section-content">
       <h2>Contact</h2>
       <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
-      <a href="contact.html" style="color:pink;">Reach Out →</a>
+      <a href="contact.html" style="color:#ff66cc;">Reach Out →</a>
     </div>
   </div>
 
@@ -274,7 +282,7 @@
     let current = 0;
     let isAnimating = false;
 
-    function showSection(index) {
+    function showSection(index, direction = 'next') {
       if (isAnimating || index === current || index < 0 || index >= sections.length) return;
       isAnimating = true;
 
@@ -282,40 +290,35 @@
       const nextSection = sections[index];
 
       // fade out current
-      currentSection.style.opacity = '0';
-      currentSection.style.transform = index > current ? 'translateY(-5%)' : 'translateY(5%)';
-      currentSection.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
-
-      // fade in next
+      currentSection.style.opacity = "0";
+      nextSection.style.opacity = "1";
       nextSection.classList.add('active');
-      nextSection.style.opacity = '1';
-      nextSection.style.transform = 'translateY(0)';
-      nextSection.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+      currentSection.classList.remove('active');
 
+      // smooth fade transitions both directions
       setTimeout(() => {
-        currentSection.classList.remove('active');
-        currentSection.style.transform = '';
         isAnimating = false;
         current = index;
-      }, 1300);
+      }, 1400);
     }
 
     window.addEventListener('wheel', (e) => {
       if (isAnimating) return;
-      if (e.deltaY > 0) showSection(current + 1);
-      else showSection(current - 1);
+      if (e.deltaY > 0) showSection(current + 1, 'next');
+      else showSection(current - 1, 'prev');
     });
 
     window.addEventListener('keydown', (e) => {
       if (isAnimating) return;
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSection(current + 1);
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSection(current + 1, 'next');
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1, 'prev');
     });
 
-    document.querySelectorAll('nav a').forEach((link, i) => {
+    // Navbar click navigation with smooth transition
+    document.querySelectorAll('nav a').forEach((link, index) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        showSection(i);
+        showSection(index + 1);
       });
     });
   </script>
