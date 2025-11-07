@@ -70,9 +70,11 @@
       align-items: center;
       text-align: center;
       overflow: hidden;
-      transition: all 1.1s ease-in-out;
       opacity: 0;
       transform: scale(1.05);
+      transition:
+        opacity 1s ease-in-out,
+        transform 1.3s cubic-bezier(0.77, 0, 0.175, 1);
       z-index: 0;
     }
 
@@ -92,6 +94,7 @@
       top: 0;
       left: 0;
       z-index: 1;
+      transition: opacity 1.3s ease-in-out, transform 1.5s ease;
     }
 
     .overlay {
@@ -152,7 +155,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* TRANSITION DIRECTIONS */
+    /* SLIDE DIRECTIONS */
     .slide-up { transform: translateY(100%); }
     .slide-down { transform: translateY(-100%); }
     .slide-left { transform: translateX(100%); }
@@ -165,11 +168,20 @@
       transform: translate(0, 0);
     }
 
-    /* HERO FIX: Always visible on load */
+    /* HERO FIX: visible from start */
     #hero {
       opacity: 1;
       transform: translate(0, 0);
       z-index: 5;
+    }
+
+    /* Transition Fade Enhancer */
+    .fade-out {
+      opacity: 0;
+      transform: scale(1.03);
+      transition:
+        opacity 1s ease-in-out,
+        transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
     }
   </style>
 </head>
@@ -280,13 +292,14 @@
       const currentSection = sections[current];
       const nextSection = sections[index];
 
-      currentSection.classList.remove('active');
+      currentSection.classList.add('fade-out');
       nextSection.classList.add('active');
 
       setTimeout(() => {
-        isAnimating = false;
+        currentSection.classList.remove('active', 'fade-out');
         current = index;
-      }, 1000);
+        isAnimating = false;
+      }, 1100);
     }
 
     // Scroll wheel navigation
