@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aria Carmona | Official Site</title>
-  <link rel="icon" type="image/png" href="images/ACName3.png" />
+  <link rel="icon" type="image/jpeg" href="images/ACName3.png" />
 
   <style>
     @font-face {
@@ -18,15 +18,13 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
+    body {
       overflow: hidden;
       font-family: 'Vogue', serif;
       background: black;
       color: white;
     }
 
-    /* NAVBAR */
     nav {
       position: fixed;
       top: 10px;
@@ -44,7 +42,6 @@
       color: white;
       text-decoration: none;
       transition: 0.3s;
-      cursor: pointer;
     }
 
     nav a:hover {
@@ -57,10 +54,8 @@
       left: 20px;
       z-index: 1001;
       width: 150px;
-      cursor: pointer;
     }
 
-    /* SECTION BASE */
     .section {
       position: absolute;
       width: 100vw;
@@ -72,19 +67,16 @@
       align-items: center;
       text-align: center;
       overflow: hidden;
+      transition: opacity 1.2s ease, transform 1.2s ease;
       opacity: 0;
-      transform: scale(1.05);
-      transition:
-        opacity 1.5s ease-in-out,
-        transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-      z-index: 0;
+      pointer-events: none;
     }
 
-    /* ACTIVE STATE */
     .section.active {
       opacity: 1;
-      transform: translate(0, 0) scale(1);
+      pointer-events: all;
       z-index: 5;
+      transform: translate(0, 0);
     }
 
     .section video,
@@ -96,7 +88,6 @@
       top: 0;
       left: 0;
       z-index: 1;
-      transition: opacity 1.5s ease-in-out, transform 1.5s ease;
     }
 
     .overlay {
@@ -113,10 +104,11 @@
       z-index: 3;
       max-width: 700px;
       padding: 40px;
-      animation: fadeIn 1s ease-in-out;
+      animation: fadeIn 1.2s ease-in-out;
     }
 
-    .section-content h1, .section-content h2 {
+    .section-content h1,
+    .section-content h2 {
       font-size: 2.5em;
       margin-bottom: 15px;
       color: #fff;
@@ -137,16 +129,20 @@
 
     .stat {
       background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #ffb6c1;
       padding: 10px;
       border-radius: 10px;
       font-size: 0.9em;
-      border: 1px solid #ffb6c1;
     }
 
-    .extra-info {
+    .show-info {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
       margin-top: 25px;
-      font-size: 1em;
-      color: #ffb6c1;
+      border-radius: 12px;
+      display: inline-block;
+      font-size: 0.9em;
+      color: #fff;
     }
 
     footer {
@@ -164,60 +160,25 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* SLIDE DIRECTIONS */
+    /* Transition directions */
     .slide-up { transform: translateY(100%); }
     .slide-down { transform: translateY(-100%); }
     .slide-left { transform: translateX(100%); }
     .slide-right { transform: translateX(-100%); }
-
-    .section.active.slide-up,
-    .section.active.slide-down,
-    .section.active.slide-left,
-    .section.active.slide-right {
-      transform: translate(0, 0);
-    }
-
-    /* HERO FIX */
-    #hero {
-      opacity: 1;
-      transform: translate(0, 0);
-      z-index: 5;
-    }
-
-    .fade-out {
-      opacity: 0;
-      transform: scale(1.03);
-      transition:
-        opacity 1.5s ease-in-out,
-        transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-    }
-
-    a.subpage-link {
-      color: #ffb6c1;
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      font-size: 1em;
-      transition: 0.3s;
-    }
-
-    a.subpage-link:hover {
-      color: white;
-      text-decoration: underline;
-    }
   </style>
 </head>
 
 <body>
-  <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" onclick="goHome()" />
+  <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" />
 
   <nav>
-    <a data-target="about">ABOUT</a>
-    <a data-target="stats">STATS</a>
-    <a data-target="gallery">GALLERY</a>
-    <a data-target="news">NEWS</a>
-    <a data-target="calendar">CALENDAR</a>
-    <a data-target="contact">CONTACT</a>
+    <a href="#hero">HOME</a>
+    <a href="#about">ABOUT</a>
+    <a href="#stats">STATS</a>
+    <a href="#gallery">GALLERY</a>
+    <a href="#news">NEWS</a>
+    <a href="#calendar">CALENDAR</a>
+    <a href="#contact">CONTACT</a>
   </nav>
 
   <!-- HERO -->
@@ -237,7 +198,7 @@
     <div class="overlay"></div>
     <div class="section-content">
       <h2>About Aria</h2>
-      <p>Aria Carmona is a 21-year-old female talent making waves in the fashion industry. The Manhattan-based model looks to elevate her career and take it to the next level.</p>
+      <p>Aria Carmona is a 21 year old female talent making waves in the fashion industry. The Manhattan-based model looks to elevate her career and take it to the next level.</p>
     </div>
   </div>
 
@@ -256,9 +217,9 @@
         <div class="stat">Eyes: Brown</div>
         <div class="stat">Hair: Black</div>
       </div>
-      <div class="extra-info">
-        Debut Show: 2025 Miami Swim Week | FRISK ME GOOD<br>
-        Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER
+      <div class="show-info">
+        <p>Debut Show: 2025 Miami Swim Week | FRISK ME GOOD</p>
+        <p>Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER</p>
       </div>
     </div>
   </div>
@@ -270,7 +231,7 @@
     <div class="section-content">
       <h2>Gallery</h2>
       <p>Explore the latest editorials and campaigns featuring Aria.</p>
-      <a href="gallery.html" class="subpage-link">View Full Gallery →</a>
+      <a href="gallery.html" style="color:pink;">View Full Gallery →</a>
     </div>
   </div>
 
@@ -281,7 +242,7 @@
     <div class="section-content">
       <h2>Latest Highlights</h2>
       <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
-      <a href="news.html" class="subpage-link">Explore News →</a>
+      <a href="news.html" style="color:pink;">Explore News →</a>
     </div>
   </div>
 
@@ -302,7 +263,7 @@
     <div class="section-content">
       <h2>Contact</h2>
       <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
-      <a href="contact.html" class="subpage-link">Go to Contact Page →</a>
+      <a href="contact.html" style="color:pink;">Reach Out →</a>
     </div>
   </div>
 
@@ -310,7 +271,6 @@
 
   <script>
     const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('nav a');
     let current = 0;
     let isAnimating = false;
 
@@ -321,46 +281,42 @@
       const currentSection = sections[current];
       const nextSection = sections[index];
 
-      currentSection.classList.add('fade-out');
+      // fade out current
+      currentSection.style.opacity = '0';
+      currentSection.style.transform = index > current ? 'translateY(-5%)' : 'translateY(5%)';
+      currentSection.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+
+      // fade in next
       nextSection.classList.add('active');
+      nextSection.style.opacity = '1';
+      nextSection.style.transform = 'translateY(0)';
+      nextSection.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
 
       setTimeout(() => {
-        currentSection.classList.remove('active', 'fade-out');
-        current = index;
+        currentSection.classList.remove('active');
+        currentSection.style.transform = '';
         isAnimating = false;
-      }, 1500);
+        current = index;
+      }, 1300);
     }
 
-    // Scroll wheel
     window.addEventListener('wheel', (e) => {
       if (isAnimating) return;
       if (e.deltaY > 0) showSection(current + 1);
       else showSection(current - 1);
     });
 
-    // Arrow keys
     window.addEventListener('keydown', (e) => {
       if (isAnimating) return;
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSection(current + 1);
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1);
     });
 
-    // Navbar navigation
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        const targetId = link.getAttribute('data-target');
-        const targetIndex = Array.from(sections).findIndex(s => s.id === targetId);
-        showSection(targetIndex);
+    document.querySelectorAll('nav a').forEach((link, i) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showSection(i);
       });
-    });
-
-    function goHome() {
-      showSection(0);
-    }
-
-    window.addEventListener('load', () => {
-      sections[0].classList.add('active');
-      current = 0;
     });
   </script>
 </body>
