@@ -1,385 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calendar | Aria Carmona</title>
-  <link rel="icon" href="images/ACName3.png" type="image/png" />
+  <link rel="icon" type="image/png" href="images/ACName3.png" />
 
+  <!-- Vogue Font -->
   <style>
-    /* Vogue font */
     @font-face {
       font-family: 'Vogue';
       src: url('fonts/Vogue.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
     }
 
-    :root{
-      --bg:#050405;
-      --muted:#bdb8bf;
-      --neon:#ff66cc;
-      --card-bg: rgba(255,255,255,0.04);
-      --panel-border: rgba(255,102,204,0.18);
-      --accent: #ffefef;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: "Vogue", serif;
-      background: var(--bg);
-      color: #fff;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.28;
+    body {
+      background: black;
+      color: white;
+      font-family: 'Vogue', serif;
+      overflow-x: hidden;
     }
 
-    /* NAV */
-    .nav {
-      position:fixed;
-      top:12px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:1200;
-      display:flex;
-      gap:28px;
-      align-items:center;
-      font-weight:700;
-      letter-spacing:0.06em;
-    }
-    .nav a{
-      color:#fff;
-      text-decoration:none;
-      transition:all .18s ease;
-    }
-    .nav a:hover{color:var(--neon)}
-    .nav .logo{
-      position:fixed;
-      left:20px;
-      top:12px;
-      width:150px;
-      z-index:1300;
+    /* Navbar */
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      z-index: 1001;
+      width: 150px;
     }
 
-    /* HERO / signature */
+    nav {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff66cc;
+    }
+
+    /* Hero Section */
     .hero {
-      height: 92vh;
-      min-height:640px;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      overflow:hidden;
-      background: url('images/R7A7919.jpg') center/cover no-repeat;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 60%);
-      z-index:1;
-      backdrop-filter: blur(2px);
-    }
-    .hero-inner{position:relative;z-index:2;max-width:1200px;padding:40px 18px}
-
-    /* signature svg container */
-    .sig-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
-    svg.signature{
-      width:640px;
-      height:130px;
-      display:block;
-      overflow:visible;
-    }
-    svg.signature path{
-      stroke:var(--neon);
-      stroke-width:3;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      fill:none;
-      filter: drop-shadow(0 6px 18px rgba(255,102,204,0.18));
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
     }
 
-    .hero-title{
-      color:#fff;
-      font-size:28px;
-      margin-top:6px;
-      font-weight:700;
-      letter-spacing:0.02em;
-    }
-    .hero-sub{color:var(--muted);margin-top:8px;font-size:15px}
-
-    /* NEXT EVENT panel - big, Lando style */
-    .next-event {
-      max-width:1200px;
-      margin: 28px auto;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:14px;
-      border: 2px solid rgba(255,102,204,0.06);
-      display:flex;
-      gap:24px;
-      padding:28px;
-      align-items:stretch;
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: 1;
     }
 
-    /* Left column - date large */
-    .ne-left{
-      width:260px;
-      padding:10px 16px;
-      border-right:1px solid rgba(255,255,255,0.03);
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      justify-content:center;
-      gap:8px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      top: 0;
+      left: 0;
+      z-index: 2;
+      backdrop-filter: blur(4px);
     }
-    .ne-left .label{font-size:13px;color:var(--muted);letter-spacing:0.12em}
-    .ne-left .big-date{
-      font-size:64px;
-      line-height:0.9;
-      font-weight:900;
-      color:var(--neon);
-    }
-    .ne-left .month{font-size:40px;color:#eee;opacity:0.95;margin-top:6px}
 
-    /* middle: metrics */
-    .ne-mid{
-      flex:1;
-      padding:8px 24px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      justify-content:center;
+    .signature {
+      position: relative;
+      width: 450px;
+      height: auto;
+      z-index: 3;
+      filter: drop-shadow(0 0 15px rgba(255, 102, 204, 0.5));
     }
-    .ne-mid .headline{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px}
-    .ne-mid .desc{color:var(--muted);max-width:760px}
 
-    .stats-grid{
-      display:flex;
-      gap:18px;
-      margin-top:10px;
-      flex-wrap:wrap;
+    svg {
+      width: 100%;
+      height: auto;
     }
-    .stat-item{
-      min-width:120px;
-      background:var(--card-bg);
-      border-radius:10px;
-      padding:12px 14px;
-      border:1px solid rgba(255,102,204,0.06);
-    }
-    .stat-item .num{font-weight:900;color:var(--neon);font-size:20px}
-    .stat-item .label{font-size:12px;color:var(--muted);margin-top:6px}
 
-    /* right column: schedule */
-    .ne-right{
-      width:320px;padding:12px 18px;display:flex;flex-direction:column;gap:8px;align-items:flex-end;
+    path {
+      stroke: #ff66cc;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 8px #ff66cc);
     }
-    .ne-right .meta{color:var(--muted);font-size:13px;text-align:right}
-    .schedule{width:100%;margin-top:8px;border-top:1px solid rgba(255,255,255,0.03);padding-top:10px}
-    .schedule-item{display:flex;justify-content:space-between;align-items:center;color:#fff;opacity:0.95;padding:8px 0;font-weight:700}
-    .schedule-item .time{color:var(--neon)}
 
-    /* timeline */
-    .timeline-wrap{max-width:1150px;margin:60px auto;padding:0 20px 80px}
-    .timeline-line{position:relative;margin-left:80px;padding-left:40px}
-    .timeline-line::before{
-      content:"";
-      position:absolute;left:18px;top:0;bottom:0;width:4px;
-      background:linear-gradient(180deg,var(--neon), rgba(255,102,204,0.4));
-      border-radius:4px;
-      box-shadow:0 8px 40px rgba(255,102,204,0.06);
+    .event-info {
+      position: absolute;
+      bottom: 10%;
+      text-align: center;
+      z-index: 4;
+      color: white;
+      opacity: 0;
     }
-    .event-row{
-      position:relative;margin:28px 0;padding:18px 24px;border-radius:10px;background:var(--card-bg);
-      border:1px solid rgba(255,255,255,0.03);display:flex;gap:24px;align-items:center;opacity:0;transform:translateY(28px)
-    }
-    .event-row .dot{position:absolute;left:-36px;top:18px;width:20px;height:20px;border-radius:50%;background:var(--neon);box-shadow:0 6px 18px rgba(255,102,204,0.12)}
-    .event-thumb{width:160px;height:100px;border-radius:8px;background:#222;background-size:cover;background-position:center;flex-shrink:0}
-    .event-content h3{font-size:18px;margin-bottom:6px}
-    .event-content p{color:var(--muted);font-size:14px}
-    .event-meta{margin-top:10px;color:#fff;font-weight:700}
 
-    footer{color:#bdb8bf;text-align:center;padding:40px 0;font-size:13px}
-
-    /* responsive */
-    @media (max-width:1024px){
-      .next-event{flex-direction:column;gap:12px}
-      .ne-left{width:auto;border-right:none;display:flex;flex-direction:row;gap:18px;align-items:center;justify-content:flex-start}
-      .ne-right{align-items:flex-start;width:100%}
+    .event-info h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #ffb6e9;
     }
-    @media (max-width:700px){
-      .hero{background-position:center 30%}
-      svg.signature{width:92%}
-      .ne-left .big-date{font-size:44px}
-      .ne-left .month{font-size:28px}
-      .ne-right{width:100%}
+
+    .event-info p {
+      font-size: 1.1em;
+      color: #ddd;
+    }
+
+    /* Previous Events */
+    .previous-events {
+      background: black;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .previous-events h2 {
+      font-size: 2em;
+      color: #ff66cc;
+      margin-bottom: 40px;
+    }
+
+    .event-card {
+      margin: 20px auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #ff66cc;
+      border-radius: 12px;
+      max-width: 700px;
+      padding: 30px;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .event-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .event-card h3 {
+      color: #ffb6e9;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .event-card p {
+      color: #ccc;
+      font-size: 1em;
+      line-height: 1.5em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #999;
+      font-size: 12px;
     }
   </style>
-</head>
-<body>
 
-  <!-- nav -->
-  <img src="images/AC-Name3.png" class="logo" alt="Aria logo" />
-  <nav class="nav" aria-label="main-navigation">
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" />
+  <nav>
     <a href="index.html#about">ABOUT</a>
     <a href="index.html#stats">STATS</a>
-    <a href="index.html#gallery">GALLERY</a>
-    <a href="index.html#news">NEWS</a>
-    <a href="index.html#calendar">CALENDAR</a>
-    <a href="index.html#contact">CONTACT</a>
+    <a href="gallery.html">GALLERY</a>
+    <a href="news.html">NEWS</a>
+    <a href="calendar.html">CALENDAR</a>
+    <a href="contact.html">CONTACT</a>
   </nav>
 
-  <!-- hero with animated signature -->
-  <header class="hero" role="banner">
-    <div class="hero-inner">
-      <div class="sig-wrap" aria-hidden="true">
-        <!-- SVG Path: this is a hand-trace style path created to match your signature image -->
-        <svg class="signature" viewBox="0 0 1000 160" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-          <!-- Path was crafted as an artistic trace of your scan and is ready for stroke-draw animation -->
-          <path id="aria-sign"
-            d="M28 98 
-               C58 36 114 28 156 58 
-               C196 90 244 118 298 90
-               C360 58 420 30 492 66
-               C540 92 600 92 658 66
-               C708 44 760 20 820 34
-               C870 46 930 78 970 98"
-          />
-        </svg>
-
-        <div class="hero-title">Modeling Calendar — 2025 · 2026</div>
-        <div class="hero-sub">Featured upcoming live runways, editorials, and campaign dates — animated for the season spotlight.</div>
-      </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="images/IK9A9766.jpg" alt="Aria Carmona Calendar Hero">
+    
+    <!-- Signature SVG -->
+    <div class="signature">
+      <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+        <path id="signature-path" d="M50 120 C120 80, 180 160, 250 100 S400 70, 470 130 560 110, 580 150" />
+      </svg>
     </div>
-  </header>
 
-  <!-- Next Event panel -->
-  <main style="padding:28px 18px 0;">
-    <section class="next-event" aria-labelledby="nextEventTitle">
-      <div class="ne-left" aria-hidden="true">
-        <div class="label">WHEN</div>
-        <div class="big-date" id="next-date">25–28</div>
-        <div class="month">JUL</div>
-      </div>
+    <!-- Event Info -->
+    <div class="event-info">
+      <h2>Next Event: Paris Fashion Week 2026</h2>
+      <p>March 2, 2026 — Featuring Maison Sauvage | Grand Palais Éphémère</p>
+    </div>
+  </section>
 
-      <div class="ne-mid">
-        <div class="headline" id="nextEventTitle">MIAMI SWIM WEEK — FRISK ME GOOD</div>
-        <div class="desc">Aria debuts on the Frisk Me Good runway — a high-energy swimwear showcase featuring creatives and press from around the world. This event marks a major step in her runway career.</div>
+  <!-- Previous Events -->
+  <section class="previous-events">
+    <h2>Previous Events</h2>
 
-        <div class="stats-grid" aria-hidden="true">
-          <div class="stat-item"><div class="num">Debut</div><div class="label">Runway</div></div>
-          <div class="stat-item"><div class="num">Miami</div><div class="label">Location</div></div>
-          <div class="stat-item"><div class="num">2025</div><div class="label">Year</div></div>
-          <div class="stat-item"><div class="num">TDTD</div><div class="label">Agency</div></div>
-        </div>
-      </div>
+    <div class="event-card">
+      <h3>2025 Montclair Spooky Met Gala | SINISTER</h3>
+      <p>October 31, 2025 — A chillingly elegant night featuring gothic couture and Aria’s standout presence in the finale look.</p>
+    </div>
 
-      <aside class="ne-right" aria-label="Event schedule">
-        <div class="meta">MIAMI — FL</div>
+    <div class="event-card">
+      <h3>2025 Miami Swim Week | FRISK ME GOOD</h3>
+      <p>July 15, 2025 — Aria walked the runway for FRISK ME GOOD in a vibrant and daring collection that turned heads all week long.</p>
+    </div>
 
-        <div class="schedule" aria-hidden="true">
-          <div class="schedule-item"><span>Fitting</span> <span class="time">12 JUL · 10:00</span></div>
-          <div class="schedule-item"><span>Rehearsal</span> <span class="time">24 JUL · 15:00</span></div>
-          <div class="schedule-item"><span>Show</span> <span class="time">25 JUL · 20:30</span></div>
-        </div>
-      </aside>
-    </section>
+    <div class="event-card">
+      <h3>2025 New York Fashion Week | NEON NOIR</h3>
+      <p>February 10, 2025 — Bold silhouettes and electrifying energy marked Aria’s first NYFW appearance.</p>
+    </div>
+  </section>
 
-    <!-- Timeline -->
-    <section class="timeline-wrap" aria-label="past events timeline">
-      <div class="timeline-line">
-        <!-- Event rows (placeholder past events) -->
-        <div class="event-row" data-thumb="images/miami1.jpg">
-          <div class="dot"></div>
-          <div class="event-thumb" style="background-image:url('images/A_Carmona_Web-2.jpg')"></div>
-          <div class="event-content">
-            <h3>NYFW Prelude — Move The Crowd</h3>
-            <p class="event-desc">Aria walked for Barron Wise — a key editorial runway highlight this season.</p>
-            <div class="event-meta">Date: Feb 2025 · New York, NY</div>
-          </div>
-        </div>
+  <footer>© 2025 ARIA CARMONA</footer>
 
-        <div class="event-row" data-thumb="images/IK9A9840.jpg">
-          <div class="dot"></div>
-          <div class="event-thumb" style="background-image:url('images/IK9A9840.jpg')"></div>
-          <div class="event-content">
-            <h3>Editorial: Elysium Shadowfall</h3>
-            <p class="event-desc">High-contrast editorial series shot on location. Featured in digital and print outlets.</p>
-            <div class="event-meta">Date: Oct 2025 · North Riverdale</div>
-          </div>
-        </div>
-
-        <div class="event-row" data-thumb="images/ffa04.jpeg">
-          <div class="dot"></div>
-          <div class="event-thumb" style="background-image:url('images/ffa04.jpeg')"></div>
-          <div class="event-content">
-            <h3>Campaign — Financial Freedom Apparel</h3>
-            <p class="event-desc">Creative campaign focusing on runway and lifestyle.</p>
-            <div class="event-meta">Date: Jun 2025 · Studio</div>
-          </div>
-        </div>
-
-        <div class="event-row" data-thumb="images/R7A7534.jpg">
-          <div class="dot"></div>
-          <div class="event-thumb" style="background-image:url('images/R7A7534.jpg')"></div>
-          <div class="event-content">
-            <h3>Montclair Spooky Met Gala — SINISTER</h3>
-            <p class="event-desc">Avant-garde couture showcase. Aria models a bold, thematic collection.</p>
-            <div class="event-meta">Date: Oct 31 2025 · Montclair</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>© 2025 Aria Carmona · All Rights Reserved</footer>
-
-  <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- GSAP Animation -->
   <script>
-    // Signature draw animation: convert stroke length -> animate strokeDashoffset
-    const sig = document.getElementById('aria-sign');
-    const L = sig.getTotalLength();
-    // initialize
-    sig.style.strokeDasharray = L;
-    sig.style.strokeDashoffset = L;
-    // animate with GSAP
-    gsap.to(sig, { strokeDashoffset: 0, duration: 2.6, ease: "power2.inOut", delay: 0.25 });
+    gsap.registerPlugin(ScrollTrigger);
 
-    // hero text fade
-    gsap.from('.hero-title', {y: 26, opacity:0, duration:0.9, delay:0.9, ease:'power2.out'});
-    gsap.from('.hero-sub', {y: 18, opacity:0, duration:0.9, delay:1.05, ease:'power2.out'});
+    // Signature draw animation
+    const signaturePath = document.querySelector("#signature-path");
+    const pathLength = signaturePath.getTotalLength();
+    signaturePath.style.strokeDasharray = pathLength;
+    signaturePath.style.strokeDashoffset = pathLength;
 
-    // spotlight reveal for Next Event (slightly dramatic)
-    gsap.from('.next-event', { y: 40, opacity: 0, duration: 1.1, delay: 1.6, ease: "power3.out" });
-
-    // timeline reveal on scroll (IntersectionObserver + GSAP)
-    const rows = document.querySelectorAll('.event-row');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en, idx) => {
-        if (en.isIntersecting) {
-          // animate
-          gsap.to(en.target, {opacity:1, y:0, duration:1, ease:'power2.out', overwrite:true});
-          io.unobserve(en.target);
-        }
-      });
-    }, {threshold: 0.18});
-
-    rows.forEach(r => io.observe(r));
-
-    // small nicety: animate schedule time numbers in next-event slightly
-    gsap.from('.schedule-item .time', { x: 16, opacity: 0, stagger: 0.12, duration: 0.9, delay: 1.9, ease: 'power2.out' });
-
-    // keyboard nav to mimic index nav behavior (escape/back)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') window.location = 'index.html';
+    gsap.to(signaturePath, {
+      strokeDashoffset: 0,
+      duration: 3,
+      ease: "power2.inOut",
+      repeat: -1,
+      yoyo: true
     });
 
-    // Make nav links clickable (they lead back to index anchors)
-    document.querySelectorAll('.nav a').forEach(a => {
-      a.addEventListener('click', (ev) => {
-        // default anchors navigate to index; keep behavior
+    // Fade in event info
+    gsap.to(".event-info", {
+      opacity: 1,
+      y: -10,
+      duration: 1.5,
+      delay: 1.2,
+      ease: "power2.out"
+    });
+
+    // Scroll-triggered event cards
+    const cards = document.querySelectorAll('.event-card');
+    cards.forEach((card) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 80%",
+        onEnter: () => card.classList.add('visible')
       });
     });
   </script>
