@@ -20,14 +20,10 @@
 
     html, body {
       height: 100%;
-      scroll-behavior: smooth;
+      overflow: hidden;
       font-family: 'Vogue', serif;
       background: black;
       color: white;
-    }
-
-    body {
-      overflow-x: hidden;
     }
 
     /* --- NAVIGATION --- */
@@ -62,20 +58,32 @@
       width: 150px;
     }
 
-    /* --- SECTIONS --- */
-    section {
+    /* --- SECTION STYLES --- */
+    .section {
+      position: absolute;
+      width: 100vw;
       height: 100vh;
-      position: relative;
+      top: 0;
+      left: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
       overflow: hidden;
-      transition: transform 1s ease, opacity 1s ease;
+      transition: all 1s ease-in-out;
+      opacity: 0;
+      transform: translateX(100%);
+      z-index: 0;
     }
 
-    section img,
-    section video {
+    .section.active {
+      opacity: 1;
+      transform: translate(0, 0);
+      z-index: 5;
+    }
+
+    .section img,
+    .section video {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -129,12 +137,26 @@
     }
 
     footer {
-      position: relative;
-      text-align: center;
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
       color: #aaa;
       font-size: 12px;
-      padding: 15px 0;
-      background: #000;
+      z-index: 1000;
+    }
+
+    /* Transition directions */
+    .slide-up { transform: translateY(100%); }
+    .slide-down { transform: translateY(-100%); }
+    .slide-left { transform: translateX(100%); }
+    .slide-right { transform: translateX(-100%); }
+
+    .section.active.slide-up,
+    .section.active.slide-down,
+    .section.active.slide-left,
+    .section.active.slide-right {
+      transform: translate(0, 0);
     }
 
     @keyframes fadeIn {
@@ -157,7 +179,7 @@
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
+  <div class="section active slide-right" id="hero">
     <video autoplay muted loop>
       <source src="videos/intro.mp4" type="video/mp4">
     </video>
@@ -165,20 +187,20 @@
     <div class="section-content">
       <h1>Fierce. Bold. Confident. This is the DNA of <i>Aria Carmona.</i></h1>
     </div>
-  </section>
+  </div>
 
   <!-- ABOUT -->
-  <section id="about">
+  <div class="section slide-up" id="about">
     <img src="images/miami1.jpg" alt="Aria">
     <div class="overlay"></div>
     <div class="section-content">
       <h2>About Aria</h2>
-      <p>Aria Carmona is a 21-year-old female talent making waves in the fashion industry. The Manhattan-based model is currently supported by TDTD Models, and looks to elevate her career by taking it to the next level.</p>
+      <p>Aria Carmona is a 21-year-old female talent making waves in the fashion industry. The Manhattan-based model looks to elevate her career and take it to the next level.</p>
     </div>
-  </section>
+  </div>
 
   <!-- STATS -->
-  <section id="stats">
+  <div class="section slide-left" id="stats">
     <img src="images/R7A0272.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
@@ -193,20 +215,20 @@
         <div class="stat">Hair: Black</div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- GALLERY -->
-  <section id="gallery">
+  <div class="section slide-down" id="gallery">
     <img src="images/R7A0273.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Gallery</h2>
       <p>Explore the latest editorials and campaigns featuring Aria.</p>
     </div>
-  </section>
+  </div>
 
   <!-- NEWS -->
-  <section id="news">
+  <div class="section slide-right" id="news">
     <img src="images/R7A7977.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
@@ -214,44 +236,65 @@
       <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
       <a href="news.html" style="color:pink;">Explore News →</a>
     </div>
-  </section>
+  </div>
 
   <!-- CALENDAR -->
-  <section id="calendar">
+  <div class="section slide-up" id="calendar">
     <img src="images/R7A7534.jpg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Calendar</h2>
       <p>Upcoming shows and events will be listed here soon.</p>
     </div>
-  </section>
+  </div>
 
   <!-- CONTACT -->
-  <section id="contact">
+  <div class="section slide-left" id="contact">
     <img src="images/ffa01.jpeg" alt="">
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Contact</h2>
       <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
     </div>
-  </section>
+  </div>
 
   <footer>© 2025 ARIA CARMONA</footer>
 
   <script>
-    // Optional smooth fade transitions when scrolling between sections
-    const sections = document.querySelectorAll('section');
-    const options = { threshold: 0.4 };
+    const sections = document.querySelectorAll('.section');
+    let current = 0;
+    let isAnimating = false;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        entry.target.style.opacity = entry.isIntersecting ? '1' : '0';
-        entry.target.style.transform = entry.isIntersecting ? 'translateY(0)' : 'translateY(50px)';
-        entry.target.style.transition = 'all 1s ease';
-      });
-    }, options);
+    function showSection(index) {
+      if (isAnimating || index === current || index < 0 || index >= sections.length) return;
+      isAnimating = true;
 
-    sections.forEach(sec => observer.observe(sec));
+      const currentSection = sections[current];
+      const nextSection = sections[index];
+
+      // Remove active state
+      currentSection.classList.remove('active');
+      nextSection.classList.add('active');
+
+      setTimeout(() => {
+        isAnimating = false;
+        current = index;
+      }, 1000);
+    }
+
+    // Scroll wheel
+    window.addEventListener('wheel', (e) => {
+      if (isAnimating) return;
+      if (e.deltaY > 0) showSection(current + 1);
+      else showSection(current - 1);
+    });
+
+    // Keyboard arrows
+    window.addEventListener('keydown', (e) => {
+      if (isAnimating) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSection(current + 1);
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1);
+    });
   </script>
 </body>
 </html>
