@@ -101,6 +101,7 @@
 
     @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
+    /* Transition directions */
     .slide-up { transform: translateY(100%); }
     .slide-down { transform: translateY(-100%); }
     .slide-left { transform: translateX(100%); }
@@ -130,19 +131,11 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      flex-direction:column;
       z-index:5000;
       overflow:hidden;
     }
 
-    #preloader .preloader-logo {
-      font-family: 'Vogue', serif;
-      font-size: 48px;
-      color:#ff66cc;
-      letter-spacing: 2px;
-      opacity:0;
-      white-space: nowrap;
-    }
+    #preloader .preloader-logo img { width:180px; height:auto; filter:drop-shadow(0 0 12px #ff66cc); }
 
     #preloader .preloader-mask {
       position:absolute;
@@ -159,7 +152,7 @@
 
   <!-- Preloader -->
   <div id="preloader">
-    <div class="preloader-logo" id="preloaderText">ARIA CARMONA</div>
+    <div class="preloader-logo"><img src="images/ACName3.png" alt="ARIA CARMONA"></div>
     <div class="preloader-mask"></div>
   </div>
 
@@ -264,30 +257,13 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
-    // Preloader with looping chequered pattern and typewriter logo
+    // Wait for all images and videos to fully load
     window.addEventListener('load', () => {
-      const preloaderMask = document.querySelector('.preloader-mask');
-      const preloaderText = document.getElementById('preloaderText');
-
-      // Typewriter fade-in
-      const text = preloaderText.textContent;
-      preloaderText.textContent = '';
-      let i = 0;
-      const typeInterval = setInterval(() => {
-        preloaderText.textContent += text[i];
-        i++;
-        if(i >= text.length) clearInterval(typeInterval);
-      }, 80);
-
-      // GSAP timeline for looping chequered effect
-      const tl = gsap.timeline({repeat:2, repeatDelay:0.2}); // 3 loops total
-      tl.to(preloaderMask, {opacity:1, duration:0.6, ease:"power2.inOut"})
-        .to(preloaderMask, {opacity:0, duration:0.6, ease:"power2.inOut"});
-
-      // Hide preloader after timeline finishes
-      tl.call(() => {
-        gsap.to("#preloader", {opacity:0, duration:0.5, pointerEvents:"none", display:"none"});
-      });
+      const preloaderTimeline = gsap.timeline();
+      preloaderTimeline
+        .to(".preloader-mask", {opacity:1, duration:0.8, ease:"power2.inOut"})
+        .to(".preloader-mask", {opacity:0, duration:0.8, delay:0.2, ease:"power2.inOut"})
+        .to("#preloader", {opacity:0, duration:0.6, pointerEvents:"none", display:"none", ease:"power2.out"});
     });
 
     // Section navigation logic
