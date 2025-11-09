@@ -175,6 +175,57 @@
     .active.slide-right {
       transform: translate(0, 0);
     }
+
+    /* --- MOBILE RESPONSIVE FIXES --- */
+@media (max-width: 768px) {
+
+  /* Hero adjustments */
+  .hero {
+    min-height: 500px;
+    padding: 0 12px;
+  }
+  .sig-wrap .signature-svg {
+    width: 90vw !important;
+    height: auto !important;
+  }
+  .hero-title {
+    font-size: 16px;
+  }
+  .hero-sub {
+    font-size: 13px;
+    max-width: 90vw;
+  }
+
+  /* Next panel stacks vertically */
+  .next-panel {
+    flex-direction: column;
+    padding: 16px;
+    gap: 14px;
+  }
+  .np-date, .np-schedule {
+    flex: 0 0 auto;
+    text-align: left;
+    padding: 8px 0;
+  }
+  .np-day { font-size: 40px; }
+  .np-month { font-size: 18px; }
+  .np-title { font-size: 18px; }
+  .np-desc { font-size: 14px; }
+
+  /* Past events table */
+  .past-table td, .past-table th {
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+
+  /* Navbar links wrap if needed */
+  .nav {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+}
+
+    
   </style>
 </head>
 
