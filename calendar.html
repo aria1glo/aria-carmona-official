@@ -73,12 +73,13 @@
       overflow:hidden;
       background: #000;
     }
-    /* hero image centered to show face/body */
+    /* hero image centered to show face/body, shifted down 20px */
     .hero .bg {
       position:absolute; inset:0;
+      top:20px; /* shift down */
       background-image: url('images/IK9A9766.jpg');
       background-size:cover;
-      background-position:center center; /* center focus */
+      background-position:center center;
       filter: brightness(0.62);
       z-index:1;
       transform-origin:center;
@@ -87,7 +88,7 @@
 
     /* signature container */
     .sig-wrap{position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; gap:8px; padding:10px 20px;}
-    .signature-svg{ width:1300px; max-width:95vw; height:auto; display:block; filter: drop-shadow(0 12px 36px rgba(255,102,204,0.28)); }
+    .signature-svg{ width:1300px; max-width:95vw; height:auto; display:block; filter: drop-shadow(0 12px 36px rgba(255,102,204,0.28)); overflow:visible; }
 
     .hero-title{ z-index:3; color:#fff; font-size:18px; letter-spacing:0.12em; margin-top:6px; font-weight:700}
     .hero-sub{ z-index:3; color:var(--muted); margin-top:6px; font-size:14px; max-width:820px }
@@ -174,8 +175,8 @@
     <div class="bg" aria-hidden="true"></div>
 
     <div class="sig-wrap" role="img" aria-label="signature">
-      <!-- Monte Carlo signature -->
-      <svg class="signature-svg" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- Monte Carlo signature, fixed clipping + glow -->
+      <svg class="signature-svg" viewBox="-20 0 840 300" xmlns="http://www.w3.org/2000/svg">
         <g transform="rotate(-3, 400, 150)">
           <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
                 font-family="MonteCarlo, cursive" font-size="200" stroke="#FF66CC"
@@ -277,19 +278,20 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Continuous loop signature animation
+    // Continuous loop signature animation with subtle glow
     const sigText = document.querySelector('.signature-svg text');
     const dashLength = 1000;
     sigText.setAttribute('stroke-dasharray', dashLength);
     sigText.setAttribute('stroke-dashoffset', dashLength);
 
-    function animateSignature() {
-      gsap.set(sigText, {opacity:1});
-      gsap.fromTo(sigText, 
-        {strokeDashoffset: dashLength}, 
-        {strokeDashoffset: 0, duration: 2.5, ease: "power2.inOut", repeat: -1, yoyo:true});
-    }
-    animateSignature();
+    gsap.fromTo(sigText, 
+      {strokeDashoffset: dashLength, filter:"drop-shadow(0 0 8px rgba(255,102,204,0.16))"}, 
+      {strokeDashoffset: 0, duration: 2.5, ease: "power2.inOut", repeat: -1, yoyo:true, 
+       onRepeat: () => {
+         gsap.fromTo(sigText, {filter:"drop-shadow(0 0 8px rgba(255,102,204,0.16))"}, {filter:"drop-shadow(0 0 22px rgba(255,102,204,0.36))", duration:0.6, yoyo:true, repeat:1});
+       }
+      }
+    );
 
     // hero text fade
     gsap.from('.hero-title', {y: 18, opacity:0, duration: 0.9, delay: 0.3, ease:'power2.out'});
