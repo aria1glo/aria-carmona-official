@@ -12,11 +12,7 @@
       src: url('fonts/Vogue.ttf') format('truetype');
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       overflow: hidden;
@@ -38,23 +34,10 @@
       font-weight: bold;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+    nav a { color: white; text-decoration: none; transition: 0.3s; }
+    nav a:hover { color: #ff66cc; }
 
-    nav a:hover {
-      color: #ff66cc;
-    }
-
-    .logo {
-      position: fixed;
-      top: 10px;
-      left: 20px;
-      z-index: 1001;
-      width: 150px;
-    }
+    .logo { position: fixed; top: 10px; left: 20px; z-index: 1001; width: 150px; }
 
     .section {
       position: absolute;
@@ -72,14 +55,9 @@
       transition: opacity 1s ease, transform 1.2s ease;
     }
 
-    .section.active {
-      opacity: 1;
-      pointer-events: all;
-      z-index: 5;
-    }
+    .section.active { opacity: 1; pointer-events: all; z-index: 5; }
 
-    .section video,
-    .section img {
+    .section video, .section img {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -89,46 +67,17 @@
       z-index: 1;
     }
 
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      z-index: 2;
-      backdrop-filter: blur(4px);
-    }
+    .overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.55); z-index: 2; backdrop-filter: blur(4px); }
 
-    .section-content {
-      position: relative;
-      z-index: 3;
-      max-width: 700px;
-      padding: 40px;
-      animation: fadeIn 1s ease-in-out;
-    }
+    .section-content { position: relative; z-index: 3; max-width: 700px; padding: 40px; animation: fadeIn 1s ease-in-out; }
 
-    .section-content h1,
-    .section-content h2 {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-      color: #fff;
-    }
+    .section-content h1, .section-content h2 { font-size: 2.5em; margin-bottom: 15px; color: #fff; }
+    .section-content p { font-size: 1em; line-height: 1.6em; color: #ddd; }
 
-    .section-content p {
-      font-size: 1em;
-      line-height: 1.6em;
-      color: #ddd;
-    }
-
-    .stats-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 20px;
-      margin-bottom: 40px;
-    }
+    .stats-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; margin-bottom: 40px; }
 
     .stat {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255,255,255,0.15);
       padding: 10px;
       border: 1px solid #ff66cc;
       border-radius: 10px;
@@ -138,7 +87,7 @@
     }
 
     .show-box {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255,255,255,0.12);
       border: 1px solid #ff66cc;
       border-radius: 10px;
       margin-top: 15px;
@@ -148,79 +97,54 @@
       backdrop-filter: blur(3px);
     }
 
-    footer {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #aaa;
-      font-size: 12px;
-      z-index: 1000;
-    }
+    footer { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: #aaa; font-size: 12px; z-index: 1000; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
     /* Transition directions */
     .slide-up { transform: translateY(100%); }
     .slide-down { transform: translateY(-100%); }
     .slide-left { transform: translateX(100%); }
     .slide-right { transform: translateX(-100%); }
+    .active.slide-up, .active.slide-down, .active.slide-left, .active.slide-right { transform: translate(0,0); }
 
-    .active.slide-up,
-    .active.slide-down,
-    .active.slide-left,
-    .active.slide-right {
-      transform: translate(0, 0);
-    }
-
-    /* --- MOBILE RESPONSIVE FIXES --- */
-    @media (max-width: 768px) {
-      .hero { min-height: 500px; padding: 0 12px; }
-      .sig-wrap .signature-svg { width: 90vw !important; height: auto !important; }
-      .hero-title { font-size: 16px; }
-      .hero-sub { font-size: 13px; max-width: 90vw; }
-
-      .next-panel { flex-direction: column; padding: 16px; gap: 14px; }
-      .np-date, .np-schedule { flex: 0 0 auto; text-align: left; padding: 8px 0; }
-      .np-day { font-size: 40px; }
-      .np-month { font-size: 18px; }
-      .np-title { font-size: 18px; }
-      .np-desc { font-size: 14px; }
-
-      .past-table td, .past-table th { font-size: 12px; padding: 8px 6px; }
-      .nav { flex-wrap: wrap; gap: 14px; }
+    @media (max-width:768px){
+      .hero { min-height: 500px; padding:0 12px; }
+      .sig-wrap .signature-svg { width:90vw !important; height:auto !important; }
+      .hero-title { font-size:16px; }
+      .hero-sub { font-size:13px; max-width:90vw; }
+      .next-panel { flex-direction: column; padding:16px; gap:14px; }
+      .np-date, .np-schedule { flex:0 0 auto; text-align:left; padding:8px 0; }
+      .np-day { font-size:40px; }
+      .np-month { font-size:18px; }
+      .np-title { font-size:18px; }
+      .np-desc { font-size:14px; }
+      .past-table td, .past-table th { font-size:12px; padding:8px 6px; }
+      .nav { flex-wrap: wrap; gap:14px; }
     }
 
     /* --- Preloader --- */
     #preloader {
       position: fixed;
-      inset: 0;
-      background: #050405;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 5000;
-      overflow: hidden;
+      inset:0;
+      background:#050405;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5000;
+      overflow:hidden;
     }
 
-    #preloader .preloader-logo img {
-      width: 180px;
-      height: auto;
-      filter: drop-shadow(0 0 12px #ff66cc);
-    }
+    #preloader .preloader-logo img { width:180px; height:auto; filter:drop-shadow(0 0 12px #ff66cc); }
 
     #preloader .preloader-mask {
-      position: absolute;
-      inset: 0;
+      position:absolute;
+      inset:0;
       background: repeating-conic-gradient(#050405 0% 25%, #ff66cc 0% 50%) 50% / 20px 20px;
-      opacity: 0;
+      opacity:0;
     }
   </style>
 
-  <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
@@ -228,9 +152,7 @@
 
   <!-- Preloader -->
   <div id="preloader">
-    <div class="preloader-logo">
-      <img src="images/ACName3.png" alt="ARIA CARMONA">
-    </div>
+    <div class="preloader-logo"><img src="images/ACName3.png" alt="ARIA CARMONA"></div>
     <div class="preloader-mask"></div>
   </div>
 
@@ -282,12 +204,8 @@
         <div class="stat">Hair: Black</div>
       </div>
 
-      <div class="show-box">
-        Debut Show: 2025 Miami Swim Week | FRISK ME GOOD
-      </div>
-      <div class="show-box">
-        Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER
-      </div>
+      <div class="show-box">Debut Show: 2025 Miami Swim Week | FRISK ME GOOD</div>
+      <div class="show-box">Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER</div>
     </div>
   </div>
 
@@ -337,15 +255,16 @@
 
   <footer>© 2025 ARIA CARMONA</footer>
 
-  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
-    // Preloader animation
-    gsap.timeline()
-      .set("#preloader", {opacity: 1, display: "flex"})
-      .to(".preloader-mask", {opacity: 1, duration: 0.8, ease: "power2.inOut"})
-      .to(".preloader-mask", {opacity: 0, duration: 0.8, delay: 0.2, ease: "power2.inOut"})
-      .to("#preloader", {opacity: 0, duration: 0.6, pointerEvents: "none", display: "none", ease: "power2.out"});
+    // Wait for all images and videos to fully load
+    window.addEventListener('load', () => {
+      const preloaderTimeline = gsap.timeline();
+      preloaderTimeline
+        .to(".preloader-mask", {opacity:1, duration:0.8, ease:"power2.inOut"})
+        .to(".preloader-mask", {opacity:0, duration:0.8, delay:0.2, ease:"power2.inOut"})
+        .to("#preloader", {opacity:0, duration:0.6, pointerEvents:"none", display:"none", ease:"power2.out"});
+    });
 
     // Section navigation logic
     const sections = document.querySelectorAll('.section');
@@ -364,31 +283,24 @@
       nextSection.classList.add('active');
       currentSection.classList.remove('active');
 
-      setTimeout(() => {
-        isAnimating = false;
-        current = index;
-      }, 1400);
+      setTimeout(() => { isAnimating=false; current=index; }, 1400);
     }
 
     window.addEventListener('wheel', (e) => {
-      if (isAnimating) return;
-      if (e.deltaY > 0) showSection(current + 1, 'next');
-      else showSection(current - 1, 'prev');
+      if(isAnimating) return;
+      if(e.deltaY>0) showSection(current+1,'next');
+      else showSection(current-1,'prev');
     });
 
     window.addEventListener('keydown', (e) => {
-      if (isAnimating) return;
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') showSection(current + 1, 'next');
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1, 'prev');
+      if(isAnimating) return;
+      if(e.key==='ArrowDown'||e.key==='ArrowRight') showSection(current+1,'next');
+      if(e.key==='ArrowUp'||e.key==='ArrowLeft') showSection(current-1,'prev');
     });
 
-    document.querySelectorAll('nav a').forEach((link, index) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection(index + 1);
-      });
+    document.querySelectorAll('nav a').forEach((link,index)=>{
+      link.addEventListener('click',(e)=>{ e.preventDefault(); showSection(index+1); });
     });
   </script>
-
 </body>
 </html>
