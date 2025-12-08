@@ -10,183 +10,179 @@
     @font-face {
       font-family: 'Vogue';
       src: url('fonts/Vogue.ttf') format('truetype');
+      font-display: swap;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      font-family: 'Vogue', serif;
+    /* allow normal vertical scrolling */
+    html, body {
+      height: 100%;
       background: black;
       color: white;
+      font-family: 'Vogue', serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      overflow-y: auto; /* important: allow scrolling */
+      -webkit-overflow-scrolling: touch;
     }
 
     /* ---------------- NAVBAR ---------------- */
-    nav {
+    .topbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      padding: 15px 0;
-      display: flex;
+      z-index: 3000;
+      display:flex;
+      align-items:center;
       justify-content: center;
-      gap: 25px;
-      backdrop-filter: blur(8px);
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 2000;
+      padding: 10px 16px;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+      gap: 16px;
+    }
+
+    /* left area for logo, center for nav, right for hamburger on mobile */
+    .topbar-inner {
+      width: 100%;
+      max-width: 1200px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 140px;
+      display:block;
+      margin-right: 8px;
+    }
+
+    nav {
+      display:flex;
+      gap: 22px;
+      align-items:center;
+      justify-content:center;
+      flex:1;
     }
 
     nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-size: 15px;
       letter-spacing: 1px;
-      transition: 0.3s;
-      font-weight: bold;
+      font-weight: 700;
+      padding: 6px 8px;
+      transition: color .18s ease, background .18s ease;
+      white-space: nowrap;
+    }
+    nav a:hover { color: #ff66cc; }
+
+    /* mobile hamburger */
+    .hamburger {
+      display:none;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px;
     }
 
-    nav a:hover {
-      color: #ff66cc;
-      background: black;
-      padding: 5px 8px;
-      border-radius: 4px;
+    .mobile-menu {
+      display:none;
+      position: absolute;
+      top: 64px;
+      right: 14px;
+      background: rgba(0,0,0,0.9);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 10px;
+      z-index: 3050;
+      min-width: 160px;
+    }
+    .mobile-menu a { display:block; padding:8px 10px; color:#fff; text-decoration:none; }
+    .mobile-menu a:hover { color:#ff66cc; background: rgba(255,255,255,0.02); border-radius:4px; }
+
+    /* ---------------- MAIN SECTIONS ---------------- */
+    main {
+      margin-top: 72px; /* leave space for topbar */
     }
 
-    /* Navbar Mobile Fix */
-    @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        gap: 12px;
-        padding: 12px 0;
-      }
-      nav a {
-        font-size: 13px;
-      }
-    }
-
-    /* ---------------- LOGO ---------------- */
-    .logo {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 140px;
-      height: auto;
-      z-index: 2001;
-    }
-
-    @media (max-width: 768px) {
-      .logo {
-        width: 110px;
-        top: 14px;
-        left: 14px;
-      }
-    }
-
-    /* ---------------- SECTIONS ---------------- */
     section {
       position: relative;
       width: 100%;
       min-height: 100vh;
-      padding-top: 100px; /* navbar spacing */
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       text-align: center;
       overflow: hidden;
     }
 
-    section img,
-    section video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+    section img, section video {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
       object-fit: cover;
       z-index: 1;
     }
 
     .overlay {
-      position: absolute;
-      inset: 0;
+      position:absolute;
+      inset:0;
       background: rgba(0,0,0,0.55);
+      z-index:2;
       backdrop-filter: blur(3px);
-      z-index: 2;
     }
 
     .content {
       position: relative;
-      z-index: 3;
-      max-width: 750px;
-      padding: 30px;
-      animation: fadeIn 1.2s ease-out forwards;
-      opacity: 0;
+      z-index:3;
+      max-width: 900px;
+      padding: 28px;
+      color:#fff;
     }
 
-    section h2, section h1 {
-      margin-bottom: 15px;
-      font-size: 2.4em;
-      color: #fff;
+    h1 {
+      font-size: clamp(28px, 6.5vw, 56px);
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.35em;
+      font-weight: 900;
     }
 
-    section p {
-      font-size: 1.1em;
-      color: #e6e6e6;
-      line-height: 1.6em;
-      margin-bottom: 20px;
-    }
+    p { color: #e6e6e6; font-size: 1.05rem; line-height:1.6; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(25px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---------------- HERO TYPEWRITER ---------------- */
-    .typewriter {
-      overflow: hidden;
-      white-space: nowrap;
-      opacity: 0;
-      animation: fadeText 1s ease forwards, typing 3s steps(40) forwards;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes fadeText {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* ---------------- STATS ---------------- */
+    /* Stats grid */
     .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 40px;
+      display:grid;
+      grid-template-columns: repeat(4,1fr);
+      gap:12px;
+      margin-top: 20px;
     }
-
     .stat {
-      padding: 12px;
-      border: 1px solid #ff66cc;
-      border-radius: 10px;
+      padding:12px;
       background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(4px);
-      font-size: 1em;
-    }
-
-    @media (max-width: 768px) {
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      border-radius:10px;
+      border: 1px solid #ff66cc;
     }
 
     .show-box {
-      background: rgba(255,255,255,0.12);
-      padding: 14px;
-      margin-top: 20px;
-      border-radius: 10px;
-      border: 1px solid #ff66cc;
+      margin-top:18px;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #ff66cc;
+      background: rgba(255,255,255,0.08);
+    }
+
+    footer {
+      padding: 28px 0;
+      color: #cfcfcf;
+      text-align:center;
     }
 
     /* ---------------- PRELOADER ---------------- */
@@ -194,176 +190,271 @@
       position: fixed;
       inset: 0;
       background: #050405;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 5000;
+      z-index: 6000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction: column;
+      gap: 18px;
       overflow: hidden;
-      transition: opacity 0.6s ease;
     }
-
-    #preloader-logo img {
-      width: 200px;
-      filter: drop-shadow(0 0 14px #ff66cc);
-    }
-
+    #preloader-logo img { width: 180px; filter: drop-shadow(0 0 14px #ff66cc); display:block; }
     #checker-mask {
-      position: absolute;
-      inset: 0;
-      background: repeating-conic-gradient(#050405 0% 25%, #ff66cc 0% 50%) 50% / 22px 22px;
-      opacity: 0;
-      transition: opacity 0.8s ease;
+      position:absolute;
+      inset:0;
+      background: repeating-conic-gradient(#050405 0% 25%, #ff66cc 0% 50%) 50% / 20px 20px;
+      opacity:0;
     }
 
-    /* ---------------- FOOTER ---------------- */
-    footer {
-      padding: 20px 0;
-      text-align: center;
-      color: #ccc;
-      font-size: 14px;
+    /* ---------------- TYPEWRITER TEXT (JS-driven) ---------------- */
+    .hero-text { opacity:0; white-space: normal; }
+
+    /* ---------------- RESPONSIVE ---------------- */
+    @media (max-width: 900px) {
+      nav { gap:14px; }
+      .logo { width:120px; }
+      .topbar { padding: 8px 12px; }
+      .topbar-inner { max-width: 1100px; padding:0 6px; }
     }
+
+    @media (max-width: 768px) {
+      .logo { width:100px; }
+      nav { display:none; } /* hide desktop nav on mobile */
+      .hamburger { display:block; }
+      .topbar { padding: 10px 8px; }
+      .content { padding: 18px; }
+      h1 { font-size: clamp(20px, 7.5vw, 36px); }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
+    /* small nicety to ensure anchor jumps are visible below fixed topbar */
+    :target::before {
+      content: "";
+      display: block;
+      height: 82px; /* should match topbar height */
+      margin-top: -82px;
+      visibility: hidden;
+    }
+
   </style>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- GSAP for preloader animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 </head>
 
 <body>
-
   <!-- PRELOADER -->
-  <div id="preloader">
-    <div id="preloader-logo">
-      <img src="images/ACName3.png" alt="ARIA CARMONA">
-    </div>
-    <div id="checker-mask"></div>
+  <div id="preloader" aria-hidden="false">
+    <div id="preloader-logo"><img src="images/ACName3.png" alt="ARIA CARMONA"></div>
+    <div id="checker-mask" aria-hidden="true"></div>
   </div>
 
-  <!-- LOGO -->
-  <a href="#hero">
-    <img src="images/ACName3.png" class="logo" alt="Aria Carmona Logo" />
-  </a>
+  <!-- TOPBAR -->
+  <div class="topbar" role="banner" aria-label="topbar">
+    <div class="topbar-inner">
+      <a href="#hero" style="display:flex;align-items:center;gap:10px;">
+        <img src="images/ACName3.png" alt="Aria Carmona" class="logo">
+      </a>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="#about">ABOUT</a>
-    <a href="#stats">STATS</a>
-    <a href="#gallery">GALLERY</a>
-    <a href="#news">NEWS</a>
-    <a href="#calendar">CALENDAR</a>
-    <a href="#contact">CONTACT</a>
-  </nav>
+      <nav role="navigation" aria-label="Main navigation">
+        <a href="#about">ABOUT</a>
+        <a href="#stats">STATS</a>
+        <a href="#gallery">GALLERY</a>
+        <a href="#news">NEWS</a>
+        <a href="#calendar">CALENDAR</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <video autoplay muted loop playsinline>
-      <source src="videos/intro.mp4" type="video/mp4">
-    </video>
-    <div class="overlay"></div>
-
-    <div class="content">
-      <h1 class="typewriter">Fierce. Bold. Confident. This is the DNA of <i>Aria Carmona.</i></h1>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <img src="images/miami1.jpg">
-    <div class="overlay"></div>
-
-    <div class="content">
-      <h2>About Aria</h2>
-      <p>Aria Carmona is a 21 year old female model making waves in the fashion industry. She is currently supported by TDTD Models, with her highlights being walks in both Miami Swim Week & New York Fashion Week this year. The Manhattan-based talent looks to elevate her career by taking it to the next level.</p>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section id="stats">
-    <img src="images/R7A0273.jpg">
-    <div class="overlay"></div>
-
-    <div class="content">
-      <h2>Stats</h2>
-      <div class="stats-grid">
-        <div class="stat">Height: 5'9"</div>
-        <div class="stat">Bust: 34"</div>
-        <div class="stat">Waist: 24"</div>
-        <div class="stat">Hips: 34"</div>
-        <div class="stat">Shoe: 11</div>
-        <div class="stat">Eyes: Brown</div>
-        <div class="stat">Hair: Black</div>
+      <!-- mobile hamburger -->
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+        <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+          <a href="#about">ABOUT</a>
+          <a href="#stats">STATS</a>
+          <a href="#gallery">GALLERY</a>
+          <a href="#news">NEWS</a>
+          <a href="#calendar">CALENDAR</a>
+          <a href="#contact">CONTACT</a>
+        </div>
       </div>
-
-      <div class="show-box">Debut Show: 2025 Miami Swim Week | FRISK ME GOOD</div>
-      <div class="show-box">Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER</div>
     </div>
-  </section>
+  </div>
 
-  <!-- GALLERY -->
-  <section id="gallery">
-    <img src="images/IK9A9840.jpg">
-    <div class="overlay"></div>
+  <main>
+    <!-- HERO -->
+    <section id="hero" aria-label="hero">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="videos/intro.mp4" type="video/mp4">
+      </video>
+      <div class="overlay"></div>
 
-    <div class="content">
-      <h2>Gallery</h2>
-      <p>Explore the latest editorials and campaigns featuring Aria.</p>
-      <a href="gallery.html" style="color:#ff66cc;">View Full Gallery →</a>
-    </div>
-  </section>
+      <div class="content">
+        <!-- typewriter text is JS-driven for letter-by-letter fade (no blinking cursor) -->
+        <h1 id="heroText" class="hero-text">Fierce. Bold. Confident. This is the DNA of <i>Aria Carmona.</i></h1>
+      </div>
+    </section>
 
-  <!-- NEWS -->
-  <section id="news">
-    <img src="images/ffa04.jpeg">
-    <div class="overlay"></div>
+    <!-- ABOUT -->
+    <section id="about" aria-label="about">
+      <img src="images/miami1.jpg" alt="Aria">
+      <div class="overlay"></div>
 
-    <div class="content">
-      <h2>Latest Highlights</h2>
-      <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
-      <a href="news.html" style="color:#ff66cc;">Explore News →</a>
-    </div>
-  </section>
+      <div class="content">
+        <h2>About Aria</h2>
+        <p>Aria Carmona is a 21 year old female model making waves in the fashion industry. She is currently supported by TDTD Models, with her highlights being walks in both Miami Swim Week & New York Fashion Week this year. The Manhattan-based talent looks to elevate her career by taking it to the next level.</p>
+      </div>
+    </section>
 
-  <!-- CALENDAR -->
-  <section id="calendar">
-    <img src="images/IK9A9766.jpg">
-    <div class="overlay"></div>
+    <!-- STATS -->
+    <section id="stats" aria-label="stats">
+      <img src="images/R7A0273.jpg" alt="">
+      <div class="overlay"></div>
 
-    <div class="content">
-      <h2>Calendar</h2>
-      <p>Upcoming shows and events will be listed here soon.</p>
-      <a href="calendar.html" style="color:#ff66cc;">View Full Schedule →</a>
-    </div>
-  </section>
+      <div class="content">
+        <h2>Stats</h2>
+        <div class="stats-grid">
+          <div class="stat">Height: 5'9"</div>
+          <div class="stat">Bust: 34"</div>
+          <div class="stat">Waist: 24"</div>
+          <div class="stat">Hips: 34"</div>
+          <div class="stat">Shoe: 11</div>
+          <div class="stat">Eyes: Brown</div>
+          <div class="stat">Hair: Black</div>
+        </div>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <img src="images/ffa01.jpeg">
-    <div class="overlay"></div>
+        <div class="show-box">Debut Show: 2025 Miami Swim Week | FRISK ME GOOD</div>
+        <div class="show-box">Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER</div>
+      </div>
+    </section>
 
-    <div class="content">
-      <h2>Contact</h2>
-      <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
-      <a href="contact.html" style="color:#ff66cc;">Reach Out →</a>
-    </div>
-  </section>
+    <!-- GALLERY -->
+    <section id="gallery" aria-label="gallery">
+      <img src="images/IK9A9840.jpg" alt="">
+      <div class="overlay"></div>
 
-  <footer>© 2025 ARIA CARMONA</footer>
+      <div class="content">
+        <h2>Gallery</h2>
+        <p>Explore the latest editorials and campaigns featuring Aria.</p>
+        <a href="gallery.html" style="color:#ff66cc;">View Full Gallery →</a>
+      </div>
+    </section>
 
-<script>
-  /* Preloader animation */
-  window.addEventListener("load", () => {
-    const mask = document.getElementById("checker-mask");
-    const preloader = document.getElementById("preloader");
+    <!-- NEWS -->
+    <section id="news" aria-label="news">
+      <img src="images/ffa04.jpeg" alt="">
+      <div class="overlay"></div>
 
-    gsap.to(mask, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
-    gsap.to(mask, { opacity: 0, duration: 0.8, delay: 0.3, ease: "power2.inOut" });
+      <div class="content">
+        <h2>Latest Highlights</h2>
+        <p>From Miami Swim Week to editorial features, keep up with Aria’s latest appearances.</p>
+        <a href="news.html" style="color:#ff66cc;">Explore News →</a>
+      </div>
+    </section>
 
-    gsap.to(preloader, {
-      opacity: 0,
-      duration: 0.6,
-      delay: 1.1,
-      onComplete: () => preloader.style.display = "none"
+    <!-- CALENDAR -->
+    <section id="calendar" aria-label="calendar">
+      <img src="images/IK9A9766.jpg" alt="">
+      <div class="overlay"></div>
+
+      <div class="content">
+        <h2>Calendar</h2>
+        <p>Upcoming shows and events will be listed here soon.</p>
+        <a href="calendar.html" style="color:#ff66cc;">View Full Schedule →</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-label="contact">
+      <img src="images/ffa01.jpeg" alt="">
+      <div class="overlay"></div>
+
+      <div class="content">
+        <h2>Contact</h2>
+        <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
+        <a href="contact.html" style="color:#ff66cc;">Reach Out →</a>
+      </div>
+    </section>
+
+    <footer>© 2025 ARIA CARMONA</footer>
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger && hamburger.addEventListener('click', () => {
+      const open = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = open ? 'none' : 'block';
+      hamburger.setAttribute('aria-expanded', (!open).toString());
+      mobileMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
     });
-  });
-</script>
 
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.style.display = 'none';
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // Smooth scroll behavior for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          const yOffset = 72; // topbar height
+          const y = target.getBoundingClientRect().top + window.pageYOffset - yOffset;
+          window.scrollTo({top: y, behavior: 'smooth'});
+        }
+      });
+    });
+
+    // Preloader and checker loop (wait for full load)
+    window.addEventListener('load', () => {
+      const mask = document.getElementById('checker-mask');
+      const preloader = document.getElementById('preloader');
+
+      // run the chequered fade-in/out loop 3 times
+      const tl = gsap.timeline();
+      tl.to(mask, {opacity:1, duration:0.55, ease:"power2.inOut"})
+        .to(mask, {opacity:0, duration:0.55, ease:"power2.inOut"})
+        .to(mask, {opacity:1, duration:0.55, ease:"power2.inOut"})
+        .to(mask, {opacity:0, duration:0.55, ease:"power2.inOut"})
+        .to(mask, {opacity:1, duration:0.55, ease:"power2.inOut"})
+        .to(mask, {opacity:0, duration:0.55, ease:"power2.inOut"});
+
+      // hide preloader after timeline finishes (small buffer)
+      tl.to(preloader, {opacity:0, duration:0.5, delay:0.15, onComplete: ()=> { preloader.style.display='none'; }});
+    });
+
+    // Typewriter-style fade-in for hero text (no blinking cursor)
+    (function typeHeroText(){
+      const el = document.getElementById('heroText');
+      if(!el) return;
+      const full = el.textContent.trim();
+      el.textContent = '';
+      el.style.opacity = '1';
+      let i = 0;
+      const interval = 45; // ms per character - adjust speed
+      const timer = setInterval(() => {
+        el.textContent += full[i] || '';
+        i++;
+        if(i >= full.length){
+          clearInterval(timer);
+        }
+      }, interval);
+    })();
+
+    // Accessibility: close mobile menu on resize if switching to desktop
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 768){
+        mobileMenu.style.display = 'none';
+        hamburger && hamburger.setAttribute('aria-expanded','false');
+        mobileMenu && mobileMenu.setAttribute('aria-hidden','true');
+      }
+    });
+  </script>
 </body>
 </html>
