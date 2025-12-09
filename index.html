@@ -34,10 +34,23 @@
       font-weight: bold;
     }
 
-    nav a { color: white; text-decoration: none; transition: 0.3s; }
-    nav a:hover { color: #ff66cc; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
 
-    .logo { position: fixed; top: 10px; left: 20px; z-index: 1001; width: 150px; }
+    nav a:hover {
+      color: #ff66cc;
+    }
+
+    .logo {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      z-index: 1001;
+      width: 150px;
+    }
 
     .section {
       position: absolute;
@@ -55,9 +68,14 @@
       transition: opacity 1s ease, transform 1.2s ease;
     }
 
-    .section.active { opacity: 1; pointer-events: all; z-index: 5; }
+    .section.active {
+      opacity: 1;
+      pointer-events: all;
+      z-index: 5;
+    }
 
-    .section video, .section img {
+    .section video,
+    .section img {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -67,14 +85,44 @@
       z-index: 1;
     }
 
-    .overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.55); z-index: 2; backdrop-filter: blur(4px); }
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.55);
+      z-index: 2;
+      backdrop-filter: blur(4px);
+    }
 
-    .section-content { position: relative; z-index: 3; max-width: 700px; padding: 40px; animation: fadeIn 1s ease-in-out; }
+    .section-content {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+      padding: 40px;
+      animation: fadeIn 1s ease-in-out;
+    }
 
-    .section-content h1, .section-content h2 { font-size: 2.5em; margin-bottom: 15px; color: #fff; }
-    .section-content p { font-size: 1em; line-height: 1.6em; color: #ddd; }
+    .section-content h1,
+    .section-content h2 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      color: #fff;
+    }
 
-    .stats-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; margin-bottom: 40px; }
+    .section-content p {
+      font-size: 1em;
+      line-height: 1.6em;
+      color: #ddd;
+    }
+
+    /* STATS GRID */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
 
     .stat {
       background: rgba(255,255,255,0.15);
@@ -97,30 +145,73 @@
       backdrop-filter: blur(3px);
     }
 
-    footer { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: #aaa; font-size: 12px; z-index: 1000; }
+    footer {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #aaa;
+      font-size: 12px;
+      z-index: 1000;
+    }
 
-    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
 
     /* Transition directions */
-    .slide-up { transform: translateY(100%); }
-    .slide-down { transform: translateY(-100%); }
-    .slide-left { transform: translateX(100%); }
-    .slide-right { transform: translateX(-100%); }
-    .active.slide-up, .active.slide-down, .active.slide-left, .active.slide-right { transform: translate(0,0); }
+    .slide-up      { transform: translateY(100%); }
+    .slide-down    { transform: translateY(-100%); }
+    .slide-left    { transform: translateX(100%); }
+    .slide-right   { transform: translateX(-100%); }
 
-    @media (max-width:768px){
-      .hero { min-height: 500px; padding:0 12px; }
-      .sig-wrap .signature-svg { width:90vw !important; height:auto !important; }
-      .hero-title { font-size:16px; }
-      .hero-sub { font-size:13px; max-width:90vw; }
-      .next-panel { flex-direction: column; padding:16px; gap:14px; }
-      .np-date, .np-schedule { flex:0 0 auto; text-align:left; padding:8px 0; }
-      .np-day { font-size:40px; }
-      .np-month { font-size:18px; }
-      .np-title { font-size:18px; }
-      .np-desc { font-size:14px; }
-      .past-table td, .past-table th { font-size:12px; padding:8px 6px; }
-      .nav { flex-wrap: wrap; gap:14px; }
+    .active.slide-up,
+    .active.slide-down,
+    .active.slide-left,
+    .active.slide-right {
+      transform: translate(0,0);
+    }
+
+    /* ----------------------------- */
+    /*          MOBILE FIXES        */
+    /* ----------------------------- */
+    @media (max-width: 768px) {
+
+      /* shrink + reposition logo */
+      .logo {
+        width: 95px !important;
+        top: 6px !important;
+        left: 10px !important;
+      }
+
+      /* tighter nav spacing */
+      nav {
+        gap: 12px !important;
+        font-size: 11px !important;
+        top: 12px !important;
+      }
+
+      nav a {
+        padding: 2px 0;
+      }
+
+      .section-content h1,
+      .section-content h2 {
+        font-size: 1.6em !important;
+      }
+
+      .section-content {
+        padding: 20px;
+      }
+
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      footer {
+        font-size: 10px;
+      }
     }
 
     /* --- Preloader --- */
@@ -135,7 +226,11 @@
       overflow:hidden;
     }
 
-    #preloader .preloader-logo img { width:180px; height:auto; filter:drop-shadow(0 0 12px #ff66cc); }
+    #preloader .preloader-logo img {
+      width:180px;
+      height:auto;
+      filter:drop-shadow(0 0 12px #ff66cc);
+    }
 
     #preloader .preloader-mask {
       position:absolute;
@@ -184,7 +279,7 @@
     <div class="overlay"></div>
     <div class="section-content">
       <h2>About Aria</h2>
-      <p>Aria Carmona is a 21 year old female model making waves in the fashion industry. She is currently supported by TDTD Models, with her highlights being walks in both Miami Swim Week & New York Fashion Week this year. The Manhattan-based talent looks to elevate her career by taking it to the next level.</p>
+      <p>Aria Carmona is a 21 year old female model making waves in the fashion industry...</p>
     </div>
   </div>
 
@@ -194,6 +289,7 @@
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Stats</h2>
+
       <div class="stats-container">
         <div class="stat">Height: 5'9"</div>
         <div class="stat">Bust: 34"</div>
@@ -237,7 +333,7 @@
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Calendar</h2>
-      <p>Upcoming shows and events will be listed here soon.</p>
+      <p>Upcoming shows and events will be listed soon.</p>
       <a href="calendar.html" style="color:#ff66cc;">View Full Schedule →</a>
     </div>
   </div>
@@ -248,59 +344,75 @@
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Contact</h2>
-      <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
+      <p>For bookings and media inquiries, reach out through the contact form.</p>
       <a href="contact.html" style="color:#ff66cc;">Reach Out →</a>
     </div>
   </div>
 
   <footer>© 2025 ARIA CARMONA</footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
-    // Wait for all images and videos to fully load
-    window.addEventListener('load', () => {
-      const preloaderTimeline = gsap.timeline();
-      preloaderTimeline
-        .to(".preloader-mask", {opacity:1, duration:0.8, ease:"power2.inOut"})
-        .to(".preloader-mask", {opacity:0, duration:0.8, delay:0.2, ease:"power2.inOut"})
-        .to("#preloader", {opacity:0, duration:0.6, pointerEvents:"none", display:"none", ease:"power2.out"});
+    /* PRELOADER */
+    window.addEventListener("load", () => {
+      const tl = gsap.timeline();
+      tl.to(".preloader-mask", {opacity:1, duration:0.8})
+        .to(".preloader-mask", {opacity:0, duration:0.8, delay:0.2})
+        .to("#preloader", {
+          opacity:0,
+          duration:0.6,
+          onComplete: () => {
+            document.getElementById("preloader").style.display = "none";
+          }
+        });
     });
 
-    // Section navigation logic
+    /* SECTION LOGIC */
     const sections = document.querySelectorAll('.section');
     let current = 0;
     let isAnimating = false;
 
-    function showSection(index, direction = 'next') {
+    function showSection(index) {
       if (isAnimating || index === current || index < 0 || index >= sections.length) return;
       isAnimating = true;
 
-      const currentSection = sections[current];
-      const nextSection = sections[index];
+      const oldSection = sections[current];
+      const newSection = sections[index];
 
-      currentSection.style.opacity = "0";
-      nextSection.style.opacity = "1";
-      nextSection.classList.add('active');
-      currentSection.classList.remove('active');
+      oldSection.classList.remove("active");
+      newSection.classList.add("active");
 
-      setTimeout(() => { isAnimating=false; current=index; }, 1400);
+      setTimeout(() => {
+        current = index;
+        isAnimating = false;
+      }, 1200);
     }
 
+    /* Desktop scroll */
     window.addEventListener('wheel', (e) => {
-      if(isAnimating) return;
-      if(e.deltaY>0) showSection(current+1,'next');
-      else showSection(current-1,'prev');
+      if (isAnimating) return;
+      if (e.deltaY > 0) showSection(current + 1);
+      else showSection(current - 1);
     });
 
+    /* Desktop keyboard */
     window.addEventListener('keydown', (e) => {
-      if(isAnimating) return;
-      if(e.key==='ArrowDown'||e.key==='ArrowRight') showSection(current+1,'next');
-      if(e.key==='ArrowUp'||e.key==='ArrowLeft') showSection(current-1,'prev');
+      if (isAnimating) return;
+      if (e.key === "ArrowDown") showSection(current + 1);
+      if (e.key === "ArrowUp") showSection(current - 1);
     });
 
-    document.querySelectorAll('nav a').forEach((link,index)=>{
-      link.addEventListener('click',(e)=>{ e.preventDefault(); showSection(index+1); });
+    /* Nav click */
+    document.querySelectorAll("nav a").forEach((link, i) => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        showSection(i + 1);
+      });
     });
-  </script>
-</body>
-</html>
+
+    /* ---------------------------------------------- */
+    /*                MOBILE SWIPE SUPPORT            */
+    /* ---------------------------------------------- */
+    let startY = 0;
+    let endY = 0;
+
+    document.addEventListener
