@@ -410,9 +410,24 @@
     });
 
     /* ---------------------------------------------- */
-    /*               MOBILE SWIPE SUPPORT            */
+    /*                MOBILE SWIPE SUPPORT            */
     /* ---------------------------------------------- */
     let startY = 0;
     let endY = 0;
 
-    document.addEventListener
+    document.addEventListener("touchstart", e => {
+      startY = e.touches[0].clientY;
+    });
+
+    document.addEventListener("touchend", e => {
+      endY = e.changedTouches[0].clientY;
+      let delta = endY - startY;
+
+      if (Math.abs(delta) < 40) return; // ignore tiny swipes
+
+      if (delta < 0) showSection(current + 1); // swipe up
+      else showSection(current - 1);          // swipe down
+    });
+  </script>
+</body>
+</html>
