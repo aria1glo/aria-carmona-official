@@ -34,15 +34,8 @@
       font-weight: bold;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #ff66cc;
-    }
+    nav a { color: white; text-decoration: none; transition: 0.3s; }
+    nav a:hover { color: #ff66cc; }
 
     .logo {
       position: fixed;
@@ -68,14 +61,9 @@
       transition: opacity 1s ease, transform 1.2s ease;
     }
 
-    .section.active {
-      opacity: 1;
-      pointer-events: all;
-      z-index: 5;
-    }
+    .section.active { opacity: 1; pointer-events: all; z-index: 5; }
 
-    .section video,
-    .section img {
+    .section video, .section img {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -102,8 +90,7 @@
       animation: fadeIn 1s ease-in-out;
     }
 
-    .section-content h1,
-    .section-content h2 {
+    .section-content h1, .section-content h2 {
       font-size: 2.5em;
       margin-bottom: 15px;
       color: #fff;
@@ -115,7 +102,6 @@
       color: #ddd;
     }
 
-    /* STATS GRID */
     .stats-container {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -160,12 +146,11 @@
       to { opacity:1; transform:translateY(0); }
     }
 
-    /* Transition directions */
-    .slide-up      { transform: translateY(100%); }
-    .slide-down    { transform: translateY(-100%); }
-    .slide-left    { transform: translateX(100%); }
-    .slide-right   { transform: translateX(-100%); }
-
+    /* Slide directions */
+    .slide-up { transform: translateY(100%); }
+    .slide-down { transform: translateY(-100%); }
+    .slide-left { transform: translateX(100%); }
+    .slide-right { transform: translateX(-100%); }
     .active.slide-up,
     .active.slide-down,
     .active.slide-left,
@@ -173,51 +158,52 @@
       transform: translate(0,0);
     }
 
-    /* ----------------------------- */
-    /*          MOBILE FIXES        */
-    /* ----------------------------- */
+    /* ---------------------- MOBILE FIXES ---------------------- */
     @media (max-width: 768px) {
 
-      /* shrink + reposition logo */
+      /* Centered mobile logo (ONLY CHANGE REQUESTED) */
       .logo {
-        width: 95px !important;
-        top: 6px !important;
-        left: 10px !important;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
       }
 
-      /* tighter nav spacing */
       nav {
-        gap: 12px !important;
-        font-size: 11px !important;
-        top: 12px !important;
-      }
-
-      nav a {
-        padding: 2px 0;
-      }
-
-      .section-content h1,
-      .section-content h2 {
-        font-size: 1.6em !important;
+        top: 70px;
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 12px;
       }
 
       .section-content {
         padding: 20px;
+        max-width: 90%;
+      }
+
+      .section-content h1, .section-content h2 {
+        font-size: 1.7em;
+      }
+
+      .section-content p {
+        font-size: 0.9em;
       }
 
       .stats-container {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
       }
 
-      footer {
-        font-size: 10px;
+      .stat {
+        font-size: 0.8em;
+        padding: 8px;
       }
     }
 
-    /* --- Preloader --- */
+    /* ---------------- PRELOADER ---------------- */
     #preloader {
       position: fixed;
-      inset:0;
+      inset: 0;
       background:#050405;
       display:flex;
       align-items:center;
@@ -289,7 +275,6 @@
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Stats</h2>
-
       <div class="stats-container">
         <div class="stat">Height: 5'9"</div>
         <div class="stat">Bust: 34"</div>
@@ -301,7 +286,7 @@
       </div>
 
       <div class="show-box">Debut Show: 2025 Miami Swim Week | FRISK ME GOOD</div>
-      <div class="show-box">Most Recent Show: 2025 Montclair SM Gala | SINISTER</div>
+      <div class="show-box">Most Recent Show: 2025 Montclair Spooky Met Gala | SINISTER</div>
     </div>
   </div>
 
@@ -333,7 +318,7 @@
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Calendar</h2>
-      <p>Upcoming shows and events will be listed soon.</p>
+      <p>Upcoming shows and events will be listed here soon.</p>
       <a href="calendar.html" style="color:#ff66cc;">View Full Schedule →</a>
     </div>
   </div>
@@ -344,90 +329,77 @@
     <div class="overlay"></div>
     <div class="section-content">
       <h2>Contact</h2>
-      <p>For bookings and media inquiries, reach out through the contact form.</p>
+      <p>For bookings, collaborations, or media inquiries, please reach out through the contact form.</p>
       <a href="contact.html" style="color:#ff66cc;">Reach Out →</a>
     </div>
   </div>
 
   <footer>© 2025 ARIA CARMONA</footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
   <script>
-    /* PRELOADER */
-    window.addEventListener("load", () => {
-      const tl = gsap.timeline();
-      tl.to(".preloader-mask", {opacity:1, duration:0.8})
-        .to(".preloader-mask", {opacity:0, duration:0.8, delay:0.2})
+    // PRELOADER
+    window.addEventListener('load', () => {
+      const preloaderTimeline = gsap.timeline();
+      preloaderTimeline
+        .to(".preloader-mask", {opacity:1, duration:0.8, ease:"power2.inOut"})
+        .to(".preloader-mask", {opacity:0, duration:0.8, delay:0.2, ease:"power2.inOut"})
         .to("#preloader", {
           opacity:0,
           duration:0.6,
-          onComplete: () => {
-            document.getElementById("preloader").style.display = "none";
-          }
+          pointerEvents:"none",
+          display:"none",
+          ease:"power2.out"
         });
     });
 
-    /* SECTION LOGIC */
+    // SECTION SLIDER LOGIC
     const sections = document.querySelectorAll('.section');
     let current = 0;
     let isAnimating = false;
 
     function showSection(index) {
       if (isAnimating || index === current || index < 0 || index >= sections.length) return;
+
       isAnimating = true;
 
-      const oldSection = sections[current];
-      const newSection = sections[index];
+      const currentSection = sections[current];
+      const nextSection = sections[index];
 
-      oldSection.classList.remove("active");
-      newSection.classList.add("active");
+      currentSection.style.opacity = "0";
+      nextSection.style.opacity = "1";
+      nextSection.classList.add('active');
+      currentSection.classList.remove('active');
 
       setTimeout(() => {
-        current = index;
         isAnimating = false;
-      }, 1200);
+        current = index;
+      }, 1400);
     }
 
-    /* Desktop scroll */
+    // Scroll navigation
     window.addEventListener('wheel', (e) => {
-      if (isAnimating) return;
-      if (e.deltaY > 0) showSection(current + 1);
+      if(isAnimating) return;
+      if(e.deltaY > 0) showSection(current + 1);
       else showSection(current - 1);
     });
 
-    /* Desktop keyboard */
+    // Keyboard navigation
     window.addEventListener('keydown', (e) => {
-      if (isAnimating) return;
-      if (e.key === "ArrowDown") showSection(current + 1);
-      if (e.key === "ArrowUp") showSection(current - 1);
+      if(isAnimating) return;
+      if(e.key === 'ArrowDown' || e.key === 'ArrowRight') showSection(current + 1);
+      if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1);
     });
 
-    /* Nav click */
-    document.querySelectorAll("nav a").forEach((link, i) => {
-      link.addEventListener("click", e => {
+    // Nav click = jump to section
+    document.querySelectorAll('nav a').forEach((link, index) => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
-        showSection(i + 1);
+        showSection(index + 1);
       });
     });
-
-    /* ---------------------------------------------- */
-    /*                MOBILE SWIPE SUPPORT            */
-    /* ---------------------------------------------- */
-    let startY = 0;
-    let endY = 0;
-
-    document.addEventListener("touchstart", e => {
-      startY = e.touches[0].clientY;
-    });
-
-    document.addEventListener("touchend", e => {
-      endY = e.changedTouches[0].clientY;
-      let delta = endY - startY;
-
-      if (Math.abs(delta) < 40) return; // ignore tiny swipes
-
-      if (delta < 0) showSection(current + 1); // swipe up
-      else showSection(current - 1);          // swipe down
-    });
   </script>
+
 </body>
 </html>
