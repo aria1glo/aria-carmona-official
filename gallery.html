@@ -1,232 +1,582 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Gallery | Aria Carmona</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'vogue', serif;
-      background-color: white;
-    }
 
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: white;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column; /* stack logo above links */
-      align-items: center;
-      padding: 12px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    .navbar .logo img {
-      height: 38px;
-      display: block;
-      margin: 0 auto;
-    }
+html{
+    scroll-behavior:smooth;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      margin-top: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+body{
+    font-family:'Vogue', serif;
+    background:#050405;
+    color:white;
+    overflow-x:hidden;
+}
 
-    .nav-links a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 15px;
-      transition: all 0.2s ease-in-out;
-    }
+/* ===========================
+   NAVBAR
+=========================== */
 
-    .nav-links a:hover {
-      color: #ffb6c1;
-      background-color: black;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
 
-    /* PAGE CONTENT */
-    .page-title {
-      text-align: center;
-      margin-top: 140px;
-      font-size: 28px;
-      font-weight: bold;
-    }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-    .gallery-preview {
-      background-color: lightpink;
-      padding: 30px;
-      border-radius: 15px;
-      margin: 40px auto 60px auto;
-      max-width: 1100px;
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
+    padding:18px 50px;
 
-    .gallery-preview img {
-      width: 200px;
-      border-radius: 10px;
-    }
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.72),
+        rgba(0,0,0,0)
+    );
+}
 
-    .gallery-preview h2 {
-      margin: 0;
-    }
+.logo img{
+    height:42px;
+    display:block;
+}
 
-    .gallery-preview a {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-    }
+.nav-links{
+    display:flex;
+    gap:30px;
+    align-items:center;
+}
 
-    .gallery-preview a:hover {
-      text-decoration: underline;
-    }
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:.12em;
+    transition:.25s;
+}
 
-    .footer {
-      text-align: center;
-      margin-top: 100px;
-      padding-bottom: 40px;
-      font-size: 14px;
-    }
+.nav-links a:hover{
+    color:#ff66cc;
+}
 
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .navbar .logo img {
-        height: 32px;
-      }
+.nav-links a.active{
+    color:#ff66cc;
+}
 
-      .nav-links {
-        gap: 16px;
-      }
+/* ===========================
+   HERO
+=========================== */
 
-      .gallery-preview {
-        flex-direction: column;
-        text-align: center;
-      }
+.hero{
 
-      .gallery-preview img {
-        width: 80%;
-      }
-    }
+    position:relative;
+
+    width:100%;
+    height:72vh;
+    min-height:560px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+.hero-bg{
+
+    position:absolute;
+    inset:0;
+
+    background:url("images/ACarmona16.jpg")
+        center center/cover no-repeat;
+
+    filter:brightness(.55);
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:linear-gradient(
+
+        rgba(0,0,0,.15),
+
+        rgba(0,0,0,.78)
+
+    );
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:900px;
+
+    padding:0 24px;
+
+}
+
+.hero-content h1{
+
+    font-size:74px;
+
+    font-weight:400;
+
+    letter-spacing:5px;
+
+    margin-bottom:18px;
+
+}
+
+.hero-content p{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    color:#dddddd;
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+/* ===========================
+   SECTION TITLE
+=========================== */
+
+.page-title{
+
+    text-align:center;
+
+    padding:70px 20px 25px;
+
+}
+
+.page-title h2{
+
+    font-size:42px;
+
+    font-weight:400;
+
+    letter-spacing:3px;
+
+    margin-bottom:12px;
+
+}
+
+.page-title p{
+
+    color:#bbbbbb;
+
+    font-size:16px;
+
+}
+
+/* ===========================
+   GALLERY PREVIEWS
+=========================== */
+
+.gallery-preview{
+
+    width:min(1150px,92%);
+
+    margin:40px auto;
+
+    display:flex;
+
+    gap:34px;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,102,204,.16);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.3s ease;
+
+}
+
+.gallery-preview:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#ff66cc;
+
+    box-shadow:0 18px 45px rgba(0,0,0,.35);
+
+}
+
+.gallery-preview img{
+
+    width:250px;
+
+    height:340px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.gallery-preview div{
+
+    padding:28px;
+
+}
+
+.gallery-preview h2{
+
+    margin-bottom:16px;
+
+    color:white;
+
+    font-weight:400;
+
+}
+
+.gallery-preview p{
+
+    color:#d6d6d6;
+
+    line-height:1.8;
+
+    margin-bottom:14px;
+
+}
+
+.gallery-preview a{
+
+    color:white;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.footer{
+
+    margin-top:80px;
+
+    padding:45px 20px;
+
+    text-align:center;
+
+    color:#888;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:900px){
+
+.navbar{
+
+    flex-direction:column;
+
+    gap:18px;
+
+    padding:20px;
+
+}
+
+.nav-links{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:18px;
+
+}
+
+.hero{
+
+    min-height:500px;
+
+}
+
+.hero-content h1{
+
+    font-size:52px;
+
+}
+
+.gallery-preview{
+
+    flex-direction:column;
+
+}
+
+.gallery-preview img{
+
+    width:100%;
+
+    height:430px;
+
+}
+
+}
+
   </style>
+
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
+<div class="navbar">
+
     <a href="index.html" class="logo">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
+        <img src="images/ACName3.png" alt="Aria Carmona Logo">
     </a>
+
     <div class="nav-links">
-      <a href="index.html">HOME</a>
-      <a href="news.html">NEWS</a>
-      <a href="gallery.html">GALLERY</a>
-      <a href="contact.html">CONTACT</a>
-    </div>
-  </div>
 
-  <!-- PAGE TITLE -->
-  <h1 class="page-title">Latest Events</h1>
+        <a href="index.html">HOME</a>
 
-  <!-- GALLERY PREVIEW -->
+        <a href="about.html">ABOUT</a>
 
-  <a href="esmeraldas-essence-commercial.html" style="text-decoration: none;">
-    <div class="gallery-preview">
-      <img src="images/vve.png" alt="EE Gallery Cover" />
-      <div>
-        <h2>Esmeraldas Essence: Velour de Essence </h2>
-        <p><strong>Queens, NY — March 24, 2026 —</strong>An indoor shoot for Esmeralda's Essence gave Aria the room to express her creative, fun, and energetic side amongst other models as the team shot for the new Velour de Essence commerical. </p>
-        <p>Click to view gallery →</p>
-      </div>
-    </div>
-  </a>
+        <a href="news.html">NEWS</a>
 
-  
-  <a href="elysium25-shadowfall-serene.html" style="text-decoration: none;">
-    <div class="gallery-preview">
-      <img src="images/DHP00756.jpg" alt="Shadowfall Serene Gallery Cover" />
-      <div>
-        <h2>Elysium 2025: Shadowfall Serene </h2>
-        <p><strong>North Riverdale, NY — October 25, 2025 —</strong>Cold and cloudy conditions surrounded North Riverdale, as the 21-year old model sported a high cut boot for an Elysium Magazine backed photoshoot in the forests of Van Cortlandt. Photography by Darryl Harris and Aleks Dzyuba. </p>
-        <p>Click to view gallery →</p>
-      </div>
-    </div>
-  </a>
-  
-    <a href="nyfw-prelude-2025-gallery.html" style="text-decoration: none;">
-    <div class="gallery-preview">
-      <img src="images/R7A7537.jpg" alt="NYFW Prelude Gallery Cover" />
-      <div>
-        <h2>NYFW Prelude: Move The Crowd 2025 </h2>
-        <p><strong>New York, NY — August 24, 2025 —</strong>Aria Carmona graced the streets of Harlem for the 2025 Prelude to NYFW event: Move The Crowd. On the day, she walked for Barron Wise, Adonis Brice and Codeblocks during the show. Photography by Aleks Dzyuba. </p>
-        <p>Click to view gallery →</p>
-      </div>
-    </div>
-  </a>
+        <a href="gallery.html" class="active">GALLERY</a>
 
-<a href="ffa-campaign-shoot-gallery.html" style="text-decoration: none;">
-    <div class="gallery-preview">
-      <img src="images/ffa02.jpeg" alt="Financial Freedom Campaign Shoot Gallery Cover" />
-      <div>
-        <h2>Financial Freedom Apparel Campaign Shoot</h2>
-        <p><strong>Long Island City, NY — July 27, 2025 —</strong>Over the summer, Aria Carmona took part in a campaign shoot for the Financial Freedom brand. Unbeknowingly to Aria, this shoot would become the basis to eventually being recruited into TDTD Models. Photography by Aleks Dzyuba. </p>
-        <p>Click to view gallery →</p>
-      </div>
-    </div>
-  </a>
-  
-  <a href="miami-swim-week-2025-gallery.html" style="text-decoration: none;">
-    <div class="gallery-preview">
-      <img src="images/miami1.jpg" alt="Miami Swim Week Gallery Cover" />
-      <div>
-        <h2>Miami Swim Week 2025 </h2>
-        <p><strong>Miami, FL — May 31, 2025 —</strong>Aria Carmona took to northern Miami the day following her debut Miami performance at Fusion Swim Week 2025, modeling for the renowned and iconic designer Krissy King. Photography by Jerrell Rock. </p>
-        <p>Click to view gallery →</p>
-      </div>
-    </div>
-  </a>
+        <a href="calendar.html">CALENDAR</a>
 
-<a href="w38-portfolio-gallery.html" style="text-decoration: none;">
-    <div class="gallery-preview">
-      <img src="images/ACarmona22.jpg" alt="W38 Portfolio Shoot Gallery Cover" />
-      <div>
-        <h2>S/S26 Portfolio Shoot </h2>
-        <p><strong>New York, NY — April 14, 2025 —</strong>Aria Carmona took to midtown Manhattan to conduct a series of portfolio shoots, a basis of her initial digital book in preparation for Miami Swim Week 2025. Photography by W38's Jay. </p>
-        <p>Click to view gallery →</p>
-      </div>
-    </div>
-  </a>
+        <a href="contact.html">CONTACT</a>
 
-<a href="brighton-2024-gallery.html" style="text-decoration: none;">
-    <div class="gallery-preview">
-      <img src="images/ADN02070.jpg" alt="Brighton Beach 2024 Shoot Gallery Cover" />
-      <div>
-        <h2>Brighton Beach Photoshoot: 2024 </h2>
-        <p><strong>Brooklyn, NY — August 13, 2024 —</strong>The genesis of Aria Carmona's modeling career. An iconic photoshoot on the shores of Brighton Beach in Brooklyn would set up for an unforgettable journey into the industry for the 20 year old model. Photography by renowned Italian photographer Alex Dani. </p>
-        <p>Click to view gallery →</p>
-      </div>
+        <a href="submit.html">SUBMIT</a>
+
     </div>
-  </a>
-  
-  <!-- FOOTER -->
-  <div class="footer">
-    © 2025 Aria Carmona, All Rights Reserved
-  </div>
+
+</div>
+
+<section class="hero">
+
+    <div class="hero-bg"></div>
+
+    <div class="hero-content">
+
+        <h1>Gallery</h1>
+
+        <p>
+
+            Browse campaigns, editorials, runway appearances,
+            portfolio work, behind-the-scenes moments,
+            and milestone events throughout Aria Carmona's modeling career.
+
+        </p>
+
+    </div>
+
+</section>
+
+<div class="page-title">
+
+    <h2>Latest Events</h2>
+
+    <p>
+
+        Select any gallery below to explore the complete collection.
+
+    </p>
+
+</div>
+
+<a href="esmeraldas-essence-commercial.html" style="text-decoration:none; color:inherit;">
+
+    <div class="gallery-preview">
+
+        <img src="images/vve.png" alt="Esmeraldas Essence Gallery Cover">
+
+        <div>
+
+            <h2>Esmeraldas Essence: Velour de Essence</h2>
+
+            <p><strong>Queens, NY — March 24, 2026 —</strong>
+            An indoor commercial shoot for Esmeralda's Essence gave Aria the opportunity to showcase a creative, energetic side while collaborating alongside fellow models for the new Velour de Essence campaign.</p>
+
+            <p><strong>Click to view gallery →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="elysium25-shadowfall-serene.html" style="text-decoration:none; color:inherit;">
+
+    <div class="gallery-preview">
+
+        <img src="images/DHP00756.jpg" alt="Shadowfall Serene Gallery Cover">
+
+        <div>
+
+            <h2>Elysium 2025: Shadowfall Serene</h2>
+
+            <p><strong>North Riverdale, NY — October 25, 2025 —</strong>
+            Cold autumn conditions surrounded Van Cortlandt Park as Aria modeled for an Elysium Magazine editorial photographed by Darryl Harris and Aleks Dzyuba.</p>
+
+            <p><strong>Click to view gallery →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="nyfw-prelude-2025-gallery.html" style="text-decoration:none; color:inherit;">
+
+    <div class="gallery-preview">
+
+        <img src="images/R7A7537.jpg" alt="NYFW Prelude Gallery Cover">
+
+        <div>
+
+            <h2>NYFW Prelude: Move The Crowd 2025</h2>
+
+            <p><strong>New York, NY — August 24, 2025 —</strong>
+            Aria walked for Barron Wise, Adonis Brice and Codeblocks during Harlem's Prelude to New York Fashion Week event. Photography by Aleks Dzyuba.</p>
+
+            <p><strong>Click to view gallery →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="ffa-campaign-shoot-gallery.html" style="text-decoration:none; color:inherit;">
+
+    <div class="gallery-preview">
+
+        <img src="images/ffa02.jpeg" alt="Financial Freedom Campaign Shoot">
+
+        <div>
+
+            <h2>Financial Freedom Apparel Campaign Shoot</h2>
+
+            <p><strong>Long Island City, NY — July 27, 2025 —</strong>
+            A campaign shoot for Financial Freedom Apparel that later became one of the projects leading to Aria's recruitment into TDTD Models.</p>
+
+            <p><strong>Click to view gallery →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="miami-swim-week-2025-gallery.html" style="text-decoration:none; color:inherit;">
+
+    <div class="gallery-preview">
+
+        <img src="images/miami1.jpg" alt="Miami Swim Week Gallery Cover">
+
+        <div>
+
+            <h2>Miami Swim Week 2025</h2>
+
+            <p><strong>Miami, FL — May 31, 2025 —</strong>
+            Following Fusion Swim Week, Aria modeled for designer Krissy King in northern Miami. Photography by Jerrell Rock.</p>
+
+            <p><strong>Click to view gallery →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="w38-portfolio-gallery.html" style="text-decoration:none; color:inherit;">
+
+    <div class="gallery-preview">
+
+        <img src="images/ACarmona22.jpg" alt="Portfolio Gallery Cover">
+
+        <div>
+
+            <h2>S/S26 Portfolio Shoot</h2>
+
+            <p><strong>New York, NY — April 14, 2025 —</strong>
+            A portfolio session in Midtown Manhattan producing the first major body of work used for agency submissions and Miami Swim Week preparations.</p>
+
+            <p><strong>Click to view gallery →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="brighton-2024-gallery.html" style="text-decoration:none; color:inherit;">
+
+    <div class="gallery-preview">
+
+        <img src="images/ADN02070.jpg" alt="Brighton Beach Photoshoot">
+
+        <div>
+
+            <h2>Brighton Beach Photoshoot: 2024</h2>
+
+            <p><strong>Brooklyn, NY — August 13, 2024 —</strong>
+            The beginning of Aria Carmona's modeling journey, photographed by renowned Italian photographer Alex Dani on the shores of Brighton Beach.</p>
+
+            <p><strong>Click to view gallery →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<div class="footer">
+
+    © 2026 Aria Carmona. All Rights Reserved.
+
+</div>
 
 </body>
 </html>
