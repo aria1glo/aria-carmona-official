@@ -1,10 +1,17 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Thank You | Aria Carmona</title>
+
+
+<!-- Site Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 
 <style>
 
@@ -17,13 +24,14 @@
 
 body {
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 
     background: #050505;
 
     color: white;
 
 }
+
 
 
 /* =====================
@@ -62,6 +70,7 @@ header {
 }
 
 
+
 .logo img {
 
     width: 150px;
@@ -69,6 +78,7 @@ header {
     height: auto;
 
 }
+
 
 
 .nav-links {
@@ -82,6 +92,7 @@ header {
 }
 
 
+
 .nav-links a {
 
     color: white;
@@ -90,11 +101,14 @@ header {
 
     font-size: 13px;
 
+    font-weight: 400;
+
     letter-spacing: 2px;
 
-    transition: 0.3s ease;
+    transition: .3s ease;
 
 }
+
 
 
 .nav-links a:hover {
@@ -111,7 +125,7 @@ header {
 
 .thankyou-page {
 
-    height: 100vh;
+    min-height: 100vh;
 
     display: flex;
 
@@ -123,11 +137,12 @@ header {
 
     position: relative;
 
+
     background:
 
     linear-gradient(
-        rgba(0,0,0,.7),
-        rgba(0,0,0,.9)
+        rgba(0,0,0,.72),
+        rgba(0,0,0,.92)
     ),
 
     url("images/DHP00791.jpg");
@@ -140,20 +155,26 @@ header {
 }
 
 
+
 .thankyou-content {
 
-    max-width: 700px;
+    max-width: 750px;
 
     padding: 40px;
 
 }
 
 
+
 .thankyou-content h1 {
 
-    font-size: 64px;
+    font-family: 'Cormorant Garamond', serif;
 
-    letter-spacing: 8px;
+    font-size: 72px;
+
+    font-weight: 400;
+
+    letter-spacing: 10px;
 
     text-transform: uppercase;
 
@@ -162,19 +183,24 @@ header {
 }
 
 
-.thankyou-content p {
 
-    color: #d0d0d0;
+.thankyou-content p {
 
     font-size: 18px;
 
+    font-weight: 300;
+
     line-height: 1.8;
+
+    color: #d5d5d5;
 
     margin-bottom: 15px;
 
 }
 
 
+
+/* BUTTON */
 
 .cta-button {
 
@@ -190,20 +216,21 @@ header {
 
     text-decoration: none;
 
-    letter-spacing: 3px;
-
     font-size: 13px;
+
+    letter-spacing: 3px;
 
     transition: .3s ease;
 
 }
 
 
+
 .cta-button:hover {
 
-    background:white;
+    background: white;
 
-    color:black;
+    color: black;
 
 }
 
@@ -213,10 +240,9 @@ header {
    FOOTER
 ===================== */
 
-
 footer {
 
-    position: absolute;
+    position: fixed;
 
     bottom: 0;
 
@@ -226,18 +252,21 @@ footer {
 
     padding: 25px;
 
-    background: rgba(0,0,0,.6);
+    background: rgba(0,0,0,.55);
 
 }
+
 
 
 footer p {
 
     font-size: 12px;
 
+    font-weight: 300;
+
     letter-spacing: 2px;
 
-    color:#aaa;
+    color: #aaa;
 
 }
 
@@ -249,51 +278,59 @@ footer p {
 
 @media(max-width:900px){
 
+
     .navbar {
 
-        padding:20px;
+        padding: 20px;
 
-        flex-direction:column;
+        flex-direction: column;
 
-        gap:20px;
+        gap: 20px;
 
     }
+
 
 
     .nav-links {
 
-        flex-wrap:wrap;
+        flex-wrap: wrap;
 
-        justify-content:center;
+        justify-content: center;
 
-        gap:20px;
+        gap: 20px;
 
     }
+
 
 
     .thankyou-content h1 {
 
-        font-size:42px;
+        font-size: 46px;
 
-        letter-spacing:5px;
+        letter-spacing: 5px;
 
     }
+
 
 
     .thankyou-content p {
 
-        font-size:16px;
+        font-size: 16px;
 
     }
 
+
 }
+
 
 </style>
 
 </head>
 
 
+
 <body>
+
 
 
 <header>
@@ -306,6 +343,7 @@ footer p {
 <img src="images/ACName3.png" alt="Aria Carmona">
 
 </a>
+
 
 
 <ul class="nav-links">
@@ -331,6 +369,7 @@ footer p {
 
 
 
+
 <section class="thankyou-page">
 
 
@@ -340,14 +379,17 @@ footer p {
 <h1>Thank You</h1>
 
 
+
 <p>
 Your submission has been received.
 </p>
 
 
+
 <p>
-Our team will review your information and contact you if there is an opportunity to move forward.
+Our team will review your submission and respond as soon as possible.
 </p>
+
 
 
 <a href="index.html" class="cta-button">
@@ -362,6 +404,7 @@ RETURN HOME
 
 
 
+
 <footer>
 
 <p>
@@ -371,6 +414,8 @@ RETURN HOME
 </footer>
 
 
+
 </body>
 
 </html>
+```
