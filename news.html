@@ -1,187 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>News | Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png" type="image/png" />
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'vogue', serif;
-      background-color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: white;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column; /* stack logo above links */
-      align-items: center;
-      padding: 12px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+<title>News | Aria Carmona</title>
 
-    .navbar .logo img {
-      height: 38px;
-      display: block;
-      margin: 0 auto;
-    }
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.png" type="image/png">
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      margin-top: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+<style>
 
-    .nav-links a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 15px;
-      transition: all 0.2s ease-in-out;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    .nav-links a:hover {
-      color: #ffb6c1;
-      background-color: black;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
+html{
+    scroll-behavior:smooth;
+}
 
-    /* PAGE CONTENT */
-    .page-title {
-      text-align: center;
-      margin-top: 140px;
-      font-size: 28px;
-      font-weight: bold;
-    }
+body{
 
-    .news-tile {
-      background-color: lightpink;
-      padding: 30px;
-      border-radius: 15px;
-      margin: 40px auto 60px auto;
-      max-width: 1100px;
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
+    background:#050405;
 
-    .news-tile img {
-      width: 200px;
-      border-radius: 10px;
-    }
+    color:white;
 
-    .news-tile h2 {
-      margin: 0;
-    }
+    font-family:'Vogue', serif;
 
-    .news-tile a {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-    }
+    overflow-x:hidden;
 
-    .news-tile a:hover {
-      text-decoration: underline;
-    }
+}
 
-    .footer {
-      text-align: center;
-      margin-top: 100px;
-      padding-bottom: 40px;
-      font-size: 14px;
-    }
+/*=========================
+NAVBAR
+=========================*/
 
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .navbar .logo img {
-        height: 32px;
-      }
+.navbar{
 
-      .nav-links {
-        gap: 16px;
-      }
+    position:fixed;
 
-      .news-tile {
-        flex-direction: column;
-        text-align: center;
-      }
+    top:0;
+    left:0;
 
-      .news-tile img {
-        width: 80%;
-      }
-    }
-  </style>
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 48px;
+
+    z-index:1000;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.72),
+        rgba(0,0,0,0)
+    );
+
+}
+
+.logo img{
+
+    height:42px;
+
+    display:block;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    gap:30px;
+
+    align-items:center;
+
+}
+
+.nav-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    letter-spacing:.12em;
+
+    transition:.25s;
+
+}
+
+.nav-links a:hover{
+
+    color:#ff66cc;
+
+}
+
+.nav-links a.active{
+
+    color:#ff66cc;
+
+}
+
+/*=========================
+HERO
+=========================*/
+
+.hero{
+
+    position:relative;
+
+    width:100%;
+
+    height:72vh;
+
+    min-height:560px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+.hero-bg{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    url("images/089A0476.jpg")
+    center center/cover no-repeat;
+
+    filter:brightness(.52);
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+
+        rgba(0,0,0,.15),
+
+        rgba(0,0,0,.80)
+
+    );
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:5;
+
+    max-width:900px;
+
+    padding:20px;
+
+}
+
+.hero-content h1{
+
+    font-size:72px;
+
+    font-weight:400;
+
+    letter-spacing:5px;
+
+    margin-bottom:18px;
+
+}
+
+.hero-content p{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    color:#dddddd;
+
+    max-width:720px;
+
+    margin:auto;
+
+}
+
+/*=========================
+SECTION TITLE
+=========================*/
+
+.page-title{
+
+    text-align:center;
+
+    padding:70px 20px 30px;
+
+}
+
+.page-title h2{
+
+    font-size:42px;
+
+    font-weight:400;
+
+    letter-spacing:3px;
+
+    margin-bottom:12px;
+
+}
+
+.page-title p{
+
+    color:#bdbdbd;
+
+    font-size:16px;
+
+}
+
+/*=========================
+NEWS CARDS
+=========================*/
+
+.news-tile{
+
+    width:min(1150px,92%);
+
+    margin:35px auto;
+
+    display:flex;
+
+    gap:34px;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,102,204,.16);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.3s ease;
+
+}
+
+.news-tile:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#ff66cc;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+
+}
+
+.news-tile img{
+
+    width:250px;
+
+    height:330px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.news-tile div{
+
+    padding:28px;
+
+}
+
+.news-tile h2{
+
+    margin-bottom:18px;
+
+    font-weight:400;
+
+    color:white;
+
+}
+
+.news-tile p{
+
+    color:#d6d6d6;
+
+    line-height:1.8;
+
+    margin-bottom:14px;
+
+}
+
+/*=========================
+FOOTER
+=========================*/
+
+.footer{
+
+    margin-top:80px;
+
+    padding:45px 20px;
+
+    text-align:center;
+
+    color:#888;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+/*=========================
+MOBILE
+=========================*/
+
+@media(max-width:900px){
+
+.navbar{
+
+    flex-direction:column;
+
+    gap:18px;
+
+    padding:20px;
+
+}
+
+.nav-links{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:18px;
+
+}
+
+.hero{
+
+    min-height:500px;
+
+}
+
+.hero-content h1{
+
+    font-size:52px;
+
+}
+
+.news-tile{
+
+    flex-direction:column;
+
+}
+
+.news-tile img{
+
+    width:100%;
+
+    height:420px;
+
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <a href="index.html" class="logo">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
-    </a>
-    <div class="nav-links">
-      <a href="index.html">HOME</a>
-      <a href="news.html">NEWS</a>
-      <a href="gallery.html">GALLERY</a>
-      <a href="contact.html">CONTACT</a>
-    </div>
-  </div>
+<div class="navbar">
 
-  <!-- PAGE TITLE -->
-  <h1 class="page-title">Latest News</h1>
+<a href="index.html" class="logo">
 
-  <!-- NEWS TILE -->
+<img src="images/ACName3.png" alt="Aria Carmona Logo">
 
-  <a href="miami-swim-week-2026.html" style="text-decoration: none;">
+</a>
+
+<div class="nav-links">
+
+<a href="index.html">HOME</a>
+
+<a href="news.html" class="active">NEWS</a>
+
+<a href="gallery.html">GALLERY</a>
+
+<a href="calendar.html">CALENDAR</a>
+
+<a href="contact.html">CONTACT</a>
+
+</div>
+
+</div>
+
+<section class="hero">
+
+<div class="hero-bg"></div>
+
+<div class="hero-content">
+
+<h1>Newsroom</h1>
+
+<p>
+
+Follow Aria Carmona's latest runway appearances,
+editorials, campaigns, casting announcements,
+and career milestones as they happen.
+
+</p>
+
+</div>
+
+</section>
+
+<div class="page-title">
+
+<h2>Latest News</h2>
+
+<p>
+
+The newest stories and announcements from Aria Carmona.
+
+</p>
+
+</div>
+
+<a href="miami-swim-week-2026.html" style="text-decoration:none; color:inherit; display:block;">
+
     <div class="news-tile">
-      <img src="images/DSC_2506.jpg" alt="Miami Swim Week Preview" />
-      <div>
-        <h2>Aria Carmona Leads Miami Swim Week 2026</h2>
-        <p>Aria Carmona exceeded some expectations by leading the Miami Swim Week 2026 LUXE Show, trailblazing her name into the history books. She greatly improved from her debut show last year, and made sure to make MSW 2026 one to remember.</p>
-        <p>Click to read more →</p>
-      </div>
-    </div>
-  </a>
-  
-<a href="nyfw-2025.html" style="text-decoration: none;">
-    <div class="news-tile">
-      <img src="images/DSC06779.png" alt="NYFW SS26 Preview" />
-      <div>
-        <h2>Aria Carmona Makes New York Fashion Week Debut</h2>
-        <p>Aria Carmona made her NYFW debut this fall during S/S26, sporting a punchy Punk Rock Creations designer look.</p>
-        <p>Click to read more →</p>
-      </div>
-    </div>
-  </a>
-  
-  <a href="miami-swim-week-2025.html" style="text-decoration: none;">
-    <div class="news-tile">
-      <img src="images/miami1.jpg" alt="Miami Swim Week Preview" />
-      <div>
-        <h2>Aria Carmona Makes Show Debut At Miami Swim Week</h2>
-        <p>Aria Carmona made waves during Miami Swim Week S/S26, walking for Frisk Me Good’s bold sneakerwear-inspired swimwear collection. It would mark the debut runway show for the Manhattan-based model, one that would act as a springboard into future opportunities.</p>
-        <p>Click to read more →</p>
-      </div>
-    </div>
-  </a>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    © 2026 Aria Carmona, All Rights Reserved
-  </div>
+        <img src="images/DSC_2506.jpg" alt="Miami Swim Week 2026">
+
+        <div>
+
+            <h2>Aria Carmona Leads Miami Swim Week 2026</h2>
+
+            <p>
+
+                Aria Carmona exceeded expectations by leading the
+                Miami Swim Week 2026 LUXE Show, further cementing
+                her place on one of fashion's biggest stages.
+                Building upon her debut appearance the year before,
+                she delivered one of her strongest runway
+                performances to date.
+
+            </p>
+
+            <p><strong>Read full story →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="nyfw-2025.html" style="text-decoration:none; color:inherit; display:block;">
+
+    <div class="news-tile">
+
+        <img src="images/DSC06779.png" alt="New York Fashion Week">
+
+        <div>
+
+            <h2>Aria Carmona Makes New York Fashion Week Debut</h2>
+
+            <p>
+
+                Aria Carmona officially made her New York Fashion Week
+                debut during the Spring/Summer 2026 season,
+                walking in a striking Punk Rock Creations look
+                as she continued expanding her runway portfolio.
+
+            </p>
+
+            <p><strong>Read full story →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<a href="miami-swim-week-2025.html" style="text-decoration:none; color:inherit; display:block;">
+
+    <div class="news-tile">
+
+        <img src="images/miami1.jpg" alt="Miami Swim Week 2025">
+
+        <div>
+
+            <h2>Aria Carmona Makes Show Debut at Miami Swim Week</h2>
+
+            <p>
+
+                Aria Carmona made her official runway debut during
+                Miami Swim Week S/S26, walking for
+                Frisk Me Good's bold sneaker-inspired swimwear
+                collection. The show marked the beginning of a
+                series of exciting opportunities throughout 2025.
+
+            </p>
+
+            <p><strong>Read full story →</strong></p>
+
+        </div>
+
+    </div>
+
+</a>
+
+
+<div class="footer">
+
+    <p>
+        © 2026 Aria Carmona. All Rights Reserved.
+    </p>
+
+</div>
 
 </body>
+
 </html>
