@@ -2,125 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thank You - Aria Carmona</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Thank You | Aria Carmona</title>
+
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 100px 20px;
-      background-color: #fff;
-      color: #333;
-    }
-
-    .thankyou-message {
-      font-size: 28px;
-      font-weight: bold;
-      margin-top: 40px;
-      font-family: "Vogue", sans-serif;
-    }
-
-    /* Navbar styling (matches index/gallery/contact) */
-    .navbar {
-      display: flex;
-      align-items: center;
-      padding: 20px 20px 20px 60px;
-      background-color: white;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      max-width: calc(100% - 200px);
-      margin-right: 200px;
-      box-sizing: border-box;
-      gap: 40px;
-    }
-
-    .navbar img {
-      height: 50px;
-      flex-shrink: 0;
-    }
-
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 40px;
-      margin: 0;
-      padding: 0;
-      flex-wrap: wrap;
-      flex-shrink: 0;
-    }
-
-    .navbar ul li a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.3s;
-    }
-
-    .navbar ul li a:hover {
-      background-color: black;
-      color: pink;
-      padding: 4px 8px;
-      border-radius: 4px;
-    }
-
-    /* Tablet */
-    @media screen and (max-width: 1000px) {
-      .navbar {
-        padding-left: 20px;
-        max-width: calc(100% - 100px);
-        margin-right: 100px;
-        gap: 30px;
-      }
-      .navbar ul {
-        gap: 25px;
-      }
-    }
-
-    /* Mobile */
-    @media screen and (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 15px;
-        margin-right: 0;
-        max-width: 100%;
-        gap: 10px;
-      }
-      .navbar img {
-        margin-bottom: 10px;
-      }
-      .navbar ul {
-        flex-basis: 100%;
-        justify-content: center;
-        gap: 15px;
-      }
-    }
-  </style>
 </head>
+
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a href="index.html">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
-    </a>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
 
-  <div class="thankyou-message">
-    Thank you for reaching out!<br />
-    We will get back to you as soon as possible. 
-  </div>
+      <a href="index.html" class="logo">
+        <img src="images/ACName3.png" alt="Aria Carmona">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="news.html">NEWS</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="calendar.html">CALENDAR</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="submit.html">SUBMIT</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+
+  <!-- THANK YOU SECTION -->
+  <main>
+
+    <section class="thankyou-page">
+
+      <div class="thankyou-overlay"></div>
+
+      <div class="thankyou-content">
+
+        <h1>Thank You</h1>
+
+        <p>
+          Your submission has been received.
+        </p>
+
+        <p>
+          Our team will review your information and reach out if there is an opportunity to move forward.
+        </p>
+
+        <a href="index.html" class="cta-button">
+          RETURN HOME
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-content">
+
+      <p>
+        © 2026 Aria Carmona
+      </p>
+
+      <p>
+        Official Website • Booking • Press • Media
+      </p>
+
+    </div>
+
+  </footer>
+
 
 </body>
 </html>
