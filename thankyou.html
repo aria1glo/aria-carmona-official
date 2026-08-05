@@ -1,84 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Thank You | Aria Carmona</title>
+<title>Thank You | Aria Carmona</title>
 
-  <link rel="stylesheet" href="style.css" />
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #050505;
+
+    color: white;
+
+}
+
+
+/* =====================
+   NAVBAR
+===================== */
+
+header {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+}
+
+
+.navbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 60px;
+
+    background: rgba(0,0,0,0.75);
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.logo img {
+
+    width: 150px;
+
+    height: auto;
+
+}
+
+
+.nav-links {
+
+    list-style: none;
+
+    display: flex;
+
+    gap: 35px;
+
+}
+
+
+.nav-links a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s ease;
+
+}
+
+
+.nav-links a:hover {
+
+    opacity: .6;
+
+}
+
+
+
+/* =====================
+   THANK YOU HERO
+===================== */
+
+.thankyou-page {
+
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+
+    background:
+
+    linear-gradient(
+        rgba(0,0,0,.7),
+        rgba(0,0,0,.9)
+    ),
+
+    url("images/DHP00791.jpg");
+
+
+    background-size: cover;
+
+    background-position: center;
+
+}
+
+
+.thankyou-content {
+
+    max-width: 700px;
+
+    padding: 40px;
+
+}
+
+
+.thankyou-content h1 {
+
+    font-size: 64px;
+
+    letter-spacing: 8px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+}
+
+
+.thankyou-content p {
+
+    color: #d0d0d0;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+.cta-button {
+
+    display: inline-block;
+
+    margin-top: 35px;
+
+    padding: 15px 40px;
+
+    border: 1px solid white;
+
+    color: white;
+
+    text-decoration: none;
+
+    letter-spacing: 3px;
+
+    font-size: 13px;
+
+    transition: .3s ease;
+
+}
+
+
+.cta-button:hover {
+
+    background:white;
+
+    color:black;
+
+}
+
+
+
+/* =====================
+   FOOTER
+===================== */
+
+
+footer {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 25px;
+
+    background: rgba(0,0,0,.6);
+
+}
+
+
+footer p {
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    color:#aaa;
+
+}
+
+
+
+/* =====================
+   MOBILE
+===================== */
+
+@media(max-width:900px){
+
+    .navbar {
+
+        padding:20px;
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+
+    .nav-links {
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:20px;
+
+    }
+
+
+    .thankyou-content h1 {
+
+        font-size:42px;
+
+        letter-spacing:5px;
+
+    }
+
+
+    .thankyou-content p {
+
+        font-size:16px;
+
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-  <!-- NAVBAR -->
-  <header>
-    <nav class="navbar">
 
-      <a href="index.html" class="logo">
-        <img src="images/ACName3.png" alt="Aria Carmona">
-      </a>
+<header>
 
-      <ul class="nav-links">
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="news.html">NEWS</a></li>
-        <li><a href="gallery.html">GALLERY</a></li>
-        <li><a href="calendar.html">CALENDAR</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-        <li><a href="submit.html">SUBMIT</a></li>
-      </ul>
-
-    </nav>
-  </header>
+<nav class="navbar">
 
 
-  <!-- THANK YOU SECTION -->
-  <main>
+<a href="index.html" class="logo">
 
-    <section class="thankyou-page">
+<img src="images/ACName3.png" alt="Aria Carmona">
 
-      <div class="thankyou-overlay"></div>
-
-      <div class="thankyou-content">
-
-        <h1>Thank You</h1>
-
-        <p>
-          Your submission has been received.
-        </p>
-
-        <p>
-          Our team will review your information and reach out if there is an opportunity to move forward.
-        </p>
-
-        <a href="index.html" class="cta-button">
-          RETURN HOME
-        </a>
-
-      </div>
-
-    </section>
-
-  </main>
+</a>
 
 
-  <!-- FOOTER -->
-  <footer>
+<ul class="nav-links">
 
-    <div class="footer-content">
+<li><a href="index.html">HOME</a></li>
 
-      <p>
-        © 2026 Aria Carmona
-      </p>
+<li><a href="news.html">NEWS</a></li>
 
-      <p>
-        Official Website • Booking • Press • Media
-      </p>
+<li><a href="gallery.html">GALLERY</a></li>
 
-    </div>
+<li><a href="calendar.html">CALENDAR</a></li>
 
-  </footer>
+<li><a href="contact.html">CONTACT</a></li>
+
+<li><a href="submit.html">SUBMIT</a></li>
+
+</ul>
+
+
+</nav>
+
+</header>
+
+
+
+<section class="thankyou-page">
+
+
+<div class="thankyou-content">
+
+
+<h1>Thank You</h1>
+
+
+<p>
+Your submission has been received.
+</p>
+
+
+<p>
+Our team will review your information and contact you if there is an opportunity to move forward.
+</p>
+
+
+<a href="index.html" class="cta-button">
+RETURN HOME
+</a>
+
+
+</div>
+
+
+</section>
+
+
+
+<footer>
+
+<p>
+© 2026 Aria Carmona • Official Website • Booking • Press • Media
+</p>
+
+</footer>
 
 
 </body>
+
 </html>
