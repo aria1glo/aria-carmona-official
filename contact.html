@@ -1,215 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Aria</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.png" type="image/png" />
 
-  <style>
-    /* ===== NAVBAR ===== */
-    .navbar {
-      position: sticky;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: white;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 12px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .navbar img {
-      height: 55px;
-      display: block;
-      margin: 0 auto;
-    }
+<title>Contact | Aria Carmona</title>
 
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      margin: 10px 0 0 0;
-      padding: 0;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.png" type="image/png">
 
-    .navbar ul li a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.3s;
-    }
+<style>
 
-    .navbar ul li a:hover {
-      background-color: black;
-      color: lightpink;
-      padding: 4px 8px;
-      border-radius: 5px;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    @media (max-width: 900px) {
-      .navbar img {
-        height: 45px;
-      }
+html{
+    scroll-behavior:smooth;
+}
 
-      .navbar ul {
-        gap: 20px;
-      }
-    }
+body{
+    background:#050405;
+    color:#fff;
+    font-family:"Vogue",serif;
+    overflow-x:hidden;
+}
 
-    @media (max-width: 600px) {
-      .navbar img {
-        height: 38px;
-        margin-bottom: 6px;
-      }
+/*==============================
+NAVBAR
+==============================*/
 
-      .navbar ul {
-        gap: 15px;
-      }
+.navbar{
 
-      .navbar ul li a {
-        font-size: 16px;
-      }
-    }
+    position:fixed;
+    top:0;
+    left:0;
 
-    /* ===== CONTACT FORM & SOCIALS ===== */
-    form {
-      max-width: 90%;
-      margin: 40px auto 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+    width:100%;
 
-    input, textarea {
-      padding: 15px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 100%;
-      box-sizing: border-box;
-    }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-    button {
-      background-color: #ff69b4;
-      color: white;
-      font-size: 18px;
-      padding: 15px;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+    padding:18px 48px;
 
-    button:hover {
-      background-color: #ffb6c1;
-    }
+    z-index:1000;
 
-    .social-icons {
-      text-align: center;
-      margin-top: 40px;
-    }
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.72),
+        rgba(0,0,0,0)
+    );
 
-    .social-icons a {
-      display: inline-block;
-      margin: 0 12px;
-    }
+}
 
-    .social-icons img {
-      width: 40px;
-      height: 40px;
-    }
+.logo img{
 
-    .contact-title {
-      text-align: center;
-      font-family: "Vogue", sans-serif;
-      font-size: 36px;
-      margin-top: 100px;
-    }
+    height:42px;
 
-    @media (max-width: 768px) {
-      form {
-        max-width: 95%;
-      }
+    display:block;
 
-      .social-icons img {
-        width: 32px;
-        height: 32px;
-      }
-    }
-  </style>
+}
+
+.nav-links{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+.nav-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    letter-spacing:.12em;
+
+    transition:.25s;
+
+}
+
+.nav-links a:hover{
+
+    color:#ff66cc;
+
+}
+
+.nav-links a.active{
+
+    color:#ff66cc;
+
+}
+
+/*==============================
+HERO
+==============================*/
+
+.hero{
+
+    position:relative;
+
+    height:72vh;
+
+    min-height:560px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+}
+
+.hero-bg{
+
+    position:absolute;
+
+    inset:0;
+
+    background:url("images/DHP00791.jpg")
+    center center/cover no-repeat;
+
+    filter:brightness(.48);
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+
+        rgba(0,0,0,.12),
+
+        rgba(0,0,0,.82)
+
+    );
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:5;
+
+    max-width:850px;
+
+    padding:20px;
+
+}
+
+.hero-content h1{
+
+    font-size:72px;
+
+    letter-spacing:5px;
+
+    margin-bottom:18px;
+
+    font-weight:400;
+
+}
+
+.hero-content p{
+
+    color:#ddd;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+/*==============================
+SECTION TITLE
+==============================*/
+
+.section-title{
+
+    text-align:center;
+
+    padding:70px 20px 25px;
+
+}
+
+.section-title h2{
+
+    font-size:40px;
+
+    font-weight:400;
+
+    letter-spacing:3px;
+
+}
+
+.section-title p{
+
+    color:#bbb;
+
+    margin-top:15px;
+
+}
+
+/*==============================
+CONTACT CARD
+==============================*/
+
+.contact-wrapper{
+
+    width:min(1100px,92%);
+
+    margin:40px auto;
+
+    display:grid;
+
+    grid-template-columns:350px 1fr;
+
+    gap:40px;
+
+}
+
+.contact-info{
+
+    background:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,102,204,.15);
+
+    border-radius:18px;
+
+    padding:35px;
+
+}
+
+.contact-info h3{
+
+    margin-bottom:25px;
+
+    font-size:28px;
+
+    font-weight:400;
+
+}
+
+.contact-info p{
+
+    color:#d5d5d5;
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+
+}
+
+.contact-form{
+
+    background:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,102,204,.15);
+
+    border-radius:18px;
+
+    padding:35px;
+
+}
+
+/*==============================
+FORM
+==============================*/
+
+.contact-form form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.contact-form input,
+.contact-form textarea{
+
+    background:#111;
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:10px;
+
+    padding:16px;
+
+    font-size:16px;
+
+}
+
+.contact-form textarea{
+
+    resize:vertical;
+
+    min-height:180px;
+
+}
+
+.contact-form button{
+
+    background:#ff66cc;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:16px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.contact-form button:hover{
+
+    background:#ff89da;
+
+}
+
+/*==============================
+SOCIALS
+==============================*/
+
+.social-icons{
+
+    text-align:center;
+
+    margin:60px 0;
+
+}
+
+.social-icons img{
+
+    width:42px;
+
+    margin:0 12px;
+
+    transition:.25s;
+
+}
+
+.social-icons img:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/*==============================
+FOOTER
+==============================*/
+
+.footer{
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    color:#888;
+
+    text-align:center;
+
+    padding:45px 20px;
+
+}
+
+/*==============================
+MOBILE
+==============================*/
+
+@media(max-width:900px){
+
+.navbar{
+
+flex-direction:column;
+
+gap:18px;
+
+padding:20px;
+
+}
+
+.nav-links{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.hero-content h1{
+
+font-size:52px;
+
+}
+
+.contact-wrapper{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a href="index.html">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo" />
-    </a>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+<div class="navbar">
 
-  <!-- Contact Form -->
-  <h2 class="contact-title">CONTACT ARIA</h2>
-  <form action="https://formspree.io/f/mgvzvaqe" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
+<a href="index.html" class="logo">
 
-  <!-- Social Icons -->
-  <div class="social-icons">
+<img src="images/ACName3.png" alt="Aria Carmona Logo">
+
+</a>
+
+<div class="nav-links">
+
+<a href="index.html">HOME</a>
+
+<a href="news.html">NEWS</a>
+
+<a href="gallery.html">GALLERY</a>
+
+<a href="calendar.html">CALENDAR</a>
+
+<a href="contact.html" class="active">CONTACT</a>
+
+</div>
+
+</div>
+
+<section class="hero">
+
+<div class="hero-bg"></div>
+
+<div class="hero-content">
+
+<h1>Contact</h1>
+
+<p>
+
+Booking inquiries, media requests,
+brand collaborations,
+appearances and professional opportunities.
+
+</p>
+
+</div>
+
+</section>
+
+<div class="section-title">
+
+<h2>Let's Connect</h2>
+
+<p>
+
+For bookings, partnerships or press inquiries,
+send a message below.
+
+</p>
+
+</div>
+
+<div class="contact-wrapper">
+
+    <div class="contact-info">
+
+        <h3>Booking &amp; Press</h3>
+
+        <p>
+            For booking inquiries, media requests,
+            interviews, collaborations, partnerships,
+            runway opportunities and commercial work,
+            please use the contact form or email directly.
+        </p>
+
+        <p>
+            <strong>PR &amp; Media</strong><br>
+            <a href="mailto:pr@ariacarmona.com" style="color:#ff66cc; text-decoration:none;">
+                pr@ariacarmona.com
+            </a>
+        </p>
+
+        <p>
+            <strong>Location</strong><br>
+            New York City
+        </p>
+
+        <p>
+            Response time is typically within
+            <strong>1–3 business days.</strong>
+        </p>
+
+    </div>
+
+    <div class="contact-form">
+
+        <form action="https://formspree.io/f/mgvzvaqe" method="POST">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                required
+            >
+
+            <textarea
+                name="message"
+                placeholder="Tell me about your project, booking, or inquiry..."
+                required
+            ></textarea>
+
+            <button type="submit">
+
+                SEND MESSAGE
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div class="social-icons">
+
     <a href="https://www.instagram.com/aria.glo" target="_blank" rel="noopener noreferrer">
-      <img src="images/instagram.png" alt="Instagram" />
+        <img src="images/instagram.png" alt="Instagram">
     </a>
-    <a href="https://www.snapchat.com/add/aria.glow" target="_blank" rel="noopener noreferrer">
-      <img src="images/snapchat.png" alt="Snapchat" />
-    </a>
-    <a href="https://www.tiktok.com/@aria1glo" target="_blank" rel="noopener noreferrer">
-      <img src="images/tiktok.png" alt="TikTok" />
-    </a>
-    <a href="https://www.youtube.com/@AriaCarmonaOfficial" target="_blank" rel="noopener noreferrer">
-      <img src="images/youtube.png" alt="YouTube" />
-    </a>
-  </div>
 
-  <script>
-    // Redirect after successful submission
-    window.addEventListener("DOMContentLoaded", function () {
-      const form = document.querySelector("form");
-      form.addEventListener("submit", function (e) {
+    <a href="https://www.snapchat.com/add/aria.glow" target="_blank" rel="noopener noreferrer">
+        <img src="images/snapchat.png" alt="Snapchat">
+    </a>
+
+    <a href="https://www.tiktok.com/@aria1glo" target="_blank" rel="noopener noreferrer">
+        <img src="images/tiktok.png" alt="TikTok">
+    </a>
+
+    <a href="https://www.youtube.com/@AriaCarmonaOfficial" target="_blank" rel="noopener noreferrer">
+        <img src="images/youtube.png" alt="YouTube">
+    </a>
+
+</div>
+
+
+<div class="footer">
+
+    <p>
+
+        © 2026 Aria Carmona
+
+    </p>
+
+    <p style="margin-top:10px; color:#666;">
+
+        Official Website • Booking • Press • Media
+
+    </p>
+
+</div>
+
+
+<script>
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", async function(e){
+
         e.preventDefault();
+
         const data = new FormData(form);
-        fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(response => {
-          if (response.ok) {
-            window.location.href = "thankyou.html";
-          } else {
-            alert("There was an error. Please try again.");
-          }
-        }).catch(error => {
-          alert("There was an error. Please try again.");
-        });
-      });
+
+        try{
+
+            const response = await fetch(form.action,{
+
+                method:"POST",
+
+                body:data,
+
+                headers:{
+
+                    "Accept":"application/json"
+
+                }
+
+            });
+
+            if(response.ok){
+
+                window.location.href="thankyou.html";
+
+            }else{
+
+                alert("Something went wrong. Please try again.");
+
+            }
+
+        }catch(error){
+
+            alert("Unable to send your message. Please try again.");
+
+        }
+
     });
-  </script>
+
+});
+
+</script>
 
 </body>
 </html>
