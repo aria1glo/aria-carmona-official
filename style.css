@@ -241,3 +241,98 @@ h1, h2, h3, p {
     h2 { font-size: 1.4rem; }
     p  { font-size: 1rem; }
 }
+
+/* =========================
+   THANK YOU PAGE
+========================= */
+
+.thankyou-page {
+    min-height: 100vh;
+    background:
+    linear-gradient(
+        rgba(5,4,5,0.75),
+        rgba(5,4,5,0.95)
+    ),
+    url("images/DHP00791.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    position: relative;
+}
+
+
+.thankyou-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 40px;
+}
+
+
+.thankyou-content h1 {
+
+    font-size: 4rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+
+}
+
+
+.thankyou-content p {
+
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #d6d6d6;
+    margin-bottom: 15px;
+
+}
+
+
+.cta-button {
+
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 14px 35px;
+
+    border: 1px solid white;
+
+    color: white;
+
+    text-decoration: none;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s ease;
+
+}
+
+
+.cta-button:hover {
+
+    background: white;
+
+    color: black;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .thankyou-content h1 {
+
+        font-size: 2.8rem;
+
+    }
+
+}
