@@ -188,7 +188,17 @@
     table{width:100%;border-collapse:collapse;min-width:720px}
     thead th{text-align:left;font-size:13px;color:var(--muted);font-weight:400;padding:10px 12px;border-bottom:1px solid var(--line)}
     tbody td{padding:12px;vertical-align:middle;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.04)}
-    tr.year-row td{padding:26px 12px 8px;font-size:20px;font-weight:900;color:var(--pink);border-bottom:1px solid var(--line)}
+    tr.year-row td{padding:14px 0 0;border:0}
+    .year-toggle{
+      width:100%;display:flex;align-items:center;gap:14px;text-align:left;
+      padding:18px 12px;border-bottom:1px solid var(--line);color:var(--pink);
+      font-size:22px;font-weight:900;transition:background .18s ease;
+    }
+    .year-toggle:hover{background:rgba(255,102,204,0.08)}
+    .year-toggle .count{font-size:13px;font-weight:400;color:var(--muted);margin-left:auto}
+    .year-toggle svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .25s ease;flex:0 0 auto}
+    .year-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+    tr.event-row[hidden]{display:none}
     tr.event-row{cursor:pointer;transition:background .18s ease,color .18s ease}
     tr.event-row td:first-child{border-radius:10px 0 0 10px}
     tr.event-row td:last-child{border-radius:0 10px 10px 0}
@@ -245,7 +255,7 @@
     <div class="viz-head">
       <div>
         <h1 id="heading">Calendar</h1>
-        <p id="subhead">Every show, shoot and casting, drawn on the state or country it happened in.</p>
+        <p id="subhead">The modeling season is underway, view Aria’s schedule below.</p>
       </div>
       <div class="tabs">
         <a href="#track-vis" class="on">Map visualiser</a>
@@ -333,6 +343,7 @@
      ===================================================================== */
   const EVENTS = [
     // ---- 2025 ----
+    { date:"2025-03-19", title:"Dallas Fashion Week",             designer:"Bureau Fashion Week", type:"Runway",     loc:"Dallas, TX",         shape:"texas" },
     { date:"2025-05-31", title:"Miami Swim Week",                 designer:"Frisk Me Good",       type:"Runway",     loc:"Miami, FL",          shape:"florida" },
     { date:"2025-06-01", title:"Miami Swim Week Campaign Shoot",  designer:"Krissy King",         type:"Shoot",      loc:"Miami, FL",          shape:"florida" },
     { date:"2025-07-25", title:"New York Swim Week",              designer:"MLC Swimwear",        type:"Runway",     loc:"New York, NY",       shape:"new-york" },
@@ -357,6 +368,7 @@
     { date:"2026-09-09", title:"NYFW: American Dream 250",        designer:"Nicole B",            type:"Runway",     loc:"East Rutherford, NJ",shape:"new-jersey" },
     { date:"2026-09-09", title:"New York Fashion Week: Porsche-Caricom", designer:"Valda",        type:"Runway",     loc:"New York, NY",       shape:"new-york" },
     { date:"2026-09-13", title:"New York Fashion Week: Rebel World", designer:"Club Jelena",      type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2026-09-16", title:"Portugal Marketing & Media Shoot", designer:"Almost Famous",     type:"Shoot",      loc:"Lisbon, Portugal",   shape:"portugal" },
     { date:"2026-09-18", title:"Milan Fashion Week: RXR",         designer:"Tommy Hilfiger",      type:"Runway",     loc:"Milan, ITA",         shape:"italy" },
     { date:"2026-09-20", title:"Monaco Marketing & Media Shoot",  designer:"Windsor",             type:"Shoot",      loc:"Monte-Carlo, MON",   shape:"monaco" },
     { date:"2026-10-03", time:"12:00",
@@ -380,11 +392,25 @@
     "florida":    { src:"us",    name:"Florida",    label:"Florida",    sub:"United States", code:"FL" },
     "illinois":   { src:"us",    name:"Illinois",   label:"Illinois",   sub:"United States", code:"IL" },
     "california": { src:"us",    name:"California", label:"California", sub:"United States", code:"CA" },
-    "italy":      { src:"world", name:"Italy",      label:"Italy",      sub:"",              code:"IT" },
-    "france":     { src:"world", name:"France",     label:"France",     sub:"", bbox:[-6,41,10,52], code:"FR" },
-    "monaco":     { src:"world", name:"Monaco",     label:"Monaco",     sub:"", code:"MC",
+    "italy":      { src:"world", name:"Italy",      label:"Italy",      sub:"Milan",         code:"IT" },
+    "france":     { src:"world", name:"France",     label:"France",     sub:"Paris", bbox:[-6,41,10,52], code:"FR" },
+    "monaco":     { src:"world", name:"Monaco",     label:"Monaco",     sub:"Monte Carlo", code:"MC",
       // outline traced from the Monaco map image (flat x/y points, not longitude/latitude)
       planar:[[416.5,60.0],[422.0,59.5],[438.5,71.0],[437.5,107.0],[443.5,108.0],[443.5,117.0],[450.5,156.0],[443.0,160.5],[431.0,161.5],[426.5,159.0],[415.0,138.5],[407.0,138.5],[402.5,143.0],[401.0,159.5],[396.0,159.5],[395.0,155.5],[386.0,155.5],[378.5,162.0],[378.0,170.5],[366.0,170.5],[362.0,172.5],[358.5,178.0],[357.5,194.0],[353.5,198.0],[353.5,210.0],[351.5,216.0],[343.5,224.0],[328.5,249.0],[324.5,276.0],[322.5,279.0],[322.5,287.0],[316.5,288.0],[316.5,292.0],[314.5,293.0],[314.5,303.0],[305.0,303.5],[303.0,312.5],[293.0,313.5],[291.5,321.0],[288.0,323.5],[278.0,325.5],[275.5,328.0],[275.0,332.5],[260.0,332.5],[206.0,339.5],[204.5,341.0],[202.5,350.0],[203.5,367.0],[214.0,367.5],[215.0,365.5],[223.0,365.5],[224.5,368.0],[226.5,384.0],[215.0,385.5],[212.5,388.0],[212.5,398.0],[214.5,405.0],[218.5,408.0],[219.0,411.5],[227.0,411.5],[229.0,407.5],[240.0,407.5],[241.0,404.5],[251.0,404.5],[252.0,399.5],[275.0,399.5],[279.0,397.5],[286.0,397.5],[292.5,404.0],[292.5,425.0],[279.5,440.0],[279.5,447.0],[274.0,453.5],[259.0,454.5],[255.0,460.5],[239.0,468.5],[233.0,474.5],[216.0,475.5],[207.0,473.5],[203.5,471.0],[199.0,461.5],[190.0,461.5],[187.0,464.5],[183.0,464.5],[178.5,455.0],[176.0,452.5],[169.0,452.5],[168.5,448.0],[166.0,446.5],[158.0,446.5],[153.0,450.5],[152.5,459.0],[159.5,460.0],[159.5,480.0],[168.0,480.5],[170.0,487.5],[199.0,486.5],[199.5,498.0],[206.5,509.0],[209.5,510.0],[209.5,514.0],[190.0,525.5],[157.0,556.5],[150.0,556.5],[124.0,535.5],[119.0,535.5],[116.0,529.5],[73.0,496.5],[69.0,491.5],[60.0,487.5],[35.0,470.5],[34.5,463.0],[39.5,457.0],[39.5,451.0],[44.0,450.5],[51.0,441.5],[54.5,441.0],[56.0,436.5],[70.0,431.5],[82.0,431.5],[83.5,430.0],[83.5,416.0],[85.5,410.0],[85.5,402.0],[81.5,396.0],[81.5,390.0],[83.5,388.0],[83.5,373.0],[93.0,363.5],[183.0,285.5],[186.0,283.5],[191.0,283.5],[198.0,278.5],[200.5,276.0],[201.5,267.0],[205.0,266.5],[205.5,263.0],[210.0,260.5],[213.0,255.5],[222.0,249.5],[226.0,249.5],[238.0,257.5],[248.0,257.5],[252.0,251.5],[258.0,250.5],[258.5,247.0],[271.5,235.0],[278.5,220.0],[286.0,215.5],[293.5,207.0],[294.5,192.0],[301.5,183.0],[303.5,176.0],[303.5,159.0],[310.5,150.0],[319.5,129.0],[326.5,128.0],[329.5,114.0],[347.0,113.5],[359.0,105.5],[372.0,105.5],[378.0,103.5],[390.0,94.5],[405.0,93.5],[421.5,77.0],[421.5,68.0],[416.5,64.0]] }
+  ,
+    "texas":      { src:"us",    name:"Texas",      label:"Texas",      sub:"United States", code:"TX",
+      // traced from the supplied Texas image (flat x/y points)
+      planar:[[201.5,20.0],[311.0,19.5],[312.5,21.0],[312.5,104.0],[323.0,114.5],[335.0,111.5],[344.0,121.5],[349.0,121.5],[356.0,125.5],[361.0,123.5],[366.0,127.5],[370.0,124.5],[380.0,124.5],[381.5,126.0],[380.5,129.0],[383.0,131.5],[386.0,131.5],[389.0,136.5],[395.0,131.5],[406.0,137.5],[411.0,134.5],[417.0,137.5],[423.0,132.5],[427.0,136.5],[434.0,134.5],[439.0,140.5],[444.0,142.5],[446.0,140.5],[448.0,141.5],[452.0,137.5],[463.0,137.5],[471.0,133.5],[475.0,136.5],[480.0,136.5],[485.0,132.5],[493.0,136.5],[498.0,141.5],[510.0,146.5],[511.0,145.5],[517.0,150.5],[522.0,148.5],[527.5,150.0],[527.5,218.0],[533.5,223.0],[536.5,229.0],[535.5,234.0],[539.5,239.0],[542.5,246.0],[541.5,249.0],[545.5,253.0],[546.5,258.0],[545.5,268.0],[539.5,279.0],[538.5,289.0],[540.5,297.0],[537.5,304.0],[531.5,310.0],[534.5,316.0],[526.0,316.5],[506.0,325.5],[501.5,330.0],[502.0,331.5],[491.0,338.5],[478.0,350.5],[450.0,364.5],[424.5,384.0],[414.5,398.0],[407.5,416.0],[406.5,429.0],[413.5,454.0],[415.5,469.0],[411.0,469.5],[406.0,474.5],[395.0,466.5],[377.0,465.5],[366.0,458.5],[360.0,458.5],[353.0,452.5],[342.5,450.0],[343.5,448.0],[340.5,445.0],[338.5,436.0],[330.5,426.0],[331.5,420.0],[327.5,414.0],[327.5,404.0],[314.5,393.0],[314.5,390.0],[309.5,383.0],[299.5,374.0],[297.5,369.0],[298.5,367.0],[292.5,359.0],[291.5,353.0],[282.5,336.0],[271.0,325.5],[266.0,323.5],[258.0,312.5],[236.0,312.5],[228.0,309.5],[225.0,312.5],[217.0,313.5],[209.5,325.0],[209.5,329.0],[207.5,331.0],[208.5,335.0],[199.5,343.0],[199.0,345.5],[192.0,345.5],[182.0,338.5],[166.0,332.5],[156.0,323.5],[151.0,321.5],[146.5,317.0],[141.5,307.0],[140.5,293.0],[134.5,286.0],[134.5,281.0],[125.0,271.5],[116.0,267.5],[98.0,248.5],[84.5,239.0],[79.0,229.5],[76.0,229.5],[70.5,224.0],[72.0,217.5],[198.0,217.5],[200.5,215.0]] },
+    "portugal":   { src:"world", name:"Portugal",   label:"Portugal",   sub:"Lisbon", code:"PT",
+      // traced from the supplied Portugal image (flat x/y points)
+      planar:[[523.5,60.0],[528.5,62.0],[534.0,76.5],[544.0,75.5],[550.5,83.0],[548.5,91.0],[532.5,108.0],[525.5,122.0],[528.0,128.5],[538.0,130.5],[542.5,135.0],[546.0,144.5],[576.0,133.5],[588.0,117.5],[597.0,131.5],[624.0,122.5],[635.0,122.5],[640.0,127.5],[647.5,127.0],[645.5,134.0],[650.0,138.5],[678.0,129.5],[695.0,141.5],[702.0,131.5],[724.0,126.5],[729.5,122.0],[729.5,102.0],[735.0,97.5],[746.0,98.5],[756.0,107.5],[774.0,102.5],[786.0,109.5],[799.0,107.5],[807.0,94.5],[812.0,95.5],[824.0,109.5],[839.0,107.5],[855.0,99.5],[857.5,102.0],[856.5,121.0],[861.5,127.0],[861.5,133.0],[854.5,149.0],[854.5,171.0],[861.0,176.5],[871.0,171.5],[885.0,177.5],[910.0,180.5],[932.5,199.0],[906.5,244.0],[890.5,257.0],[883.5,275.0],[864.0,289.5],[840.0,293.5],[822.5,324.0],[820.5,334.0],[800.0,345.5],[792.5,356.0],[792.5,362.0],[811.5,403.0],[810.5,423.0],[817.5,448.0],[817.5,458.0],[811.5,473.0],[818.5,488.0],[810.5,510.0],[819.5,526.0],[820.5,536.0],[811.5,543.0],[802.0,557.5],[787.0,561.5],[774.5,573.0],[777.5,590.0],[783.0,595.5],[793.5,598.0],[803.5,623.0],[801.5,667.0],[787.5,681.0],[779.5,713.0],[775.0,717.5],[765.0,719.5],[693.0,719.5],[674.5,726.0],[687.5,744.0],[691.5,757.0],[719.5,775.0],[719.5,804.0],[732.5,823.0],[736.5,843.0],[741.0,847.5],[756.5,852.0],[757.5,872.0],[762.0,874.5],[771.0,869.5],[781.0,869.5],[790.5,880.0],[790.5,896.0],[775.5,925.0],[778.5,939.0],[766.0,952.5],[749.0,957.5],[733.5,973.0],[731.5,999.0],[735.5,1009.0],[720.5,1032.0],[719.5,1045.0],[749.5,1079.0],[772.0,1114.5],[781.0,1116.5],[796.0,1108.5],[799.5,1118.0],[794.5,1146.0],[784.0,1159.5],[765.0,1156.5],[755.0,1167.5],[743.0,1168.5],[739.5,1172.0],[732.5,1197.0],[705.5,1233.0],[700.5,1244.0],[698.5,1262.0],[685.5,1282.0],[683.5,1290.0],[696.5,1309.0],[696.5,1324.0],[701.5,1332.0],[706.5,1382.0],[676.0,1391.5],[641.0,1418.5],[618.0,1425.5],[607.0,1439.5],[557.0,1413.5],[522.0,1411.5],[509.0,1406.5],[488.0,1407.5],[459.0,1398.5],[449.0,1398.5],[430.0,1412.5],[393.0,1420.5],[383.0,1429.5],[376.5,1426.0],[377.5,1415.0],[397.5,1371.0],[400.5,1349.0],[413.5,1306.0],[414.5,1287.0],[409.5,1278.0],[412.5,1204.0],[408.5,1190.0],[397.5,1182.0],[397.5,1178.0],[410.5,1142.0],[415.5,1115.0],[415.5,1083.0],[409.5,1052.0],[427.0,1055.5],[429.5,1053.0],[423.5,1044.0],[428.5,1035.0],[426.0,1032.5],[412.0,1045.5],[402.0,1035.5],[389.0,1032.5],[369.0,1050.5],[325.5,1059.0],[324.5,1052.0],[331.5,1038.0],[331.5,1027.0],[319.5,997.0],[328.0,992.5],[339.0,992.5],[345.0,1000.5],[354.0,1002.5],[356.5,1000.0],[354.0,990.5],[367.0,993.5],[369.5,991.0],[374.5,984.0],[368.0,980.5],[362.0,982.5],[359.5,979.0],[384.5,964.0],[383.5,957.0],[373.5,948.0],[371.0,935.5],[363.5,949.0],[350.5,962.0],[345.5,979.0],[339.0,982.5],[314.0,983.5],[302.0,989.5],[273.0,981.5],[266.5,966.0],[267.5,953.0],[279.5,920.0],[283.5,877.0],[300.5,841.0],[294.5,809.0],[326.5,783.0],[348.5,751.0],[362.5,702.0],[397.5,611.0],[400.5,597.0],[388.5,582.0],[404.5,544.0],[422.5,440.0],[440.5,377.0],[440.5,348.0],[431.5,321.0],[426.5,283.0],[412.5,253.0],[412.5,225.0],[406.5,207.0],[405.5,179.0],[397.5,164.0],[397.5,130.0],[447.0,88.5],[467.0,79.5],[493.0,76.5],[515.0,69.5]] }
+  };
+
+  /* Short city tags for the little chips under the map. Add a city here if you book a new one. */
+  const CITY_TAGS = {
+    "Los Angeles":"LA", "Chicago":"CHI", "New York":"NYC", "Newark":"NWK", "East Rutherford":"ERU",
+    "Montclair":"MTC", "Miami":"MIA", "Dallas":"DAL", "Paris":"PAR", "Milan":"MIL",
+    "Monte-Carlo":"MC", "Lisbon":"LIS"
   };
 
   const WORLD_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json";
@@ -415,6 +441,8 @@
   const inYear = y => events.filter(e => e.year === y);
   const fmtLong = e => `${MONTHS[e.month]} ${e.day}, ${e.year}`;
   const fmtShort = e => `${SHORT[e.month]} ${e.day}`;
+  const cityOf = e => e.loc.split(",")[0].trim();
+  const cityTag = e => CITY_TAGS[cityOf(e)] || cityOf(e).slice(0, 3).toUpperCase();
 
   const st = { year: featured.year, id: featured.id };
 
@@ -570,9 +598,8 @@
   function renderRail() {
     const list = inYear(st.year);
     $("#rail").innerHTML = list.map((e, i) => {
-      const sh = SHAPES[e.shape] || {};
       return `<button class="chip ${e.id === st.id ? "on" : ""} ${isUp(e) ? "up" : ""}" data-id="${e.id}" aria-label="${esc(e.title)}, ${esc(fmtLong(e))}">
-                <b>${String(i + 1).padStart(2, "0")} ${esc(sh.code || "")}</b><span>${fmtShort(e)}</span></button>`;
+                <b>${String(i + 1).padStart(2, "0")} ${esc(cityTag(e))}</b><span>${fmtShort(e)}</span></button>`;
     }).join("");
     const on = $("#rail .chip.on");
     if (on) {
@@ -606,9 +633,14 @@
   function renderRows() {
     const out = [];
     for (const y of years) {
-      out.push(`<tr class="year-row"><td colspan="5">${y}</td></tr>`);
+      const n = inYear(y).length;
+      out.push(`<tr class="year-row"><td colspan="5">
+        <button class="year-toggle" type="button" data-y="${y}" aria-expanded="false" aria-controls="rows">
+          <span>${y}</span><span class="count">${n} event${n === 1 ? "" : "s"}</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button></td></tr>`);
       inYear(y).slice().reverse().forEach(e => {
-        out.push(`<tr class="event-row" tabindex="0" data-id="${e.id}">
+        out.push(`<tr class="event-row" tabindex="0" data-id="${e.id}" data-year="${y}" hidden>
           <td>${esc(fmtLong(e))}</td>
           <td>${esc(e.title)}${isUp(e) ? '<span class="badge">Upcoming</span>' : ""}</td>
           <td>${esc(e.designer)}</td>
@@ -620,34 +652,48 @@
     $("#rows").innerHTML = out.join("");
   }
 
-  function setupThumbs() {
-    if (!geo.ready) return;
-    const draw = p => {
-      const len = p.getTotalLength();
-      p.style.strokeDasharray = len;
-      if (reduce) { p.style.strokeDashoffset = 0; return; }
-      gsap.fromTo(p, { strokeDashoffset:len }, { strokeDashoffset:0, duration:1.3, ease:"power2.inOut" });
-    };
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (!en.isIntersecting) return;
-        draw(en.target.querySelector("path"));
-        io.unobserve(en.target);
-      });
-    }, { threshold:0.4 });
+  /* outline thumbnails: prepared the first time a year is opened */
+  const preparedYears = new Set();
+  const thumbIO = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      drawThumb(en.target.querySelector("path"));
+      thumbIO.unobserve(en.target);
+    });
+  }, { threshold:0.4 });
 
-    document.querySelectorAll("tr.event-row").forEach(row => {
+  function drawThumb(p) {
+    const len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    if (reduce) { p.style.strokeDashoffset = 0; return; }
+    gsap.fromTo(p, { strokeDashoffset:len }, { strokeDashoffset:0, duration:1.3, ease:"power2.inOut" });
+  }
+
+  function prepYear(y) {
+    if (!geo.ready || preparedYears.has(y)) return;
+    preparedYears.add(y);
+    document.querySelectorAll(`tr.event-row[data-year="${y}"]`).forEach(row => {
       const e = events[Number(row.dataset.id)];
       const p = row.querySelector("td.thumb path");
       const d = outline(e.shape, 96, 64, 6);
       p.setAttribute("d", d);
       if (!d) return;
       const len = p.getTotalLength();
-      p.style.strokeDasharray = len; p.style.strokeDashoffset = reduce ? 0 : len;
-      io.observe(row.querySelector("td.thumb"));
-      row.addEventListener("mouseenter", () => draw(p));
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = reduce ? 0 : len;
+      thumbIO.observe(row.querySelector("td.thumb"));
+      row.addEventListener("mouseenter", () => drawThumb(p));
     });
   }
+
+  function toggleYear(btn, open) {
+    const y = btn.dataset.y;
+    const willOpen = open !== undefined ? open : btn.getAttribute("aria-expanded") !== "true";
+    btn.setAttribute("aria-expanded", willOpen);
+    document.querySelectorAll(`tr.event-row[data-year="${y}"]`).forEach(r => { r.hidden = !willOpen; });
+    if (willOpen) prepYear(Number(y));
+  }
+  const openYears = () => [...document.querySelectorAll(".year-toggle[aria-expanded='true']")].map(b => Number(b.dataset.y));
 
   /* ---------- countdown ---------- */
   function startCountdown() {
@@ -680,6 +726,8 @@
     const b = ev.target.closest(".chip"); if (b) select(Number(b.dataset.id));
   });
   $("#rows").addEventListener("click", ev => {
+    const t = ev.target.closest(".year-toggle");
+    if (t) { toggleYear(t); return; }
     const r = ev.target.closest("tr.event-row"); if (!r) return;
     select(Number(r.dataset.id)); goToViz();
   });
@@ -723,7 +771,7 @@
   startCountdown();
   loadGeo().then(() => {
     select(featured.id, { first:true });
-    setupThumbs();
+    openYears().forEach(prepYear);
   });
   </script>
   <script src="nav.js"></script>
