@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aria Carmona | Official Site</title>
-  <link rel="icon" type="image/png" href="images/ACName3.png" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
   <style>
     @font-face {
@@ -14,7 +15,9 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html { width: 100%; height: 100%; overflow: hidden; }
     body {
+      position: fixed; inset: 0; width: 100%;
       overflow: hidden;
       font-family: 'Vogue', serif;
       background: black;
@@ -42,7 +45,7 @@
       top: 10px;
       left: 20px;
       z-index: 1001;
-      width: 150px;
+      width: 170px;
     }
 
     .section {
@@ -158,23 +161,41 @@
       transform: translate(0,0);
     }
 
+    .nav-toggle { display: none; }
+    .logo { cursor: pointer; }
+    @supports (height: 100dvh) { .section { height: 100dvh; } }
     /* ---------------------- MOBILE FIXES ---------------------- */
     @media (max-width: 768px) {
 
-      /* Centered mobile logo (ONLY CHANGE REQUESTED) */
       .logo {
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px;
+        top: 16px;
+        left: 18px;
+        width: 130px;
       }
-
+      /* hamburger + full-screen menu */
+      .nav-toggle {
+        display: grid; place-items: center;
+        position: fixed; top: 10px; right: 14px; z-index: 1100;
+        width: 44px; height: 44px; border-radius: 50%;
+        border: 1px solid rgba(255,102,204,.45); background: rgba(5,4,5,.6); cursor: pointer;
+      }
+      .nav-toggle span {
+        position: absolute; display: block; width: 18px; height: 2px; border-radius: 2px; background: #fff;
+        transition: transform .3s, opacity .2s;
+      }
+      .nav-toggle span:nth-child(1) { transform: translateY(-6px); }
+      .nav-toggle span:nth-child(3) { transform: translateY(6px); }
+      body.nav-open .nav-toggle span:nth-child(1) { transform: rotate(45deg); }
+      body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+      body.nav-open .nav-toggle span:nth-child(3) { transform: rotate(-45deg); }
       nav {
-        top: 70px;
-        gap: 14px;
-        flex-wrap: wrap;
-        font-size: 12px;
+        inset: 0; top: 0; left: 0; transform: none;
+        flex-direction: column; justify-content: center; gap: 28px;
+        font-size: 26px; letter-spacing: .14em;
+        background: rgba(5,4,5,.99); z-index: 1050;
+        opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
       }
+      body.nav-open nav { opacity: 1; visibility: visible; }
 
       .section-content {
         padding: 20px;
@@ -218,12 +239,6 @@
       filter:drop-shadow(0 0 12px #ff66cc);
     }
 
-    #preloader .preloader-mask {
-      position:absolute;
-      inset:0;
-      background: repeating-conic-gradient(#050405 0% 25%, #ff66cc 0% 50%) 50% / 20px 20px;
-      opacity:0;
-    }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -233,11 +248,10 @@
 
   <!-- Preloader -->
   <div id="preloader">
-    <div class="preloader-logo"><img src="images/ACName3.png" alt="ARIA CARMONA"></div>
-    <div class="preloader-mask"></div>
+    <div class="preloader-logo"><img src="images/AC-Name2.png" alt="ARIA CARMONA"></div>
   </div>
 
-  <img src="images/ACName3.png" alt="Aria Carmona Logo" class="logo" />
+  <img src="images/AC-Name2.png" alt="Aria Carmona Logo" class="logo" />
 
   <nav>
     <a href="#about">ABOUT</a>
@@ -247,6 +261,7 @@
     <a href="#calendar">CALENDAR</a>
     <a href="#contact">CONTACT</a>
   </nav>
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 
   <!-- HERO -->
   <div class="section active slide-right" id="hero">
@@ -339,20 +354,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <script>
-    // PRELOADER
+    // PRELOADER: a calm fade (no flashing)
+    const preloader = document.getElementById('preloader');
+    const hidePreloader = () => { preloader.style.display = 'none'; };
     window.addEventListener('load', () => {
-      const preloaderTimeline = gsap.timeline();
-      preloaderTimeline
-        .to(".preloader-mask", {opacity:1, duration:0.8, ease:"power2.inOut"})
-        .to(".preloader-mask", {opacity:0, duration:0.8, delay:0.2, ease:"power2.inOut"})
-        .to("#preloader", {
-          opacity:0,
-          duration:0.6,
-          pointerEvents:"none",
-          display:"none",
-          ease:"power2.out"
-        });
+      gsap.timeline()
+        .from('#preloader .preloader-logo img', { opacity:0, scale:0.96, duration:0.7, ease:'power2.out' })
+        .to('#preloader', { opacity:0, duration:0.7, delay:0.5, ease:'power2.inOut', onComplete:hidePreloader });
     });
+    setTimeout(hidePreloader, 6000); // safety net if the animation library is slow to load
 
     // SECTION SLIDER LOGIC
     const sections = document.querySelectorAll('.section');
@@ -392,13 +402,38 @@
       if(e.key === 'ArrowUp' || e.key === 'ArrowLeft') showSection(current - 1);
     });
 
+    // Menu button (phones)
+    const toggle = document.querySelector('.nav-toggle');
+    const setMenu = (open) => {
+      document.body.classList.toggle('nav-open', open);
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', () => setMenu(!document.body.classList.contains('nav-open')));
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+
     // Nav click = jump to section
     document.querySelectorAll('nav a').forEach((link, index) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
+        setMenu(false);
         showSection(index + 1);
       });
     });
+
+    // Logo = back to the start
+    document.querySelector('.logo').addEventListener('click', () => showSection(0));
+
+    // Swipe up / down to move between sections on touch screens
+    let touchY = null;
+    window.addEventListener('touchstart', (e) => { touchY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener('touchend', (e) => {
+      if (touchY === null || isAnimating || document.body.classList.contains('nav-open')) return;
+      const dy = e.changedTouches[0].clientY - touchY;
+      touchY = null;
+      if (Math.abs(dy) < 50) return;
+      showSection(dy < 0 ? current + 1 : current - 1);
+    }, { passive: true });
   </script>
 
 </body>

@@ -4,13 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Calendar | Aria Carmona</title>
-  <link rel="icon" href="images/ACName3.png" type="image/png" />
-
-  <!-- Monte Carlo font -->
-  <link href="https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
   <style>
-    /* Vogue font */
     @font-face {
       font-family: 'Vogue';
       src: url('fonts/Vogue.ttf') format('truetype');
@@ -19,309 +16,716 @@
 
     :root{
       --bg: #050405;
+      --panel: rgba(255,255,255,0.035);
+      --line: rgba(255,255,255,0.09);
       --muted: #bdb8bf;
       --pink: #ff66cc;
       --pink-soft: rgba(255,102,204,0.18);
-      --card: rgba(255,255,255,0.035);
+      --pink-dim: rgba(255,102,204,0.22);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
-      font-family: "Vogue", serif;
-      background: var(--bg);
-      color: #fff;
+      font-family:"Vogue", serif;
+      background:var(--bg);
+      color:#fff;
       -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       line-height:1.35;
       overflow-x:hidden;
     }
+    button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+    :focus-visible{outline:2px solid var(--pink);outline-offset:3px}
 
-    /* NAV */
-    .nav {
-      position:fixed;
-      top:14px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:1200;
-      display:flex;
-      gap:28px;
-      align-items:center;
-      font-weight:700;
-      letter-spacing:0.06em;
+    /* NAVBAR (shared look with news / gallery / contact) */
+    .navbar{
+      position:fixed;top:0;left:0;width:100%;z-index:1000;
+      display:flex;justify-content:space-between;align-items:center;padding:18px 48px;
+      background:linear-gradient(to bottom,rgba(0,0,0,.72),rgba(0,0,0,0));
     }
-    .nav a{
-      color:#fff;
-      text-decoration:none;
-      transition:all .18s ease;
-      font-size:14px;
-    }
-    .nav a:hover{color:var(--pink)}
-    .logo{
-      position:fixed; left:18px; top:10px; width:150px; z-index:1300;
-    }
+    .logo img{height:42px;width:auto;display:block}
+    .nav-links{display:flex;gap:30px;align-items:center}
+    .nav-links a{color:#fff;text-decoration:none;font-size:14px;letter-spacing:.12em;transition:color .25s}
+    .nav-links a:hover,.nav-links a.active{color:var(--pink)}
 
-    /* HERO */
-    .hero {
-      height: 86vh;
-      min-height: 640px;
+    /* ================= TRACK VISUALISER ================= */
+    .viz{
+      min-height:100vh;
+      padding:104px 28px 28px;
+      display:flex; flex-direction:column; gap:18px;
       position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      overflow:hidden;
-      background: #000;
+      background:
+        radial-gradient(60% 55% at 70% 48%, rgba(255,102,204,0.11), transparent 70%),
+        var(--bg);
     }
-    .hero .bg {
-      position:absolute; inset:0;
-      top:0px;
-      background-image: url('images/IK9A9766.jpg');
-      background-size:cover;
-      background-position:center center;
-      filter: brightness(0.62);
-      z-index:1;
-      transform-origin:center;
+    .viz-head{
+      display:flex; justify-content:space-between; align-items:flex-end;
+      gap:20px; flex-wrap:wrap; max-width:1360px; width:100%; margin:0 auto;
     }
-    .hero::after{ content:""; position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.36) 0%, rgba(0,0,0,0.6) 65%); z-index:2; }
+    .viz-head h1{font-size:clamp(28px,4.2vw,52px);font-weight:900;letter-spacing:0.01em;line-height:1}
+    .viz-head p{color:var(--muted);font-size:15px;margin-top:10px;max-width:560px}
+    .tabs{display:flex;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px}
+    .tabs a{
+      color:var(--muted);text-decoration:none;font-size:14px;
+      padding:8px 16px;border-radius:999px;transition:all .18s ease;
+    }
+    .tabs a.on, .tabs a:hover{background:var(--pink);color:#000}
 
-    /* signature container */
-    .sig-wrap{position:relative; z-index:3; display:flex; flex-direction:column; align-items:center; gap:8px; padding:10px 20px;}
-    .signature-svg{ width:1300px; max-width:95vw; height:auto; display:block; filter: drop-shadow(0 12px 36px rgba(255,102,204,0.28)); overflow:visible; }
-
-    .hero-title{ z-index:3; color:#fff; font-size:18px; letter-spacing:0.12em; margin-top:6px; font-weight:700}
-    .hero-sub{ z-index:3; color:var(--muted); margin-top:6px; font-size:14px; max-width:820px }
-
-    /* NEXT EVENT PANEL */
-    .next-panel {
-      max-width:1200px;
-      margin: 0px auto 0; /* ↓ moved down 70px (from -70px) */
-      display:flex;
-      gap:20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:14px;
-      border:1px solid var(--pink-soft);
-      padding:22px;
-      position:relative;
-      z-index:4;
-      align-items:stretch;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    .viz-main{
+      flex:1; width:100%; max-width:1360px; margin:0 auto;
+      display:grid; grid-template-columns:minmax(300px,400px) 1fr; gap:28px;
+      align-items:stretch; min-height:520px;
     }
 
-    .np-date{
-      flex:0 0 220px;
-      padding:12px 16px;
-      border-right:1px solid rgba(255,255,255,0.03);
-      display:flex; flex-direction:column; justify-content:center;
-      gap:6px;
+    /* details panel */
+    .panel{
+      border:1px solid var(--pink-soft); border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      padding:24px; display:flex; flex-direction:column; gap:16px;
+      box-shadow:0 30px 60px rgba(0,0,0,0.55);
     }
-    .np-label{font-size:12px;color:var(--muted);letter-spacing:0.12em}
-    .np-day{font-size:64px;color:var(--pink);font-weight:900;line-height:0.9}
-    .np-month{font-size:34px;color:#fff; opacity:0.95}
-
-    .np-main{ flex:1; padding:6px 18px; display:flex; flex-direction:column; gap:12px; justify-content:center;}
-    .np-title{ font-size:22px; font-weight:900; color:#fff; letter-spacing:0.01em; }
-    .np-desc{ color:var(--muted); font-size:15px; max-width:820px; }
-    .np-stats{ display:flex; gap:12px; margin-top:8px; flex-wrap:wrap; }
-
-    .np-stat{
-      background: var(--card);
-      border-radius:10px; padding:10px 12px; min-width:100px;
-      border:1px solid rgba(255,255,255,0.03); text-align:left;
+    .p-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+    .p-status{
+      font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);
     }
-    .np-stat .k{ font-size:12px; color:var(--muted) }
-    .np-stat .v{ font-weight:800; color:var(--pink); font-size:14px; margin-top:6px }
+    .p-status.up{border-color:var(--pink);color:var(--pink)}
+    .p-date{display:flex;align-items:baseline;gap:12px;line-height:.9}
+    .p-day{font-size:84px;color:var(--pink);font-weight:900}
+    .p-month{font-size:30px}
+    .p-year{font-size:16px;color:var(--muted);margin-left:auto}
+    .p-title{font-size:22px;font-weight:900;line-height:1.15}
+    .p-blurb{color:var(--muted);font-size:14px;line-height:1.55}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+    .stat .k{font-size:12px;color:var(--muted)}
+    .stat .v{font-weight:800;color:var(--pink);font-size:14px;margin-top:5px;overflow-wrap:anywhere}
+    .sched{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px}
+    .sched h3{font-size:12px;color:var(--muted);font-weight:400}
+    .sched-item{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:13px}
+    .sched-item span:last-child{color:var(--pink)}
 
-    .np-schedule{ flex:0 0 300px; padding:8px 12px; display:flex; flex-direction:column; justify-content:center; align-items:flex-end; gap:8px; text-align:right;}
-    .np-schedule .meta{ color:var(--muted); font-size:13px; margin-bottom:6px; }
-    .sched{ width:100%; border-top:1px solid rgba(255,255,255,0.03); padding-top:8px }
-    .sched-item{ display:flex; justify-content:space-between; gap:8px; color:#fff; font-weight:700; font-size:13px; align-items:center }
+    /* the outline stage */
+    .stage{
+      position:relative; border-radius:14px; overflow:hidden;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px) 0 0/56px 56px,
+        linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/56px 56px,
+        rgba(255,255,255,0.012);
+      min-height:460px;
+    }
+    .stage::before{ /* soften the grid toward the edges */
+      content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+      background:radial-gradient(70% 70% at 50% 50%, transparent 30%, var(--bg) 100%);
+    }
+    .stage > svg.map{position:absolute;inset:0;width:100%;height:100%;z-index:2}
+    #vizFill{fill:var(--pink);fill-opacity:0;stroke:none}
+    #vizBase{fill:none;stroke:rgba(255,255,255,0.14);stroke-width:2;stroke-linejoin:round}
+    #vizDraw{
+      fill:none;stroke:var(--pink);stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round;
+      filter:drop-shadow(0 0 7px rgba(255,102,204,0.7));
+    }
+    #vizDot{fill:#fff;filter:drop-shadow(0 0 9px var(--pink)) drop-shadow(0 0 3px #fff);opacity:0}
+    .place{
+      position:absolute; left:26px; bottom:14px; z-index:1; pointer-events:none;
+      font-family:"Vogue",serif; font-size:clamp(40px,6vw,84px); letter-spacing:.05em; line-height:1;
+      color:rgba(255,255,255,0.78); text-shadow:0 6px 30px rgba(0,0,0,0.7);
+    }
+    .place small{
+      display:block; font-family:"Vogue",serif; font-size:13px; color:var(--muted);
+      margin:0 0 6px 4px; text-shadow:none;
+    }
+    .stepper{position:absolute;right:16px;bottom:16px;z-index:4;display:flex;gap:8px}
+    .stepper button{
+      width:44px;height:44px;border-radius:50%;border:1px solid var(--pink-dim);
+      display:grid;place-items:center;transition:all .18s ease;background:rgba(5,4,5,0.6);
+    }
+    .stepper button:hover:not(:disabled){background:var(--pink);color:#000;border-color:var(--pink)}
+    .stepper button:disabled{opacity:.3;cursor:default}
+    .stepper svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+    .msg{
+      position:absolute;inset:0;z-index:5;display:none;place-items:center;text-align:center;
+      padding:30px;color:var(--muted);font-size:15px;
+    }
+    .msg.show{display:grid}
 
-    /* PAST TABLE */
-    .past-wrap{ max-width:1200px; margin:60px auto 90px; padding:0 18px; z-index:3; }
-    .past-title{ color:var(--pink); font-size:20px; font-weight:900; margin-bottom:18px }
-    .past-table{ width:100%; border-collapse:collapse; background:transparent; }
-    .past-table thead th{ text-align:left; font-size:13px; color:var(--muted); padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.04) }
-    .past-table tbody tr{ border-bottom:1px solid rgba(255,255,255,0.03) }
-    .past-table tbody td{ padding:16px 12px; vertical-align:middle; color:#fff; font-size:15px }
-    .past-row{ opacity:0; transform:translateY(18px); transition:all 0.8s cubic-bezier(.2,.9,.2,1) }
-    .past-row.visible{ opacity:1; transform:translateY(0) }
+    /* rail: the season at a glance */
+    .rail-wrap{max-width:1360px;width:100%;margin:0 auto;display:flex;gap:14px;align-items:center}
+    .years{display:flex;gap:6px;flex:0 0 auto}
+    .years button{
+      font-size:15px;font-weight:900;padding:8px 14px;border-radius:999px;border:1px solid var(--line);
+      color:var(--muted);transition:all .18s ease;
+    }
+    .years button.on{background:var(--pink);border-color:var(--pink);color:#000}
+    .rail{display:flex;gap:8px;overflow-x:auto;padding:6px 2px;scrollbar-width:thin;scrollbar-color:var(--pink-dim) transparent;flex:1;min-width:0}
+    .chip{
+      flex:0 0 auto;min-width:74px;padding:9px 12px;border-radius:10px;
+      border:1px solid var(--line);background:var(--panel);text-align:left;transition:all .18s ease;
+    }
+    .chip b{display:block;font-size:15px}
+    .chip span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+    .chip:hover{border-color:var(--pink-dim)}
+    .chip.on{border-color:var(--pink);background:var(--pink-soft)}
+    .chip.on b{color:var(--pink)}
+    .chip.up span{color:var(--pink)}
 
-    /* RESPONSIVE */
+    /* countdown */
+    .next-bar{
+      max-width:1360px;width:100%;margin:0 auto;display:none;align-items:center;justify-content:space-between;
+      gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:14px;
+    }
+    .next-bar.show{display:flex}
+    .cd{display:flex;gap:18px}
+    .cd div{text-align:center;min-width:44px}
+    .cd b{display:block;font-size:26px;color:#fff;font-weight:900;line-height:1}
+    .cd span{font-size:11px;color:var(--muted)}
+
+    /* ================= CALENDAR LIST ================= */
+    .list-wrap{max-width:1360px;margin:30px auto 90px;padding:0 28px}
+    .list-title{color:var(--pink);font-size:22px;font-weight:900;margin-bottom:6px}
+    .list-sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+    .table-scroll{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;min-width:720px}
+    thead th{text-align:left;font-size:13px;color:var(--muted);font-weight:400;padding:10px 12px;border-bottom:1px solid var(--line)}
+    tbody td{padding:12px;vertical-align:middle;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.04)}
+    tr.year-row td{padding:26px 12px 8px;font-size:20px;font-weight:900;color:var(--pink);border-bottom:1px solid var(--line)}
+    tr.event-row{cursor:pointer;transition:background .18s ease,color .18s ease}
+    tr.event-row td:first-child{border-radius:10px 0 0 10px}
+    tr.event-row td:last-child{border-radius:0 10px 10px 0}
+    tr.event-row.on{background:rgba(255,102,204,0.10)}
+    /* hovering (or keyboard-focusing) an event paints the whole bar pink */
+    tr.event-row:hover, tr.event-row:focus-visible{background:var(--pink);color:#050405;outline:none}
+    tr.event-row:hover td.thumb path, tr.event-row:focus-visible td.thumb path{stroke:#050405;filter:none}
+    tr.event-row:hover .badge, tr.event-row:focus-visible .badge{border-color:#050405;color:#050405}
+    .badge{
+      display:inline-block;margin-left:8px;font-size:11px;padding:2px 8px;border-radius:999px;
+      border:1px solid var(--pink);color:var(--pink);vertical-align:middle;
+    }
+    td.thumb{width:110px;padding:6px 12px}
+    td.thumb svg{display:block;width:84px;height:56px;overflow:visible}
+    td.thumb path{fill:none;stroke:var(--pink);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 3px rgba(255,102,204,0.55))}
+
+    footer{text-align:center;padding:28px;color:var(--muted)}
+
+    /* ================= RESPONSIVE ================= */
     @media (max-width:980px){
-      .next-panel{flex-direction:column;gap:16px;padding:18px}
-      .np-date{flex:0 0 auto;border-right:none;display:flex;flex-direction:row;align-items:center;gap:14px}
-      .np-day{font-size:44px}
-      .np-month{font-size:20px}
-      .np-schedule{align-items:flex-start;text-align:left}
+      .viz{padding:92px 16px 20px}
+      .viz-main{grid-template-columns:1fr;min-height:0}
+      .stage{order:-1;min-height:380px}
+      .p-day{font-size:64px}
+      .rail-wrap{flex-direction:column;align-items:stretch}
+      .list-wrap{padding:0 14px}
     }
-
-    @media (max-width: 768px) {
-      .hero { min-height: 500px; padding: 0 12px; }
-      .sig-wrap .signature-svg { width: 90vw !important; }
-      .hero-title { font-size: 16px; }
-      .hero-sub { font-size: 13px; max-width: 90vw; }
-
-      .next-panel { flex-direction: column; padding: 16px; gap: 14px; }
-      .np-date, .np-schedule { flex: 0 0 auto; text-align: left; padding: 8px 0; }
-
-      .past-table td, .past-table th { font-size: 12px; padding: 8px 6px; }
-      .nav { flex-wrap: wrap; gap: 14px; }
+    @media (max-width:768px){
+      .place{font-size:clamp(30px,10vw,48px);max-width:calc(100% - 110px);left:18px}
+      thead th, tbody td{font-size:12px;padding:8px 6px}
+      td.thumb{width:80px}
+      td.thumb svg{width:60px;height:40px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
     }
   </style>
+  <link rel="stylesheet" href="nav.css" />
 </head>
 <body>
-  <!-- logo + nav -->
-  <img src="images/ACName3.png" class="logo" alt="ARIA" />
-  <nav class="nav">
-    <a href="index.html#about">ABOUT</a>
-    <a href="index.html#stats">STATS</a>
-    <a href="index.html#gallery">GALLERY</a>
-    <a href="index.html#news">NEWS</a>
-    <a href="calendar.html">CALENDAR</a>
-    <a href="index.html#contact">CONTACT</a>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="bg"></div>
-
-    <div class="sig-wrap">
-      <svg class="signature-svg" viewBox="-20 0 840 300">
-        <g transform="rotate(-3, 400, 150)">
-          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-                font-family="MonteCarlo, cursive" font-size="200" stroke="#FF66CC"
-                stroke-width="3" fill="none">
-            Aria Carmona
-          </text>
-        </g>
-      </svg>
-
-      <div class="hero-title">Modeling Calendar — 2026</div>
-      <div class="hero-sub">Featured upcoming runways, editorial previews and campaign dates — animated and highlighted.</div>
+  <div class="navbar">
+    <a href="index.html" class="logo"><img src="images/AC-Name2.png" alt="Aria Carmona"></a>
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="news.html">NEWS</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="calendar.html" class="active">CALENDAR</a>
+      <a href="contact.html">CONTACT</a>
     </div>
-  </header>
+  </div>
 
-  <!-- NEXT EVENT -->
-  <main>
-    <section style="padding: 18px;">
-      <div class="next-panel">
-        <div class="np-date">
-          <div class="np-label">WHEN</div>
-          <div class="np-day">3</div>
-          <div class="np-month">OCTOBER</div>
-        </div>
-
-        <div class="np-main">
-          <div class="np-title">AUSTIN KORTH S/S27 PRESENTATION</div>
-          <div class="np-desc">Aria rolls back into the US with high momentum - having opened in Milan and shot in Monaco. The 22 year old model looks to bring that momentum back to the States for the closing leg of the year.</div>
-
-          <div class="np-stats">
-            <div class="np-stat"><div class="k">TYPE</div><div class="v">RUNWAY</div></div>
-            <div class="np-stat"><div class="k">LOCATION</div><div class="v">NEW YORK</div></div>
-            <div class="np-stat"><div class="k">AGENCY</div><div class="v">TDTD Models</div></div>
-            <div class="np-stat"><div class="k">YEAR</div><div class="v">2026</div></div>
-          </div>
-        </div>
-
-        <div class="np-schedule">
-          <div class="meta">NEW YORK - USA</div>
-          <div class="sched">
-            <div class="sched-item"><span>Fitting</span><span>26 SEPT · 13:00</span></div>
-            <div class="sched-item"><span>Rehearsal</span><span>2 OCT · 18:00</span></div>
-            <div class="sched-item"><span>Show</span><span>3 OCT · 12:00</span></div>
-          </div>
-        </div>
+  <!-- ============ VISUALISER ============ -->
+  <section class="viz" id="track-vis">
+    <div class="viz-head">
+      <div>
+        <h1 id="heading">Calendar</h1>
+        <p id="subhead">Every show, shoot and casting, drawn on the state or country it happened in.</p>
       </div>
-    </section>
-
-    <!-- PAST EVENTS -->
-    <section class="past-wrap">
-      <div class="past-title">Previous Events</div>
-
-      <div style="overflow-x:auto;">
-        <table class="past-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Event</th>
-              <th>Designer / Show</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="past-row"><td>Sept 20, 2026</td><td>Monaco Marketing & Media Shoot</td><td>WINDSOR</td><td>MONTE-CARLO, MON</td></tr>
-            <tr class="past-row"><td>Sept 18, 2026</td><td>Milan Fashion Week: RXR</td><td>TOMMY HILFIGER</td><td>Milan, ITA</td></tr>
-            <tr class="past-row"><td>Sept 13, 2026</td><td>New York Fashion Week: Rebel World</td><td>CLUB JELENA</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>Sept 9, 2026</td><td>New York Fashion Week: Porsche-Caricom</td><td>VALDA</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>Sept 9, 2026</td><td>NYFW: American Dream 250</td><td>NICOLE B</td><td>East Rutherford, NJ</td></tr>
-            <tr class="past-row"><td>Aug 27, 2026</td><td>NYFW Prelude: Partake Show</td><td>COMATOSE</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>June 1, 2026</td><td>Miami Swim Week Campaign Shoot</td><td>DESIRE BIKINI</td><td>Miami, FL</td></tr>
-            <tr class="past-row"><td>May 31, 2026</td><td>Miami Swim Week</td><td>LUXE STYLE</td><td>Miami, FL</td></tr>
-            <tr class="past-row"><td>May 22, 2026</td><td>Smoke The Runway</td><td>ARIA THE BAWSE</td><td>Newark, NJ</td></tr>
-            <tr class="past-row"><td>Mar 16, 2026</td><td>HOTW Midtown Fashion Show</td><td>DANA FASHION DESIGNS</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>Mar 6, 2026</td><td>Paris Fashion Week Model Call</td><td>REVIVE</td><td>Paris, FRA</td></tr>
-            <tr class="past-row"><td>Feb 14, 2026</td><td>New York Fashion Week</td><td>MAD CATS STUDIOS</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>Feb 9, 2026</td><td>Ford Models Model Call</td><td>TOM FORD</td><td>Chicago, IL</td></tr>
-            <tr class="past-row"><td>Feb 7, 2026</td><td>Hancock Tower Media Shoot</td><td>JHIC</td><td>Chicago, IL</td></tr>
-            <tr class="past-row"><td>Jan 2, 2026</td><td>Tiye Eliza Fashion Show: Legacy</td><td>TIYE ELIZA</td><td>Los Angeles, CA</td></tr>
-            <tr class="past-row"><td>Jan 2, 2026</td><td>Tiye Eliza Fashion Show: Tribe</td><td>TIYE ELIZA</td><td>Los Angeles, CA</td></tr>
-            <tr class="past-row"><td>Dec 20, 2025</td><td>Marriott Winter Show</td><td>MLC SWIMWEAR</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>Oct 31, 2025</td><td>Montclair Spooky Met Gala</td><td>SINISTER</td><td>Montclair, NJ</td></tr>
-            <tr class="past-row"><td>Sept 28, 2025</td><td>New York Fashion Week</td><td>PUNK ROCK CREATIONS</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>Sept 27, 2025</td><td>New York Fashion Week</td><td>JAYLYNN RIVERS</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>Aug 25, 2025</td><td>NYFW Prelude: Move The Crowd</td><td>BARRON WISE</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>Jul 25, 2025</td><td>New York Swim Week</td><td>MLC SWIMWEAR</td><td>New York, NY</td></tr>
-            <tr class="past-row"><td>June 1, 2025</td><td>Miami Swim Week Campaign Shoot</td><td>KRISSY KING</td><td>Miami, FL</td></tr>
-            <tr class="past-row"><td>May 31, 2025</td><td>Miami Swim Week</td><td>FRISK ME GOOD</td><td>Miami, FL</td></tr>
-            <tr class="past-row"><td>Aug 27, 2026</td><td>NYFW Prelude: Partake Show</td><td>COMATOSE</td><td>New York, NY</td></tr>
-            
-
-          </tbody>
-        </table>
+      <div class="tabs">
+        <a href="#track-vis" class="on">Map visualiser</a>
+        <a href="#calendar-list">Calendar list</a>
       </div>
-    </section>
-  </main>
+    </div>
 
-  <footer style="text-align:center;padding:28px;color:#bdb8bf">© 2026 Aria Carmona — All rights reserved</footer>
+    <div class="viz-main">
+      <aside class="panel" id="panel" aria-live="polite">
+        <div class="p-meta">
+          <span id="pCount" class="a"></span>
+          <span id="pStatus" class="p-status a"></span>
+        </div>
+        <div class="p-date a">
+          <span class="p-day" id="pDay"></span>
+          <span class="p-month" id="pMonth"></span>
+          <span class="p-year" id="pYear"></span>
+        </div>
+        <div class="p-title a" id="pTitle"></div>
+        <div class="p-blurb a" id="pBlurb"></div>
+        <div class="stats a" id="pStats"></div>
+        <div class="sched a" id="pSched"></div>
+      </aside>
 
-  <!-- GSAP -->
+      <div class="stage" id="stage">
+        <svg class="map" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Outline of the event location">
+          <path id="vizFill" />
+          <path id="vizBase" />
+          <path id="vizDraw" />
+          <circle id="vizDot" r="7" cx="0" cy="0" />
+        </svg>
+        <div class="place" id="place"></div>
+        <div class="stepper">
+          <button id="prev" aria-label="Previous event"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button id="next" aria-label="Next event"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+        <div class="msg" id="msg"></div>
+      </div>
+    </div>
+
+    <div class="rail-wrap">
+      <div class="years" id="years"></div>
+      <div class="rail" id="rail"></div>
+    </div>
+
+    <div class="next-bar" id="nextBar">
+      <span id="nextLabel"></span>
+      <div class="cd" id="cd">
+        <div><b id="cdD">00</b><span>days</span></div>
+        <div><b id="cdH">00</b><span>hours</span></div>
+        <div><b id="cdM">00</b><span>min</span></div>
+        <div><b id="cdS">00</b><span>sec</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALENDAR LIST ============ -->
+  <section class="list-wrap" id="calendar-list">
+    <div class="list-title">All events</div>
+    <div class="list-sub">Select a row to see it on the map.</div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Event</th><th>Designer / show</th><th>Location</th><th></th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>© 2026 Aria Carmona — All rights reserved</footer>
+
+  <!-- GSAP (already used on this site) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- d3 + topojson turn the atlas data into outlines -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 
   <script>
-    gsap.registerPlugin(ScrollTrigger);
+  /* =====================================================================
+     1. YOUR EVENTS — this is the only list you need to edit.
+        date:     YYYY-MM-DD   (add  time: "12:00"  for the countdown)
+        shape:    which outline to draw (see SHAPES below)
+        optional: agency, blurb, schedule
+     ===================================================================== */
+  const EVENTS = [
+    // ---- 2025 ----
+    { date:"2025-05-31", title:"Miami Swim Week",                 designer:"Frisk Me Good",       type:"Runway",     loc:"Miami, FL",          shape:"florida" },
+    { date:"2025-06-01", title:"Miami Swim Week Campaign Shoot",  designer:"Krissy King",         type:"Shoot",      loc:"Miami, FL",          shape:"florida" },
+    { date:"2025-07-25", title:"New York Swim Week",              designer:"MLC Swimwear",        type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2025-08-25", title:"NYFW Prelude: Move The Crowd",    designer:"Barron Wise",         type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2025-09-27", title:"New York Fashion Week",           designer:"Jaylynn Rivers",      type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2025-09-28", title:"New York Fashion Week",           designer:"Punk Rock Creations", type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2025-10-31", title:"Montclair Spooky Met Gala",       designer:"Sinister",            type:"Gala",       loc:"Montclair, NJ",      shape:"new-jersey" },
+    { date:"2025-12-20", title:"Marriott Winter Show",            designer:"MLC Swimwear",        type:"Runway",     loc:"New York, NY",       shape:"new-york" },
 
-    // Signature animation loop
-    const sigText = document.querySelector('.signature-svg text');
-    const dashLength = 1000;
-    sigText.setAttribute('stroke-dasharray', dashLength);
-    sigText.setAttribute('stroke-dashoffset', dashLength);
+    // ---- 2026 ----
+    { date:"2026-01-02", title:"Tiye Eliza Fashion Show: Tribe",  designer:"Tiye Eliza",          type:"Runway",     loc:"Los Angeles, CA",    shape:"california" },
+    { date:"2026-01-02", title:"Tiye Eliza Fashion Show: Legacy", designer:"Tiye Eliza",          type:"Runway",     loc:"Los Angeles, CA",    shape:"california" },
+    { date:"2026-02-07", title:"Hancock Tower Media Shoot",       designer:"JHIC",                type:"Shoot",      loc:"Chicago, IL",        shape:"illinois" },
+    { date:"2026-02-09", title:"Ford Models Model Call",          designer:"Tom Ford",            type:"Model call", loc:"Chicago, IL",        shape:"illinois" },
+    { date:"2026-02-14", title:"New York Fashion Week",           designer:"Mad Cats Studios",    type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2026-03-06", title:"Paris Fashion Week Model Call",   designer:"Revive",              type:"Model call", loc:"Paris, FRA",         shape:"france" },
+    { date:"2026-03-16", title:"HOTW Midtown Fashion Show",       designer:"Dana Fashion Designs",type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2026-05-22", title:"Smoke The Runway",                designer:"Aria The Bawse",      type:"Runway",     loc:"Newark, NJ",         shape:"new-jersey" },
+    { date:"2026-05-31", title:"Miami Swim Week",                 designer:"Luxe Style",          type:"Runway",     loc:"Miami, FL",          shape:"florida" },
+    { date:"2026-06-01", title:"Miami Swim Week Campaign Shoot",  designer:"Desire Bikini",       type:"Shoot",      loc:"Miami, FL",          shape:"florida" },
+    { date:"2026-08-27", title:"NYFW Prelude: Partake Show",      designer:"Comatose",            type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2026-09-09", title:"NYFW: American Dream 250",        designer:"Nicole B",            type:"Runway",     loc:"East Rutherford, NJ",shape:"new-jersey" },
+    { date:"2026-09-09", title:"New York Fashion Week: Porsche-Caricom", designer:"Valda",        type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2026-09-13", title:"New York Fashion Week: Rebel World", designer:"Club Jelena",      type:"Runway",     loc:"New York, NY",       shape:"new-york" },
+    { date:"2026-09-18", title:"Milan Fashion Week: RXR",         designer:"Tommy Hilfiger",      type:"Runway",     loc:"Milan, ITA",         shape:"italy" },
+    { date:"2026-09-20", title:"Monaco Marketing & Media Shoot",  designer:"Windsor",             type:"Shoot",      loc:"Monte-Carlo, MON",   shape:"monaco" },
+    { date:"2026-10-03", time:"12:00",
+      title:"Austin Korth S/S27 Presentation", designer:"Austin Korth", type:"Runway", loc:"New York, NY", shape:"new-york",
+      agency:"TDTD Models",
+      blurb:"Aria rolls back into the US with high momentum, having opened in Milan and shot in Monaco. The 22 year old model looks to bring that momentum back to the States for the closing leg of the year.",
+      schedule:[ ["Fitting","26 Sept · 13:00"], ["Rehearsal","2 Oct · 18:00"], ["Show","3 Oct · 12:00"] ] }
+  ];
 
-    gsap.fromTo(sigText,
-      {strokeDashoffset: dashLength, filter:"drop-shadow(0 0 8px rgba(255,102,204,0.16))"},
-      {strokeDashoffset: 0, duration: 2.5, ease: "power2.inOut", repeat: -1, yoyo:true,
-        onRepeat: () => {
-          gsap.fromTo(sigText,
-            {filter:"drop-shadow(0 0 8px rgba(255,102,204,0.16))"},
-            {filter:"drop-shadow(0 0 22px rgba(255,102,204,0.36))", duration:0.6, yoyo:true, repeat:1}
-          );
-        }
-      }
-    );
+  /* =====================================================================
+     2. OUTLINES — which state or country each shape key draws.
+        src:"us"    → a US state from us-atlas (name must match exactly)
+        src:"world" → a country from world-atlas
+        bbox        → [west, south, east, north]; keeps only the parts of a
+                      country inside this box (so France is the mainland,
+                      not French Guiana).
+     ===================================================================== */
+  const SHAPES = {
+    "new-york":   { src:"us",    name:"New York",   label:"New York",   sub:"United States", code:"NY" },
+    "new-jersey": { src:"us",    name:"New Jersey", label:"New Jersey", sub:"United States", code:"NJ" },
+    "florida":    { src:"us",    name:"Florida",    label:"Florida",    sub:"United States", code:"FL" },
+    "illinois":   { src:"us",    name:"Illinois",   label:"Illinois",   sub:"United States", code:"IL" },
+    "california": { src:"us",    name:"California", label:"California", sub:"United States", code:"CA" },
+    "italy":      { src:"world", name:"Italy",      label:"Italy",      sub:"",              code:"IT" },
+    "france":     { src:"world", name:"France",     label:"France",     sub:"", bbox:[-6,41,10,52], code:"FR" },
+    "monaco":     { src:"world", name:"Monaco",     label:"Monaco",     sub:"", code:"MC",
+      // outline traced from the Monaco map image (flat x/y points, not longitude/latitude)
+      planar:[[416.5,60.0],[422.0,59.5],[438.5,71.0],[437.5,107.0],[443.5,108.0],[443.5,117.0],[450.5,156.0],[443.0,160.5],[431.0,161.5],[426.5,159.0],[415.0,138.5],[407.0,138.5],[402.5,143.0],[401.0,159.5],[396.0,159.5],[395.0,155.5],[386.0,155.5],[378.5,162.0],[378.0,170.5],[366.0,170.5],[362.0,172.5],[358.5,178.0],[357.5,194.0],[353.5,198.0],[353.5,210.0],[351.5,216.0],[343.5,224.0],[328.5,249.0],[324.5,276.0],[322.5,279.0],[322.5,287.0],[316.5,288.0],[316.5,292.0],[314.5,293.0],[314.5,303.0],[305.0,303.5],[303.0,312.5],[293.0,313.5],[291.5,321.0],[288.0,323.5],[278.0,325.5],[275.5,328.0],[275.0,332.5],[260.0,332.5],[206.0,339.5],[204.5,341.0],[202.5,350.0],[203.5,367.0],[214.0,367.5],[215.0,365.5],[223.0,365.5],[224.5,368.0],[226.5,384.0],[215.0,385.5],[212.5,388.0],[212.5,398.0],[214.5,405.0],[218.5,408.0],[219.0,411.5],[227.0,411.5],[229.0,407.5],[240.0,407.5],[241.0,404.5],[251.0,404.5],[252.0,399.5],[275.0,399.5],[279.0,397.5],[286.0,397.5],[292.5,404.0],[292.5,425.0],[279.5,440.0],[279.5,447.0],[274.0,453.5],[259.0,454.5],[255.0,460.5],[239.0,468.5],[233.0,474.5],[216.0,475.5],[207.0,473.5],[203.5,471.0],[199.0,461.5],[190.0,461.5],[187.0,464.5],[183.0,464.5],[178.5,455.0],[176.0,452.5],[169.0,452.5],[168.5,448.0],[166.0,446.5],[158.0,446.5],[153.0,450.5],[152.5,459.0],[159.5,460.0],[159.5,480.0],[168.0,480.5],[170.0,487.5],[199.0,486.5],[199.5,498.0],[206.5,509.0],[209.5,510.0],[209.5,514.0],[190.0,525.5],[157.0,556.5],[150.0,556.5],[124.0,535.5],[119.0,535.5],[116.0,529.5],[73.0,496.5],[69.0,491.5],[60.0,487.5],[35.0,470.5],[34.5,463.0],[39.5,457.0],[39.5,451.0],[44.0,450.5],[51.0,441.5],[54.5,441.0],[56.0,436.5],[70.0,431.5],[82.0,431.5],[83.5,430.0],[83.5,416.0],[85.5,410.0],[85.5,402.0],[81.5,396.0],[81.5,390.0],[83.5,388.0],[83.5,373.0],[93.0,363.5],[183.0,285.5],[186.0,283.5],[191.0,283.5],[198.0,278.5],[200.5,276.0],[201.5,267.0],[205.0,266.5],[205.5,263.0],[210.0,260.5],[213.0,255.5],[222.0,249.5],[226.0,249.5],[238.0,257.5],[248.0,257.5],[252.0,251.5],[258.0,250.5],[258.5,247.0],[271.5,235.0],[278.5,220.0],[286.0,215.5],[293.5,207.0],[294.5,192.0],[301.5,183.0],[303.5,176.0],[303.5,159.0],[310.5,150.0],[319.5,129.0],[326.5,128.0],[329.5,114.0],[347.0,113.5],[359.0,105.5],[372.0,105.5],[378.0,103.5],[390.0,94.5],[405.0,93.5],[421.5,77.0],[421.5,68.0],[416.5,64.0]] }
+  };
 
-    gsap.from('.hero-title', {y:18, opacity:0, duration:0.9, delay:0.3});
-    gsap.from('.hero-sub', {y:8, opacity:0, duration:0.8, delay:0.5});
-    gsap.from('.next-panel', {y:40, opacity:0, duration:1.1, delay:0.6});
+  const WORLD_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json";
+  const US_URL    = "https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json";
 
-    const pastRows = document.querySelectorAll('.past-row');
-    pastRows.forEach((row) => {
-      ScrollTrigger.create({
-        trigger: row,
-        start: "top 85%",
-        onEnter: () => row.classList.add('visible')
+  /* ===================================================================== */
+  const $ = (s, el=document) => el.querySelector(s);
+  const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const SHORT  = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+  // --- prepare events
+  const events = EVENTS.map((e, i) => {
+    const [y, m, d] = e.date.split("-").map(Number);
+    const [hh, mm] = (e.time || "00:00").split(":").map(Number);
+    return { ...e, id:i, year:y, month:m-1, day:d,
+             start:new Date(y, m-1, d, hh, mm),
+             endOfDay:new Date(y, m-1, d, 23, 59, 59) };
+  }).sort((a, b) => a.start - b.start || a.id - b.id);
+  events.forEach((e, i) => e.id = i);
+
+  const now = new Date();
+  const isUp = e => e.endOfDay >= now;
+  const upcoming = events.filter(isUp);
+  const featured = upcoming[0] || events[events.length - 1];
+  const years = [...new Set(events.map(e => e.year))].sort((a, b) => b - a);
+  const inYear = y => events.filter(e => e.year === y);
+  const fmtLong = e => `${MONTHS[e.month]} ${e.day}, ${e.year}`;
+  const fmtShort = e => `${SHORT[e.month]} ${e.day}`;
+
+  const st = { year: featured.year, id: featured.id };
+
+  /* ---------- geometry ---------- */
+  const geo = { ready:false, feats:{}, failed:false };
+
+  function clip(f, shape) {
+    if (f.geometry.type !== "MultiPolygon") return f;
+    let polys = f.geometry.coordinates;
+    if (shape.bbox) {
+      const [x0, y0, x1, y1] = shape.bbox;
+      polys = polys.filter(c => {
+        const [lon, lat] = d3.geoCentroid({ type:"Polygon", coordinates:c });
+        return lon >= x0 && lon <= x1 && lat >= y0 && lat <= y1;
       });
+    }
+    if (!shape.keepSmall && polys.length > 1) {
+      const areas = polys.map(c => d3.geoArea({ type:"Polygon", coordinates:c }));
+      const total = areas.reduce((a, b) => a + b, 0);
+      polys = polys.filter((_, i) => areas[i] >= total * 0.004);
+    }
+    return { type:"Feature", properties:f.properties, geometry:{ type:"MultiPolygon", coordinates:polys } };
+  }
+
+  function fixWinding(f) { // d3 wants clockwise outer rings
+    if (d3.geoArea(f) <= 2 * Math.PI) return f;
+    const flip = r => r.slice().reverse();
+    const g = f.geometry;
+    const coords = g.type === "Polygon" ? g.coordinates.map(flip) : g.coordinates.map(p => p.map(flip));
+    return { ...f, geometry:{ ...g, coordinates:coords } };
+  }
+
+  async function getJSON(url) {
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(url + " " + r.status);
+    return r.json();
+  }
+
+  async function loadGeo() {
+    try {
+      const [world, us] = await Promise.all([getJSON(WORLD_URL), getJSON(US_URL)]);
+      const countries = topojson.feature(world, world.objects.countries).features;
+      const states = topojson.feature(us, us.objects.states).features;
+      for (const [key, shape] of Object.entries(SHAPES)) {
+        if (shape.planar) { // flat traced outline: no atlas lookup needed
+          geo.feats[key] = { type:"Feature", properties:{ planar:true },
+            geometry:{ type:"Polygon", coordinates:[shape.planar.concat([shape.planar[0]])] } };
+          continue;
+        }
+        const pool = shape.src === "us" ? states : countries;
+        const f = pool.find(x => x.properties && x.properties.name === shape.name);
+        if (f) geo.feats[key] = fixWinding(clip(f, shape));
+      }
+      geo.ready = true;
+    } catch (err) {
+      console.error("Outline data failed to load:", err);
+      geo.failed = true;
+    }
+  }
+
+  const pathCache = {};
+  function outline(key, W, H, pad) {
+    const id = [key, W, H, pad].join("|");
+    if (id in pathCache) return pathCache[id];
+    const f = geo.feats[key];
+    if (!f) return (pathCache[id] = "");
+    const base = f.properties && f.properties.planar ? d3.geoIdentity() : d3.geoMercator();
+    const proj = base.fitExtent([[pad, pad], [W - pad, H - pad]], f);
+    return (pathCache[id] = d3.geoPath(proj)(f) || "");
+  }
+
+  /* ---------- the big outline animation ---------- */
+  const elDraw = $("#vizDraw"), elBase = $("#vizBase"), elFill = $("#vizFill"), elDot = $("#vizDot");
+  let tl = null, loop = null;
+
+  function stopAnim() { if (tl) tl.kill(); if (loop) loop.kill(); tl = loop = null; }
+
+  function drawBig(key) {
+    stopAnim();
+    const msg = $("#msg");
+    if (geo.failed) {
+      msg.textContent = "The map outlines couldn't load. Check your connection and refresh the page.";
+      msg.classList.add("show");
+      return;
+    }
+    const d = geo.ready ? outline(key, 800, 600, 70) : "";
+    if (!d) {
+      [elDraw, elBase, elFill].forEach(p => p.setAttribute("d", ""));
+      elDot.style.opacity = 0;
+      if (geo.ready) { msg.textContent = "No outline set up for this location yet."; msg.classList.add("show"); }
+      return;
+    }
+    msg.classList.remove("show");
+    [elDraw, elBase, elFill].forEach(p => p.setAttribute("d", d));
+    const len = elDraw.getTotalLength();
+    elDraw.style.strokeDasharray = len;
+
+    if (reduce) { elDraw.style.strokeDashoffset = 0; elFill.style.fillOpacity = 0.07; elDot.style.opacity = 0; return; }
+
+    elDraw.style.strokeDashoffset = len;
+    elFill.style.fillOpacity = 0;
+    const pos = { p:0 };
+    const place = p => {
+      const pt = elDraw.getPointAtLength(len * p);
+      elDot.setAttribute("cx", pt.x); elDot.setAttribute("cy", pt.y);
+    };
+    place(0);
+    elDot.style.opacity = 1;
+
+    tl = gsap.timeline();
+    tl.to(elDraw, { strokeDashoffset:0, duration:2.6, ease:"power2.inOut" }, 0)
+      .to(pos, { p:1, duration:2.6, ease:"power2.inOut", onUpdate:() => place(pos.p) }, 0)
+      .to(elFill, { fillOpacity:0.07, duration:1.2 }, 1.6)
+      .add(() => { // after the outline is drawn the dot keeps lapping it
+        const lap = { p:0 };
+        loop = gsap.to(lap, { p:1, duration:6, ease:"none", repeat:-1, onUpdate:() => place(lap.p) });
+      });
+  }
+
+  /* ---------- details panel ---------- */
+  function renderPanel(e) {
+    const shape = SHAPES[e.shape] || {};
+    const list = inYear(e.year);
+    const up = isUp(e);
+    $("#pCount").textContent = `Event ${list.indexOf(e) + 1} of ${list.length} in ${e.year}`;
+    const s = $("#pStatus");
+    s.textContent = up ? "Upcoming" : "Completed";
+    s.classList.toggle("up", up);
+    $("#pDay").textContent = e.day;
+    $("#pMonth").textContent = MONTHS[e.month];
+    $("#pYear").textContent = e.year;
+    $("#pTitle").textContent = e.title;
+    $("#pBlurb").textContent = e.blurb || "";
+    $("#pBlurb").style.display = e.blurb ? "" : "none";
+
+    const tiles = [["Type", e.type], ["Location", e.loc], ["Designer / show", e.designer]];
+    if (e.agency) tiles.push(["Agency", e.agency]);
+    $("#pStats").innerHTML = tiles.map(([k, v]) => `<div class="stat"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("");
+
+    const sc = $("#pSched");
+    if (e.schedule && e.schedule.length) {
+      sc.style.display = "";
+      sc.innerHTML = `<h3>Schedule</h3>` + e.schedule.map(([a, b]) => `<div class="sched-item"><span>${esc(a)}</span><span>${esc(b)}</span></div>`).join("");
+    } else { sc.style.display = "none"; sc.innerHTML = ""; }
+
+    $("#place").innerHTML = `${shape.sub ? `<small>${esc(shape.sub)}</small>` : ""}${esc(shape.label || e.loc)}`;
+  }
+
+  /* ---------- rail ---------- */
+  function renderYears() {
+    $("#years").innerHTML = years.map(y => `<button data-y="${y}" class="${y === st.year ? "on" : ""}">${y}</button>`).join("");
+  }
+  function renderRail() {
+    const list = inYear(st.year);
+    $("#rail").innerHTML = list.map((e, i) => {
+      const sh = SHAPES[e.shape] || {};
+      return `<button class="chip ${e.id === st.id ? "on" : ""} ${isUp(e) ? "up" : ""}" data-id="${e.id}" aria-label="${esc(e.title)}, ${esc(fmtLong(e))}">
+                <b>${String(i + 1).padStart(2, "0")} ${esc(sh.code || "")}</b><span>${fmtShort(e)}</span></button>`;
+    }).join("");
+    const on = $("#rail .chip.on");
+    if (on) {
+      const r = $("#rail");
+      const target = on.offsetLeft - (r.clientWidth - on.offsetWidth) / 2;
+      r.scrollTo({ left: Math.max(0, target), behavior: reduce ? "auto" : "smooth" });
+    }
+  }
+  function renderHeading() {
+    const anyUp = upcoming.length > 0;
+    $("#heading").textContent = anyUp ? `Upcoming ${st.year} calendar` : `${st.year} calendar`;
+  }
+  function renderStepper() {
+    const list = inYear(st.year), i = list.findIndex(e => e.id === st.id);
+    $("#prev").disabled = i <= 0;
+    $("#next").disabled = i >= list.length - 1;
+  }
+
+  /* ---------- select an event ---------- */
+  function select(id, opts = {}) {
+    const e = events[id];
+    st.id = id; st.year = e.year;
+    renderYears(); renderRail(); renderHeading(); renderStepper();
+    renderPanel(e);
+    if (!reduce && !opts.first) gsap.fromTo("#panel .a", { opacity:0, y:10 }, { opacity:1, y:0, duration:0.45, stagger:0.04, clearProps:"transform" });
+    drawBig(e.shape);
+    document.querySelectorAll("tr.event-row").forEach(r => r.classList.toggle("on", Number(r.dataset.id) === id));
+  }
+
+  /* ---------- list with outline thumbnails ---------- */
+  function renderRows() {
+    const out = [];
+    for (const y of years) {
+      out.push(`<tr class="year-row"><td colspan="5">${y}</td></tr>`);
+      inYear(y).slice().reverse().forEach(e => {
+        out.push(`<tr class="event-row" tabindex="0" data-id="${e.id}">
+          <td>${esc(fmtLong(e))}</td>
+          <td>${esc(e.title)}${isUp(e) ? '<span class="badge">Upcoming</span>' : ""}</td>
+          <td>${esc(e.designer)}</td>
+          <td>${esc(e.loc)}</td>
+          <td class="thumb"><svg viewBox="0 0 96 64" aria-hidden="true"><path/></svg></td>
+        </tr>`);
+      });
+    }
+    $("#rows").innerHTML = out.join("");
+  }
+
+  function setupThumbs() {
+    if (!geo.ready) return;
+    const draw = p => {
+      const len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      if (reduce) { p.style.strokeDashoffset = 0; return; }
+      gsap.fromTo(p, { strokeDashoffset:len }, { strokeDashoffset:0, duration:1.3, ease:"power2.inOut" });
+    };
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        draw(en.target.querySelector("path"));
+        io.unobserve(en.target);
+      });
+    }, { threshold:0.4 });
+
+    document.querySelectorAll("tr.event-row").forEach(row => {
+      const e = events[Number(row.dataset.id)];
+      const p = row.querySelector("td.thumb path");
+      const d = outline(e.shape, 96, 64, 6);
+      p.setAttribute("d", d);
+      if (!d) return;
+      const len = p.getTotalLength();
+      p.style.strokeDasharray = len; p.style.strokeDashoffset = reduce ? 0 : len;
+      io.observe(row.querySelector("td.thumb"));
+      row.addEventListener("mouseenter", () => draw(p));
     });
+  }
+
+  /* ---------- countdown ---------- */
+  function startCountdown() {
+    const nxt = upcoming.find(e => e.start > new Date());
+    const bar = $("#nextBar");
+    if (!nxt) { bar.classList.remove("show"); return; }
+    bar.classList.add("show");
+    $("#nextLabel").textContent = `Next up: ${nxt.title}, ${nxt.loc}`;
+    const pad = n => String(n).padStart(2, "0");
+    const tick = () => {
+      let s = Math.max(0, Math.floor((nxt.start - new Date()) / 1000));
+      const d = Math.floor(s / 86400); s -= d * 86400;
+      const h = Math.floor(s / 3600);  s -= h * 3600;
+      const m = Math.floor(s / 60);    s -= m * 60;
+      $("#cdD").textContent = pad(d); $("#cdH").textContent = pad(h);
+      $("#cdM").textContent = pad(m); $("#cdS").textContent = pad(s);
+    };
+    tick(); setInterval(tick, 1000);
+  }
+
+  /* ---------- wiring ---------- */
+  function goToViz() { $("#track-vis").scrollIntoView({ behavior: reduce ? "auto" : "smooth" }); }
+
+  $("#years").addEventListener("click", ev => {
+    const b = ev.target.closest("button[data-y]"); if (!b) return;
+    const list = inYear(Number(b.dataset.y));
+    select(list[list.length - 1].id);
+  });
+  $("#rail").addEventListener("click", ev => {
+    const b = ev.target.closest(".chip"); if (b) select(Number(b.dataset.id));
+  });
+  $("#rows").addEventListener("click", ev => {
+    const r = ev.target.closest("tr.event-row"); if (!r) return;
+    select(Number(r.dataset.id)); goToViz();
+  });
+  $("#rows").addEventListener("keydown", ev => {
+    if (ev.key !== "Enter" && ev.key !== " ") return;
+    const r = ev.target.closest("tr.event-row"); if (!r) return;
+    ev.preventDefault(); select(Number(r.dataset.id)); goToViz();
+  });
+  const step = dir => {
+    const list = inYear(st.year), i = list.findIndex(e => e.id === st.id), n = list[i + dir];
+    if (n) select(n.id);
+  };
+  $("#prev").addEventListener("click", () => step(-1));
+  $("#next").addEventListener("click", () => step(1));
+  document.addEventListener("keydown", ev => {
+    if (ev.target.closest("input,textarea,tr.event-row")) return;
+    if (ev.key === "ArrowLeft") step(-1);
+    if (ev.key === "ArrowRight") step(1);
+  });
+
+  // swipe on the map (phones)
+  let sx = null;
+  $("#stage").addEventListener("touchstart", ev => { sx = ev.touches[0].clientX; }, { passive:true });
+  $("#stage").addEventListener("touchend", ev => {
+    if (sx === null) return;
+    const dx = ev.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
+  });
+
+  // highlight the matching tab while scrolling
+  const tabs = document.querySelectorAll(".tabs a");
+  const tabIO = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) tabs.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id));
+  }), { threshold:0.35 });
+  tabIO.observe($("#track-vis"));
+  tabIO.observe($("#calendar-list"));
+
+  /* ---------- go ---------- */
+  renderRows();
+  renderYears(); renderRail(); renderHeading(); renderStepper(); renderPanel(featured);
+  startCountdown();
+  loadGeo().then(() => {
+    select(featured.id, { first:true });
+    setupThumbs();
+  });
   </script>
+  <script src="nav.js"></script>
 </body>
 </html>

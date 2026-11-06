@@ -2,263 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Brighton Beach Shoot 2024| Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brighton Beach 2024 Shoot | Aria Carmona</title>
+  <link rel="stylesheet" href="inner.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background-color: #fff;
-      color: #000;
-    }
-
-    /* Navbar (same as news.html style) */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: white;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 12px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .navbar .logo img {
-      height: 38px;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      margin-top: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 15px;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .nav-links a:hover {
-      color: #ffb6c1;
-      background-color: black;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    h1 {
-      text-align: center;
-      margin: 120px 20px 40px;
-      font-size: 32px;
-    }
-
-    .gallery-wrapper {
-      position: relative;
-      padding: 0 20px;
-    }
-
-    .slider-container {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 20px;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
-
-    .slider-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slide {
-      flex: 0 0 auto;
-      width: 300px;
-      height: 420px;
-      scroll-snap-align: start;
-      position: relative;
-      cursor: pointer;
-      border: 4px solid lightpink;
-      border-radius: 10px;
-      transition: transform 0.3s;
-      background-color: white;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .slide:hover {
-      transform: scale(1.03);
-    }
-
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 40px;
-      color: black;
-      background-color: rgba(255, 192, 203, 0.7);
-      border-radius: 50%;
-      padding: 5px 15px;
-      cursor: pointer;
-      z-index: 10;
-      user-select: none;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-    }
-
-    .gallery-wrapper:hover .arrow {
-      opacity: 1;
-    }
-
-    .arrow-left {
-      left: 10px;
-    }
-
-    .arrow-right {
-      right: 10px;
-    }
-
-    .fullscreen-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.9);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .fullscreen-overlay img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 8px;
-    }
-
-    .fullscreen-overlay.active {
-      display: flex;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 0;
-      font-size: 14px;
-      color: #444;
-      margin-top: 40px;
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .slide {
-        width: 70vw;
-        height: 350px;
-      }
-      h1 {
-        font-size: 28px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .slide {
-        width: 85vw;
-        height: 280px;
-      }
-      h1 {
-        font-size: 24px;
-        margin-top: 100px;
-      }
-    }
-  </style>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="nav.css" />
 </head>
 <body>
-  <!-- Navbar -->
   <div class="navbar">
-    <a href="index.html" class="logo">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo">
-    </a>
+    <a href="index.html" class="logo"><img src="images/AC-Name2.png" alt="Aria Carmona"></a>
     <div class="nav-links">
-      <a href="index.html">HOME</a>
-      <a href="news.html">NEWS</a>
-      <a href="gallery.html">GALLERY</a>
-      <a href="contact.html">CONTACT</a>
+    <a href="index.html">HOME</a>
+    <a href="news.html">NEWS</a>
+    <a href="gallery.html" class="active">GALLERY</a>
+    <a href="calendar.html">CALENDAR</a>
+    <a href="contact.html">CONTACT</a>
     </div>
   </div>
 
-  <h1>Brighton Beach 2024 Shoot</h1>
-
-  <div class="gallery-wrapper">
-    <div class="arrow arrow-left" onclick="scrollSlider(-1)">&#10094;</div>
-    <div class="slider-container" id="slider">
-      <div class="slide"><img src="images/ADN01749.jpg" alt="adn01749" /></div>
-      <div class="slide"><img src="images/ADN02070.jpg" alt="adn02070" /></div>
-      <div class="slide"><img src="images/ADN01913.jpg" alt="adn01913" /></div>
-      <div class="slide"><img src="images/ADN01898.jpg" alt="adn01898" /></div>
-      <div class="slide"><img src="images/ADN01661.jpg" alt="adn01661" /></div>
-      <div class="slide"><img src="images/ADN01826.jpg" alt="adn01826" /></div>
-      <div class="slide"><img src="images/ADN01720.jpg" alt="adn01720" /></div>
-      <div class="slide"><img src="images/ADN01686.jpg" alt="adn01686" /></div>
-      <div class="slide"><img src="images/ADN01791.jpg" alt="adn01791" /></div>
-      <div class="slide"><img src="images/ADN01735.jpg" alt="adn01735" /></div>
-      <div class="slide"><img src="images/ADN02132.jpg" alt="adn02132" /></div>
+  <header class="page-hero page-hero--gallery">
+    <div class="page-hero-bg" style="background-image:url('images/ADN01749.jpg')"></div>
+    <div class="page-hero-inner">
+      <h1>Brighton Beach 2024 Shoot</h1>
+      <p class="g-intro"><strong>Brooklyn, NY — August 13, 2024 —</strong> The beginning of Aria Carmona's modeling journey, photographed by renowned Italian photographer Alex Dani on the shores of Brighton Beach.</p>
     </div>
-    <div class="arrow arrow-right" onclick="scrollSlider(1)">&#10095;</div>
-  </div>
+  </header>
 
-  <!-- Fullscreen Overlay -->
-  <div class="fullscreen-overlay" id="fullscreenOverlay">
-    <img id="fullscreenImg" src="" alt="Fullscreen Image" />
-  </div>
+  <main>
+    <div class="g-wrap">
+      <button class="g-arrow g-prev" aria-label="Previous photos"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="g-slider">
+        <div class="g-slide"><img src="images/ADN01749.jpg" alt="Brighton Beach 2024 Shoot, photo 1" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN02070.jpg" alt="Brighton Beach 2024 Shoot, photo 2" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN01913.jpg" alt="Brighton Beach 2024 Shoot, photo 3" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN01898.jpg" alt="Brighton Beach 2024 Shoot, photo 4" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN01661.jpg" alt="Brighton Beach 2024 Shoot, photo 5" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN01826.jpg" alt="Brighton Beach 2024 Shoot, photo 6" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN01720.jpg" alt="Brighton Beach 2024 Shoot, photo 7" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN01686.jpg" alt="Brighton Beach 2024 Shoot, photo 8" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN01791.jpg" alt="Brighton Beach 2024 Shoot, photo 9" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN01735.jpg" alt="Brighton Beach 2024 Shoot, photo 10" loading="lazy" decoding="async"></div>
+        <div class="g-slide"><img src="images/ADN02132.jpg" alt="Brighton Beach 2024 Shoot, photo 11" loading="lazy" decoding="async"></div>
+      </div>
+      <button class="g-arrow g-next" aria-label="Next photos"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      <div class="g-count"></div>
+    </div>
+    <div class="g-actions"><a class="back" href="gallery.html">Back to gallery</a></div>
+  </main>
 
-  <footer>
-    &copy; 2025 Aria Carmona, All Rights Reserved
-  </footer>
+  <div class="footer">© 2026 Aria Carmona. All Rights Reserved.</div>
 
-  <script>
-    const slider = document.getElementById("slider");
-    const slides = document.querySelectorAll('.slide img');
-    const overlay = document.getElementById('fullscreenOverlay');
-    const overlayImg = document.getElementById('fullscreenImg');
-
-    function scrollSlider(direction) {
-      const scrollAmount = 320;
-      slider.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
-    }
-
-    // Fullscreen
-    slides.forEach(slide => {
-      slide.addEventListener('click', () => {
-        overlayImg.src = slide.src;
-        overlay.classList.add('active');
-      });
-    });
-
-    overlay.addEventListener('click', () => {
-      overlay.classList.remove('active');
-    });
-
-    // Auto-slide every 5s
-    setInterval(() => {
-      scrollSlider(1);
-    }, 5000);
-  </script>
+  <script src="gallery.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>

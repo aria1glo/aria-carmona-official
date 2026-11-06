@@ -2,160 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miami Swim Week 2025 | Aria Carmona</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="inner.css" />
   <link rel="icon" href="favicon.png" type="image/png" />
-  <style>
-    body {
-      font-family: 'Vogue', serif;
-      margin: 0;
-      padding: 0;
-      background: white;
-      color: #000;
-    }
-
-    /* Navbar - stacked style like news.html */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: white;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 12px 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .navbar .logo img {
-      height: 38px;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      margin-top: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 15px;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .nav-links a:hover {
-      color: #ffb6c1;
-      background-color: black;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    .content {
-      max-width: 800px;
-      margin: 120px auto 60px; /* offset for navbar */
-      padding: 0 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .article-img {
-      display: block;
-      margin: 0 auto 30px;
-      width: 50%;
-      border-radius: 10px;
-    }
-
-    .video {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
-
-    iframe {
-      max-width: 100%;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 0;
-      font-size: 14px;
-      color: #444;
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .navbar .logo img {
-        height: 32px;
-      }
-      .nav-links {
-        gap: 16px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar {
-        flex-direction: column;
-        padding: 10px;
-      }
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-      }
-    }
-  </style>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="nav.css" />
 </head>
 <body>
-  <!-- Navbar -->
   <div class="navbar">
-    <a href="index.html" class="logo">
-      <img src="images/AC-Name3.png" alt="Aria Carmona Logo">
-    </a>
+    <a href="index.html" class="logo"><img src="images/AC-Name2.png" alt="Aria Carmona"></a>
     <div class="nav-links">
-      <a href="index.html">HOME</a>
-      <a href="news.html">NEWS</a>
-      <a href="gallery.html">GALLERY</a>
-      <a href="contact.html">CONTACT</a>
+    <a href="index.html">HOME</a>
+    <a href="news.html" class="active">NEWS</a>
+    <a href="gallery.html">GALLERY</a>
+    <a href="calendar.html">CALENDAR</a>
+    <a href="contact.html">CONTACT</a>
     </div>
   </div>
 
-  <div class="content">
-    <h1>Miami Swim Week 2025</h1>
-    <img src="images/miami1.jpg" alt="Aria on Runway" class="article-img" />
+  <header class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('images/miami1.jpg')"></div>
+    <div class="page-hero-inner"><h1>Miami Swim Week 2025</h1></div>
+  </header>
 
+  <main class="article">
+    <figure class="lead"><img src="images/miami1.jpg" alt="Aria on Runway"></figure>
     <p><strong>Miami, FL — May 31, 2025 —</strong> Rising model Aria Carmona made waves at FUSION Swim Week Miami 2025, debuting in her first major runway show during Miami Swim Week. The high-energy event, held on May 31st and streamed globally on SHIFT via YouTube, spotlighted emerging designers and dynamic new modeling talent.</p>
-
     <p>The 21-year old walked for emerging label Frisk Me Good, known for its innovative approach to swimwear and statement pieces. Braving the rainy conditions, in a one-piece Frisk Me Good look, Aria brought energy and talent to the runway.</p>
-
     <p>The Miami show marked a major step in Aria’s rising career, following an appearance at Dallas Fashion Week earlier this year in March. She then participated in a photoshoot the following morning, shooting media and content for the iconic Krissy King brand.</p>
-
     <p>FUSION Swim Week continues to champion diverse talent, making it the perfect stage for fresh faces such as Aria to shine. As she transitions from regional events to larger fashion platforms, her newfound experiences in Miami signal that this is only the start of a blossoming career in the industry.</p>
-
     <p>Follow Aria on Instagram <strong>@aria.glo</strong> to stay up-to-date on her journey and upcoming projects.</p>
-
-    <div class="video">
+    <div class="embed">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/BrsO1IfZ0k8?si=qXBBvZkfchxkiXDp"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
-  </div>
+    <a class="back" href="news.html">Back to news</a>
+  </main>
 
-  <footer>
-    &copy; 2025 Aria Carmona. All rights reserved.
-  </footer>
+  <div class="footer">© 2026 Aria Carmona. All Rights Reserved.</div>
+  <script src="nav.js"></script>
 </body>
 </html>
